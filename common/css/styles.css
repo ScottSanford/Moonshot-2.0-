@@ -1,0 +1,93 @@
+/*===================================================
+
+				Global Styles
+
+====================================================*/
+body {
+	background-color: #f6f6f6;
+	color:#535353;
+}
+
+@font-face {
+	font-family: Proxy-Regular;
+    src: url(../fonts/ProximaNova-Regular.ttf);
+}
+
+@font-face {
+	font-family: Proxy-Light;
+    src: url(../fonts/ProximaNova-Light.ttf);
+}
+
+@font-face {
+	font-family: Proxy-SemiBold;
+    src: url(../fonts/ProximaNova-Semibold.ttf);
+}
+/*===================================================
+
+				Cards Styles
+
+====================================================*/
+.cards-header {
+	height:60px;
+	background-color:#475669;
+	color:#fff;
+	padding:15px;
+}
+
+.header-logo {
+	width:225px;
+}
+
+#card-container {
+	height:100vh;
+}
+
+.flyout-menu-container {
+	background-color:#f6f6f6;
+	height:100vh;
+	font-family: 'Proxy-Light';
+	font-size:20px;
+}
+
+.flyout-menu-item {
+	padding:35px 20px;
+	border-bottom:1px solid #e3e4e5;
+}
+
+/*dark overlay with animation*/
+		.ng-pageslide-body-open::before {
+		    content: '.';
+		    display: block;
+		    position: absolute;
+		    top: 0;
+		    background-color: rgb(0,0,0);
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    z-index: 1;
+		    opacity: 0.25;
+		    transition: opacity 1s;
+		    pointer-events: all;
+		}
+		.ng-pageslide-body-closed::before {
+		    transition: opacity 1s;
+		    content: '.';
+		    display: block;
+		    position: absolute;
+		    top: 0;
+		    background-color: rgb(0,0,0);
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    z-index: 1;
+		    opacity: 0;
+		    pointer-events: none;
+		}
+/*dark overlay with animation*/
+
+
+
+
+
+
+

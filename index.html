@@ -2,9 +2,38 @@
 <html lang="en" ng-app="moonshotApp">
 <head>
 	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 	<title>Moonshot</title>
+
+	<link rel="stylesheet" href="common/libs/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="common/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="common/css/styles.css">
+
 </head>
 <body>
-	
+
+	<div ui-view></div>
+
+	<!-- FRAMEWORK -->
+  	<script src="common/libs/angular/angular.js"></script>
+  	<script src="app.js"></script>
+
+  	<!-- LIBRARIES -->
+	<!-- ANGULAR LIBS -->
+	<script src="common/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="common/libs/angular-pageslide-directive/dist/angular-pageslide-directive.min.js"></script>
+
+	<script src="common/libs/jquery/dist/jquery.js"></script>
+	<script src="common/libs/mfly-commands/src/mflyCommands.js"></script>
+  	
+	<!-- FACTORIES -->
+
+	<!-- DIRECTIVES -->
+
+	<!-- CONTROLLERS -->
+	<script src="components/cards/cards.js"></script>
 </body>
 </html>
