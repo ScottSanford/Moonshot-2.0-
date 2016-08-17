@@ -29,4 +29,17 @@
         </div>
 
     </pageslide>
+
+    <div class="flip-cards-container">
+	    <div class="flip"> 
+	        <div class="card" ng-class="{'flipped':isFlipped}" ng-click="isFlipped=!isFlipped"> 
+	            <div class="face front"> 
+	                Front
+	            </div> 
+	            <div class="face back"> 
+	                Back
+	            </div> 
+	        </div> 
+	    </div> 
+    </div>
 </main>
