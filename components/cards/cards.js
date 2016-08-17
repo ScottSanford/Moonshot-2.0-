@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('CardsCtrl', function($scope, $location){
+.controller('CardsCtrl', function($scope, $location, Mfly){
 
 	$scope.goToSearch = function() {
 		$location.url('/search');
@@ -17,5 +17,12 @@ angular.module('moonshotApp')
     $scope.quitMoonshot = function() {
     	mflyCommands.close();
     };
+
+    // 
+
+    Mfly.search('@Moonshot').then(function(data){
+        console.log(data);
+        $scope.cards = data;
+    });
 
 });

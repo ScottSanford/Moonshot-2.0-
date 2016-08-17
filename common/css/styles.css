@@ -99,6 +99,7 @@ body {
 		   Card Flip
 
 ===============================*/
+
 .flip {
   -webkit-perspective: 800;
    width: 400px;
@@ -117,28 +118,39 @@ body {
 }
 .flip .card .face {
   width: 100%;
-  height: 100%;
+  height: 250px;
   position: absolute;
-  -webkit-backface-visibility: hidden ;
+  border:2px solid #9dbc3b;
+  -webkit-backface-visibility: hidden;
   z-index: 2;
   font-family: 'Proxy-Light';
-  font-size: 3em;
+  font-size: 20px;
+  color:#535353;
   text-align: center;
-  line-height: 200px;
+  background: #fff;
 }
 .flip .card .front {
   position: absolute;
   z-index: 1;
-  background: black;
-  color: white;
   cursor: pointer;
 }
 .flip .card .back {
   -webkit-transform: rotatey(-180deg);
-  background: blue;
-  background: white;
-  color: black;
   cursor: pointer;
+}
+
+.card-title {
+	margin-top:15px;
+	padding-bottom:15px;
+	border-bottom: 1px solid #e3e4e5;
+}
+
+.card-img {
+	padding:20px;
+}
+
+.card-img img {
+	height:150px;
 }
 
 

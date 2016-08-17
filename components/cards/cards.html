@@ -30,16 +30,24 @@
 
     </pageslide>
 
-    <div class="flip-cards-container">
-	    <div class="flip"> 
-	        <div class="card" ng-class="{'flipped':isFlipped}" ng-click="isFlipped=!isFlipped"> 
-	            <div class="face front"> 
-	                Front
-	            </div> 
-	            <div class="face back"> 
-	                Back
-	            </div> 
-	        </div> 
-	    </div> 
+    <div class="row flip-cards-container">
+
+		<div class="col-sm-4 flip-card" ng-repeat="c in cards">
+		    <div class="flip"> 
+		        <div class="card" ng-class="{'flipped':isFlipped}" ng-click="isFlipped=!isFlipped"> 
+		            <div class="face front"> 
+		                <div class="card-title">{{ c.name }}</div>
+		                <div class="card-img">
+							<img ng-src="{{c.thumbnailUrl}}">
+		                </div>
+		            </div> 
+		            <div class="face back"> 
+		                Back
+		            </div> 
+		        </div> 
+		    </div> 
+		</div>
+
+
     </div>
 </main>
