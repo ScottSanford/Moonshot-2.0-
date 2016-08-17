@@ -15,6 +15,16 @@ angular.module("moonshotApp", [
                     url: '/cards',
                     templateUrl: 'components/cards/cards.html', 
                     controller: 'CardsCtrl'
-                });
+                })
+                .state('collections', {
+                    url: '/collections', 
+                    templateUrl: 'components/collections/collections.html', 
+                    controller: 'CollectionsCtrl'
+                })
+                .state('search', {
+                    url: '/search', 
+                    templateUrl: 'components/search/search.html', 
+                    controller: 'SearchCtrl'
+                })
     });
         

@@ -22,6 +22,11 @@ body {
 	font-family: Proxy-SemiBold;
     src: url(../fonts/ProximaNova-Semibold.ttf);
 }
+
+/*Used for Flyout Menu*/
+#card-container, #collections-container, #search-container {
+	height:100vh;
+}
 /*===================================================
 
 				Cards Styles
@@ -31,15 +36,19 @@ body {
 	height:60px;
 	background-color:#475669;
 	color:#fff;
-	padding:15px;
+}
+
+.hamburger-menu-icon {
+	margin:15px;
 }
 
 .header-logo {
 	width:225px;
+	margin-top:5px;
 }
 
-#card-container {
-	height:100vh;
+.cards-header-right span{
+	margin:15px 20px;
 }
 
 .flyout-menu-container {
@@ -85,8 +94,19 @@ body {
 		}
 /*dark overlay with animation*/
 
+/*===================================================
 
+				Collections Styles
 
+====================================================*/
+.back-button {
+	padding:30px 20px;
+}
+
+.back-button-label {
+	font-family: 'Proxy-Light';
+	font-size:30px;
+}
 
 
 
