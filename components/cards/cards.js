@@ -34,9 +34,18 @@ angular.module('moonshotApp')
                 ItemIcons.forEach(function(icon){
                     if (item.type == icon.type) {
                         item['icon'] = icon.icon;
+                        item['isItemSelected'] = false;
                     }
                 });
             });
+
+            $scope.itemsSelectedCount = function() {
+                var count = 0;
+                folderItems.forEach(function(item){
+                    count += item.isItemSelected ? 1 : 0;
+                });
+                return count; 
+            };  
 
             item.items = folderItems;
         });
@@ -45,6 +54,10 @@ angular.module('moonshotApp')
     $scope.viewCardItem = function(_itemId) {
         console.log(_itemId);
     }
+
+    $scope.selectItem = function(){
+        $scope.isItemSelected = !$scope.isItemSelected;
+    };
 
 
 });

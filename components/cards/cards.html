@@ -30,6 +30,17 @@
 
     </pageslide>
 
+    <div class="row">
+    	<div class="col-xs-9">
+    		<div class="count-message">{{itemsSelectedCount()}} total items selected.</div>
+    	</div>
+    	<div class="col-xs-3">
+    		<button class="btn btn-play pull-right">
+    			<span class="fa fa-play-circle"></span> Play
+    		</button>
+    	</div>
+    </div>
+
     <div class="row flip-cards-container">
 
 		<div class="col-sm-4 flip-card" ng-repeat="c in cards">
@@ -55,14 +66,9 @@
 							<div class="col-xs-8 card-title-back-center">
 								{{ c.name }}
 							</div>
-							
+
 							<div class="col-xs-2 card-title-back-right">
-								<span class="fa fa-toggle-on toggle-icon"
-									  ng-show="!isFolderSelected"
-									  ng-click="isFolderSelected=!isFolderSelected"></span>
-								<span class="fa fa-toggle-off toggle-icon-off" 
-									  ng-show="isFolderSelected"
-									  ng-click="isFolderSelected=!isFolderSelected"></span>
+								<span class="circle-counter">{{itemsSelectedCount()}}</span>
 							</div>
 
 		                </div>
@@ -76,12 +82,9 @@
 		                			<div class="card-item-name text-left" ng-click="viewCardItem(item.id)">{{item.name}}</div>
 		                		</div>
 		                		<div class="col-xs-2">
-		                			<span class="fa fa-check-circle check-circle"
-		                				  ng-show="!isFolderItemSelected" 
-		                				  ng-click="isFolderItemSelected=!isFolderItemSelected"></span>
 									<span class="fa fa-circle" 
-										  ng-show="isFolderItemSelected"
-										  ng-click="isFolderItemSelected=!isFolderItemSelected"></span>
+										  ng-class="item.isItemSelected ? 'fa fa-check-circle check-circle' : 'fa fa-circle'"
+										  ng-click="item.isItemSelected = !item.isItemSelected"></span>
 		                		</div>
 		                	</div>
 		                </div>
