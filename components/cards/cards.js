@@ -21,8 +21,21 @@ angular.module('moonshotApp')
     // 
 
     Mfly.search('@Moonshot').then(function(data){
-        console.log(data);
         $scope.cards = data;
     });
+
+    $scope.getFolderItems = function(_folderId) {
+        // variable to prevent another card showing it's items
+        var item = this;
+        
+        Mfly.getFolder(_folderId).then(function(folderItems){
+            item.items = folderItems;
+        });
+    };
+
+    $scope.viewCardItem = function(_itemId) {
+        console.log(_itemId);
+    }
+
 
 });

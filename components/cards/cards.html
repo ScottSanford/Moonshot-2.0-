@@ -34,15 +34,49 @@
 
 		<div class="col-sm-4 flip-card" ng-repeat="c in cards">
 		    <div class="flip"> 
-		        <div class="card" ng-class="{'flipped':isFlipped}" ng-click="isFlipped=!isFlipped"> 
-		            <div class="face front"> 
+		        <div class="card" ng-class="{'flipped':isFlipped}"> 
+		            
+		            <!-- BEGIN: FRONT CARD -->
+		            <div class="face front" ng-click="isFlipped=!isFlipped; getFolderItems(c.id)"> 
 		                <div class="card-title">{{ c.name }}</div>
 		                <div class="card-img">
 							<img ng-src="{{c.thumbnailUrl}}">
 		                </div>
 		            </div> 
+
+					<!-- BEGIN: BACK CARD -->
 		            <div class="face back"> 
-		                Back
+		                <div class="row card-title-back">
+							
+							<div class="col-xs-2 card-title-back-left">
+								<span class="fa fa-arrow-circle-o-left goto-front-arrow" ng-click="isFlipped=!isFlipped"></span>
+							</div>
+							
+							<div class="col-xs-8 card-title-back-center">
+								{{ c.name }}
+							</div>
+							
+							<div class="col-xs-2 card-title-back-right">
+								<span class="fa fa-toggle-on toggle-icon"></span>
+								<span class="fa fa-toggle-off toggle-icon" ng-show="isFolderSelected"></span>
+							</div>
+
+		                </div>
+
+		                <div class="folder-card-item-container">
+		                	<div class="row folder-card-item" ng-repeat="item in items">
+		                		<div class="col-xs-2">
+		                			<span class="fa fa-picture-o card-item-icon"></span>
+		                		</div>
+		                		<div class="col-xs-8">
+		                			<div class="card-item-name text-left" ng-click="viewCardItem(item.id)">{{item.name}}</div>
+		                		</div>
+		                		<div class="col-xs-2">
+		                			<span class="fa fa-check-circle check-circle"></span>
+									<span class="fa fa-circle" ng-show="isFolderItemSelected"></span>
+		                		</div>
+		                	</div>
+		                </div>
 		            </div> 
 		        </div> 
 		    </div> 
