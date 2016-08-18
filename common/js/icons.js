@@ -14,7 +14,8 @@ angular.module('moonshotApp')
             {type: 'video', icon: 'fa-film'}, 
             {type: 'audio', icon: 'fa-picture-o'}, 
             {type: 'interactive', icon: 'fa-bolt'},
-            {type: 'zip', icon: 'fa-bolt'}
+            {type: 'zip', icon: 'fa-bolt'}, 
+            {type: 'folder', icon: 'fa-folder'}
         ];
 
         return icons;

@@ -8,7 +8,6 @@
 	<div class="col-sm-4">
 		<div class="cards-header-right pull-right">
 			<span class="fa fa-search fa-2x" ng-click="goToSearch()"></span>
-			<span class="fa fa-circle-thin fa-2x"></span>
 		</div>
 	</div>
 </header>
@@ -18,8 +17,7 @@
 	<pageslide ps-side="left" 
 			   ps-open="openMenu" 
 			   ps-container="search-container" 
-			   ps-body-class="true">
-        
+			   ps-body-class="true">   
         <div class="flyout-menu-container">
             <div class="flyout-menu-item" ng-click="goToCollections()">
             	<span>Collections</span>
@@ -28,13 +26,58 @@
             	<span>Quit Moonshot</span>
             </div>
         </div>
-
     </pageslide>
-
-
 
 	<div class="back-button" ng-click="goToCards()">
 		<span class="fa fa-arrow-circle-o-left fa-2x"></span> 
 		<span class="back-button-label">Search</span>
+	</div>
+
+	<form class="form-horizontal search-input-container">
+		<div class="form-group">
+			<div class="col-xs-6">
+				<input type="text" 
+					   ng-model="searchTerm"
+					   class="form-control search-input" 
+					   placeholder="Enter search term..."
+					   >
+			</div>
+  			<div class="col-xs-2">
+		  		<button class="btn clear-search" ng-click="getSearch(searchTerm)">Clear Search</button>
+  			</div>
+		</div>
+	</form>
+
+	<div class="row search-results">
+		<div class="col-sm-4">
+			<div class="search-results-thumbnail-container">
+				<img class="search-results-thumbnail" src="common/img/moonshot-logo.png">
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="search-results-list">
+				<div class="search-result-message">(Length) results for "User Experience</div>
+				<table class="table search-results-table">
+					<tr>
+						<th class="col-xs-1"></th>
+						<th class="col-xs-6">Item</th>
+						<th class="col-xs-6">Date Added</th>
+					</tr>
+					<tbody>
+						<tr ng-repeat="item in results" ng-click="toggleItem(item)">
+							<td>
+								<span class="fa {{item.icon}}">
+							</td>
+							<td>
+								<span class="search-results-table-item-name">{{item.name}}</span>
+							</td>
+							<td>
+								<span class="search-results-table-date-added">{{item.created}}</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </main>
