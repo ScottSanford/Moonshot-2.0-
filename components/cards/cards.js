@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('CardsCtrl', function($scope, $location, Mfly){
+.controller('CardsCtrl', function($scope, $location, Mfly, ItemIcons){
 
 	$scope.goToSearch = function() {
 		$location.url('/search');
@@ -29,6 +29,15 @@ angular.module('moonshotApp')
         var item = this;
         
         Mfly.getFolder(_folderId).then(function(folderItems){
+
+            folderItems.forEach(function(item){
+                ItemIcons.forEach(function(icon){
+                    if (item.type == icon.type) {
+                        item['icon'] = icon.icon;
+                    }
+                });
+            });
+
             item.items = folderItems;
         });
     };

@@ -169,6 +169,10 @@ body {
 	color:#9dbc3a;
 }
 
+.toggle-icon-off {
+	color:#7c7c7c;
+}
+
 .folder-card-item-container {
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;

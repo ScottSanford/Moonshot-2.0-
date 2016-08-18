@@ -57,8 +57,12 @@
 							</div>
 							
 							<div class="col-xs-2 card-title-back-right">
-								<span class="fa fa-toggle-on toggle-icon"></span>
-								<span class="fa fa-toggle-off toggle-icon" ng-show="isFolderSelected"></span>
+								<span class="fa fa-toggle-on toggle-icon"
+									  ng-show="!isFolderSelected"
+									  ng-click="isFolderSelected=!isFolderSelected"></span>
+								<span class="fa fa-toggle-off toggle-icon-off" 
+									  ng-show="isFolderSelected"
+									  ng-click="isFolderSelected=!isFolderSelected"></span>
 							</div>
 
 		                </div>
@@ -66,14 +70,18 @@
 		                <div class="folder-card-item-container">
 		                	<div class="row folder-card-item" ng-repeat="item in items">
 		                		<div class="col-xs-2">
-		                			<span class="fa fa-picture-o card-item-icon"></span>
+		                			<span class="fa {{item.icon}} card-item-icon"></span>
 		                		</div>
 		                		<div class="col-xs-8">
 		                			<div class="card-item-name text-left" ng-click="viewCardItem(item.id)">{{item.name}}</div>
 		                		</div>
 		                		<div class="col-xs-2">
-		                			<span class="fa fa-check-circle check-circle"></span>
-									<span class="fa fa-circle" ng-show="isFolderItemSelected"></span>
+		                			<span class="fa fa-check-circle check-circle"
+		                				  ng-show="!isFolderItemSelected" 
+		                				  ng-click="isFolderItemSelected=!isFolderItemSelected"></span>
+									<span class="fa fa-circle" 
+										  ng-show="isFolderItemSelected"
+										  ng-click="isFolderItemSelected=!isFolderItemSelected"></span>
 		                		</div>
 		                	</div>
 		                </div>
