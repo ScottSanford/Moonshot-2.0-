@@ -253,7 +253,7 @@ body {
 }
 
 .search-results {
-	width:95%;
+	width:93%;
 	margin:0 auto;
 }
 
@@ -267,6 +267,14 @@ body {
 .selected-result-name {
 	font-family: 'Proxy-SemiBold';
 	font-size:18px;
+}
+
+.selected-item-to-collection {
+	font-family: 'Proxy-Regular';
+	font-size:18px;
+	margin-top:20px;
+	padding-bottom: 15px;
+	border-bottom:2px solid #bbb;
 }
 
 .search-result-message {

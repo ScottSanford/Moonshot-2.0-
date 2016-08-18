@@ -53,6 +53,14 @@
 			<div class="search-results-thumbnail-container" ng-show="showSearchResults">
 				<img class="selected-result-thumbnail" ng-src="{{selectedResult.thumbnailUrl}}">
 				<div class="selected-result-name">{{selectedResult.name}}</div>
+				<div class="selected-item-to-collection">
+					<span class="fa fa-list"></span>
+					<span class="add-selected-item-to-collection-text">Add to Collections</span>
+				</div>
+				<div class="selected-item-location">
+					<div class="selected-item-location-title">Location:</div>
+					<span class="selected-item-location-path" ng-repeat="item in selectedResult.hierarchy">{{ item.name }} / </span>
+				</div>
 			</div>
 		</div>
 		<div class="col-sm-8">

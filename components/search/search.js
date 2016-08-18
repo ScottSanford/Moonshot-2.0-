@@ -30,6 +30,7 @@ angular.module('moonshotApp')
     };
 
     $scope.toggleItem = function(item) {
+    	console.log(item);
     	$scope.toggleSearchResult = item.id;
     	$scope.selectedResult = item;
     }
