@@ -50,29 +50,28 @@
 
 	<div class="row search-results">
 		<div class="col-sm-4">
-			<div class="search-results-thumbnail-container">
-				<img class="search-results-thumbnail" src="common/img/moonshot-logo.png">
+			<div class="search-results-thumbnail-container" ng-show="showSearchResults">
+				<img class="selected-result-thumbnail" ng-src="{{selectedResult.thumbnailUrl}}">
+				<div class="selected-result-name">{{selectedResult.name}}</div>
 			</div>
 		</div>
 		<div class="col-sm-8">
 			<div class="search-results-list">
-				<div class="search-result-message">(Length) results for "User Experience</div>
-				<table class="table search-results-table">
-					<tr>
-						<th class="col-xs-1"></th>
-						<th class="col-xs-6">Item</th>
-						<th class="col-xs-6">Date Added</th>
-					</tr>
+				<div class="search-result-message" ng-show="showSearchResults">{{results.length}} results for "User Experience</div>
+				<table class="table search-results-table" ng-show="showSearchResults">
+					<thead>
+						<tr>
+							<th class="col-xs-4">Item</th>
+							<th class="col-xs-2">Date Added</th>
+						</tr>
+					</thead>
 					<tbody>
-						<tr ng-repeat="item in results" ng-click="toggleItem(item)">
+						<tr ng-class="{'isActiveResult': item.id == toggleSearchResult}" ng-repeat="item in results" ng-click="toggleItem(item)">
 							<td>
-								<span class="fa {{item.icon}}">
+								<span class="fa {{item.icon}} search-results-table-item-icon"></span><span class="search-results-table-item-name">{{item.name}}</span>
 							</td>
 							<td>
-								<span class="search-results-table-item-name">{{item.name}}</span>
-							</td>
-							<td>
-								<span class="search-results-table-date-added">{{item.created}}</span>
+								<span class="search-results-table-date-added">{{item.created | date:'shortDate'}}</span>
 							</td>
 						</tr>
 					</tbody>

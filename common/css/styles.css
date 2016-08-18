@@ -257,9 +257,16 @@ body {
 	margin:0 auto;
 }
 
-.search-results-thumbnail {
+.selected-result-thumbnail {
 	max-width:100%;
 	max-height:100%;
+	border:1px solid #7c7c7c;
+	background-color: #fff
+}
+
+.selected-result-name {
+	font-family: 'Proxy-SemiBold';
+	font-size:18px;
 }
 
 .search-result-message {
@@ -269,6 +276,16 @@ body {
 
 .table>tbody>tr>th {
 	border-top:none;
+}
+
+.table thead > tr > th {
+	border-bottom:2px solid #989898;
+}
+
+.table tbody > tr > td {
+	font-family: 'Proxy-Regular';
+	font-size:14px;
+	color:#7c7c7c;
 }
 
 .search-results-table {
@@ -281,11 +298,14 @@ body {
 }
 
 .search-results-table-item-name {
-	font-family: 'Proxy-Regular';
-	font-size:12px;
-	color:#7c7c7c;
 	text-decoration: underline;
+	margin-left:20px;
 }
+
+.isActiveResult {
+	background-color:#E0E2DD;
+}
+
 /*===================================================
 
 				Collections Styles

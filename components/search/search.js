@@ -10,7 +10,7 @@ angular.module('moonshotApp')
 
     $scope.getSearch = function(_term) {
 		Mfly.search(_term).then(function(results){
-			console.log(results);
+			
 			results.forEach(function(item){
             	
             	ItemIcons.forEach(function(icon){
@@ -23,9 +23,15 @@ angular.module('moonshotApp')
 
         	});
 
+			$scope.showSearchResults = true;
         	$scope.results = results;
 
 		});
+    };
+
+    $scope.toggleItem = function(item) {
+    	$scope.toggleSearchResult = item.id;
+    	$scope.selectedResult = item;
     }
 
 });
