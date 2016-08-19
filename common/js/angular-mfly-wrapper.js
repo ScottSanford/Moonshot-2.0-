@@ -26,6 +26,17 @@ angular.module('moonshotApp')
             return deferred.promise;
         },
 
+        getCollection: function(collectionId) {
+            var deferred = $q.defer();
+
+            mflyCommands.getCollection(collectionId)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+
         getInteractiveInfo: function() {
              var deferred = $q.defer();
 

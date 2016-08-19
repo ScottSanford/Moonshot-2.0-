@@ -448,6 +448,10 @@ input.input-share-link.form-control:focus {
 	background-color:#ccc;
 	/*font-size: 23px;*/
 }
+
+.modal-alert {
+	margin-bottom: 0;
+}
 /*===================================================================================
 
 
