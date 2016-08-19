@@ -13,11 +13,12 @@
 			   type="url" 
 			   value="{{ shareLink }}">
 	</div>
-
-	<strong>To email <em class="ng-binding">Whiteboard</em>:</strong>
-	<p class="margin-top10">Paste the url above into your own email message</p>
-	<p class="padding-left20"><em>— or —</em></p>
-	<p>let us <a href="">begin a pre-populated email</a> for you.</p>
+	<div ng-if="deviceType == 'web'">
+		<strong>To email <em class="ng-binding">{{ item.name }}</em>:</strong>
+		<p class="margin-top10">Paste the url above into your own email message</p>
+		<p class="padding-left20"><em>— or —</em></p>
+		<p>let us <a href="" ng-click="sendEmail()">begin a pre-populated email</a> for you.</p>
+	</div>
 
 </div>
 

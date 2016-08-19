@@ -3,6 +3,18 @@ angular.module('moonshotApp')
 .factory('Mfly', function($q){
 
 	var mfly = {
+
+        getInteractiveInfo: function() {
+             var deferred = $q.defer();
+
+            mflyCommands.getInteractiveInfo()
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+
         getData: function(id) {
             var deferred = $q.defer();
 

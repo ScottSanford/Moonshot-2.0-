@@ -400,6 +400,10 @@ a:hover, a:active {
 	font-size:24px;
 }
 
+.modal-body {
+	padding-bottom: 50px;
+}
+
 .form-group-collection-modal {
 	margin:15px 0 30px 0;
 }
