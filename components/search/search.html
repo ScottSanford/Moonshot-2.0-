@@ -30,7 +30,7 @@
 
 	<div class="back-button" ng-click="goToCards()">
 		<span class="fa fa-arrow-circle-o-left fa-2x"></span> 
-		<span class="back-button-label">Search</span>
+		<span class="back-button-label" ng-click="goToCards()">Search</span>
 	</div>
 
 	<form class="form-horizontal search-input-container">
@@ -40,7 +40,7 @@
 					<input type="text" 
 						   ng-model="searchTerm"
 						   class="form-control search-input" 
-						   placeholder="Enter search term..."
+						   placeholder="Search"
 						   >
 					<span class="input-group-btn">
 						<button class="btn clear-search" ng-click="getSearch(searchTerm)">
@@ -52,14 +52,17 @@
 		</div>
 	</form>
 
-	<div class="row search-results">
+	<div class="row search-results" ng-show="showSearchResults">
 		<div class="col-sm-4">
-			<div class="search-results-thumbnail-container" ng-show="showSelectedResult">
+			<div class="search-results-thumbnail-container">
 				<img class="selected-result-thumbnail" ng-src="{{selectedResult.thumbnailUrl}}">
 				<div class="selected-result-name">{{selectedResult.name}}</div>
-				<div class="selected-item-to-collection">
+				<div class="selected-item-to-collection" ng-if="selectedResult.type !== 'folder'">
 					<span class="fa fa-list"></span>
-					<span class="add-selected-item-to-collection-text">Add to Collections</span>
+					<span class="add-selected-item-to-collection-text" 
+						  ng-click="openCollectionModal(selectedResult)">
+						  	<u>Add to Collections</u>
+					</span>
 				</div>
 				<div class="selected-item-location">
 					<div class="selected-item-location-title">Location:</div>
@@ -69,8 +72,8 @@
 		</div>
 		<div class="col-sm-8">
 			<div class="search-results-list">
-				<div class="search-result-message" ng-show="showSearchResults">{{results.length}} results for "User Experience</div>
-				<table class="table search-results-table" ng-show="showSearchResults">
+				<div class="search-result-message">{{results.length}} results for "{{ term }}".</div>
+				<table class="table search-results-table">
 					<thead>
 						<tr>
 							<th class="col-xs-4">Item</th>
@@ -80,7 +83,9 @@
 					<tbody>
 						<tr ng-class="{'isActiveResult': item.id == toggleSearchResult}" ng-repeat="item in results" ng-click="toggleItem(item)">
 							<td>
-								<span class="fa {{item.icon}} search-results-table-item-icon"></span><span class="search-results-table-item-name">{{item.name}}</span>
+								<span class="fa {{item.icon}} search-results-table-item-icon"></span>
+								<span class="search-results-table-item-name">{{item.name}}</span>
+								<span class="search-results-table-folder-number" ng-if="item.type == 'folder'">({{folderCount}})</span>
 							</td>
 							<td>
 								<span class="search-results-table-date-added">{{item.created | date:'shortDate'}}</span>
@@ -91,4 +96,12 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row search-results-blank" ng-if="noSearchResults">
+		<div class="col-xs-12 alert alert-warning no-results-message">
+			<h4>There are no results matching "{{ term }}".</h4>
+			<span>Please refine your search terms and try again.</span>
+		</div>
+	</div>
+
 </main>

@@ -6,31 +6,56 @@ angular.module('moonshotApp')
         $scope.openMenu = true;
     };
 
+    $scope.goToCards = function() {
+        $location.url('/cards');
+    }
+
     //
 
     $scope.getSearch = function(_term) {
-        $scope.searchTerm = '';
-		Mfly.search(_term).then(function(results){
-			
-			var first = _.first(results);
-			$scope.toggleSearchResult = first.id;
-			$scope.selectedResult = first;
-			$scope.showSelectedResult = true;
-			
-			results.forEach(function(item, index, array){
-            	
-            	ItemIcons.forEach(function(icon){
+       
+        Mfly.search(_term).then(function(results){
+            
+            if (results.length == 0) {
+                $scope.showSearchResults = false;
+                $scope.noSearchResults = true;
+                $scope.term = _term;
+                $scope.searchTerm = '';
+            } else {
+
+                // highlight first item
+                var first = _.first(results);
+                $scope.toggleSearchResult = first.id;
+                $scope.selectedResult = first;
+         
+                results.forEach(function(item, index, array){
                     
-                    if (item.type == icon.type) {
-                        item['icon'] = icon.icon;
+                    // add folder count
+                    if (item.type == 'folder') {
+                        Mfly.getFolder(item.id).then(function(data){
+                            $scope.folderCount = data.length;
+                        });
                     }
 
-            	});
+                    ItemIcons.forEach(function(icon){
+                        
+                        if (item.type == icon.type) {
+                            item['icon'] = icon.icon;
+                        }
+
+                    });
 
 
-        	});
-			$scope.showSearchResults = true;
-        	$scope.results = results;
+                });
+                
+                $scope.term = _term;
+
+                $scope.noSearchResults = false;
+                $scope.showSearchResults = true;
+                $scope.results = results;
+                $scope.searchTerm = '';
+                
+            } 
 
 		});
     };
@@ -43,6 +68,10 @@ angular.module('moonshotApp')
 
     $scope.goToPath = function(item) {
         mflyCommands.openFolder(item.id);
-    }
+    };
+
+    $scope.openCollectionModal = function(selectedItem) {
+
+    };
 
 });
