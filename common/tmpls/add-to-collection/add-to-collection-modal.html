@@ -18,6 +18,14 @@
 		</div>
 	</form>
 
+	<div ng-show="pageError">
+		<div class="alert alert-warning page-error-warning" role="alert">
+			<span class="fa fa-warning fa-2x">
+			<span class="page-error-warning-label">Please provide collection name</span>
+		</div>
+	</div>
+
+
 	<div ng-if="collections.length">
 		<label>Or add to an existing collection:</label>
 

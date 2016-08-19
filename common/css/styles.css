@@ -371,6 +371,20 @@ a:hover, a:active {
 	font-family: 'Proxy-Regular';
 }
 
+.page-error-warning {
+	background-color:#F5E4D1;
+	color:#d96d00;
+}
+
+.page-error-warning-label {
+	float:right;
+	font-family: 'Proxy-SemiBold';
+	font-size:20px;
+	margin-left:10px;
+	font-weight: 700;
+	line-height: 26px;
+}
+
 /*===================================================
 
 				Collections Styles
