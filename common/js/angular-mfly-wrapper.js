@@ -35,6 +35,17 @@ angular.module('moonshotApp')
                 });
 
             return deferred.promise;
+        },        
+
+        getCollections: function() {
+            var deferred = $q.defer();
+
+            mflyCommands.getCollections()
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
         },
 
         getInteractiveInfo: function() {

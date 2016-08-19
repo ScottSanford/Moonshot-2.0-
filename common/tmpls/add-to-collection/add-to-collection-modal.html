@@ -30,11 +30,12 @@
 		<label>Or add to an existing collection:</label>
 
 		<ul class="list-unstyled">
-			<li ng-repeat="collection in collections | filter: { sharedBy: null }" class="ng-scope">
-				<a ng-click="addContentToCollection(collection)" class="ng-binding">Test</a>
+			<li ng-repeat="collection in collections">
+				<a ng-click="addItemToCollection(collection)">{{collection.name}}</a>
 			</li>
 		</ul>
 	</div>
+
 </div>
 
 <div class="modal-footer">
