@@ -85,7 +85,7 @@ angular.module('moonshotApp')
     $scope.openCollectionModal = function(selectedItem) {
         $uibModal.open({
             templateUrl: 'common/tmpls/add-to-collection-modal.html',
-            controller: 'SearchCtrl',
+            controller: 'AddToCollectionCtrl',
             resolve: {
                 item: function() {
                     return selectedItem;

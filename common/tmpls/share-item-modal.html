@@ -9,9 +9,16 @@
 	
 	<div class="form-group form-group-collection-modal">
 		<label for="title">Link to item:</label>
-		<input class="form-control form-control-large col-xs-12 input-share-link" 
-			   type="url" 
-			   value="{{ shareLink }}">
+		<div class="input-group">
+			<input id="shareLinkText" class="form-control form-control-large col-xs-12 input-share-link" 
+				   type="url" 
+				   value="{{ shareLink }}">
+			<span class="input-group-btn">
+				<button class="btn btn-default btn-share-item" ngclipboard data-clipboard-target="#shareLinkText">
+					<span class="fa fa-files-o"></span>
+				</button>
+			</span>
+		</div>
 	</div>
 	<div ng-if="deviceType == 'web'">
 		<strong>To email <em class="ng-binding">{{ item.name }}</em>:</strong>

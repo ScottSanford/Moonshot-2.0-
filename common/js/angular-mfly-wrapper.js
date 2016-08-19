@@ -4,6 +4,28 @@ angular.module('moonshotApp')
 
 	var mfly = {
 
+        createCollection: function(collectionName) {
+            var deferred = $q.defer();
+
+            mflyCommands.createCollection(collectionName)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+
+        addItemToCollection: function(collectionId, itemId) {
+            var deferred = $q.defer();
+
+            mflyCommands.addItemToCollection(collectionId, itemId)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+
         getInteractiveInfo: function() {
              var deferred = $q.defer();
 

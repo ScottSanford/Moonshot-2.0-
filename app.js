@@ -2,7 +2,8 @@ angular.module("moonshotApp", [
         'ui.router', 
         'pageslide-directive', 
         'myFilters', 
-        'ui.bootstrap'
+        'ui.bootstrap', 
+        'ngclipboard'
     ])
 
     .config(function ($compileProvider, $stateProvider, $urlRouterProvider) { 

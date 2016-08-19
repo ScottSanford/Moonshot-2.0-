@@ -404,6 +404,11 @@ a:hover, a:active {
 	padding-bottom: 50px;
 }
 
+.modal-input {
+	width:95%;
+	margin:0 auto;
+}
+
 .form-group-collection-modal {
 	margin:15px 0 30px 0;
 }
@@ -437,6 +442,11 @@ input.input-share-link.form-control:focus {
 	border-bottom: 2px solid #494949;
 	font-size:14px;
 	font-family: 'Proxy-Regular';
+}
+
+.btn-share-item {
+	background-color:#ccc;
+	/*font-size: 23px;*/
 }
 /*===================================================================================
 

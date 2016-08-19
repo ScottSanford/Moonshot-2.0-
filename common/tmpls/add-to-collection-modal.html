@@ -3,15 +3,21 @@
 </div>
 
 <div class="modal-body">
-	<div class="form-group form-group-collection-modal">
-		<label for="title">Add to a new Collection</label>
-		<div class="input-group">
-			<input ng-model="data.name" type="text" class="form-control input-collection-title" placeholder="Enter a title" ng-click="createClick()">
-			<span class="input-group-btn">
-				<button class="btn btn-default btn-collection-title" ng-click="createClick()">Add</button>
-			</span>
+	<form class="form-horizontal modal-input">
+		<div class="form-group form-group-collection-modal">
+			<label for="title">Add to a new Collection</label>
+			<div class="input-group">
+				<input ng-model="collectionName" 
+					   type="text" 
+					   class="form-control input-collection-title" 
+					   placeholder="Enter a title">
+				<span class="input-group-btn">
+					<button class="btn btn-default btn-collection-title" ng-click="createCollection(collectionName)">Add</button>
+				</span>
+			</div>
 		</div>
-	</div>
+	</form>
+
 	<div ng-if="collections.length">
 		<label>Or add to an existing collection:</label>
 
