@@ -73,7 +73,12 @@ angular.module('moonshotApp')
     $scope.openShareModal = function(selectedItem) {
         $uibModal.open({
             templateUrl: 'common/tmpls/share-item-modal.html',
-            controller: 'SearchCtrl',
+            controller: 'ShareItemCtrl',
+            resolve: {
+                item: function() {
+                    return selectedItem;
+                }
+            }
         });
     };
 
@@ -81,6 +86,11 @@ angular.module('moonshotApp')
         $uibModal.open({
             templateUrl: 'common/tmpls/add-to-collection-modal.html',
             controller: 'SearchCtrl',
+            resolve: {
+                item: function() {
+                    return selectedItem;
+                }
+            }
         });
     };
 
