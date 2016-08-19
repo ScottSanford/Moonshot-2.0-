@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('SearchCtrl', function($scope, $location, Mfly, ItemIcons){
+.controller('SearchCtrl', function($scope, $location, $uibModal, Mfly, ItemIcons){
 
 	$scope.toggle = function () {
         $scope.openMenu = true;
@@ -70,8 +70,18 @@ angular.module('moonshotApp')
         mflyCommands.openFolder(item.id);
     };
 
-    $scope.openCollectionModal = function(selectedItem) {
+    $scope.openShareModal = function(selectedItem) {
+        $uibModal.open({
+            templateUrl: 'common/tmpls/share-item-modal.html',
+            controller: 'SearchCtrl',
+        });
+    };
 
+    $scope.openCollectionModal = function(selectedItem) {
+        $uibModal.open({
+            templateUrl: 'common/tmpls/add-to-collection-modal.html',
+            controller: 'SearchCtrl',
+        });
     };
 
 });

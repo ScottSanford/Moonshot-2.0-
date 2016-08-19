@@ -43,7 +43,7 @@
 						   placeholder="Search"
 						   >
 					<span class="input-group-btn">
-						<button class="btn clear-search" ng-click="getSearch(searchTerm)">
+						<button class="btn search-btn" ng-click="getSearch(searchTerm)">
 							<span class="fa fa-search"></span>
 						</button>
 					</span>
@@ -58,11 +58,20 @@
 				<img class="selected-result-thumbnail" ng-src="{{selectedResult.thumbnailUrl}}">
 				<div class="selected-result-name">{{selectedResult.name}}</div>
 				<div class="selected-item-to-collection" ng-if="selectedResult.type !== 'folder'">
-					<span class="fa fa-list"></span>
-					<span class="add-selected-item-to-collection-text" 
-						  ng-click="openCollectionModal(selectedResult)">
-						  	<u>Add to Collections</u>
-					</span>
+					
+					<div>
+						<span class="fa fa-envelope search-item-icon"></span>
+						<span class="email-selected-item" 
+							  ng-click="openShareModal(selectedResult)">
+							  	<u>Email to another user</u>
+						</span>
+					</div>
+					<div class="add-selected-item-to-collection-text">
+						<span class="fa fa-list search-item-icon"></span>
+						<span ng-click="openCollectionModal(selectedResult)">
+							  	<u>Add to Collection</u>
+						</span>
+					</div>
 				</div>
 				<div class="selected-item-location">
 					<div class="selected-item-location-title">Location:</div>
@@ -72,7 +81,7 @@
 		</div>
 		<div class="col-sm-8">
 			<div class="search-results-list">
-				<div class="search-result-message">{{results.length}} results for "{{ term }}".</div>
+				<div class="search-result-message">{{results.length}} results for "{{ term }}"</div>
 				<table class="table search-results-table">
 					<thead>
 						<tr>
@@ -83,7 +92,7 @@
 					<tbody>
 						<tr ng-class="{'isActiveResult': item.id == toggleSearchResult}" ng-repeat="item in results" ng-click="toggleItem(item)">
 							<td>
-								<span class="fa {{item.icon}} search-results-table-item-icon"></span>
+								<div class="search-results-table-item-icon"><span class="fa {{item.icon}}"></span></div>
 								<span class="search-results-table-item-name">{{item.name}}</span>
 								<span class="search-results-table-folder-number" ng-if="item.type == 'folder'">({{folderCount}})</span>
 							</td>

@@ -8,6 +8,16 @@ body {
 	color:#535353;
 }
 
+a {
+	color:#7c7c7c;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+a:hover, a:active {
+	color:#000;
+}
+
 @font-face {
 	font-family: Proxy-Regular;
     src: url(../fonts/ProximaNova-Regular.ttf);
@@ -27,6 +37,8 @@ body {
 #card-container, #collections-container, #search-container {
 	height:100vh;
 }
+
+
 /*===================================================
 
 				Cards Styles
@@ -239,21 +251,19 @@ body {
 
 .search-input {
 	height:35px;
-	outline:2px solid #9dbc3b;
-	border-radius: 0;
+	border:2px solid #9dbc3b;
+	border-radius: 4px;
 }
 
 .form-control:focus {
 	border:2px solid #9dbc3b;
+	box-shadow: none;
 }
 
-.clear-search {
+.search-btn {
 	font-family: 'Proxy-Regular';
-	font-size:18px;
 	color:#fff;
 	background-color: #475669;
-	border-radius:0;
-	margin-top:-2px;
 }
 
 .search-results {
@@ -273,11 +283,20 @@ body {
 	font-size:18px;
 }
 
+.search-item-icon {
+	color:#565656;
+	padding-right:5px;
+}
+
 .selected-item-to-collection {
-	font-family: 'Proxy-Regular';
-	font-size:18px;
+	font-family: 'Proxy-SemiBold';
+	font-size:14px;
 	margin-top:20px;
-	padding-bottom: 15px;
+	color:#7c7c7c;
+}
+
+.add-selected-item-to-collection-text {
+	margin-top:10px;
 }
 
 .selected-item-location {
@@ -316,6 +335,12 @@ body {
 .search-results-table th{
 	font-family: 'Proxy-SemiBold';
 	font-size:18px;
+}
+
+.search-results-table-item-icon {
+	width:15px;
+	float:left;
+	color:#535353;
 }
 
 .search-results-table-item-name {
@@ -360,6 +385,55 @@ body {
 	font-size:30px;
 }
 
+
+/*===================================================
+
+				Modal(s) Styles
+
+====================================================*/
+.modal-header {
+	padding:15px;
+}
+
+.modal-header h4 {
+	font-family: 'Proxy-Light';
+	font-size:24px;
+}
+
+.form-group-collection-modal {
+	margin:15px 0 30px 0;
+}
+
+.input-collection-title {
+	border:2px solid #bbb;
+	border-radius: 4px;
+}
+
+.btn-collection-title {
+	background-color:#ccc;
+}
+
+.input-share-link {
+	height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    border:2px solid #ccc;
+    margin-bottom: 30px
+}
+
+input.input-share-link.form-control:focus {
+	border:2px solid #ccc;
+}
+
+.btn-done {
+	background-color:#7c7c7c;
+	color:#fff;
+	border-bottom: 2px solid #494949;
+	font-size:14px;
+	font-family: 'Proxy-Regular';
+}
 /*===================================================================================
 
 

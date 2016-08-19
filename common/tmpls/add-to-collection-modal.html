@@ -1,0 +1,28 @@
+<div class="modal-header">
+	<h4>Add to Collection</h4>
+</div>
+
+<div class="modal-body">
+	<div class="form-group form-group-collection-modal">
+		<label for="title">Add to a new Collection</label>
+		<div class="input-group">
+			<input ng-model="data.name" type="text" class="form-control input-collection-title" placeholder="Enter a title" ng-click="createClick()">
+			<span class="input-group-btn">
+				<button class="btn btn-default btn-collection-title" ng-click="createClick()">Add</button>
+			</span>
+		</div>
+	</div>
+	<div ng-if="collections.length">
+		<label>Or add to an existing collection:</label>
+
+		<ul class="list-unstyled">
+			<li ng-repeat="collection in collections | filter: { sharedBy: null }" class="ng-scope">
+				<a ng-click="addContentToCollection(collection)" class="ng-binding">Test</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="modal-footer">
+	<button class="btn" ng-click="cancelClick()">Cancel</button>
+</div>
