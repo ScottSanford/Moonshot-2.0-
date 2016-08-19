@@ -1,6 +1,7 @@
 angular.module("moonshotApp", [
         'ui.router', 
-        'pageslide-directive'
+        'pageslide-directive', 
+        'myFilters'
     ])
 
     .config(function ($compileProvider, $stateProvider, $urlRouterProvider) { 

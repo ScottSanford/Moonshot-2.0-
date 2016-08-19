@@ -9,6 +9,7 @@ angular.module('moonshotApp')
     //
 
     $scope.getSearch = function(_term) {
+        $scope.searchTerm = '';
 		Mfly.search(_term).then(function(results){
 			
 			var first = _.first(results);
@@ -35,8 +36,13 @@ angular.module('moonshotApp')
     };
 
     $scope.toggleItem = function(item) {
+    	console.log(item);
     	$scope.toggleSearchResult = item.id;
     	$scope.selectedResult = item;
     };
+
+    $scope.goToPath = function(item) {
+        mflyCommands.openFolder(item.id);
+    }
 
 });

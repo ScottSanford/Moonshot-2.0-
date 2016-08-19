@@ -36,15 +36,19 @@
 	<form class="form-horizontal search-input-container">
 		<div class="form-group">
 			<div class="col-xs-6">
-				<input type="text" 
-					   ng-model="searchTerm"
-					   class="form-control search-input" 
-					   placeholder="Enter search term..."
-					   >
+				<div class="input-group">
+					<input type="text" 
+						   ng-model="searchTerm"
+						   class="form-control search-input" 
+						   placeholder="Enter search term..."
+						   >
+					<span class="input-group-btn">
+						<button class="btn clear-search" ng-click="getSearch(searchTerm)">
+							<span class="fa fa-search"></span>
+						</button>
+					</span>
+				</div>
 			</div>
-  			<div class="col-xs-2">
-		  		<button class="btn clear-search" ng-click="getSearch(searchTerm)">Clear Search</button>
-  			</div>
 		</div>
 	</form>
 
@@ -59,7 +63,7 @@
 				</div>
 				<div class="selected-item-location">
 					<div class="selected-item-location-title">Location:</div>
-					<span class="selected-item-location-path" ng-repeat="item in selectedResult.hierarchy">{{ item.name }} / </span>
+					<span class="selected-item-location-path" ng-repeat="item in selectedResult.hierarchy"><u ng-click="goToPath(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span>
 				</div>
 			</div>
 		</div>
