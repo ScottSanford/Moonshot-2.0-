@@ -35,7 +35,7 @@ angular.module('moonshotApp')
                         Mfly.getFolder(item.id).then(function(data){
                             $scope.folderCount = data.length;
                         });
-                    }
+                    };
 
                     ItemIcons.forEach(function(icon){
                         

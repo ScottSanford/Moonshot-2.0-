@@ -283,15 +283,16 @@ a:hover, a:active {
 	font-size:18px;
 }
 
-.search-item-icon {
+.search-item-icon, .edit-item-icon, .delete-item-icon {
 	color:#565656;
-	padding-right:5px;
+	padding-right:25px;
+	float:left;
 }
 
-.selected-item-to-collection {
+.selected-item-collection-controls {
 	font-family: 'Proxy-SemiBold';
-	font-size:14px;
-	margin-top:20px;
+	font-size:18px;
+	margin-top:10px;
 	color:#7c7c7c;
 }
 
@@ -399,6 +400,26 @@ a:hover, a:active {
 	font-size:30px;
 }
 
+.featured-collection-container {
+	width:93%;
+	margin:0 auto;
+}
+
+.arrows-v {
+	margin-left:20px;
+}
+
+.collection-item-thumbnail {
+	max-width: 50px;
+	max-height: 50px;
+	vertical-align: middle;
+}
+
+.selected-collection-table  {
+	font-family: 'Proxy-SemiBold';
+	font-size:24px;
+}
+
 
 /*===================================================
 
@@ -460,7 +481,7 @@ input.input-share-link.form-control:focus {
 
 .btn-share-item {
 	background-color:#ccc;
-	/*font-size: 23px;*/
+	font-size: 23px;
 }
 
 .modal-alert {
