@@ -14,6 +14,10 @@ a {
 	cursor: pointer;
 }
 
+.btn {
+	font-family: 'Proxy-Regular';
+}
+
 a:hover, a:active {
 	color:#000;
 }
@@ -391,6 +395,19 @@ a:hover, a:active {
 				Collections Styles
 
 ====================================================*/
+.btn-new-collection {
+	background-color:#7c7c7c;
+	font-family: 'Proxy-Regular';
+	font-size:18px;
+	color:#fff;
+	margin-top:30px;
+	border-bottom:2px solid #666;
+}
+
+.btn-new-collection:active, .btn-new-collection:hover {
+	color:#fff;
+}
+
 .back-button {
 	padding:30px 20px;
 }
@@ -485,7 +502,7 @@ input.input-share-link.form-control:focus {
 	border:2px solid #ccc;
 }
 
-.btn-done {
+.btn-done, .btn-create {
 	background-color:#7c7c7c;
 	color:#fff;
 	border-bottom: 2px solid #494949;

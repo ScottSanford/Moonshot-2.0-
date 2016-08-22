@@ -30,9 +30,14 @@
 
     </pageslide>
 
-    <div class="back-button" ng-click="goToCards()">
-		<span class="fa fa-arrow-circle-o-left fa-2x"></span> 
-		<span class="back-button-label">Home</span>
+	<div class="top-main-container">
+	    <div class="col-xs-6 back-button">
+			<span class="fa fa-arrow-circle-o-left fa-2x" ng-click="goToCards()"></span> 
+			<span class="back-button-label" ng-click="goToCards()">Home</span>
+		</div>
+		<div class="col-xs-6">
+			<button class="btn pull-right btn-new-collection" ng-click="createNewCollection()">New Collection</button>	
+		</div>
 	</div>
 
 	<div class="collections-table-container">
@@ -46,7 +51,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="item in collections">
+					<tr ng-repeat="item in collections | orderBy: 'name'">
 						<td class="collection-table-details">
 							<a ui-sref="detail({ id: item.id })">
 								<span class="search-results-table-item-name">{{item.name}}</span>

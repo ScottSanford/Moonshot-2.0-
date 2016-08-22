@@ -26,6 +26,13 @@ angular.module('moonshotApp')
         $window.location.reload();
     });
 
+    $scope.createNewCollection = function() {
+        $uibModal.open({
+            templateUrl: 'common/tmpls/new-collection/new-collection.html',
+            controller: 'NewCollectionCtrl'
+        });
+    };
+
     $scope.deleteCollection = function(id){
         $uibModal.open({
             templateUrl: 'common/tmpls/delete-collection/delete-collection.html',
