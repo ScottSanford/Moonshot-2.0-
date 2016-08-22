@@ -400,6 +400,11 @@ a:hover, a:active {
 	font-size:30px;
 }
 
+.table tbody > tr > td.collection-table-details {
+	padding:15px 0;
+	font-size: 18px;
+}
+
 .featured-collection-container {
 	width:93%;
 	margin:0 auto;
@@ -420,6 +425,15 @@ a:hover, a:active {
 	font-size:24px;
 }
 
+.collection-list-container {
+	width: 95%;
+    margin: 25px auto;
+}
+
+.collection-item {
+	padding: 25px 25px 0 25px;
+}
+
 
 /*===================================================
 
@@ -435,7 +449,7 @@ a:hover, a:active {
 	font-size:24px;
 }
 
-.modal-body {
+.modal-body-share-item {
 	padding-bottom: 50px;
 }
 
@@ -486,6 +500,13 @@ input.input-share-link.form-control:focus {
 
 .modal-alert {
 	margin-bottom: 0;
+}
+
+.modal-delete-collection-message {
+	padding-top:10px;
+	font-family: 'Proxy-SemiBold';
+	font-size:14px;
+	font-weight: 700;
 }
 /*===================================================================================
 

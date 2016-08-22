@@ -46,7 +46,7 @@ angular.module('moonshotApp')
                 });
 
             return deferred.promise;
-        },
+        },        
 
         getInteractiveInfo: function() {
              var deferred = $q.defer();

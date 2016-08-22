@@ -30,70 +30,31 @@
 
     </pageslide>
 
-
-	<div class="back-button" ng-click="goToCards()">
+    <div class="back-button" ng-click="goToCards()">
 		<span class="fa fa-arrow-circle-o-left fa-2x"></span> 
-		<span class="back-button-label">Collections</span>
+		<span class="back-button-label">Home</span>
 	</div>
 
-	<div class="row featured-collection-container">
-		
-		<div class="col-sm-4">
-			
-			<img class="selected-result-thumbnail" ng-src="{{selectedCollection[0].thumbnailUrl}}">
-			
-			<div class="row selected-item-collection-controls">
-					
-					<div class="col-xs-12">
-						<div class="search-item-icon">
-							<span class="fa fa-play-circle"></span>
-							<span class="email-selected-item" 
-								  ng-click="playCollection(selectedCollection)">
-								  	<u>Play</u>
-							</span>
-						</div>
-						<div class="edit-item-icon">
-							<span class="fa fa-list"></span>
-							<span ng-click="editCollection(selectedCollection)">
-								  	<u>Edit</u>
-							</span>
-						</div>
-						<div class="delete-item-icon">
-							<span class="fa fa-trash"></span>
-							<span ng-click="deleteCollection(selectedCollection)">
-								  	<u>Delete</u>
-							</span>
-						</div>
-
-					</div>
-	
-			</div>
-		</div>
-
-		<div class="col-sm-8">
+	<div class="collections-table-container">
+		<div class="col-xs-12">
 
 			<table class="table selected-collection-table">
 				<thead>
 					<tr>
-						<th class="col-xs-4 collection-name">{{collections[0].name}}</th>
-						<th class="col-xs-2"></th>
+						<th class="col-xs-11">Collection</th>
+						<th class="col-xs-1">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="item in selectedCollection" ng-click="toggleItem(item)">
-						<td>
-
-							<div class="search-results-table-item-icon">
-								<span class="fa {{item.icon}}"></span>
-							</div>
-
-							<span class="search-results-table-item-name">{{item.name}}</span>
-		
+					<tr ng-repeat="item in collections">
+						<td class="collection-table-details">
+							<a ui-sref="detail({ id: item.id })">
+								<span class="search-results-table-item-name">{{item.name}}</span>
+							</a>
 						</td>
-						<td>
-							<div class="pull-right search-results-table-date-added">
-								<span class="fa fa-times"></span>
-								<span class="fa fa-arrows-v arrows-v"></span>
+						<td class="collection-table-details">
+							<div class="search-results-table-date-added">
+								<span class="fa fa-trash" ng-click="deleteCollection(item.id)"></span>
 							</div>
 						</td>
 					</tr>
@@ -102,4 +63,5 @@
 		</div>
 
 	</div>
+
 </main>

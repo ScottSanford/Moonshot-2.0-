@@ -24,6 +24,11 @@ angular.module("moonshotApp", [
                     templateUrl: 'components/collections/collections.html', 
                     controller: 'CollectionsCtrl'
                 })
+                .state('detail', {
+                    url: '/collections/:id', 
+                    templateUrl: 'components/collections/collection.html', 
+                    controller: 'CollectionsCtrl'
+                })
                 .state('search', {
                     url: '/search', 
                     templateUrl: 'components/search/search.html', 
