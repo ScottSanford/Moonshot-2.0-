@@ -38,8 +38,28 @@ a:hover, a:active {
 }
 
 /*Used for Flyout Menu*/
+.nav-fixed {
+	position: fixed;
+	width:100%;
+	z-index: 1000;
+}
+
 #card-container, #collections-container, #search-container {
 	height:100vh;
+	top:60px; /*offset fixed nav bar*/
+}
+
+.brand-centered {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.brand-centered .navbar-brand {
+  display: flex;
+  align-items: center;
 }
 
 
@@ -59,8 +79,7 @@ a:hover, a:active {
 }
 
 .header-logo {
-	width:225px;
-	margin-top:5px;
+	height:55px;
 }
 
 .cards-header-right span{
@@ -72,6 +91,10 @@ a:hover, a:active {
 	height:100vh;
 	font-family: 'Proxy-Light';
 	font-size:20px;
+}
+
+.menu-item, .menu-item:hover, .menu-item:active {
+	text-decoration: none;
 }
 
 .flyout-menu-item {
@@ -287,18 +310,22 @@ a:hover, a:active {
 	font-size:18px;
 }
 
-.search-item-icon, .edit-item-icon, .delete-item-icon {
-	color:#565656;
-	padding-right:25px;
-	float:left;
-}
-
 .selected-item-collection-controls {
 	font-family: 'Proxy-SemiBold';
 	font-size:18px;
-	margin-top:10px;
+	margin-top:25px;
 	color:#7c7c7c;
 }
+
+.selected-item-collection-controls div {
+	margin-top:10px;
+}
+
+.search-item-icon, .edit-item-icon, .delete-item-icon {
+	color:#565656;
+	padding-right:10px;
+}
+
 
 .add-selected-item-to-collection-text {
 	margin-top:10px;
@@ -429,6 +456,7 @@ a:hover, a:active {
 
 .arrows-v {
 	margin-left:20px;
+	cursor:move;
 }
 
 .collection-item-thumbnail {
@@ -451,6 +479,14 @@ a:hover, a:active {
 	padding: 25px 25px 0 25px;
 }
 
+.table tbody > tr > td.table-row-collection-item {
+	padding:20px;
+}
+
+.collection-name {
+	font-family: 'Proxy-Light';
+	font-size:24px;
+}
 
 /*===================================================
 

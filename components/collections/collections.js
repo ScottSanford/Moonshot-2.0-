@@ -6,10 +6,6 @@ angular.module('moonshotApp')
         $location.url('/cards');
     };
 
-    $scope.goToCollectionList = function() {
-        $location.url('/collections');
-    };
-
     $scope.toggle = function () {
         $scope.openMenu = true;
     };
@@ -19,7 +15,6 @@ angular.module('moonshotApp')
     Mfly.getCollections().then(function(collections){
         console.log(collections);
         $scope.collections = collections;
-
     });
 
     $scope.$on("updateList",function(){
@@ -45,23 +40,7 @@ angular.module('moonshotApp')
         });
     };
 
-    // COLLECTION VIEW
-
-    var collectionId = $stateParams.id;
-    function showCollectionDetails(id) {
-        Mfly.getCollection(id).then(function(items){
-            ItemIcons.forEach(function(icon){                     
-                if (items.type == icon.type) {
-                    items['icon'] = icon.icon;
-                }
-            });
-            console.log('Collection Items', items);
-            $scope.selectedCollection = items;
-        });
-    }
-
-    showCollectionDetails(collectionId);
-
+    
 
 
 });

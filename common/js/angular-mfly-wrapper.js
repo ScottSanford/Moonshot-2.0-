@@ -26,6 +26,17 @@ angular.module('moonshotApp')
             return deferred.promise;
         },
 
+        reorderItemInCollection: function(collectionId, itemId, position) {
+            var deferred = $q.defer();
+
+            mflyCommands.reorderItemInCollection(collectionId, itemId, position)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+
         getCollection: function(collectionId) {
             var deferred = $q.defer();
 
