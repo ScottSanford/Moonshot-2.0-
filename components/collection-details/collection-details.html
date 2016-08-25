@@ -22,77 +22,75 @@
 
     </pageslide>
 
+		<div class="back-button" ng-click="goToCollectionList()">
+			<span class="fa fa-arrow-circle-o-left fa-2x"></span> 
+			<span class="back-button-label">Collections</span>
+		</div>
 
-	<div class="back-button" ng-click="goToCollectionList()">
-		<span class="fa fa-arrow-circle-o-left fa-2x"></span> 
-		<span class="back-button-label">Collections</span>
-	</div>
 
-	<div class="row featured-collection-container">
-		
-		<div class="col-sm-4">
-			
-			<div class="collection-name">{{collectionName}}</div>
-			<img class="selected-result-thumbnail" src="{{selectedCollection[0].thumbnailUrl}}">
-			
-			<div class="selected-item-collection-controls">
-					
-				<div class="search-item-icon">
-					<span class="fa fa-play-circle"></span>
-					<span class="email-selected-item" 
-						  ng-click="playCollection(selectedCollection)">
-						  	<u>Play Collection</u>
-					</span>
-				</div>
-				<div class="edit-item-icon">
-					<span class="fa fa-list"></span>
-					<span ng-click="editCollection(selectedCollection)">
-						  	<u>Edit Collection</u>
-					</span>
-				</div>
-				<div class="delete-item-icon">
-					<span class="fa fa-trash"></span>
-					<span ng-click="deleteCollection(selectedCollection)">
-						  	<u>Delete Collection</u>
-					</span>
-				</div>
+		<div class="featured-collection-container">
+			<span class="fa fa-list collection-icon"></span><span class="collection-name">{{collectionName}}</span>
+
+			<form name="outerForm" class="tab-form-demo">
+			    <uib-tabset active="activeForm">
+			      <uib-tab index="0" heading="Items ({{selectedCollection.length}})">
+			       	<div class="row">
+
+						<div class="col-sm-12">
+
+							<div class="alert alert-info" role="alert" ng-if="selectedCollection.length == 0">Your collection is empty. While using the Search Tool, you can add items to your collection by clicking 'Add to Collection'.</div>
+
+							<table class="table selected-collection-table" ng-if="selectedCollection.length >= 1">
+								<thead>
+									<tr>
+										<th class="col-xs-10">Title</th>
+										<th class="col-xs-2">Actions</th>
+									</tr>
+								</thead>
+								<tbody ui-sortable="sortableOptions" ng-model="selectedCollection">
+									<tr ng-repeat="item in selectedCollection">
+										<td class="table-row-collection-item">
+
+											<div class="search-results-table-item-thumbnail">
+												<img ng-src="{{item.thumbnailUrl}}">
+											</div>
+
+											<span class="search-results-table-item-name">{{item.name}}</span>
+											<div class="selected-collection-hierarchy">
+												<span class="" ng-repeat="i in item.hierarchy">
+													<a ng-click="goToPath(i)">{{ i.name }}</a> {{$last ? '' : ' / '}} 
+												</span>
+											</div>
+						
+										</td>
+										<td class="table-row-collection-item">
+											<div class="selected-collection-table-actions" ng-click="removeItemFromCollection(item.id)">
+												<span class="fa fa-times"></span>
+												<div class="remove-item-from-collection">Remove</div>
+											</div>
+											<div class="selected-collection-table-actions myHandle">
+												<span class="fa fa-arrows-v arrows-v myHandle"></span> Re-order
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+			      </uib-tab>
+			      <uib-tab index="1" heading="Edit">
+			        <ng-form name="nestedForm">
+			          <div class="form-group">
+			            <label>Name</label>
+			            <input type="text" class="form-control" required ng-model="model.name"/>
+			          </div>
+			        </ng-form>
+			      </uib-tab>
+			    </uib-tabset>
+			</form>
+		</div>
+
 	
-			</div>
-		</div>
-
-		<div class="col-sm-8">
-
-			<div class="alert alert-info" role="alert" ng-if="selectedCollection.length == 0">Your collection is empty. While using the Search Tool, you can add items to your collection by clicking 'Add to Collection'.</div>
-
-			<table class="table selected-collection-table" ng-if="selectedCollection.length >= 1">
-				<thead>
-					<tr>
-						<th class="col-xs-11">Title</th>
-						<th class="col-xs-1">Actions</th>
-					</tr>
-				</thead>
-				<tbody ui-sortable="sortableOptions" ng-model="selectedCollection">
-					<tr ng-repeat="item in selectedCollection">
-						<td class="table-row-collection-item">
-
-							<div class="search-results-table-item-icon">
-								<span class="fa {{item.icon}}"></span>
-							</div>
-
-							<span class="search-results-table-item-name">{{item.name}}</span>
-		
-						</td>
-						<td class="table-row-collection-item">
-							<div class="pull-right search-results-table-date-added">
-								<span class="fa fa-times" ng-click="removeItemFromCollection(item.id)"></span>
-								<span class="fa fa-arrows-v arrows-v myHandle"></span>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-	</div>
 
 </main>

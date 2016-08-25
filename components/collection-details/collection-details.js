@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('CollectionDetailCtrl', function($scope, $location, $stateParams, Mfly, ItemIcons){
+.controller('CollectionDetailCtrl', function($scope, $window, $location, $stateParams, Mfly, ItemIcons){
 
     $scope.goToCollectionList = function() {
         $location.url('/collections');
@@ -12,8 +12,8 @@ angular.module('moonshotApp')
 
 
     // COLLECTION VIEW
-    var collectionName    = $stateParams.name;
-    var collectionId      = $stateParams.id;
+    var collectionName = $stateParams.name;
+    var collectionId   = $stateParams.id;
 
     $scope.collectionName = collectionName;
 
@@ -29,7 +29,7 @@ angular.module('moonshotApp')
                 });
                 
             });
-
+            console.log(items);
             $scope.selectedCollection = items;
 
         });
@@ -37,19 +37,23 @@ angular.module('moonshotApp')
 
     showCollectionDetails(collectionId);
 
+    $scope.goToPath = function(item) {
+        mflyCommands.openFolder(item.id);
+    };
+
     $scope.sortableOptions = {
         handle: '.myHandle',
         stop: function(event, ui) {
             var itemId   = ui.item.scope().item.id;
-            console.log(itemId);
             var newIndex = ui.item.sortable.dropindex;
-            console.log(collectionId);
-            mflyCommands.reorderItemInCollection('44fc80a55bf844a6aee21aec72e12158', 'f61ef3521a9b458eb757b619e2e4c39eproduct122386', 0);
+
+            mflyCommands.reorderItemInCollection(collectionId, itemId, newIndex);
         }
     };
 
     $scope.removeItemFromCollection = function(_itemId) {
         mflyCommands.removeItemFromCollection(collectionId, _itemId);
+        $window.location.reload();
     };
 
 

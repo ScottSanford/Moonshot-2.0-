@@ -369,12 +369,6 @@ a:hover, a:active {
 	font-size:18px;
 }
 
-.search-results-table-item-icon {
-	width:15px;
-	float:left;
-	color:#535353;
-}
-
 .search-results-table-item-name {
 	text-decoration: underline;
 	margin-left:20px;
@@ -419,7 +413,7 @@ a:hover, a:active {
 
 /*===================================================
 
-				Collections Styles
+				Collection List Styles
 
 ====================================================*/
 .btn-new-collection {
@@ -454,6 +448,16 @@ a:hover, a:active {
 	margin:0 auto;
 }
 
+.selected-collection-table-actions {
+	float:left;
+}
+
+.remove-item-from-collection {
+	float:right;
+	margin-left:5px;
+	text-decoration: underline;
+}
+
 .arrows-v {
 	margin-left:20px;
 	cursor:move;
@@ -463,11 +467,6 @@ a:hover, a:active {
 	max-width: 50px;
 	max-height: 50px;
 	vertical-align: middle;
-}
-
-.selected-collection-table  {
-	font-family: 'Proxy-SemiBold';
-	font-size:24px;
 }
 
 .collection-list-container {
@@ -480,13 +479,73 @@ a:hover, a:active {
 }
 
 .table tbody > tr > td.table-row-collection-item {
-	padding:20px;
+	padding:10px;
+	font-size:16px;
+}
+
+.collection-icon {
+	font-size:24px;
+	padding-right: 10px;
+	color:#bbb;
 }
 
 .collection-name {
 	font-family: 'Proxy-Light';
 	font-size:24px;
 }
+
+/*===================================================
+
+				Collection Detail Styles
+
+====================================================*/
+.nav-tabs li, .nav-tabs li.active{
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    color: #7c7c7c;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    margin:25px 2px 0 0;
+    -webkit-transition: all .25s;
+    -o-transition: all .25s;
+    transition: all .25s;
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+.selected-collection-table  {
+	font-family: 'Proxy-SemiBold';
+	font-size:18px;
+	margin-top:20px;
+}
+
+.search-results-table-item-thumbnail img {
+	width:50px;
+	height:50px;
+	float:left;
+	color:#535353;
+}
+
+.selected-collection-hierarchy {
+	margin:10px 0 0 80px;
+}
+
+.selected-collection-hierarchy a {
+	text-decoration: none;
+	font-style: italic;
+	border-radius: 6px;
+	padding:5px;
+	transition: all .4s;
+}
+
+.selected-collection-hierarchy a:hover {
+    background-color: #ddd;
+}
+
+
 
 /*===================================================
 
