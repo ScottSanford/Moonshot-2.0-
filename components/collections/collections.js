@@ -13,6 +13,7 @@ angular.module('moonshotApp')
     // COLLECTIONS VIEW
     
     Mfly.getCollections().then(function(collections){
+        console.log(collections);
         $scope.collections = collections;
     });
 

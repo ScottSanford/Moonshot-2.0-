@@ -499,17 +499,24 @@ a:hover, a:active {
 				Collection Detail Styles
 
 ====================================================*/
-.nav-tabs li, .nav-tabs li.active{
-    border-bottom: none;
-    border-radius: 4px 4px 0 0;
-    color: #7c7c7c;
-    cursor: pointer;
-    display: inline-block;
-    font-weight: 700;
-    margin:25px 2px 0 0;
-    -webkit-transition: all .25s;
-    -o-transition: all .25s;
-    transition: all .25s;
+.nav-tabs>li.active>a, .nav-tabs>li>a{
+	margin-top:15px;
+	font-family: 'Proxy-SemiBold';
+	font-size:18px;
+	text-decoration: none;
+}
+
+.nav-tabs {
+	border-bottom: 3px solid #e0e2dd;
+}
+
+.nav-tabs>li>a {
+	color:#7c7c7c;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:visited {
+	color:#fff;
+	background-color:#7c7c7c;
 }
 
 .table > tbody > tr > td {
@@ -519,7 +526,7 @@ a:hover, a:active {
 .selected-collection-table  {
 	font-family: 'Proxy-SemiBold';
 	font-size:18px;
-	margin-top:20px;
+	margin-top:10px;
 }
 
 .search-results-table-item-thumbnail img {
@@ -545,7 +552,16 @@ a:hover, a:active {
     background-color: #ddd;
 }
 
+.collection-details-editing-container {
+	margin-top:25px;
+}
 
+.collection-date {
+	font-style: italic;
+	color:#7c7c7c;
+	font-family: 'Proxy-Regular';
+	/*font-size:14px;*/
+}
 
 /*===================================================
 
@@ -619,6 +635,14 @@ input.input-share-link.form-control:focus {
 	font-family: 'Proxy-SemiBold';
 	font-size:14px;
 	font-weight: 700;
+}
+
+.collection-edit-actions {
+	margin-top:20px;
+}
+
+.btn-cancel {
+	background-color: #ccc;
 }
 /*===================================================================================
 

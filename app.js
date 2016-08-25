@@ -27,7 +27,7 @@ angular.module("moonshotApp", [
                     controller: 'CollectionsCtrl'
                 })
                 .state('detail', {
-                    url: '/collections/:id/:name', 
+                    url: '/collections/:id/:name/:created/:modified', 
                     templateUrl: 'components/collection-details/collection-details.html', 
                     controller: 'CollectionDetailCtrl'
                 })

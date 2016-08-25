@@ -12,10 +12,14 @@ angular.module('moonshotApp')
 
 
     // COLLECTION VIEW
-    var collectionName = $stateParams.name;
-    var collectionId   = $stateParams.id;
+    var collectionName     = $stateParams.name;
+    var collectionId       = $stateParams.id;  
+    var collectionCreated  = $stateParams.created;
+    var collectionModified = $stateParams.modified;
 
     $scope.collectionName = collectionName;
+    $scope.collectionCreated = collectionCreated;
+    $scope.collectionModified = collectionModified;
 
     function showCollectionDetails(id) {
         Mfly.getCollection(id).then(function(items){

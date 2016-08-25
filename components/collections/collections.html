@@ -48,7 +48,7 @@
 				<tbody>
 					<tr ng-repeat="item in collections | orderBy: 'name'">
 						<td class="collection-table-details">
-							<a ui-sref="detail({ id: item.id, name: item.name })">
+							<a ui-sref="detail({ id: item.id, name: item.name, created:item.created, modified:item.modified })">
 								<span class="search-results-table-item-name">{{item.name}}</span>
 							</a>
 						</td>
