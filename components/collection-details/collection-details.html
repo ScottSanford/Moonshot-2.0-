@@ -86,7 +86,7 @@
 					        <ng-form name="nestedForm">
 					          <div class="form-group">
 					            <label>Name</label>
-					            <input type="text" class="form-control" required ng-model="collectionName"/>
+					            <input type="text" class="form-control input-collection-title" required ng-model="collectionName"/>
 					          </div>
 					          <div class="collection-date">
 					          	<span>Created on: {{ collectionCreated | date: 'medium'}}</span>
@@ -105,6 +105,14 @@
 		      				<button class="btn" ng-click="deleteClick()">Delete Collection</button>
 		      			</div>
 		      		</div>
+			      </uib-tab>
+			      <uib-tab index="2" heading="Play">
+			      	<div class="content-flat">
+			      		<button class="btn" ui-sref="presentatation">Play Collection</button>
+			      		<div class="alert alert-info play-alert-info">
+							Play your collection as a presentation in front of prospect and customers inside Moonshot 2.0. 
+						</div>
+			      	</div>
 			      </uib-tab>
 			    </uib-tabset>
 			</form>

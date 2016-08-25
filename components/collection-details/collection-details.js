@@ -10,12 +10,12 @@ angular.module('moonshotApp')
         $scope.openMenu = true;
     };
 
-
-    // COLLECTION VIEW
     var collectionName     = $stateParams.name;
     var collectionId       = $stateParams.id;  
     var collectionCreated  = $stateParams.created;
     var collectionModified = $stateParams.modified;
+
+    // ITEMS TAB
 
     $scope.collectionName = collectionName;
     $scope.collectionCreated = collectionCreated;
@@ -59,6 +59,13 @@ angular.module('moonshotApp')
         mflyCommands.removeItemFromCollection(collectionId, _itemId);
         $window.location.reload();
     };
+
+    // EDIT TAB
+
+    $scope.updateClick = function(updatedName) {
+        $scope.collectionName = updatedName;
+    } 
+
 
 
 });

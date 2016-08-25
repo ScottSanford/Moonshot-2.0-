@@ -563,6 +563,18 @@ a:hover, a:active {
 	/*font-size:14px;*/
 }
 
+.content-flat {
+	margin-top: 20px;
+	padding: 10px;
+	background-color:#fff;
+}
+
+.play-alert-info {
+	margin-top: 10px;
+	font-family: 'Proxy-Regular';
+	font-size: 14px;
+}
+
 /*===================================================
 
 				Modal(s) Styles
