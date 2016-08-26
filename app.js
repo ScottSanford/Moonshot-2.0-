@@ -37,7 +37,7 @@ angular.module("moonshotApp", [
                     controller: 'SearchCtrl'
                 })
                 .state('presentation', {
-                    url: '/presentation', 
+                    url: '/presentation/:createdCollection', 
                     templateUrl: 'components/presentation/presentation.html', 
                     controller: 'PresentationCtrl'
                 })

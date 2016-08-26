@@ -17,8 +17,9 @@ angular.module('moonshotApp')
 
     // ITEMS TAB
 
-    $scope.collectionName = collectionName;
-    $scope.collectionCreated = collectionCreated;
+    $scope.collectionName     = collectionName;
+    $scope.collectionID       = collectionId;
+    $scope.collectionCreated  = collectionCreated;
     $scope.collectionModified = collectionModified;
 
     function showCollectionDetails(id) {
