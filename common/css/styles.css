@@ -439,8 +439,12 @@ a:hover, a:active {
 }
 
 .table tbody > tr > td.collection-table-details {
-	padding:15px 0;
+	padding:15px 8px;
 	font-size: 18px;
+}
+
+.table tbody > tr > td.collection-table-details:first-of-type {
+	padding-left:0px;
 }
 
 .featured-collection-container {
@@ -552,7 +556,7 @@ a:hover, a:active {
     background-color: #ddd;
 }
 
-.collection-details-editing-container {
+.collection-details-editing-container, .alert-no-items  {
 	margin-top:25px;
 }
 
@@ -560,19 +564,19 @@ a:hover, a:active {
 	font-style: italic;
 	color:#7c7c7c;
 	font-family: 'Proxy-Regular';
-	/*font-size:14px;*/
 }
 
 .content-flat {
 	margin-top: 20px;
 	padding: 10px;
 	background-color:#fff;
+	font-size:16px;
 }
 
 .play-alert-info {
 	margin-top: 10px;
 	font-family: 'Proxy-Regular';
-	font-size: 14px;
+	font-size: 16px;
 }
 
 /*===================================================

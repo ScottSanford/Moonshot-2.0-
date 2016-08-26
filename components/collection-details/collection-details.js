@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('CollectionDetailCtrl', function($scope, $window, $location, $stateParams, Mfly, ItemIcons){
+.controller('CollectionDetailCtrl', function($scope, $window, $location, $stateParams, Mfly, ItemIcons, $uibModal){
 
     $scope.goToCollectionList = function() {
         $location.url('/collections');
@@ -33,7 +33,7 @@ angular.module('moonshotApp')
                 });
                 
             });
-            console.log(items);
+
             $scope.selectedCollection = items;
 
         });
@@ -62,9 +62,21 @@ angular.module('moonshotApp')
 
     // EDIT TAB
 
-    $scope.updateClick = function(updatedName) {
-        $scope.collectionName = updatedName;
-    } 
+    $scope.deleteClick = function() {
+        $uibModal.open({
+            templateUrl: 'common/tmpls/delete-collection/delete-collection.html',
+            controller: 'DeleteCollectionCtrl',
+            resolve: {
+                collectionID: function() {
+                    return collectionId;
+                }
+            }
+        });
+    };  
+
+    $scope.playCollection = function() {
+
+    };
 
 
 

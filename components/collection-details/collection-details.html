@@ -38,7 +38,7 @@
 
 						<div class="col-sm-12">
 
-							<div class="alert alert-info" role="alert" ng-if="selectedCollection.length == 0">Your collection is empty. While using the Search Tool, you can add items to your collection by clicking 'Add to Collection'.</div>
+							<div class="alert alert-info alert-no-items" role="alert" ng-if="selectedCollection.length == 0">Your collection is empty. While using the Search Tool, you can add items to your collection by clicking 'Add to Collection'.</div>
 
 							<table class="table selected-collection-table" ng-if="selectedCollection.length >= 1">
 								<thead>
@@ -84,10 +84,6 @@
 			      		<div class="col-md-6">
 					 
 					        <ng-form name="nestedForm">
-					          <div class="form-group">
-					            <label>Name</label>
-					            <input type="text" class="form-control input-collection-title" required ng-model="collectionName"/>
-					          </div>
 					          <div class="collection-date">
 					          	<span>Created on: {{ collectionCreated | date: 'medium'}}</span>
 					          </div>
@@ -100,17 +96,15 @@
 			      	</div>
 		      		<div class="row collection-edit-actions">
 		      			<div class="col-md-6">
-		      				<button class="btn btn-done" ng-click="updateClick(collectionName)">Update</button>
-		      				<button class="btn btn-cancel" ng-click="cancelClick(collectionName)">Cancel</button>
 		      				<button class="btn" ng-click="deleteClick()">Delete Collection</button>
 		      			</div>
 		      		</div>
 			      </uib-tab>
 			      <uib-tab index="2" heading="Play">
 			      	<div class="content-flat">
-			      		<button class="btn" ui-sref="presentatation">Play Collection</button>
+			      		<button class="btn" ui-sref="presentatation" ng-click="playCollection()">Play Collection</button>
 			      		<div class="alert alert-info play-alert-info">
-							Play your collection as a presentation in front of prospect and customers inside Moonshot 2.0. 
+							Play your collection as a presentation in front of prospects and customers inside Moonshot 2.0. 
 						</div>
 			      	</div>
 			      </uib-tab>
