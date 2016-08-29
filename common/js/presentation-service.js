@@ -1,26 +1,15 @@
 angular.module('moonshotApp')
-    .factory('PresentationService',function () {
+    .factory('PresentationService',function ($q, $localStorage) {
     
-    	var Presentation = {
-    		details: null,
-    		slides: null
-    	};
+    	var Presentation = {};
 
-    	Presentation.getDetails = function() {
-    		return Presentation.details;
-    	};
+        Presentation.nextSlide = function() {
 
-    	Presentation.getSlides = function() {
-    		return Presentation.slides;
-    	};
+        };
 
-    	Presentation.putDetails = function(details) {
-    		Presentation.details = details;
-    	};
+        Presentation.previousSlide = function() {
 
-    	Presentation.putSlides = function(presentationSlides) {
-    		Presentation.slides = presentationSlides;
-    	};
+        };
 
     	return Presentation;
 

@@ -29,7 +29,7 @@
 
 
 		<div class="featured-collection-container">
-			<span class="fa fa-list collection-icon"></span><span class="collection-name">{{collectionName}}</span>
+			<span class="fa fa-list collection-icon"></span><span class="collection-name">{{ cName }}</span>
 
 			<form name="outerForm" class="tab-form-demo">
 			    <uib-tabset active="activeForm">
@@ -85,10 +85,10 @@
 					 
 					        <ng-form name="nestedForm">
 					          <div class="collection-date">
-					          	<span>Created on: {{ collectionCreated | date: 'medium'}}</span>
+					          	<span>Created on: {{ cCreated | date: 'medium'}}</span>
 					          </div>
 					          <div class="collection-date">
-					          	<span>Last modified: {{ collectionModified | date: 'medium'}}</span>
+					          	<span>Last modified: {{ cModified | date: 'medium'}}</span>
 					          </div>
 					        </ng-form>
 			      			

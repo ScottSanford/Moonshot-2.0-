@@ -5,7 +5,8 @@ angular.module("moonshotApp", [
         'myDirectives',
         'ui.bootstrap', 
         'ngclipboard', 
-        'ui.sortable'
+        'ui.sortable', 
+        'ngStorage'
     ])
 
     .config(function ($compileProvider, $stateProvider, $urlRouterProvider) { 
@@ -26,8 +27,8 @@ angular.module("moonshotApp", [
                     templateUrl: 'components/collections/collections.html', 
                     controller: 'CollectionsCtrl'
                 })
-                .state('detail', {
-                    url: '/collections/:id/:name/:created/:modified', 
+                .state('details', {
+                    url: '/collection-details/:cid', 
                     templateUrl: 'components/collection-details/collection-details.html', 
                     controller: 'CollectionDetailCtrl'
                 })
@@ -37,7 +38,7 @@ angular.module("moonshotApp", [
                     controller: 'SearchCtrl'
                 })
                 .state('presentation', {
-                    url: '/presentation', 
+                    url: '/presentation/slide/:sid', 
                     templateUrl: 'components/presentation/presentation.html',                    
                     controller: 'PresentationCtrl', 
                     resolve: {

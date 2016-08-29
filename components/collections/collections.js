@@ -1,6 +1,9 @@
 angular.module('moonshotApp')
 
-.controller('CollectionsCtrl', function($scope, $window, $location, $stateParams, Mfly, ItemIcons, $uibModal){
+.controller('CollectionsCtrl', 
+    function($scope, $window, $location, 
+             $stateParams, Mfly, ItemIcons, 
+             $uibModal, PresentationService){
 
 	$scope.goToCards = function () {
         $location.url('/cards');
@@ -38,8 +41,6 @@ angular.module('moonshotApp')
             }
         });
     };
-
-    
 
 
 });
