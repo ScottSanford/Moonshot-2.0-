@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('CollectionDetailCtrl', function($scope, $window, $location, $stateParams, Mfly, ItemIcons, $uibModal){
+.controller('CollectionDetailCtrl', function($scope, $window, $location, $stateParams, Mfly, ItemIcons, $uibModal, PresentationService){
 
     $scope.goToCollectionList = function() {
         $location.url('/collections');
@@ -25,16 +25,6 @@ angular.module('moonshotApp')
     function showCollectionDetails(id) {
         Mfly.getCollection(id).then(function(items){
             
-            items.forEach(function(item){
-                
-                ItemIcons.forEach(function(icon){                     
-                    if (item.type == icon.type) {
-                        item['icon'] = icon.icon;
-                    }
-                });
-                
-            });
-
             $scope.selectedCollection = items;
 
         });
@@ -76,7 +66,18 @@ angular.module('moonshotApp')
     };  
 
     $scope.playCollection = function() {
+        Mfly.getCollections().then(function(collections){
+            collections.forEach(function(items){
+                if (items.id === collectionId) {
+                    PresentationService.putDetails(items);
+                }
+            })
+        });
 
+        Mfly.getCollection(collectionId).then(function(slides){
+            PresentationService.putSlides(slides);
+        });
+        $location.url('/presentation');
     };
 
 

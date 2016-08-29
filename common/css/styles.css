@@ -3,9 +3,10 @@
 				Global Styles
 
 ====================================================*/
-body {
+html, body {
 	background-color: #f6f6f6;
 	color:#535353;
+	height:100%;
 }
 
 a {
@@ -578,6 +579,67 @@ a:hover, a:active {
 	font-family: 'Proxy-Regular';
 	font-size: 16px;
 }
+
+/*===================================================
+
+			Presentation Styles
+
+====================================================*/
+.presentation-page-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start; /* align items in Main Axis */
+    align-items: stretch; /* align items in Cross Axis */
+    align-content: stretch; /* Extra space in Cross Axis */
+}
+
+.slide-container {
+	flex: 1;
+}
+
+.slide-item {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    max-width: 100%;
+    max-height: 96%;
+}
+
+.fill-area {
+    display: flex;
+    flex-direction: row;  
+    justify-content: flex-start; /* align items in Main Axis */
+    align-items: stretch; /* align items in Cross Axis */
+    align-content: stretch; /* Extra space in Cross Axis */*/*/*/
+}
+
+.fill-area-content {
+    /*border: 1px solid #000000;*/
+    /* Needed for when the area gets squished too far and there is content that can't be displayed */
+    overflow: auto; 
+}
+
+.presentation-footer-container {
+	width:100%;
+	height:25px;
+	/*background-color:red;*/
+	position: absolute;
+	bottom:0;
+}
+
+.presentation-footer-item-name {
+	padding-left:30px;
+}
+
+.presentation-footer-slide-counter {
+	padding-right:30px;
+}
+
+
+
 
 /*===================================================
 

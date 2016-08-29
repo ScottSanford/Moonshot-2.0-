@@ -1,1 +1,22 @@
-This is the Presentation View. 
+<div class="presentation-page-container">
+	<nav-bar></nav-bar>
+
+	<main>
+		
+		<a ui-sref="presentation.slides">Slides</a>
+		<div ui-view="presentation-slides"></div>
+
+	</main>
+
+	<footer class="presentation-footer-container">
+			<div class="row presentation-footer">
+				<div class="col-xs-6 presentation-footer-item-name">
+					<span>Slide Name</span>
+				</div>
+				<div class="col-xs-6 presentation-footer-slide-counter">
+					<span class="pull-right">Slide 1 of 6</span>
+				</div>
+			</div>
+	</footer>
+	
+</div>

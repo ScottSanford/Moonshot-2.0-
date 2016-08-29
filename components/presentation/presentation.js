@@ -1,6 +1,8 @@
 angular.module('moonshotApp')
 
-.controller('PresentationCtrl', function($scope, $stateParams, Mfly){
+.controller('PresentationCtrl', function($scope, $stateParams, Mfly, presentation){
+
+  console.log(presentation);
 
 	$scope.goToCards = function () {
         $location.url('/cards');
@@ -15,6 +17,7 @@ angular.module('moonshotApp')
    
    	Mfly.getCollection(createdCollectionId).then(function(items){
    		console.log(items);
+   		$scope.slides = items[0];
    	});
 
 

@@ -37,9 +37,24 @@ angular.module("moonshotApp", [
                     controller: 'SearchCtrl'
                 })
                 .state('presentation', {
-                    url: '/presentation/:createdCollection', 
-                    templateUrl: 'components/presentation/presentation.html', 
+                    url: '/presentation', 
+                    templateUrl: 'components/presentation/presentation.html',                    
+                    controller: 'PresentationCtrl', 
+                    resolve: {
+                        presentation: function(PresentationService) {
+                            return PresentationService;
+                        }
+                    }
+                })
+                .state('presentation.slides', {
+                    url: '/slides', 
+                    views: {
+                        'presentation-slides': {
+                            templateUrl: 'components/slides/slides.html', 
+                        }
+                    },
                     controller: 'PresentationCtrl'
                 })
+
     });
         
