@@ -1,22 +1,15 @@
 <div class="presentation-page-container">
-	<nav-bar></nav-bar>
+	
+	<presentation-header slide="slide"></presentation-header>
 
 	<main>
 		
-		<a ui-sref="presentation.slides">Slides</a>
-		<div ui-view="presentation-slides"></div>
+		<div class="slide-container fill-area" ng-swipe-left="nextSlide($index)" ng-swipe-right="previousSlide($index)">
+			<img class="slide-item fill-area-content" ng-repeat="slide in slides" ng-src="{{ slide.resourceUrl }}">
+		</div>
 
 	</main>
 
-	<footer class="presentation-footer-container">
-			<div class="row presentation-footer">
-				<div class="col-xs-6 presentation-footer-item-name">
-					<span>Slide Name</span>
-				</div>
-				<div class="col-xs-6 presentation-footer-slide-counter">
-					<span class="pull-right">Slide 1 of 6</span>
-				</div>
-			</div>
-	</footer>
+	<presentation-footer></presentation-footer>
 	
 </div>

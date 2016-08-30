@@ -1,0 +1,20 @@
+<div class="presentation-header">
+	<nav class="nav navbar-inverse">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+			    <div class="btn-group" uib-dropdown is-open="status.isopen">
+			      <button type="button" class="btn btn-presentation" uib-dropdown-toggle ng-disabled="disabled">
+			        1 of 7 | <span class="caret"></span>
+			      </button>
+			      <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+			        <li role="menuitem" ng-repeat="slide in slides"><a href="#">Action</a></li>
+			      </ul>
+			    </div>
+			</div>
+		    <ul class="nav navbar-nav navbar-right">
+		      <li><a href="#"><span class="fa fa-list"></span></a></li>
+		      <li><a ui-sref="cards"><span class="fa fa-times"></span></a></li> 
+		    </ul>
+		</div>
+	</nav>
+</div>

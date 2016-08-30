@@ -19,3 +19,48 @@ angular.module('myDirectives', [])
 
 	}
 })
+
+.directive('presentationHeader', function($location){
+	return {
+
+		restrict: 'E', 
+		scope: {
+			slide: '='
+		},
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/presentation/presentation-header.html', 
+		link: function(scope, element, attrs) {
+			scope.toggle = function () {
+		        scope.openMenu = true;
+		        console.log('clicked');
+		    };
+
+			// scope.goToSearch = function() {
+			// 	$location.url('/search');
+			// };
+		}
+
+	}
+})
+
+.directive('presentationFooter', function($location){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/presentation/presentation-footer.html', 
+		link: function(scope, element, attrs) {
+			scope.toggle = function () {
+		        scope.openMenu = true;
+		        console.log('clicked');
+		    };
+
+			// scope.goToSearch = function() {
+			// 	$location.url('/search');
+			// };
+		}
+
+	}
+})

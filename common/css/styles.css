@@ -593,6 +593,26 @@ a:hover, a:active {
     justify-content: flex-start; /* align items in Main Axis */
     align-items: stretch; /* align items in Cross Axis */
     align-content: stretch; /* Extra space in Cross Axis */
+    background-color: #656565;
+}
+
+.navbar-inverse {
+	background-color: #494948;
+}
+
+.presentation-header {
+    -webkit-box-shadow: 0 3px 5px rgba(25,25,25,.75);
+    -moz-box-shadow: 0 3px 5px rgba(25,25,25,.75);
+    box-shadow: 0 3px 5px rgba(25,25,25,.75);
+}
+
+.btn-presentation {
+	background-color: #7c7c7c;
+	border-bottom: 2px solid #333;
+	color:#fff;
+	margin-top:7px;
+	font-family: 'Proxy-Regular';
+	font-size:16px;
 }
 
 .slide-container {
@@ -606,6 +626,7 @@ a:hover, a:active {
     transform: translateX(-50%) translateY(-50%);
     max-width: 100%;
     max-height: 96%;
+    -webkit-user-drag: none;
 }
 
 .fill-area {
@@ -622,24 +643,20 @@ a:hover, a:active {
     overflow: auto; 
 }
 
+
 .presentation-footer-container {
 	width:100%;
-	height:25px;
-	/*background-color:red;*/
+	height:50px;
 	position: absolute;
-	bottom:0;
+	bottom:0px;
+	background-color: #494948;
+	color:#fff;
+	font-family: 'Proxy-Regular';
 }
 
-.presentation-footer-item-name {
-	padding-left:30px;
+.presentation-arrows {
+	margin-top:-5px;
 }
-
-.presentation-footer-slide-counter {
-	padding-right:30px;
-}
-
-
-
 
 /*===================================================
 

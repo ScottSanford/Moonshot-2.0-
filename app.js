@@ -6,7 +6,8 @@ angular.module("moonshotApp", [
         'ui.bootstrap', 
         'ngclipboard', 
         'ui.sortable', 
-        'ngStorage'
+        'ngStorage', 
+        'ngTouch'
     ])
 
     .config(function ($compileProvider, $stateProvider, $urlRouterProvider) { 
@@ -40,12 +41,7 @@ angular.module("moonshotApp", [
                 .state('presentation', {
                     url: '/presentation/slide/:sid', 
                     templateUrl: 'components/presentation/presentation.html',                    
-                    controller: 'PresentationCtrl', 
-                    resolve: {
-                        presentation: function(PresentationService) {
-                            return PresentationService;
-                        }
-                    }
+                    controller: 'PresentationCtrl'
                 })
                 .state('presentation.slides', {
                     url: '/slides', 
