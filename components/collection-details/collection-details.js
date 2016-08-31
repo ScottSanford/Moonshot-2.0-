@@ -2,7 +2,8 @@ angular.module('moonshotApp')
 
 .controller('CollectionDetailCtrl', function(
         $scope, $window, $location, 
-        $stateParams, Mfly, $uibModal, $localStorage){
+        $stateParams, Mfly, $uibModal, 
+        $localStorage, ItemIcons){
 
     $scope.goToCollectionList = function() {
         $location.url('/collections');
@@ -75,13 +76,20 @@ angular.module('moonshotApp')
     $scope.playCollection = function() {
 
         
-        Mfly.getCollection(cid).then(function(item){
-            // filter item to name, id, type, resourceUrl
-            $localStorage.slides = item;
-            
-            var firstItem = _.first(item);
+        Mfly.getCollection(cid).then(function(collection){
 
-            $location.url('/presentation/slide/' + firstItem.id);
+            collection.forEach(function(item){
+                ItemIcons.forEach(function(icon){     
+                    if (item.type == icon.type) {
+                        item['icon'] = icon.icon;
+                    }
+
+                });
+            });
+
+            $localStorage.slides = collection;
+
+            $location.url('/presentation');
 
         });
 

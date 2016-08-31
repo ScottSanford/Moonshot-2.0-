@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('PresentationCtrl', function($scope, $stateParams, Mfly, $localStorage){
+.controller('PresentationCtrl', function($scope, Mfly, $localStorage){
 
   $scope.goToCards = function () {
         $location.url('/cards');
@@ -14,12 +14,6 @@ angular.module('moonshotApp')
 
   $scope.slides = $localStorage.slides;
   $scope.slideIndex = 0;
-
-  var sid = $stateParams.sid;
-
-  Mfly.getItem(sid).then(function(item){
-  	 $scope.current = item;
-  });
 
   $scope.previousSlide = function(i) {
     $scope.moveToPrevious = true;
