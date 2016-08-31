@@ -1,15 +1,19 @@
 <div class="presentation-page-container">
 	
-	<presentation-header slide="slide"></presentation-header>
+	<presentation-header slide="slides" current="slideIndex"></presentation-header>
 
-	<main>
+	<main class="presentation-container">
 		
 		<div class="slide-container fill-area" ng-swipe-left="nextSlide($index)" ng-swipe-right="previousSlide($index)">
-			<img class="slide-item fill-area-content" ng-repeat="slide in slides" ng-src="{{ slide.resourceUrl }}">
+			<img class="slide-item fill-area-content" 
+				 ng-class="{'animate-enter' : moveToNext, 'animate-leave' : moveToPrevious}"
+				 ng-repeat="slide in slides" 
+				 ng-src="{{ slide.resourceUrl }}"
+				 ng-if="slideIndex == $index">
 		</div>
 
 	</main>
 
-	<presentation-footer></presentation-footer>
+	<presentation-footer slide="slides" current="slideIndex"></presentation-footer>
 	
 </div>

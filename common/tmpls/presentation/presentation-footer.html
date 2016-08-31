@@ -1,8 +1,10 @@
-<nav class="nav navbar-inverse presentation-footer-container">
-	<div class="container-fluid">
-		<ul class="nav navbar-nav">
-		      <li><a href="#"><span class="fa fa-arrow-circle-left fa-2x presentation-arrows"></span></a></li>
-		      <li><a href="#"><span class="fa fa-arrow-circle-right fa-2x presentation-arrows"></span></a></li> 
-		</ul>
+<nav class="row presentation-footer-container">
+	<div class="col-xs-6">
+		<div ng-repeat="s in slide">
+			<span class="current-slide-name" ng-if="current === $index">{{ s.name }}</span>
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<span class="pull-right">{{ current + 1 }} of {{ slide.length }}</span>
 	</div>
 </nav>

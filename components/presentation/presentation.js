@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('PresentationCtrl', function($scope, $stateParams, Mfly){
+.controller('PresentationCtrl', function($scope, $stateParams, Mfly, $localStorage){
 
   $scope.goToCards = function () {
         $location.url('/cards');
@@ -12,19 +12,27 @@ angular.module('moonshotApp')
 
   // COLLECTIONS VIEW
 
+  $scope.slides = $localStorage.slides;
+  $scope.slideIndex = 0;
+
   var sid = $stateParams.sid;
 
-  $scope.currentIndex = 0;
   Mfly.getItem(sid).then(function(item){
-  	 $scope.slide = item;
+  	 $scope.current = item;
   });
 
   $scope.previousSlide = function(i) {
-  	$scope.currentIndex--;
+    $scope.moveToPrevious = true;
+  	$scope.slideIndex--;
   };
 
   $scope.nextSlide = function(i) {
-  	$scope.currentIndex++;
+    $scope.moveToNext = true;
+  	if ($scope.slides >= $scope.slides -1) {
+        $scope.slideIndex = 0;
+    } else {
+        $scope.slideIndex++;
+    }
   };
 
 

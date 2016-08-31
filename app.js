@@ -7,7 +7,8 @@ angular.module("moonshotApp", [
         'ngclipboard', 
         'ui.sortable', 
         'ngStorage', 
-        'ngTouch'
+        'ngTouch', 
+        'ngAnimate'
     ])
 
     .config(function ($compileProvider, $stateProvider, $urlRouterProvider) { 

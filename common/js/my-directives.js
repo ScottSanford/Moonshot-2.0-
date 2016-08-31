@@ -23,9 +23,10 @@ angular.module('myDirectives', [])
 .directive('presentationHeader', function($location){
 	return {
 
-		restrict: 'E', 
+		restrict: 'E',
 		scope: {
-			slide: '='
+			slide: '=', 
+			current: '='
 		},
 		replace: true, 
 		transclude: true,
@@ -48,6 +49,10 @@ angular.module('myDirectives', [])
 	return {
 
 		restrict: 'E', 
+		scope: {
+			slide: '=', 
+			current: '='
+		},
 		replace: true, 
 		transclude: true,
 		templateUrl: 'common/tmpls/presentation/presentation-footer.html', 
@@ -56,10 +61,6 @@ angular.module('myDirectives', [])
 		        scope.openMenu = true;
 		        console.log('clicked');
 		    };
-
-			// scope.goToSearch = function() {
-			// 	$location.url('/search');
-			// };
 		}
 
 	}

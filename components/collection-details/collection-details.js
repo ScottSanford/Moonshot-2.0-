@@ -76,13 +76,12 @@ angular.module('moonshotApp')
 
         
         Mfly.getCollection(cid).then(function(item){
+            // filter item to name, id, type, resourceUrl
+            $localStorage.slides = item;
             
-            var slides = _.pluck(item, 'id');
-            var firstItem = _.first(slides);
+            var firstItem = _.first(item);
 
-            $localStorage.slides = slides;
-            
-            $location.url('/presentation/slide/' + firstItem);
+            $location.url('/presentation/slide/' + firstItem.id);
 
         });
 
