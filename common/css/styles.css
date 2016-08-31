@@ -612,8 +612,20 @@ a:hover, a:active {
 	padding-right:25px;
 }
 
+.dropdown-menu-slides {
+	width:350px;
+	max-height: 500px;
+	overflow-y:auto;
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	border: 1px solid #bbb;
+	padding: 10px 0;
+}
+
 .dropdown-menu>li>a {
 	text-decoration: none;
+	padding: 5px 20px 4px 25px;
+	font-family: 'Proxy-Light';
+	font-size:16px;
 }
 
 .navbar-nav>li>a {
