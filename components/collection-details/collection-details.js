@@ -80,6 +80,12 @@ angular.module('moonshotApp')
             
             var slides = _.pluck(collection, 'id');
             var firstItem = _.first(slides);
+
+            Mfly.getItem(firstItem).then(function(item){
+                if (item.pages >= 1) {
+                    $location.url('/presentation/' + firstItem + '?collection=' + cid + '&page=' + 1);
+                }
+            });
             
             $localStorage.slides = collection;
 
