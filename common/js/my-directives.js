@@ -37,9 +37,9 @@ angular.module('myDirectives', [])
 		        console.log('clicked');
 		    };
 
-			// scope.goToSearch = function() {
-			// 	$location.url('/search');
-			// };
+			scope.getCurrentSlide = function(index) {
+				scope.current = index;
+			};
 		}
 
 	}

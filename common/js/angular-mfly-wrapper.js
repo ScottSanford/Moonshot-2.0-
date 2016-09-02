@@ -134,6 +134,17 @@ angular.module('moonshotApp')
                 });
 
             return deferred.promise; 
+        }, 
+
+        embed: function(element, id, page) {
+            var deferred = $q.defer();
+
+             mflyCommands.embed(element, id, page)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise; 
         }
 	}
 

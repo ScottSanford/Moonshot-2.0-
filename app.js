@@ -40,17 +40,8 @@ angular.module("moonshotApp", [
                     controller: 'SearchCtrl'
                 })
                 .state('presentation', {
-                    url: '/presentation', 
+                    url: '/presentation/{itemId}', 
                     templateUrl: 'components/presentation/presentation.html',                    
-                    controller: 'PresentationCtrl'
-                })
-                .state('presentation.slides', {
-                    url: '/slides', 
-                    views: {
-                        'presentation-slides': {
-                            templateUrl: 'components/slides/slides.html', 
-                        }
-                    },
                     controller: 'PresentationCtrl'
                 })
 

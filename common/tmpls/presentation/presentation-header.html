@@ -3,12 +3,14 @@
 		<div class="col-xs-4">
 			<span class="fa fa-bars fa-2x hamburger-menu-icon" ng-click="toggle()"></span>
 			<div class="btn-group" uib-dropdown is-open="status.isopen">
-			      <button type="button" class="btn btn-presentation" uib-dropdown-toggle ng-disabled="disabled">1 of {{slide.length}} <span class="caret"></span>
+			      <button type="button" class="btn btn-presentation" uib-dropdown-toggle ng-disabled="disabled">{{ current + 1 }} of {{slide.length}} <span class="caret"></span>
 			      </button>
 			      <ul class="dropdown-menu dropdown-menu-slides" uib-dropdown-menu role="menu">
-			        <li role="menuitem" ng-repeat="s in slide"><a href="#">
-			        	<span class="fa fa-check" ng-if="current == $index"></span>
-			        	<span class="fa {{s.icon}}" ng-if="current !== $index"></span> {{s.name}}</a>
+			        <li role="menuitem" ng-repeat="s in slide">
+			        	<a ng-click="getCurrentSlide($index)">
+			        		<span class="fa fa-check" ng-if="current == $index"></span>
+			        		<span class="fa {{s.icon}}" ng-if="current !== $index"></span> {{s.name}}
+			        	</a>
 			        </li>
 			      </ul>
 			</div>

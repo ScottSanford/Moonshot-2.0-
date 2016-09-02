@@ -588,11 +588,11 @@ a:hover, a:active {
 .presentation-page-container {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column; 
-    justify-content: flex-start; /* align items in Main Axis */
-    align-items: stretch; /* align items in Cross Axis */
-    align-content: stretch; /* Extra space in Cross Axis */
+/*    display: flex;
+    flex-direction: column; */
+    /*justify-content: flex-start; */
+    /*align-items: stretch; */
+    /*align-content: stretch;*/
 }
 
 .presentation-header {
@@ -667,7 +667,7 @@ a:hover, a:active {
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     max-width: 100%;
-    max-height: 87%;
+    max-height: 91%;
     -webkit-user-drag: none;
     animation-duration: 0.30s;
     animation-timing-function: ease-in-out;
@@ -678,9 +678,9 @@ a:hover, a:active {
 .fill-area {
     display: flex;
     flex-direction: row;  
-    justify-content: flex-start; /* align items in Main Axis */
-    align-items: stretch; /* align items in Cross Axis */
-    align-content: stretch; /* Extra space in Cross Axis */*/*/*/
+    justify-content: flex-start; 
+    align-items: stretch; 
+    align-content: stretch; 
 }
 
 .fill-area-content {
@@ -702,26 +702,23 @@ a:hover, a:active {
 	margin-top:-5px;
 }
 
-/* When the slide enters, slide it from the right */
 .slide-item.ng-enter {
     animation-name: slideFromRight;
     -webkit-animation-name: slideFromRight;
 }
-/* When the page enters and moveToLeft is true, slide it from the left(out of the user view) to the right (left corner) */
+
 .slide-item.moveToLeft.ng-enter {
     animation-name: slideFromLeft;
     -webkit-animation-name: slideFromLeft;
 }
-/* When the page leaves, slide it to left(out of the user view) from the left corner,
-    in other words slide it from the left(out of the view) to the left corner but in reverse order */
+
 .slide-item.ng-leave {
     animation-name: slideFromLeft;
     animation-direction: reverse;
     -webkit-animation-name: slideFromLeft;
     -webkit-animation-direction: reverse;
 }
-/* When the page leaves, slide it to the right(out of the user view) from the the left corner,
-    in other words, slide it from the right but in reverse order  */
+
 .slide-item.moveToLeft.ng-leave {
     animation-name: slideFromRight;
     animation-direction: reverse;
@@ -730,44 +727,15 @@ a:hover, a:active {
 }
 
 @keyframes slideFromRight {
-    0% {
-        transform: translateX(100%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
+    0% {left: 100%;}
+    100% {left:50%;}
 }
 
 @keyframes slideFromLeft {
-    0% {
-        transform: translateX(-100%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
+    0% {left: 0%;}
+    100% {left: 50%;}
 }
 
-@-webkit-keyframes slideFromRight {
-    0% {
-        -webkit-transform: translateX(100%);
-    }
-
-    100% {
-        -webkit-transform: translateX(0);
-    }
-}
-
-@-webkit-keyframes slideFromLeft {
-    0% {
-        -webkit-transform: translateX(-100%);
-    }
-
-    100% {
-        -webkit-transform: translateX(0);
-    }
-}
 
 /*===================================================
 

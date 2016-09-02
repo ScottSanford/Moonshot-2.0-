@@ -77,21 +77,28 @@ angular.module('moonshotApp')
 
         
         Mfly.getCollection(cid).then(function(collection){
+            
+            var slides = _.pluck(collection, 'id');
+            var firstItem = _.first(slides);
+            
+            $localStorage.slides = collection;
 
             collection.forEach(function(item){
+                
                 ItemIcons.forEach(function(icon){     
                     if (item.type == icon.type) {
                         item['icon'] = icon.icon;
                     }
 
                 });
+
             });
 
-            $localStorage.slides = collection;
-
-            $location.url('/presentation');
-
+                
+            $location.url('/presentation/' + firstItem + '?collection=' + cid);
+                
         });
+
 
     };
 

@@ -4,12 +4,19 @@
 
 	<main class="presentation-container">
 		
-		<div class="slide-container fill-area" ng-swipe-left="nextSlide($index)" ng-swipe-right="previousSlide($index)">
+		<div class="slide-container fill-area">
+
+			<!-- BEGIN: SING-PAGE DOCUMENT -->
 			<img class="slide-item fill-area-content" 
-				 ng-class="{'animate-enter' : moveToNext, 'animate-leave' : moveToPrevious}"
-				 ng-repeat="slide in slides" 
-				 ng-src="{{ slide.resourceUrl }}"
-				 ng-if="slideIndex == $index">
+				 ng-src="{{ slide }}"
+				 ng-swipe-left="nextPage($index)" ng-swipe-right="previousPage($index)"
+				 ng-show="showSinglePageDocument">
+
+			<!-- BEGIN: MULTI-PAGE DOCUMENTS -->
+			<img class="slide-item fill-area-content" 
+				 ng-swipe-left="nextSlide(slide.pages)" ng-swipe-right="previousSlide(slide.pages)"
+				 ng-show="showMultiPageDocument">
+
 		</div>
 
 	</main>
