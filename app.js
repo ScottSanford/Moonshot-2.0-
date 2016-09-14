@@ -40,7 +40,7 @@ angular.module("moonshotApp", [
                     controller: 'SearchCtrl'
                 })
                 .state('presentation', {
-                    url: '/presentation/{itemId}?collection&page', 
+                    url: '/presentation/{itemId}?collection&page&index', 
                     templateUrl: 'components/presentation/presentation.html',                    
                     controller: 'PresentationCtrl'
                 })

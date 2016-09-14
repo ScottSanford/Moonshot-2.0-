@@ -13,7 +13,7 @@ angular.module('moonshotApp')
     //
 
     $scope.getSearch = function(_term) {
-       
+        console.log(_term);
         Mfly.search(_term).then(function(results){
             
             if (results.length == 0) {

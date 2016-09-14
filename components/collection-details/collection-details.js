@@ -83,7 +83,7 @@ angular.module('moonshotApp')
 
             Mfly.getItem(firstItem).then(function(item){
                 if (item.pages >= 1) {
-                    $location.url('/presentation/' + firstItem + '?collection=' + cid + '&page=' + 1);
+                    $location.url('/presentation/' + firstItem + '?collection=' + cid + '&page=' + 1 + '&index=' + 0);
                 }
             });
             
@@ -101,7 +101,7 @@ angular.module('moonshotApp')
             });
 
                 
-            $location.url('/presentation/' + firstItem + '?collection=' + cid);
+            $location.url('/presentation/' + firstItem + '?collection=' + cid + '&index=' + 0);
                 
         });
 
