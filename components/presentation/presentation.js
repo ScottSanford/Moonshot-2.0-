@@ -36,6 +36,24 @@ angular.module('moonshotApp')
 
   $scope.previousSlide = function() {
 
+    for (var i = 0; i < $scope.slides.length; i++) {
+        
+        if ($stateParams.itemId === $scope.slides[i].id) {
+          var index = parseInt($stateParams.index);
+          
+          var prevSlideIndex = index - 1;
+          
+          var nextSlide = $scope.slides[prevSlideIndex].id;
+
+          if (prevSlideIndex > $scope.slides.length) {
+            console.log('youve reached the limit');
+          }
+
+          $state.go('presentation', {itemId: nextSlide, collection: collection, index: prevSlideIndex});
+          
+        }
+    }
+
   };
 
   $scope.nextSlide = function() {
@@ -45,18 +63,20 @@ angular.module('moonshotApp')
       } 
       // SINGLE PAGE DOCUMENT
       else {
-
+        console.log("length :: ", $scope.slides.length);
         for (var i = 0; i < $scope.slides.length; i++) {
           if ($stateParams.itemId === $scope.slides[i].id) {
+            var index = parseInt($stateParams.index);
             
-            var nextSlideInd = i + 1;
+            var nextSlideIndex = index + 1;
             
-            var nextSlide   = $scope.slides[nextSlideInd].id;
-            if (nextSlideInd > $scope.slides.length) {
+            var nextSlide = $scope.slides[nextSlideIndex].id;
+
+            if (nextSlideIndex > $scope.slides.length) {
               console.log('youve reached the limit');
             }
 
-            $state.go('presentation', {itemId: nextSlide, collection: collection});
+            $state.go('presentation', {itemId: nextSlide, collection: collection, index: nextSlideIndex});
             
           }
         }

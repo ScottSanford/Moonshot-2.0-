@@ -7,7 +7,7 @@
 			      </button>
 			      <ul class="dropdown-menu dropdown-menu-slides" uib-dropdown-menu role="menu">
 			        <li role="menuitem" ng-repeat="s in slide">
-			        	<a ng-click="getCurrentSlide($index)">
+			        	<a ng-click="getCurrentSlide($index, s.id)">
 			        		<span class="fa fa-check" ng-if="current == $index"></span>
 			        		<span class="fa {{s.icon}}" ng-if="current !== $index"></span> {{s.name}}
 			        	</a>

@@ -20,7 +20,7 @@ angular.module('myDirectives', [])
 	}
 })
 
-.directive('presentationHeader', function($location){
+.directive('presentationHeader', function($location, $stateParams, Mfly){
 	return {
 
 		restrict: 'E',
@@ -37,8 +37,17 @@ angular.module('myDirectives', [])
 		        console.log('clicked');
 		    };
 
-			scope.getCurrentSlide = function(index) {
-				scope.current = index;
+			scope.getCurrentSlide = function(index, id) {
+				var cid = $stateParams.collection;
+				
+				Mfly.getCollection(cid).then(function(data){
+					data.forEach(function(obj){
+						if (obj.id === id) {
+							scope.current = index;
+							$location.url('/presentation/' + id + '?collection=' + cid + '&index=' + index);
+						}
+					})
+				});
 			};
 		}
 
