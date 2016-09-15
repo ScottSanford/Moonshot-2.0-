@@ -94,10 +94,13 @@ angular.module('moonshotApp')
 
       var nextItemId = $scope.slides[nextIndex].id;
 
-      $location.url('/presentation/' + nextItemId + '?collection=' + collection);
+      $location.url('/presentation/' + nextItemId + '?collection=' + collection + '&index=' + nextIndex);
     } else {
       var pageNumber = pageNum + 1;
-      $location.url('/presentation/' + slide.id + '?collection=' + collection + '&page=' + pageNumber);
+      var sameId = _.findWhere($scope.slides, {id: itemId});
+      var idIndex = _.indexOf(sameId);
+
+      $location.url('/presentation/' + slide.id + '?collection=' + collection + '&page=' + pageNumber + '&index=' + idIndex);
     }
   };
 
