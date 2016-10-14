@@ -27,7 +27,7 @@
 
     <div class="row">
     	<div class="col-xs-9">
-    		<div class="count-message">{{itemsSelectedCount()}} total items selected.</div>
+    		<div class="count-message" ng-show="isItemSelected">{{itemsSelectedCount()}} total items selected.</div>
     	</div>
     	<div class="col-xs-3">
     		<button class="btn btn-play pull-right" ui-sref="presentation">
@@ -38,12 +38,12 @@
 
     <div class="row flip-cards-container">
 
-		<div class="col-sm-4 flip-card" ng-repeat="c in cards">
+		<div class="col-sm-4 flip-card" ng-repeat="(key, c) in MoonshotData.cards track by key">
 		    <div class="flip"> 
 		        <div class="card" ng-class="{'flipped':isFlipped}"> 
 		            
 		            <!-- BEGIN: FRONT CARD -->
-		            <div class="face front" ng-click="isFlipped=!isFlipped; getFolderItems(c.id)"> 
+		            <div class="face front" ng-click="isFlipped=!isFlipped; getFolderItems(c.id, c.name)"> 
 		                <div class="card-title">{{ c.name }}</div>
 		                <div class="card-img">
 							<img ng-src="{{c.thumbnailUrl}}">
@@ -63,23 +63,24 @@
 							</div>
 
 							<div class="col-xs-2 card-title-back-right">
-								<span class="circle-counter">{{itemsSelectedCount()}}</span>
+								<span class="circle-counter">{{MoonshotData.cards[key].itemFolderCounter || 0}}</span>
 							</div>
 
 		                </div>
 
 		                <div class="folder-card-item-container">
-		                	<div class="row folder-card-item" ng-repeat="item in items">
+		                	<div class="row folder-card-item" ng-repeat="(k, item) in MoonshotData.cards[key].itemsObj track by k">
 		                		<div class="col-xs-2">
 		                			<span class="fa {{item.icon}} card-item-icon"></span>
 		                		</div>
 		                		<div class="col-xs-8">
 		                			<div class="card-item-name text-left" ng-click="viewCardItem(item.id)">{{item.name}}</div>
 		                		</div>
+
 		                		<div class="col-xs-2">
 									<span class="fa fa-circle" 
 										  ng-class="item.isItemSelected ? 'fa fa-check-circle check-circle' : 'fa fa-circle'"
-										  ng-click="item.isItemSelected = !item.isItemSelected"></span>
+										  ng-click="item.isItemSelected = !item.isItemSelected; MoonshotData.updateCount(key); MoonshotData.pushToPresentation(k)"></span>
 		                		</div>
 		                	</div>
 		                </div>

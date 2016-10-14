@@ -1,9 +1,11 @@
 <div class="presentation-page-container">
 	
+
 	<presentation-header slide="slides" current="slideIndex"></presentation-header>
 
-	<main class="presentation-container">
-		
+	<main class="presentation-container" id="slide-menu-container">
+
+			
 		<div class="slide-container fill-area">
 
 			<!-- BEGIN: SING-PAGE DOCUMENT -->
@@ -12,7 +14,33 @@
 				 ng-swipe-left="nextSlide()" 
 				 ng-swipe-right="previousSlide()">
 
+<!-- 			<iframe id="int" class="slide-item fill-area-content">
+			</iframe> -->
+
 		</div>
+
+		<pageslide ps-side="left" 
+			   ps-open="openMenu" 
+			   ps-container="slide-menu-container" 
+			   ps-body-class="true">
+        
+	        <div class="flyout-menu-container">
+	            
+	            <a class="menu-item" ui-sref="collections">
+	            	<div class="flyout-menu-item">
+	            		<span>Collections</span>
+	            	</div>
+	            </a>
+
+	            <a class="menu-item" ui-sref="collections">
+		            <div class="flyout-menu-item" ng-click="quitMoonshot()">
+		            	<span>Quit Moonshot</span>
+		            </div>
+		        </a>
+		        
+	        </div>
+
+	    </pageslide>
 
 	</main>
 

@@ -24,11 +24,25 @@ angular.module('moonshotApp')
   var selectedItem;
 
   Mfly.getItem(itemId).then(function(item){
+   
     selectedItem = item;
-    if (item.pages > 0) {
+
+    if (item.type == 'interactive') {
+
+      mflyCommands.embed($('.slide-item'), item.id);
+
+    } 
+
+    else if (item.pages > 0) {
+
       mflyCommands.embed($('.slide-item'), item.id, page);
-    } else {
+
+    } 
+
+    else {
+
       $scope.slide = item.resourceUrl;
+
     }
       
   });
@@ -36,7 +50,11 @@ angular.module('moonshotApp')
 
   $scope.previousSlide = function() {
 
-    for (var i = 0; i < $scope.slides.length; i++) {
+    if (selectedItem.pages > 0) {
+      multiPagePrevious(selectedItem);
+    } else {
+      
+      for (var i = 0; i < $scope.slides.length; i++) {
         
         if ($stateParams.itemId === $scope.slides[i].id) {
           var index = parseInt($stateParams.index);
@@ -51,15 +69,18 @@ angular.module('moonshotApp')
 
           $state.go('presentation', {itemId: nextSlide, collection: collection, index: prevSlideIndex});
           
-        }
+        } 
+      }
+
     }
+
 
   };
 
   $scope.nextSlide = function() {
       // MULTI PAGE DOCUMENT
       if (selectedItem.pages > 0) {
-        isMultiPageDocument(selectedItem);
+        multiPageNext(selectedItem);
       } 
       // SINGLE PAGE DOCUMENT
       else {
@@ -84,7 +105,7 @@ angular.module('moonshotApp')
       }
   };
 
-  function isMultiPageDocument(slide){
+  function multiPageNext(slide){
     var pageNum = Number($stateParams.page);
     if (pageNum === slide.pages) {
       // GO TO NEXT SLIDE IN PRESENTATION
@@ -103,6 +124,26 @@ angular.module('moonshotApp')
       $location.url('/presentation/' + slide.id + '?collection=' + collection + '&page=' + pageNumber + '&index=' + idIndex);
     }
   };
+
+  function multiPagePrevious(slide) {
+    var pageNum = Number($stateParams.page);
+    if (pageNum === 1) {
+      // GO TO NEXT SLIDE IN PRESENTATION
+      var sameId = _.findWhere($scope.slides, {id: itemId});
+      var idIndex = _.indexOf(sameId);
+      var nextIndex = idIndex - 1;
+
+      var nextItemId = $scope.slides[nextIndex].id;
+
+      $location.url('/presentation/' + nextItemId + '?collection=' + collection + '&index=' + nextIndex);
+    } else {
+      var pageNumber = pageNum - 1;
+      var sameId = _.findWhere($scope.slides, {id: itemId});
+      var idIndex = _.indexOf(sameId);
+
+      $location.url('/presentation/' + slide.id + '?collection=' + collection + '&page=' + pageNumber + '&index=' + idIndex);
+    }
+  }
 
 
 
