@@ -33,11 +33,18 @@ angular.module('moonshotApp')
 
     };
 
-    Moonshot.pushToPresentation = function(key) {
-        var presentation = Moonshot.presentation;
+    Moonshot.pushToPresentation = function(item) {
+        
+        if (item.isItemSelected) {
+            Moonshot.presentation.push(item);
+        } else {
+            var newArr = _.filter(Moonshot.presentation, function(obj){
+               return obj.id !== item.id;
+            });
 
-        presentation.push(key);
-        console.log(presentation);
+            Moonshot.presentation = newArr;
+        }; 
+
     };
 
 	return Moonshot;

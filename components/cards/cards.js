@@ -46,9 +46,6 @@ angular.module('moonshotApp')
                 
 
             });
-
-            console.log(MoonshotData.cards[_folderId].itemsObj);
-
             
         });
 
