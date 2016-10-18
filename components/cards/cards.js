@@ -15,12 +15,8 @@ angular.module('moonshotApp')
 
 
     $scope.getFolderItems = function(_folderId) {
-        // variable to prevent another card showing it's items
-        var item = this;
 
-        Mfly.getFolder(_folderId).then(function(folderItems){
-
-            
+        Mfly.getFolder(_folderId).then(function(folderItems){    
             
             folderItems.forEach(function(_item){
                 
@@ -30,21 +26,21 @@ angular.module('moonshotApp')
                     }
                 });
 
+                // check and balance if the card is turned 
+                // over that it remains checked. 
                 var isSel = false;
 
                 if(MoonshotData.cards[_folderId].itemsObj[_item.id] && 
                     MoonshotData.cards[_folderId].itemsObj[_item.id].hasOwnProperty('isItemSelected') && 
                     MoonshotData.cards[_folderId].itemsObj[_item.id].isItemSelected){
-                    
+          
                     isSel = true;
-                }
 
+                }
                 _item.isItemSelected = isSel;
 
                 MoonshotData.cards[_folderId].itemsObj[_item.id] = _item;
-
-                
-
+             
             });
             
         });

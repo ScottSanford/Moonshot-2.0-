@@ -657,36 +657,19 @@ a:hover, a:active {
 	margin-left:15px;
 }
 
-.slide-container {
-	flex: 1;
+.fill-area {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    align-content: center;  
 }
 
 .slide-item {
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    max-width: 100%;
-    max-height: 91%;
-    -webkit-user-drag: none;
-    animation-duration: 0.30s;
-    animation-timing-function: ease-in-out;
-    -webkit-animation-duration: 0.30s;
-    -webkit-animation-timing-function: ease-in-out;
-}
-
-.fill-area {
-    display: flex;
-    flex-direction: row;  
-    justify-content: flex-start; 
-    align-items: stretch; 
-    align-content: stretch; 
-}
-
-.fill-area-content {
-    /*border: 1px solid #000000;*/
-    /* Needed for when the area gets squished too far and there is content that can't be displayed */
+    margin-top:59px;
+    width:100%;
     overflow: auto; 
+	margin:0 auto;
+	padding:0 20px;
 }
 
 .presentation-footer-container {

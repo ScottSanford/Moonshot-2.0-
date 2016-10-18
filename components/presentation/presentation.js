@@ -13,8 +13,8 @@ angular.module('moonshotApp')
   // COLLECTIONS VIEW
 
   $scope.slides = $localStorage.slides;
+ 
   var index = parseInt($stateParams.index);
-  
   $scope.slideIndex = index;
 
   // BEGIN: SLIDE
@@ -42,7 +42,7 @@ angular.module('moonshotApp')
     else {
 
       $scope.slide = item.resourceUrl;
-
+      
     }
       
   });

@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.factory('MoonshotData', function($q, Mfly, ItemIcons){
+.factory('MoonshotData', function($q, $location, Mfly, ItemIcons, $localStorage){
 
     var Moonshot = {};
 
@@ -23,12 +23,13 @@ angular.module('moonshotApp')
         });
     };
 
-    Moonshot.updateCount = function(key){
+    Moonshot.updateCount = function(key, item){
         var count = 0;
 
         for(i in Moonshot.cards[key].itemsObj){
             count += Moonshot.cards[key].itemsObj[i].isItemSelected ? 1 : 0;
         }
+
         Moonshot.cards[key].itemFolderCounter = count;
 
     };
@@ -46,6 +47,14 @@ angular.module('moonshotApp')
         }; 
 
     };
+
+    Moonshot.playCollection = function() {
+        $localStorage.slides = Moonshot.presentation;
+
+        var first = _.head(Moonshot.presentation);
+
+        $location.url('/presentation/' + first.id + '?index=' + 0);
+    }
 
 	return Moonshot;
 	
