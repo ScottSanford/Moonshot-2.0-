@@ -86,9 +86,11 @@
 					<tbody>
 						<tr ng-class="{'isActiveResult': item.id == toggleSearchResult}" ng-repeat="item in results" ng-click="toggleItem(item)">
 							<td>
-								<div class="search-results-table-item-icon"><span class="fa {{item.icon}}"></span></div>
-								<span class="search-results-table-item-name">{{item.name}}</span>
-								<span class="search-results-table-folder-number" ng-if="item.type == 'folder'">({{folderCount}})</span>
+								<div class="search-results-table-item-icon">
+									<span class="fa {{item.icon}}"></span>
+									<span class="search-results-table-item-name">{{item.name}}</span>
+									<span class="search-results-table-folder-number" ng-if="item.type == 'folder'">({{folderCount}})</span>
+								</div>
 							</td>
 							<td>
 								<span class="search-results-table-date-added">{{item.created | date:'shortDate'}}</span>
