@@ -8,6 +8,10 @@ html, body {
 	height:100%;
 }
 
+.ui-view-container {
+	height:100%;
+}
+
 a {
 	color:#7c7c7c;
 	text-decoration: underline;
@@ -57,23 +61,17 @@ a:hover, a:active {
   left: 0;
   top: 0;
 }
+
 .brand-centered .navbar-brand {
   display: flex;
   align-items: center;
 }
-
 
 /*===================================================
 
 				Cards Styles
 
 ====================================================*/
-.cards-header {
-	height:60px;
-	background-color:#475669;
-	color:#fff;
-}
-
 .hamburger-menu-icon {
 	margin:15px;
 	color:#fff;
@@ -81,6 +79,11 @@ a:hover, a:active {
 
 .header-logo {
 	height:55px;
+}
+
+.cards-header {
+	background-color:#475669;
+	color:#fff;
 }
 
 .cards-header-right span{
@@ -585,15 +588,42 @@ a:hover, a:active {
 			Presentation Styles
 
 ====================================================*/
-.presentation-page-container {
-    width: 100%;
-    height: 100%;
-/*    display: flex;
-    flex-direction: column; */
-    /*justify-content: flex-start; */
-    /*align-items: stretch; */
-    /*align-content: stretch;*/
+.flexbox {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
 }
+
+.flexbox > * {
+	flex: 0 0 auto;
+}
+
+.presentation-header-container {
+	height:60px;
+	background-color:#475669;
+	color:#fff;
+}
+
+.presentation-container {
+    flex: 1 1 auto;
+    position: relative;
+}
+
+.presentation-container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.presentation-footer-container {
+	height:25px;
+	color:#535353;
+	font-family: 'Proxy-Regular';
+}
+
 
 .presentation-header {
     -webkit-box-shadow: 0 3px 5px rgba(25,25,25,.75);
@@ -655,30 +685,6 @@ a:hover, a:active {
 	color:#535353;
 	font-family: 'Proxy-Light';
 	margin-left:15px;
-}
-
-.fill-area {
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    align-content: center;  
-}
-
-.slide-item {
-    margin-top:59px;
-    width:100%;
-    overflow: auto; 
-	margin:0 auto;
-	padding:0 20px;
-}
-
-.presentation-footer-container {
-	width:100%;
-	height:25px;
-	position: absolute;
-	bottom:0px;
-	color:#535353;
-	font-family: 'Proxy-Regular';
 }
 
 .presentation-arrows {
