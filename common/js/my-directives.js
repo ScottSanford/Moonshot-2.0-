@@ -20,7 +20,7 @@ angular.module('myDirectives', [])
 	}
 })
 
-.directive('presentationHeader', function($location, $stateParams, Mfly){
+.directive('presentationHeader', function($location, $stateParams, Mfly, $uibModal){
 	return {
 
 		restrict: 'E',
@@ -32,6 +32,11 @@ angular.module('myDirectives', [])
 		transclude: true,
 		templateUrl: 'common/tmpls/presentation/presentation-header.html', 
 		link: function(scope, element, attrs) {
+
+			if ($stateParams.collection == undefined) {
+				scope.isCardPresentation = true;
+			};
+
 			scope.toggle = function () {
 		        scope.openMenu = true;
 		        console.log('clicked');
@@ -39,15 +44,26 @@ angular.module('myDirectives', [])
 
 			scope.getCurrentSlide = function(index, id) {
 				var cid = $stateParams.collection;
-				
-				Mfly.getCollection(cid).then(function(data){
-					data.forEach(function(obj){
-						if (obj.id === id) {
-							scope.current = index;
-							$location.url('/presentation/' + id + '?collection=' + cid + '&index=' + index);
-						}
-					})
-				});
+				if (cid) {
+					Mfly.getCollection(cid).then(function(data){
+						data.forEach(function(obj){
+							if (obj.id === id) {
+								scope.current = index;
+								$location.url('/presentation/' + id + '?collection=' + cid + '&index=' + index);
+							}
+						})
+					});
+				} else {
+					scope.current = index;
+					$location.url('/presentation/' + id + '?index=' + index);
+				}
+			};
+
+			scope.createNewCollection = function() {
+				$uibModal.open({
+		            templateUrl: 'common/tmpls/save-presentation/save-presentation.html',
+		            controller: 'SavePresentationCtrl'		            
+		        });
 			};
 		}
 

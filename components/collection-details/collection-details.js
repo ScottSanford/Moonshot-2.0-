@@ -78,8 +78,7 @@ angular.module('moonshotApp')
         
         Mfly.getCollection(cid).then(function(collection){
             
-            var slides = _.pluck(collection, 'id');
-            var firstItem = _.first(slides);
+            var firstItem = _.head(collection);
 
             Mfly.getItem(firstItem).then(function(item){
                 if (item.pages >= 1) {
@@ -101,7 +100,7 @@ angular.module('moonshotApp')
             });
 
                 
-            $location.url('/presentation/' + firstItem + '?collection=' + cid + '&index=' + 0);
+            $location.url('/presentation/' + firstItem.id + '?collection=' + cid + '&index=' + 0);
                 
         });
 
