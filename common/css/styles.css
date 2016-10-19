@@ -72,6 +72,10 @@ a:hover, a:active {
 				Cards Styles
 
 ====================================================*/
+.cards-selected-play-container {
+	height:82px;
+}
+
 .hamburger-menu-icon {
 	margin:15px;
 	color:#fff;
@@ -140,16 +144,23 @@ a:hover, a:active {
 .count-message {
 	margin:50px 0 0 25px;
 	font-family: 'Proxy-Regular';
-	font-size: 20px;
+	font-size: 24px;
 }
 
 .btn-play {
 	background-color:#475669;
 	color:#fff;
 	text-transform: uppercase;
-	font-family: 'Proxy-Light';
+	font-family: 'Proxy-SemiBold';
 	font-size:20px;
 	margin:40px 20px 0 0;
+}
+
+.show-presentation {
+	-webkit-animation: fadeIn 1.5s;
+	-moz-animation: fadeIn 1.5s;
+	-o-animation: fadeIn 1.5s;
+	animation: fadeIn 1.5s;
 }
 
 
@@ -847,6 +858,3 @@ input.input-share-link.form-control:focus {
 		/*border:1px solid red;*/
 	}
 }
-
-
-

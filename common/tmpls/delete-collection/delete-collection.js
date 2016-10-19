@@ -1,12 +1,10 @@
 angular.module('moonshotApp')
 
-.controller('DeleteCollectionCtrl', function($scope, $state, $location, $rootScope, $uibModal, $uibModalInstance, cid, Mfly){
-
-	console.log('Collection ID ', cid);
+.controller('DeleteCollectionCtrl', function($scope, $state, $location, $rootScope, $uibModal, $uibModalInstance, Mfly, collectionID){
 
 	$scope.deleteCollection = function() {
 
-		mflyCommands.deleteCollection(cid, false);
+		mflyCommands.deleteCollection(collectionID, false);
 		$rootScope.$broadcast('updateList');
 		$uibModalInstance.dismiss('cancel');
 		if ($state.current.name === 'detail') {

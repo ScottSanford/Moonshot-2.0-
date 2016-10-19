@@ -66,7 +66,7 @@ angular.module('moonshotApp')
             templateUrl: 'common/tmpls/delete-collection/delete-collection.html',
             controller: 'DeleteCollectionCtrl',
             resolve: {
-                cid: function() {
+                collectionID: function() {
                     return cid;
                 }
             }

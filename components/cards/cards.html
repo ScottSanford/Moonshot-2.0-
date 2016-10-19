@@ -25,12 +25,19 @@
 
     </pageslide>
 
-    <div class="row">
+    <div class="row cards-selected-play-container">
     	<div class="col-xs-9">
-    		<div class="count-message" ng-show="isItemSelected">{{itemsSelectedCount()}} total items selected.</div>
+    		<div class="count-message" 
+    			 ng-class="{'show-presentation': MoonshotData.presentation.length >= 1}"
+    			 ng-show="MoonshotData.presentation.length >= 1">
+    			 	{{ MoonshotData.presentation.length }} item(s) selected
+    		</div>
     	</div>
     	<div class="col-xs-3">
-    		<button class="btn btn-play pull-right" ng-click="MoonshotData.playCollection()">
+    		<button class="btn btn-play pull-right" 
+    		        ng-class="{'show-presentation': MoonshotData.presentation.length >= 1}"
+    				ng-show="MoonshotData.presentation.length >= 1" 
+    				ng-click="MoonshotData.playCollection()">
     			<span class="fa fa-play-circle"></span> Play
     		</button>
     	</div>

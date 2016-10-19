@@ -88,7 +88,7 @@
 							<td>
 								<div class="search-results-table-item-icon">
 									<span class="fa {{item.icon}}"></span>
-									<span class="search-results-table-item-name">{{item.name}}</span>
+									<span class="search-results-table-item-name" ng-click="goToPath(item)">{{item.name}}</span>
 									<span class="search-results-table-folder-number" ng-if="item.type == 'folder'">({{folderCount}})</span>
 								</div>
 							</td>
