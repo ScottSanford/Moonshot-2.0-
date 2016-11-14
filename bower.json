@@ -1,0 +1,34 @@
+{
+  "name": "Moonshot",
+  "authors": [
+    "Scott Sanford <ssanford@mediafly.com>"
+  ],
+  "description": "",
+  "main": "",
+  "keywords": [
+    "moonshot",
+    "interactive"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.6.3",
+    "angular-bootstrap": "^2.0.2",
+    "angular-pageslide-directive": "^2.1.0",
+    "underscore": "^1.8.3",
+    "ngclipboard": "^1.1.1",
+    "clipboard": "^1.5.12",
+    "angular-ui-sortable": "^0.14.3",
+    "animate.css": "^3.5.2",
+    "ngstorage": "^0.3.11",
+    "angular-touch": "^1.5.8",
+    "angular-animate": "^1.5.8"
+  }
+}
