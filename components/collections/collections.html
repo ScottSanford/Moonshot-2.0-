@@ -1,16 +1,15 @@
 <nav-bar></nav-bar>
 
-<main id="collections-container">
-
-	<div class="top-main-container">
-	    <div class="col-xs-6 back-button">
-			<span class="fa fa-arrow-circle-o-left fa-2x" ng-click="goToCards()"></span> 
-			<span class="back-button-label" ng-click="goToCards()">Home</span>
-		</div>
-		<div class="col-xs-6">
-			<button class="btn pull-right btn-new-collection" ng-click="createNewCollection()">New Collection</button>	
-		</div>
+<section layout="row" class="collections-top-container">
+	<div layout="row" flex="60" layout-align="start center" layout-padding>
+		<h3>My Collections</h3>
 	</div>
+	<div layout="row" flex="40" layout-align="end center" class="cards-button-container">
+		 <md-button class="md-raised" ng-click="createNewCollection($event)">New Collection</md-button>
+	</div>
+</section>
+
+<main id="collections-container">
 
 	<div class="collections-table-container">
 		<div class="col-xs-12">

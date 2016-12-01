@@ -8,6 +8,11 @@ angular.module('myDirectives', [])
 		transclude: true,
 		templateUrl: 'common/tmpls/navbar/navbar.html', 
 		link: function(scope, element, attrs) {
+
+			scope.goToCards = function() {
+				$location.url('/cards');
+			}
+
 			scope.goToCollections = function () {
 		        $location.url('/collections');
 		    };

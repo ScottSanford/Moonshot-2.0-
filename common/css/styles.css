@@ -4,7 +4,7 @@
 
 ====================================================*/
 html, body {
-	background-color: #f6f6f6;
+	background-color: #F6F6F6;
 	height:100%;
 }
 
@@ -119,9 +119,9 @@ a:hover, a:active {
 	border-bottom:1px solid #e3e4e5;
 }
 
-.count-message {
+.message-count {
 	font-family: 'Proxy-Regular';
-	font-size: 24px;
+	font-size: 20px;
 }
 
 .btn-play {
@@ -397,6 +397,10 @@ a:hover, a:active {
 				Collection List Styles
 
 ====================================================*/
+.collections-top-container {
+	padding:0 10px 0 10px;
+}
+
 .btn-new-collection {
 	background-color:#7c7c7c;
 	font-family: 'Proxy-Regular';

@@ -1,22 +1,26 @@
-<div class="modal-header">
-	<h4>New Collection</h4>
-</div>
-
-<div class="modal-body">
-	
-	<form class="form-horizontal modal-input">
-		<div class="form-group">
-			<label for="title">Name</label>
-			<input  type="text" 
-				    ng-model="collectionName" 
-			        class="form-control input-collection-title" 
-			        placeholder="Enter a name for your collection">
+<md-dialog flex="50">
+	<md-dialog-content>
+		<div class="modal-header">
+			<h4>New Collection</h4>
 		</div>
-	</form>
 
-</div>
+		<div class="modal-body">
+			
+			<form class="form-horizontal modal-input">
+				<div class="form-group">
+					<label for="title">Name</label>
+					<input  type="text" 
+						    ng-model="collectionName" 
+					        class="form-control input-collection-title" 
+					        placeholder="Enter a name for your collection">
+				</div>
+			</form>
 
-<div class="modal-footer">
-	<button class="btn btn-create" ng-click="createCollection(collectionName)">Create</button>
-	<button class="btn" ng-click="cancelClick()">Cancel</button>
-</div>
+		</div>
+	</md-dialog-content>
+
+	<md-dialog-actions class="modal-footer">
+		<button class="btn btn-create" ng-click="createCollection(collectionName)">Create</button>
+		<button class="btn" ng-click="cancelClick()">Cancel</button>
+	</md-dialog-actions>
+</md-dialog>

@@ -1,5 +1,11 @@
 <nav-bar></nav-bar>
 
+<div layout="row">
+	 <md-button class="md-raised">
+		My Collections
+	 </md-button>
+</div>
+
 <main id="collections-container">
 
 	<div class="back-button" ng-click="goToCollectionList()">
@@ -10,6 +16,29 @@
 
 		<div class="featured-collection-container">
 			<span class="fa fa-list collection-icon"></span><span class="collection-name">{{ cName }}</span>
+
+	<md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="one">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab One</h1>
+          <p>Lorem ipsum dol</p>
+        </md-content>
+      </md-tab>
+      <md-tab label="two">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab Two</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mat.</p>
+        </md-content>
+      </md-tab>
+      <md-tab label="three">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab Three</h1>
+          <p>Integer turpis erat, portticommodo lectus.</p>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 
 			<form name="outerForm" class="tab-form-demo">
 			    <uib-tabset active="activeForm">

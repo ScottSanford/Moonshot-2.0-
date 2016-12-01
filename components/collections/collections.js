@@ -1,13 +1,8 @@
 angular.module('moonshotApp')
 
 .controller('CollectionsCtrl', 
-    function($scope, $window, $location, 
-             $stateParams, Mfly, ItemIcons, 
-             $uibModal, PresentationService){
-
-	$scope.goToCards = function () {
-        $location.url('/cards');
-    };
+    function($scope, $window, $location, $stateParams, Mfly, 
+             ItemIcons, $uibModal, PresentationService, $mdDialog){
 
     $scope.toggle = function () {
         $scope.openMenu = true;
@@ -23,11 +18,19 @@ angular.module('moonshotApp')
         $window.location.reload();
     });
 
-    $scope.createNewCollection = function() {
-        $uibModal.open({
-            templateUrl: 'common/tmpls/new-collection/new-collection.html',
-            controller: 'NewCollectionCtrl'
-        });
+    $scope.createNewCollection = function(ev) {
+        $mdDialog.show({
+          controller: 'NewCollectionCtrl',
+          templateUrl: 'common/tmpls/new-collection/new-collection.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true,
+          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+        // $uibModal.open({
+        //     templateUrl: 'common/tmpls/new-collection/new-collection.html',
+        //     controller: 'NewCollectionCtrl'
+        // });
     };
 
     $scope.deleteCollection = function(id){
