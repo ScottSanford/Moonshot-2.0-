@@ -1,18 +1,19 @@
 angular.module('moonshotApp')
 
-.controller('CardsCtrl', function($scope, $location, Mfly, ItemIcons, MoonshotData, $localStorage){
+.controller('CardsCtrl', function($scope, $location, Mfly, ItemIcons, MoonshotData, $localStorage, $mdSidenav){
 
-    $scope.MoonshotData = MoonshotData;
-    
-    $scope.quitMoonshot = function() {
-    	mflyCommands.close();
-    };
+    $scope.openSort = function() {
+        $mdSidenav('left').toggle();
+    };  
+
+    var lsSlides = $localStorage.slides;
+
+    $scope.sortList = lsSlides;
 
     // BEGIN: GET 6 MOONSHOT FOLDERS
+    $scope.MoonshotData = MoonshotData;
+    
     MoonshotData.getFolders();
-
-    var lsArray = [];
-
 
     $scope.getFolderItems = function(_folderId) {
 

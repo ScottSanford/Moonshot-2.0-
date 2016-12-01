@@ -18,6 +18,14 @@ a {
 	cursor: pointer;
 }
 
+iframe:focus { 
+    outline: none;
+}
+
+iframe[seamless] { 
+    display: block;
+}
+
 .btn {
 	font-family: 'Proxy-Regular';
 }
@@ -48,7 +56,7 @@ a:hover, a:active {
 	z-index: 1000;
 }
 
-#card-container, #collections-container, #search-container {
+#collections-container, #search-container {
 	height:100vh;
 	top:60px; /*offset fixed nav bar*/
 }
@@ -72,22 +80,23 @@ a:hover, a:active {
 				Cards Styles
 
 ====================================================*/
-.cards-selected-play-container {
-	height:82px;
-}
-
-.hamburger-menu-icon {
-	margin:15px;
-	color:#fff;
-}
-
-.header-logo {
-	height:55px;
-}
-
-.cards-header {
+/*Toolbar*/
+.background-moonshot {
 	background-color:#475669;
-	color:#fff;
+}
+
+.toolbar-logo {
+	width:200px;
+}
+
+/*Side Nav*/
+.background-green {
+	background-color:#9dbc3b;
+}
+
+.cards-top-container {
+	margin-top:25px;
+	padding:0 10px 0 10px;
 }
 
 .cards-header-right span{
@@ -110,39 +119,7 @@ a:hover, a:active {
 	border-bottom:1px solid #e3e4e5;
 }
 
-/*dark overlay with animation*/
-		.ng-pageslide-body-open::before {
-		    content: '.';
-		    display: block;
-		    position: absolute;
-		    top: 0;
-		    background-color: rgb(0,0,0);
-		    left: 0;
-		    right: 0;
-		    bottom: 0;
-		    z-index: 1;
-		    opacity: 0.25;
-		    transition: opacity 1s;
-		    pointer-events: all;
-		}
-		.ng-pageslide-body-closed::before {
-		    transition: opacity 1s;
-		    content: '.';
-		    display: block;
-		    position: absolute;
-		    top: 0;
-		    background-color: rgb(0,0,0);
-		    left: 0;
-		    right: 0;
-		    bottom: 0;
-		    z-index: 1;
-		    opacity: 0;
-		    pointer-events: none;
-		}
-/*dark overlay with animation*/
-
 .count-message {
-	margin:50px 0 0 25px;
 	font-family: 'Proxy-Regular';
 	font-size: 24px;
 }
@@ -156,14 +133,6 @@ a:hover, a:active {
 	margin:40px 20px 0 0;
 }
 
-.show-presentation {
-	-webkit-animation: fadeIn 1.5s;
-	-moz-animation: fadeIn 1.5s;
-	-o-animation: fadeIn 1.5s;
-	animation: fadeIn 1.5s;
-}
-
-
 /*=============================
 
 		   Card Flip
@@ -176,6 +145,7 @@ a:hover, a:active {
    position: relative;
    margin: 40px auto;
    padding:20px;
+   top:-20px;
 }
 .flip .card.flipped {
   -webkit-transform: rotatey(-180deg);
@@ -207,10 +177,6 @@ a:hover, a:active {
 .flip .card .back {
   -webkit-transform: rotatey(-180deg);
   cursor: pointer;
-}
-
-.flip-cards-container {
-
 }
 
 .card-title, .card-title-back {
@@ -620,13 +586,18 @@ a:hover, a:active {
     position: relative;
 }
 
-.presentation-container img {
+.presentation-container img, .presentation-container iframe {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     max-width: 100%;
     max-height: 100%;
+}
+
+.interactive-frame {
+	height:100%;
+	width:100%;
 }
 
 .presentation-footer-container {

@@ -5,34 +5,13 @@
 	<main class="presentation-container" id="slide-menu-container">
 
 			<!-- BEGIN: SING-PAGE DOCUMENT -->
-			<img class="slide-item fill-area-content" 
+			<img class="slide-item" 
 				 src="{{ slide }}"
 				 ng-swipe-left="nextSlide()" 
-				 ng-swipe-right="previousSlide()">
+				 ng-swipe-right="previousSlide()"
+				 ng-show="isImage">
 
-
-		<pageslide ps-side="left" 
-			   ps-open="openMenu" 
-			   ps-container="slide-menu-container" 
-			   ps-body-class="true">
-        
-	        <div class="flyout-menu-container">
-	            
-	            <a class="menu-item" ui-sref="collections">
-	            	<div class="flyout-menu-item">
-	            		<span>Collections</span>
-	            	</div>
-	            </a>
-
-	            <a class="menu-item" ui-sref="collections">
-		            <div class="flyout-menu-item" ng-click="quitMoonshot()">
-		            	<span>Quit Moonshot</span>
-		            </div>
-		        </a>
-		        
-	        </div>
-
-	    </pageslide>
+			<iframe class="interactive-frame slide-item" marginheight="50" ng-show="isInteractive"></iframe>
 
 	</main>
 

@@ -1,14 +1,14 @@
 angular.module("moonshotApp", [
         'ui.router', 
-        'pageslide-directive', 
         'myFilters', 
         'myDirectives',
         'ui.bootstrap', 
         'ngclipboard', 
         'ui.sortable', 
         'ngStorage', 
-        'ngTouch', 
-        'ngAnimate'
+        'ngAnimate', 
+        'ngMaterial', 
+        'ngMdIcons'
     ])
 
     .config(function ($compileProvider, $stateProvider, $urlRouterProvider) { 

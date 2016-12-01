@@ -26,21 +26,24 @@ angular.module('moonshotApp')
   Mfly.getItem(itemId).then(function(item){
    
     selectedItem = item;
-
+    
     if (item.type == 'interactive') {
-
-      mflyCommands.embed($('.slide-item'), item.id);
+      $scope.isInteractive = true;
+      $scope.isImage       = false;
+      mflyCommands.embed($('iframe.slide-item'), item.id);
 
     } 
 
     else if (item.pages > 0) {
-
-      mflyCommands.embed($('.slide-item'), item.id, page);
+      $scope.isInteractive = false;
+      $scope.isImage       = true;
+      mflyCommands.embed($('img.slide-item'), item.id, page);
 
     } 
 
     else {
-
+      $scope.isInteractive = false;
+      $scope.isImage       = true;
       $scope.slide = item.resourceUrl;
       
     }
@@ -84,7 +87,7 @@ angular.module('moonshotApp')
       } 
       // SINGLE PAGE DOCUMENT
       else {
-        console.log("length :: ", $scope.slides.length);
+
         for (var i = 0; i < $scope.slides.length; i++) {
           if ($stateParams.itemId === $scope.slides[i].id) {
             var index = parseInt($stateParams.index);

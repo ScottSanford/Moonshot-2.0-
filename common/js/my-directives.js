@@ -8,13 +8,17 @@ angular.module('myDirectives', [])
 		transclude: true,
 		templateUrl: 'common/tmpls/navbar/navbar.html', 
 		link: function(scope, element, attrs) {
-			scope.toggle = function () {
-		        scope.openMenu = true;
+			scope.goToCollections = function () {
+		        $location.url('/collections');
 		    };
 
 			scope.goToSearch = function() {
 				$location.url('/search');
 			};
+
+			scope.closeInteractive = function () {
+		        mflyCommands.close();
+		    };
 		}
 
 	}

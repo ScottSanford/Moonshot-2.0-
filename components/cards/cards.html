@@ -1,56 +1,63 @@
 <nav-bar></nav-bar>
 
-<main id="card-container">
-	
-	<pageslide ps-side="left" 
-			   ps-open="openMenu" 
-			   ps-container="card-container" 
-			   ps-body-class="true">
-        
-        <div class="flyout-menu-container">
-            
-            <a class="menu-item" ui-sref="collections">
-            	<div class="flyout-menu-item">
-            		<span>Collections</span>
-            	</div>
-            </a>
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
 
-            <a class="menu-item" ui-sref="collections">
-	            <div class="flyout-menu-item" ng-click="quitMoonshot()">
-	            	<span>Quit Moonshot</span>
-	            </div>
-	        </a>
-	        
-        </div>
+  	<md-toolbar >
+    	<h1 class="md-toolbar-tools background-green">Sort Slides</h1>
+  	</md-toolbar>
 
-    </pageslide>
+    <md-content layout-margin>
+        <md-list flex>
+	        <md-list-item class="md-3-line" ng-repeat="item in sortList">
+	          <!-- <img src="{{item.thumbnailUrl}}" class="md-avatar"> -->
+	          <div class="md-list-item-text" layout="column">
+	            <h3>{{ item.name }}</h3>
+	          </div>
+	          <ng-md-icon icon="menu"></ng-md-icon>
+	        </md-list-item>
+        </md-list>
+    </md-content>
 
-    <div class="row cards-selected-play-container">
-    	<div class="col-xs-9">
-    		<div class="count-message" 
-    			 ng-class="{'show-presentation': MoonshotData.presentation.length >= 1}"
-    			 ng-show="MoonshotData.presentation.length >= 1">
-    			 	{{ MoonshotData.presentation.length }} item(s) selected
-    		</div>
-    	</div>
-    	<div class="col-xs-3">
-    		<button class="btn btn-play pull-right" 
-    		        ng-class="{'show-presentation': MoonshotData.presentation.length >= 1}"
-    				ng-show="MoonshotData.presentation.length >= 1" 
-    				ng-click="MoonshotData.playCollection()">
-    			<span class="fa fa-play-circle"></span> Play
-    		</button>
-    	</div>
-    </div>
+</md-sidenav>
 
-    <div class="row flip-cards-container">
+<!-- START: COUNT & BUTTONS -->
+<div layout="row" class="cards-top-container">
+
+	<div layout="row" flex="60" layout-align="start center" layout-padding>
+		<div class="count-message" 
+			 ng-class="{'show-presentation': MoonshotData.presentation.length >= 1}">
+			 	{{ MoonshotData.presentation.length }} item(s) selected
+		</div>
+	</div>
+
+	<div layout="row" flex="40" layout-align="end center" class="cards-button-container">
+		<md-button class="md-raised" ng-click="MoonshotData.resetCollection()">
+			<ng-md-icon icon="refresh"></ng-md-icon>
+			Reset
+		</md-button>
+		<md-button class="md-raised" ng-click="openSort()">
+			<ng-md-icon icon="menu"></ng-md-icon>
+			Sort
+		</md-button>
+  		<md-button class="md-raised" ng-click="MoonshotData.playCollection()">
+  			<ng-md-icon icon="play_arrow"></ng-md-icon>
+  			Play
+  		</md-button>
+  	</div>
+
+</div>
+
+<!-- START: CARDS -->
+<main>
+
+    <div class="row">
 
 		<div class="col-sm-4 flip-card" ng-repeat="(key, c) in MoonshotData.cards track by key">
 		    <div class="flip"> 
 		        <div class="card" ng-class="{'flipped':isFlipped}"> 
 		            
 		            <!-- BEGIN: FRONT CARD -->
-		            <div class="face front" ng-click="isFlipped=!isFlipped; getFolderItems(c.id, c.name)"> 
+		            <div class="face front md-whiteframe-2dp" ng-click="isFlipped=!isFlipped; getFolderItems(c.id, c.name)"> 
 		                <div class="card-title">{{ c.name }}</div>
 		                <div class="card-img">
 							<img ng-src="{{c.thumbnailUrl}}">
@@ -58,7 +65,7 @@
 		            </div> 
 
 					<!-- BEGIN: BACK CARD -->
-		            <div class="face back"> 
+		            <div class="face back md-whiteframe-2dp"> 
 		                <div class="row card-title-back">
 							
 							<div class="col-xs-2 card-title-back-left">

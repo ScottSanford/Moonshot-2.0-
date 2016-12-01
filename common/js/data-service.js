@@ -34,6 +34,7 @@ angular.module('moonshotApp')
 
     };
 
+
     Moonshot.pushToPresentation = function(item) {
         
         if (item.isItemSelected) {
@@ -54,7 +55,16 @@ angular.module('moonshotApp')
         var first = _.head(Moonshot.presentation);
 
         $location.url('/presentation/' + first.id + '?index=' + 0);
-    }
+    };
+
+    Moonshot.resetCollection = function() {
+
+        _.forEach(Moonshot.cards, function(obj){
+            if (obj.itemsObj) {
+                console.log(obj.itemsObj);
+            }
+        })
+    };
 
 	return Moonshot;
 	

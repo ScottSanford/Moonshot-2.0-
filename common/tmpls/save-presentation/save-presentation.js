@@ -4,9 +4,10 @@ angular.module('moonshotApp')
 
 	$scope.savePresentation = function(_collectionName) {
 		var slides = $localStorage.slides;
-
+		
 		Mfly.createCollection(_collectionName).then(function(response){
-			_.forEach(slides, function(obj){
+			_.each(slides, function(obj){
+				console.log(response.id);				
 				Mfly.addItemToCollection(response.id, obj.id);
 			});
 		});

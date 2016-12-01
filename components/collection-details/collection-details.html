@@ -2,30 +2,10 @@
 
 <main id="collections-container">
 
-	<pageslide ps-side="left" 
-			   ps-open="openMenu" 
-			   ps-container="collections-container" 
-			   ps-body-class="true">
-        
-        <div class="flyout-menu-container">
-            <a class="menu-item" ui-sref="collections">
-            	<div class="flyout-menu-item">
-            		<span>Collections</span>
-            	</div>
-            </a>
-            <a class="menu-item" ui-sref="collections">
-	            <div class="flyout-menu-item" ng-click="quitMoonshot()">
-	            	<span>Quit Moonshot</span>
-	            </div>
-	        </a>
-        </div>
-
-    </pageslide>
-
-		<div class="back-button" ng-click="goToCollectionList()">
-			<span class="fa fa-arrow-circle-o-left fa-2x"></span> 
-			<span class="back-button-label">Collections</span>
-		</div>
+	<div class="back-button" ng-click="goToCollectionList()">
+		<span class="fa fa-arrow-circle-o-left fa-2x"></span> 
+		<span class="back-button-label">Collections</span>
+	</div>
 
 
 		<div class="featured-collection-container">
