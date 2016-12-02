@@ -8,7 +8,8 @@ angular.module("moonshotApp", [
         'ngStorage', 
         'ngAnimate', 
         'ngMaterial', 
-        'ngMdIcons'
+        'ngMdIcons', 
+        'md.data.table'
     ])
 
     .config(function ($compileProvider, $stateProvider, $urlRouterProvider) { 

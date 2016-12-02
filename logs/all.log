@@ -2301,3 +2301,8 @@
     icon: 'fa-file-pdf-o',
     isItemSelected: true,
     '$$hashKey': 'object:14' } ] userAgent=Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1
+2016-12-01T22:38:57.576Z - [32minfo[39m: undefined userAgent=Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1
+2016-12-01T22:40:37.684Z - [32minfo[39m: 588f2969765a4e46bd1871c76608975a userAgent=Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1
+2016-12-01T22:40:51.014Z - [32minfo[39m: 66eb092bb9ac462eaeda58a22a7e456c userAgent=Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1
+2016-12-01T22:41:02.143Z - [32minfo[39m: 66eb092bb9ac462eaeda58a22a7e456c userAgent=Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1
+2016-12-01T22:42:17.174Z - [32minfo[39m: 4199eb2ed1104ecda21befbb0f96bd56 userAgent=Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1

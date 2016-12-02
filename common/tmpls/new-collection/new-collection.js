@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('NewCollectionCtrl', function($scope, $rootScope, Mfly){
+.controller('NewCollectionCtrl', function($scope, $rootScope, Mfly, $mdDialog){
 
 	$scope.createCollection = function(_collectionName) {
 		Mfly.createCollection(_collectionName).then(function(response){
@@ -8,8 +8,8 @@ angular.module('moonshotApp')
 		$rootScope.$broadcast('updateList');
 	};
 
-	$scope.cancelClick = function() {
-
+	$scope.closeDialog = function() {
+		$mdDialog.cancel();
 	};
 
 });
