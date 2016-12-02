@@ -7,6 +7,7 @@ angular.module('moonshotApp')
 		mflyCommands.deleteCollection(collectionId, false);
 		// not updating list
 		$rootScope.$broadcast('updateList');
+		$mdDialog.cancel();
 		if ($state.current.name === 'details') {
 			$location.url('/collections');
 		}

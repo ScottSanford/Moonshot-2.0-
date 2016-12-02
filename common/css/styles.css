@@ -49,6 +49,10 @@ a:hover, a:active {
     src: url(../fonts/ProximaNova-Semibold.ttf);
 }
 
+.margin-top-25 {
+	margin-top:25px;
+}
+
 /*Used for Flyout Menu*/
 .nav-fixed {
 	position: fixed;
@@ -350,9 +354,11 @@ a:hover, a:active {
 	font-size:18px;
 }
 
-.search-results-table-item-name {
+.collection-details-item-name {
 	text-decoration: underline;
 	margin-left:20px;
+	font-size:18px;
+	color:#7c7c7c;
 }
 
 .isActiveResult {
@@ -406,6 +412,14 @@ a:hover, a:active {
 	color:#FFF;
 }
 
+table.md-table tbody.md-body > tr.md-row {
+	height:60px;
+}
+
+table.md-table tbody.md-body > tr.md-row.collection-details-row {
+	height:80px;
+}
+
 table.md-table th.md-column {
 	font-size:18px;
 }
@@ -414,6 +428,7 @@ table.md-table td.md-cell.table-collection-name {
 	font-size:18px;
 	text-decoration: underline;
 	color:#7c7c7c;
+	cursor: pointer;
 }
 
 table.md-table td.md-cell.table-collection-action {
@@ -442,15 +457,6 @@ table.md-table td.md-cell.table-collection-action {
 	font-size:30px;
 }
 
-.featured-collection-container {
-	width:93%;
-	margin:0 auto;
-}
-
-.selected-collection-table-actions {
-	float:left;
-}
-
 .remove-item-from-collection {
 	float:right;
 	margin-left:5px;
@@ -458,7 +464,7 @@ table.md-table td.md-cell.table-collection-action {
 }
 
 .arrows-v {
-	margin-left:20px;
+	margin-right:40px;
 	cursor:move;
 }
 
@@ -498,11 +504,21 @@ table.md-table td.md-cell.table-collection-action {
 				Collection Detail Styles
 
 ====================================================*/
-.nav-tabs>li.active>a, .nav-tabs>li>a{
-	margin-top:15px;
-	font-family: 'Proxy-SemiBold';
-	font-size:18px;
-	text-decoration: none;
+md-tabs md-ink-bar {
+	background-color:#9dbc3b;
+}
+
+md-tabs .md-tab.md-active {
+	color:#475669;
+}
+
+.md-button.md-raised.collection-details-delete-button {
+	background-color:#9dbc3b;
+	color:#FFF;
+}
+
+.md-button.collection-details-delete-button.md-raised:not([disabled]):hover {
+	background-color:#8ba628;
 }
 
 .nav-tabs {
@@ -520,12 +536,6 @@ table.md-table td.md-cell.table-collection-action {
 
 .table > tbody > tr > td {
      vertical-align: middle;
-}
-
-.selected-collection-table  {
-	font-family: 'Proxy-SemiBold';
-	font-size:18px;
-	margin-top:10px;
 }
 
 .search-results-table-item-thumbnail img {

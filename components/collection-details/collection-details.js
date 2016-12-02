@@ -1,9 +1,8 @@
 angular.module('moonshotApp')
 
 .controller('CollectionDetailCtrl', function(
-        $scope, $window, $location, 
-        $stateParams, Mfly, $uibModal, 
-        $localStorage, ItemIcons){
+        $scope, $window, $location, $stateParams, Mfly, $uibModal, 
+        $localStorage, ItemIcons, $mdDialog){
 
     $scope.goToCollectionList = function() {
         $location.url('/collections');
@@ -61,15 +60,18 @@ angular.module('moonshotApp')
 
     // EDIT TAB
 
-    $scope.deleteClick = function() {
-        $uibModal.open({
-            templateUrl: 'common/tmpls/delete-collection/delete-collection.html',
-            controller: 'DeleteCollectionCtrl',
-            resolve: {
-                collectionID: function() {
-                    return cid;
-                }
-            }
+    $scope.deleteClick = function(ev) {
+        $mdDialog.show({
+          controller: 'DeleteCollectionCtrl',
+          templateUrl: 'common/tmpls/delete-collection/delete-collection.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true, 
+          locals: {
+            collectionId: cid
+          }
+        }).then(function() {
+            
         });
     };  
 
