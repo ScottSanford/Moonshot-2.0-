@@ -12,12 +12,14 @@ angular.module('moonshotApp')
 
     // BEGIN: GET 6 MOONSHOT FOLDERS
     $scope.MoonshotData = MoonshotData;
+
     
     MoonshotData.getFolders();
 
     $scope.getFolderItems = function(_folderId) {
 
-        Mfly.getFolder(_folderId).then(function(folderItems){    
+        Mfly.getFolder(_folderId).then(function(folderItems){   
+        console.log(folderItems); 
             
             folderItems.forEach(function(_item){
                 

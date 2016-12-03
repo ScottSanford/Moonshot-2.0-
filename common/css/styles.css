@@ -53,18 +53,6 @@ a:hover, a:active {
 	margin-top:25px;
 }
 
-/*Used for Flyout Menu*/
-.nav-fixed {
-	position: fixed;
-	width:100%;
-	z-index: 1000;
-}
-
-#search-container {
-	height:100vh;
-	top:60px; /*offset fixed nav bar*/
-}
-
 .brand-centered {
   display: flex;
   justify-content: center;
@@ -257,8 +245,20 @@ a:hover, a:active {
 				   Search Styles
 
 ====================================================*/
-.search-input-container {
-	margin-left:50px;
+md-toolbar:not(.md-menu-toolbar) {
+	background-color: #FFF;
+}
+
+.padding-top-10 {
+	padding-top:10px;
+}
+
+.md-button.md-fab.md-mini {
+	background-color:#9dbc3b;
+}
+
+.md-nav-bar {
+	border:none;
 }
 
 .search-input {
@@ -276,11 +276,6 @@ a:hover, a:active {
 	font-family: 'Proxy-Regular';
 	color:#fff;
 	background-color: #475669;
-}
-
-.search-results {
-	width:93%;
-	margin:0 auto;
 }
 
 .selected-result-thumbnail {
@@ -328,7 +323,8 @@ a:hover, a:active {
 
 .search-result-message {
 	font-family: 'Proxy-Regular';
-	font-size:18px;
+	font-size:14px;
+	color:#7c7c7c;
 }
 
 .table>tbody>tr>th {
@@ -365,9 +361,8 @@ a:hover, a:active {
 	background-color:#E0E2DD;
 }
 
-.search-results-blank {
-	width:93%;
-	margin:0 auto;
+md-chips .md-chips {
+	box-shadow: none;
 }
 
 .no-results-message {

@@ -1,105 +1,66 @@
 <nav-bar></nav-bar>
 
-<main id="search-container">
-	
-	<pageslide ps-side="left" 
-			   ps-open="openMenu" 
-			   ps-container="search-container" 
-			   ps-body-class="true">
-        
-        <div class="flyout-menu-container">
-            <a class="menu-item" ui-sref="collections">
-            	<div class="flyout-menu-item">
-            		<span>Collections</span>
-            	</div>
-            </a>
-            <a class="menu-item" ui-sref="collections">
-	            <div class="flyout-menu-item" ng-click="quitMoonshot()">
-	            	<span>Quit Moonshot</span>
-	            </div>
-	        </a>
-        </div>
-
-    </pageslide>
-
-	<div class="back-button" ng-click="goToCards()">
-		<span class="fa fa-arrow-circle-o-left fa-2x"></span> 
-		<span class="back-button-label" ng-click="goToCards()">Search</span>
+<md-toolbar class="background-green padding-top-10">
+	<div layout="row" flex>
+		<div flex="5"></div>
+		<md-input-container flex="60" md-no-float class="md-block md-icon-float" flex-gt-sm>
+            <input ng-model="searchTerm" placeholder="Search">
+    	</md-input-container>
+        <md-button class="md-fab md-mini" aria-label="Search">
+        	<ng-md-icon icon="search" class="search-icon" ng-click="getSearch(searchTerm)"></ng-md-icon>
+    	</md-button>
 	</div>
+    <div layout="row" ng-show="isSearchTrue">
+    	<div flex="5"></div>
+    	<md-nav-bar flex="70" md-selected-nav-item="currentNavItem" nav-bar-aria-label="Search Filters">
+  			<md-nav-item md-nav-click="getItems()" md-no-ink name="items">Items</md-nav-item>
+ 			<md-nav-item md-nav-click="getFolders()" md-no-ink name="folders">Folders</md-nav-item>
+		</md-nav-bar>
+		<div flex layout="row" layout-align="end end" class="search-result-message">{{results.length}} results</div>
+    </div>	
 
-	<form class="form-horizontal search-input-container">
-		<div class="form-group">
-			<div class="col-xs-6">
-				<div class="input-group">
-					<input type="text" 
-						   ng-model="searchTerm"
-						   class="form-control search-input" 
-						   placeholder="Search">
-					<span class="input-group-btn">
-						<button class="btn search-btn" ng-click="getSearch(searchTerm)">
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-				</div>
-			</div>
-		</div>
-	</form>
+</md-toolbar>
 
-	<div class="row search-results" ng-show="showSearchResults">
-		<div class="col-sm-4">
-			<div class="search-results-thumbnail-container">
-				<img class="selected-result-thumbnail" ng-src="{{selectedResult.thumbnailUrl}}">
-				<div class="selected-result-name">{{selectedResult.name}}</div>
-				<div class="selected-item-collection-controls" ng-if="selectedResult.type !== 'folder'">
-					
-					<div>
-						<span class="fa fa-envelope search-item-icon"></span>
-						<span class="email-selected-item" 
-							  ng-click="openShareModal(selectedResult)">
-							  	<u>Email to another user</u>
-						</span>
-					</div>
-					<div class="add-selected-item-to-collection-text">
-						<span class="fa fa-list search-item-icon"></span>
-						<span ng-click="openCollectionModal(selectedResult)">
-							  	<u>Add to Collection</u>
-						</span>
-					</div>
-				</div>
-				<div class="selected-item-location">
-					<div class="selected-item-location-title">Location:</div>
-					<span class="selected-item-location-path" ng-repeat="item in selectedResult.hierarchy"><u ng-click="goToPath(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span>
-				</div>
-			</div>
+	<section layout="row" layout-padding>
+		<div flex="5"></div>
+		<div flex="50">
+			<md-chips>
+		      <md-chip ng-repeat="chip in results | unique:'type'">{{chip.type}}</md-chip>
+		    </md-chips>	
+		
+			<md-content>
+				<md-list-item class="md-3-line" ng-repeat="item in results" ng-click="null">
+	          		<span class="fa {{item.icon}} fa-2x md-avatar"></span>
+		          	<div class="md-list-item-text" layout="column">
+		            	<h3>{{ item.name }}</h3>
+		            	<h4><span class="selected-item-location-path" ng-repeat="item in selectedResult.hierarchy"><u ng-click="goToPath(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span></h4>
+		            	<p>{{item.created | date:'shortDate'}}</p>
+		          </div>
+		        </md-list-item>
+			</md-content>
 		</div>
-		<div class="col-sm-8">
-			<div class="search-results-list">
-				<div class="search-result-message">{{results.length}} results for "{{ term }}"</div>
-				<table class="table search-results-table">
-					<thead>
-						<tr>
-							<th class="col-xs-4">Item</th>
-							<th class="col-xs-2">Date Added</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-class="{'isActiveResult': item.id == toggleSearchResult}" ng-repeat="item in results" ng-click="toggleItem(item)">
-							<td>
-								<div class="search-results-table-item-icon">
-									<span class="fa {{item.icon}}"></span>
-									<span class="search-results-table-item-name" ng-click="goToPath(item)">{{item.name}}</span>
-									<span class="search-results-table-folder-number" ng-if="item.type == 'folder'">({{folderCount}})</span>
-								</div>
-							</td>
-							<td>
-								<span class="search-results-table-date-added">{{item.created | date:'shortDate'}}</span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+		<div flex="5"></div>
+		<md-content layout="column" flex="35">
+			<md-card>
+		        <img src="https://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2015/05/Ksamil-beach-Albania_cs.jpg" class="md-card-image" alt="Washed Out">
+		        <md-card-title>
+		          <md-card-title-text>
+		            <span class="md-headline">Action buttons</span>
+		          </md-card-title-text>
+		        </md-card-title>
+		        <md-card-content>
+		          <p>
+		            The titles of Washed Out's breakthrough.
+		          </p>
+		        </md-card-content>
+		        <md-card-actions layout="row" layout-align="end center">
+		          <md-button>Email</md-button>
+		          <md-button>Add to Collection</md-button>
+		        </md-card-actions>
+		    </md-card>
+		</md-content>
+		<div flex></div>
+	</section>
 
 	<div class="row search-results-blank" ng-if="noSearchResults">
 		<div class="col-xs-12 alert alert-warning no-results-message">
@@ -107,5 +68,3 @@
 			<span>Please refine your search terms and try again.</span>
 		</div>
 	</div>
-
-</main>

@@ -2,13 +2,17 @@ angular.module('moonshotApp')
 
 .controller('SearchCtrl', function($scope, $location, $uibModal, Mfly, ItemIcons){
 
-	$scope.toggle = function () {
-        $scope.openMenu = true;
-    };
-
     $scope.goToCards = function() {
         $location.url('/cards');
-    }
+    };
+
+    $scope.getItems = function() {
+        console.log('hellow');
+    };
+
+    $scope.getFolders = function() {
+
+    };
 
     //
 
@@ -22,7 +26,7 @@ angular.module('moonshotApp')
                 $scope.term = _term;
                 $scope.searchTerm = '';
             } else {
-
+                console.log(results);
                 // highlight first item
                 var first = _.first(results);
                 $scope.toggleSearchResult = first.id;
@@ -50,6 +54,8 @@ angular.module('moonshotApp')
                 
                 $scope.term = _term;
 
+                $scope.isSearchTrue = true;
+                $scope.currentNavItem = 'items';
                 $scope.noSearchResults = false;
                 $scope.showSearchResults = true;
                 $scope.results = results;
