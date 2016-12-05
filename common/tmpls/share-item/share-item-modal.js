@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('ShareItemCtrl', function($scope, $window, $uibModalInstance, item, Mfly){
+.controller('ShareItemCtrl', function($scope, $window, item, Mfly){
 
 	$scope.item = item;
 
@@ -24,8 +24,8 @@ angular.module('moonshotApp')
 		$window.open("mailto:?subject=" + subject + "&body=" + message, "_self");
 	};
 
-	$scope.cancelClick = function() {
-		$uibModalInstance.dismiss('cancel');
-	}
+	$scope.closeDialog = function() {
+		$mdDialog.cancel();
+	};
 
 });

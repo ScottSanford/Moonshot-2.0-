@@ -285,6 +285,14 @@ md-toolbar:not(.md-menu-toolbar) {
 	background-color: #fff
 }
 
+.loading-spinner {
+	margin-top:100px;
+}
+
+md-progress-circular path {
+	stroke: #9dbc3b;
+}
+
 .selected-result-name {
 	font-family: 'Proxy-SemiBold';
 	font-size:18px;
@@ -363,6 +371,12 @@ md-toolbar:not(.md-menu-toolbar) {
 
 md-chips .md-chips {
 	box-shadow: none;
+}
+
+md-list-item .md-avatar, md-list-item .md-avatar-icon, 
+md-list-item .md-list-item-inner .md-avatar, 
+md-list-item .md-list-item-inner .md-avatar-icon {
+	border-radius: 0%;
 }
 
 .no-results-message {
@@ -739,6 +753,15 @@ md-tabs .md-tab.md-active {
 .modal-header h4 {
 	font-family: 'Proxy-Light';
 	font-size:24px;
+}
+
+.md-button.md-raised.share-item {
+	background-color:#475669;
+	color:#FFF;
+}
+
+.share-item-text {
+	font-size:16px;
 }
 
 .modal-body-share-item {

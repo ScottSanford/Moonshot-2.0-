@@ -1,4 +1,56 @@
-<div class="modal-header">
+<md-dialog flex="50">
+	<md-dialog-content>
+	
+		<md-toolbar>
+	      <div class="md-toolbar-tools background-green">
+	        <h2>Share Document</h2>
+	        <span flex></span>
+	      </div>
+	    </md-toolbar>
+
+
+		<section layout="row">
+			<div flex="5"></div>
+		    <md-input-container layout="row" flex="95" md-no-float class="md-block">
+		      <md-button class="md-raised share-item" ngclipboard data-clipboard-target="#shareLinkText">
+		      	<ng-md-icon icon="content_copy"></ng-md-icon>
+		      	Copy Link
+		      </md-button>
+		      <b id="shareLinkText" class="share-item-text"><i>{{ shareLink }}</i></b>
+		    </md-input-container>
+		    
+		</section>
+
+		<section layout="row" ng-if="deviceType == 'web'">
+			<div flex="5"></div>
+		    <md-input-container layout="row" flex="95" md-no-float class="md-block">
+		      <md-button class="md-raised share-item" ng-click="sendEmail()">
+		      	<ng-md-icon icon="email"></ng-md-icon>
+		      	Email Link
+		      </md-button>
+		      <b class="share-item-text">Begin a pre-populated email.</b>
+		    </md-input-container>
+		</section>
+
+<!-- 		<div class="modal-body">
+			<div ng-if="deviceType == 'web'">
+				<strong>To email <em class="ng-binding">{{ item.name }}</em>:</strong>
+				<p class="margin-top10">Paste the url above into your own email message</p>
+				<p class="padding-left20"><em>— or —</em></p>
+				<p>let us <a href="" ng-click="sendEmail()">begin a pre-populated email</a> for you.</p>
+			</div>
+		</div> -->
+
+		<md-divider></md-divider>
+
+		<md-dialog-actions layout="row">
+			<md-button ng-click="closeDialog()">Cancel</md-button>
+		</md-dialog-actions>
+
+	</md-dialog-content>
+</md-dialog>
+
+<!-- <div class="modal-header">
 	<h4>
 		<span class="fa fa-envelope"></span>
 		<span>Email Document</span>
@@ -31,4 +83,4 @@
 
 <div class="modal-footer">
 	<button class="btn btn-done" ng-click="cancelClick()">Done</button>
-</div>
+</div> -->

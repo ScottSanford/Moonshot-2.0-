@@ -1,32 +1,29 @@
 angular.module('moonshotApp')
 
-.controller('SearchCtrl', function($scope, $location, $uibModal, Mfly, ItemIcons){
+.controller('SearchCtrl', function($scope, $timeout, $location, $uibModal, Mfly, ItemIcons, $mdDialog){
 
     $scope.goToCards = function() {
         $location.url('/cards');
     };
-
-    $scope.getItems = function() {
-        console.log('hellow');
-    };
-
-    $scope.getFolders = function() {
-
-    };
-
     //
 
     $scope.getSearch = function(_term) {
-        console.log(_term);
+        $scope.showSpinner = true;
+        $scope.showItemResults = false;
+        $scope.showItemDetails = false;
+        $scope.searchTerm = '';
         Mfly.search(_term).then(function(results){
             
             if (results.length == 0) {
-                $scope.showSearchResults = false;
-                $scope.noSearchResults = true;
-                $scope.term = _term;
-                $scope.searchTerm = '';
+
+                $timeout(function(){
+                    $scope.showSpinner     = false;
+                    $scope.showItemResults = false;
+                    $scope.noSearchResults = true;
+                    $scope.term = _term;
+                }, getRandomLoadTime(500,2000));
+
             } else {
-                console.log(results);
                 // highlight first item
                 var first = _.first(results);
                 $scope.toggleSearchResult = first.id;
@@ -52,23 +49,47 @@ angular.module('moonshotApp')
 
                 });
                 
-                $scope.term = _term;
+                $timeout(function() {
+                    $scope.showSpinner = false;
+                    $scope.term = _term;
+                    $scope.isSearchTrue = true;
+                    $scope.currentNavItem = 'items';
+                    $scope.noSearchResults = false;
+                    $scope.showItemResults = true;
+                    $scope.showItemDetails = true;
+                    $scope.results = results;
+                },getRandomLoadTime(500,2000));
 
-                $scope.isSearchTrue = true;
-                $scope.currentNavItem = 'items';
-                $scope.noSearchResults = false;
-                $scope.showSearchResults = true;
-                $scope.results = results;
-                $scope.searchTerm = '';
-                
+                function getRandomLoadTime(min, max) {
+                  return Math.random() * (max - min) + min;
+                }
             } 
 
 		});
     };
 
-    $scope.toggleItem = function(item) {
-    	console.log(item);
-    	$scope.toggleSearchResult = item.id;
+    $scope.getItems = function() {
+        $scope.showFolderResults = false;
+        $scope.showItemResults = true;
+    };
+
+    $scope.getFolders = function() {
+        $scope.showItemResults = false;
+        $scope.showFolderResults = true;
+    };
+
+    $scope.getSearchType = function(filterType) {
+        
+        if (filterType == 'all') {
+            $scope.searchType = null;
+        } else {
+            $scope.searchType = {
+                type: filterType
+            };
+        }
+    };
+
+    $scope.selectItem = function(item) {
     	$scope.selectedResult = item;
     };
 
@@ -76,15 +97,18 @@ angular.module('moonshotApp')
         mflyCommands.openFolder(item.id);
     };
 
-    $scope.openShareModal = function(selectedItem) {
-        $uibModal.open({
-            templateUrl: 'common/tmpls/share-item/share-item-modal.html',
-            controller: 'ShareItemCtrl',
-            resolve: {
-                item: function() {
-                    return selectedItem;
-                }
-            }
+    $scope.openShareModal = function(selectedItem, ev) {
+        $mdDialog.show({
+          controller: 'ShareItemCtrl',
+          templateUrl: 'common/tmpls/share-item/share-item-modal.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true, 
+          locals: {
+            item: selectedItem
+          }
+        }).then(function() {
+            
         });
     };
 

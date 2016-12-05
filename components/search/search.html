@@ -3,8 +3,8 @@
 <md-toolbar class="background-green padding-top-10">
 	<div layout="row" flex>
 		<div flex="5"></div>
-		<md-input-container flex="60" md-no-float class="md-block md-icon-float" flex-gt-sm>
-            <input ng-model="searchTerm" placeholder="Search">
+		<md-input-container flex="40" md-no-float class="md-block md-icon-float" flex-gt-sm>
+            <input ng-model="searchTerm" placeholder="Search" my-enter="getSearch(searchTerm)">
     	</md-input-container>
         <md-button class="md-fab md-mini" aria-label="Search">
         	<ng-md-icon icon="search" class="search-icon" ng-click="getSearch(searchTerm)"></ng-md-icon>
@@ -16,21 +16,52 @@
   			<md-nav-item md-nav-click="getItems()" md-no-ink name="items">Items</md-nav-item>
  			<md-nav-item md-nav-click="getFolders()" md-no-ink name="folders">Folders</md-nav-item>
 		</md-nav-bar>
-		<div flex layout="row" layout-align="end end" class="search-result-message">{{results.length}} results</div>
     </div>	
 
 </md-toolbar>
 
+	<div layout="row" 
+		 layout-sm="column" 
+		 layout-align="space-around" 
+		 class="loading-spinner" 
+		 ng-show="showSpinner">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+
 	<section layout="row" layout-padding>
 		<div flex="5"></div>
-		<div flex="50">
+		<div flex="50" ng-show="showItemResults">
 			<md-chips>
-		      <md-chip ng-repeat="chip in results | unique:'type'">{{chip.type}}</md-chip>
+		      <md-chip ng-click="getSearchType('all')">
+		      	All
+		      </md-chip>
+		      <md-chip ng-repeat="chip in results | unique:'type'" 
+		      		   ng-click="getSearchType(chip.type)"
+		      		   ng-if="chip.type !== 'folder'">{{chip.type}}</md-chip>
 		    </md-chips>	
 		
 			<md-content>
-				<md-list-item class="md-3-line" ng-repeat="item in results" ng-click="null">
-	          		<span class="fa {{item.icon}} fa-2x md-avatar"></span>
+				<md-list-item class="md-3-line" 
+							  ng-repeat="item in results | filter:searchType" 
+							  ng-click="selectItem(item)"
+							  ng-if="item.type !== 'folder'">
+	          		<img ng-src="{{item.thumbnailUrl}}" class="md-avatar search-avatar" alt="{{item.name}}" />
+		          	<div class="md-list-item-text" layout="column">
+		            	<h3>{{ item.name }}</h3>
+		            	<h4><span class="selected-item-location-path" ng-repeat="item in selectedResult.hierarchy"><u ng-click="goToPath(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span></h4>
+		            	<p>{{item.created | date:'shortDate'}}</p>
+		          </div>
+		        </md-list-item>
+			</md-content>
+		</div>
+
+		<div flex="50" ng-show="showFolderResults">
+			<md-content>
+				<md-list-item class="md-3-line" 
+							  ng-repeat="item in results" 
+							  ng-click="selectItem(item)"
+							  ng-if="item.type == 'folder'">
+	          		<img ng-src="{{item.thumbnailUrl}}" class="md-avatar search-avatar" alt="{{item.name}}" />
 		          	<div class="md-list-item-text" layout="column">
 		            	<h3>{{ item.name }}</h3>
 		            	<h4><span class="selected-item-location-path" ng-repeat="item in selectedResult.hierarchy"><u ng-click="goToPath(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span></h4>
@@ -40,29 +71,39 @@
 			</md-content>
 		</div>
 		<div flex="5"></div>
-		<md-content layout="column" flex="35">
-			<md-card>
-		        <img src="https://www.lonelyplanet.com/travel-blog/tip-article/wordpress_uploads/2015/05/Ksamil-beach-Albania_cs.jpg" class="md-card-image" alt="Washed Out">
-		        <md-card-title>
-		          <md-card-title-text>
-		            <span class="md-headline">Action buttons</span>
-		          </md-card-title-text>
-		        </md-card-title>
-		        <md-card-content>
-		          <p>
-		            The titles of Washed Out's breakthrough.
-		          </p>
-		        </md-card-content>
-		        <md-card-actions layout="row" layout-align="end center">
-		          <md-button>Email</md-button>
-		          <md-button>Add to Collection</md-button>
-		        </md-card-actions>
-		    </md-card>
-		</md-content>
+
+		<md-card layout="column" flex="35" ng-show="showItemDetails">
+	        <img src="{{selectedResult.thumbnailUrl}}" class="md-card-image md-whiteframe-5dp" alt="Washed Out">
+	        <md-card-title>
+	          <md-card-title-text>
+	            <span class="md-headline">{{selectedResult.name}}</span>
+	          </md-card-title-text>
+	        </md-card-title>
+	        <md-card-content>
+	          <p>
+	            <b>Created:</b> {{selectedResult.created | date:'shortDate'}}
+	          </p>
+	          <p ng-if="selectedResult.type == 'pdf'">
+	          	<b>Pages:</b> {{ selectedResult.pages }}
+	          </p>
+	        </md-card-content>
+	         <md-card-actions layout="row" layout-align="end center">
+	          <md-button class="md-icon-button" aria-label="Collections">
+	            <ng-md-icon icon="view_list"></ng-md-icon>
+	          </md-button>
+	          <md-button class="md-icon-button" aria-label="Share" ng-click="openShareModal(selectedResult, $event)">
+	            <ng-md-icon icon="share"></ng-md-icon>
+	          </md-button>
+	          <md-button class="md-icon-button" aria-label="Open Item" ng-click="goToPath(selectedResult)">
+	            <ng-md-icon icon="open_in_new"></ng-md-icon>
+	          </md-button>
+	        </md-card-actions>
+	    </md-card>
+
 		<div flex></div>
 	</section>
 
-	<div class="row search-results-blank" ng-if="noSearchResults">
+	<div class="row" ng-if="noSearchResults">
 		<div class="col-xs-12 alert alert-warning no-results-message">
 			<h4>There are no results matching "{{ term }}".</h4>
 			<span>Please refine your search terms and try again.</span>
