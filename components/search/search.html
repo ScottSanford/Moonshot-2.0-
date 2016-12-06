@@ -6,8 +6,8 @@
 		<md-input-container flex="40" md-no-float class="md-block md-icon-float" flex-gt-sm>
             <input ng-model="searchTerm" placeholder="Search" my-enter="getSearch(searchTerm)">
     	</md-input-container>
-        <md-button class="md-fab md-mini" aria-label="Search">
-        	<ng-md-icon icon="search" class="search-icon" ng-click="getSearch(searchTerm)"></ng-md-icon>
+        <md-button class="md-fab md-mini" aria-label="Search" ng-click="getSearch(searchTerm)">
+        	<ng-md-icon icon="search" class="search-icon"></ng-md-icon>
     	</md-button>
 	</div>
     <div layout="row" ng-show="isSearchTrue">
@@ -88,10 +88,10 @@
 	          </p>
 	        </md-card-content>
 	         <md-card-actions layout="row" layout-align="end center">
-	          <md-button class="md-icon-button" aria-label="Collections">
+	          <md-button class="md-icon-button" ng-show="isFolderResult" aria-label="Collections" ng-click="openCollectionModal(selectedResult, $event)"></>
 	            <ng-md-icon icon="view_list"></ng-md-icon>
 	          </md-button>
-	          <md-button class="md-icon-button" aria-label="Share" ng-click="openShareModal(selectedResult, $event)">
+	          <md-button class="md-icon-button" ng-show="isFolderResult" aria-label="Share" ng-click="openShareModal(selectedResult, $event)">
 	            <ng-md-icon icon="share"></ng-md-icon>
 	          </md-button>
 	          <md-button class="md-icon-button" aria-label="Open Item" ng-click="goToPath(selectedResult)">
@@ -103,9 +103,22 @@
 		<div flex></div>
 	</section>
 
-	<div class="row" ng-if="noSearchResults">
-		<div class="col-xs-12 alert alert-warning no-results-message">
+	<div layout="row" layout-align="center center" ng-if="noSearchResults">
+		<md-card flex="40" class="md-whiteframe-2dp">
+	        <img ng-src="common/img/michael-scott.gif" alt="Crying Jordan">
+	        <md-card-title>
+	          <md-card-title-text>
+	            <span class="md-headline">No Results Found</span>
+	          </md-card-title-text>
+	        </md-card-title>
+	        <md-card-content>
+	          <p>
+	            There are no results matching "{{ term }}". Please refine your search term and make Michael Scott happy again.
+	          </p>
+	        </md-card-content>
+      	</md-card>
+<!-- 		<div class="alert alert-warning no-results-message md-whiteframe-2dp">
 			<h4>There are no results matching "{{ term }}".</h4>
 			<span>Please refine your search terms and try again.</span>
-		</div>
+		</div> -->
 	</div>

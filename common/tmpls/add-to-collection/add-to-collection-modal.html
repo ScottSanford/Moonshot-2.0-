@@ -1,43 +1,37 @@
-<div class="modal-header">
-	<h4>Add to Collection</h4>
-</div>
+<md-dialog flex="50">
+	<md-dialog-content>
+	
+		<md-toolbar>
+	      <div class="md-toolbar-tools background-green">
+	        <h2>Add to Collection</h2>
+	        <span flex></span>
+	      </div>
+	    </md-toolbar>
 
-<div class="modal-body">
-	<form class="form-horizontal modal-input">
-		<div class="form-group form-group-collection-modal">
-			<label for="title">Add to a new Collection</label>
-			<div class="input-group">
-				<input ng-model="collectionName" 
-					   type="text" 
-					   class="form-control input-collection-title" 
-					   placeholder="Enter a title">
-				<span class="input-group-btn">
-					<button class="btn btn-default btn-collection-title" ng-click="createCollection(collectionName)">Add</button>
-				</span>
+		<section layout="row" layout-padding>
+			<div flex="5"></div>
+          	<md-select ng-model="c" placeholder="Choose Collection" flex="95">
+            	<md-option ng-repeat="c in collections track by $index" ng-value="c">{{c.name}}</md-option>
+          	</md-select>
+		</section>
+
+		<section layout="row">
+			<div flex="5"></div>
+			<div flex="95">
+				<label>Or create a new collection:</label>
+
+			    <md-input-container layout="row" flex="95" md-no-float class="md-block">
+			      <input ng-model="collectionName" type="text" placeholder="Collection Name">
+			    </md-input-container>
 			</div>
-		</div>
-	</form>
+		</section>
 
-	<div ng-show="pageError">
-		<div class="alert alert-warning page-error-warning" role="alert">
-			<span class="fa fa-warning fa-2x">
-			<span class="page-error-warning-label">Please provide collection name</span>
-		</div>
-	</div>
+		<md-divider></md-divider>
 
+		<md-dialog-actions layout="row">
+			<md-button ng-click="createCollection(c, collectionName)">Add</md-button>
+			<md-button ng-click="closeDialog()">Cancel</md-button>
+		</md-dialog-actions>
 
-	<div ng-if="collections.length">
-		<label>Or add to an existing collection:</label>
-
-		<ul class="list-unstyled">
-			<li ng-repeat="collection in collections">
-				<a ng-click="addItemToCollection(collection)">{{collection.name}}</a>
-			</li>
-		</ul>
-	</div>
-
-</div>
-
-<div class="modal-footer">
-	<button class="btn" ng-click="cancelClick()">Cancel</button>
-</div>
+	</md-dialog-content>
+</md-dialog>

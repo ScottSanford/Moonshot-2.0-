@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('AddToCollectionCtrl', function($scope, $uibModal, $uibModalInstance, item, Mfly){
+.controller('AddToCollectionCtrl', function($scope, $uibModal, item, Mfly, $mdDialog){
 
 	Mfly.getShare(item.id).then(function(data){
 		$scope.shareLink = data.url;
@@ -10,13 +10,31 @@ angular.module('moonshotApp')
 		$scope.collections = collections;
 	});
 
-	$scope.createCollection = function(collectionName) {
-		
-		if (collectionName !== undefined) {
-			Mfly.createCollection(collectionName).then(function(response){
+	$scope.selectedCollection = null;
+
+	$scope.createCollection = function(selectedCollection, newCollection) {
+		if (typeof selectedCollection === 'object' && selectedCollection) {
+			Mfly.addItemToCollection(selectedCollection.id, item.id).then(function(res){
+				// close Modal
+				$mdDialog.cancel();
+				// open Success Modal
+				$uibModal.open({
+		            templateUrl: 'common/tmpls/success-collection/success-collection-modal.html',
+		            controller: 'SuccessCollectionModalCtrl',
+		            backdrop: false,
+		            resolve: {
+		                collection: function() {
+		                    return selectedCollection;
+		                }
+		            }
+		        });
+			});		
+		} else if (newCollection && typeof newCollection == "string") {
+
+			Mfly.createCollection(newCollection).then(function(response){
 				Mfly.addItemToCollection(response.id, item.id).then(function(res){
 					// close Modal
-					$uibModalInstance.dismiss('cancel');
+					$mdDialog.cancel();
 					// open Success Modal
 					$uibModal.open({
 			            templateUrl: 'common/tmpls/success-collection/success-collection-modal.html',
@@ -30,32 +48,21 @@ angular.module('moonshotApp')
 			        });
 				});		
 			});
+			
 		} else {
 			$scope.pageError = true;
 		};
+ 		
 
 	};
 
 	$scope.addItemToCollection = function(collection) {
-		Mfly.addItemToCollection(collection.id, item.id).then(function(res){
-			// close Modal
-			$uibModalInstance.dismiss('cancel');
-			// open Success Modal
-			$uibModal.open({
-	            templateUrl: 'common/tmpls/success-collection/success-collection-modal.html',
-	            controller: 'SuccessCollectionModalCtrl',
-	            backdrop: false,
-	            resolve: {
-	                collection: function() {
-	                    return collection;
-	                }
-	            }
-	        });
-		});		
+		console.log(collection);
+	
 	};
 
-	$scope.cancelClick = function() {
-		$uibModalInstance.dismiss('cancel');
+	$scope.closeDialog = function() {
+		$mdDialog.cancel();
 	};
 
 });

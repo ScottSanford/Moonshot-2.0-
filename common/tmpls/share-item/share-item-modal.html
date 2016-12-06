@@ -12,7 +12,10 @@
 		<section layout="row">
 			<div flex="5"></div>
 		    <md-input-container layout="row" flex="95" md-no-float class="md-block">
-		      <md-button class="md-raised share-item" ngclipboard data-clipboard-target="#shareLinkText">
+		      <md-button class="md-raised share-item" 
+		      			 ngclipboard 
+		      			 data-clipboard-target="#shareLinkText" 
+		      			 ng-click="showSimpleToast()">
 		      	<ng-md-icon icon="content_copy"></ng-md-icon>
 		      	Copy Link
 		      </md-button>
@@ -32,15 +35,6 @@
 		    </md-input-container>
 		</section>
 
-<!-- 		<div class="modal-body">
-			<div ng-if="deviceType == 'web'">
-				<strong>To email <em class="ng-binding">{{ item.name }}</em>:</strong>
-				<p class="margin-top10">Paste the url above into your own email message</p>
-				<p class="padding-left20"><em>— or —</em></p>
-				<p>let us <a href="" ng-click="sendEmail()">begin a pre-populated email</a> for you.</p>
-			</div>
-		</div> -->
-
 		<md-divider></md-divider>
 
 		<md-dialog-actions layout="row">
@@ -49,38 +43,3 @@
 
 	</md-dialog-content>
 </md-dialog>
-
-<!-- <div class="modal-header">
-	<h4>
-		<span class="fa fa-envelope"></span>
-		<span>Email Document</span>
-	</h4>
-</div>
-
-<div class="modal-body modal-body-share-item">
-	
-	<div class="form-group form-group-collection-modal">
-		<label for="title">Link to item:</label>
-		<div class="input-group">
-			<input id="shareLinkText" class="form-control form-control-large col-xs-12 input-share-link" 
-				   type="url" 
-				   value="{{ shareLink }}">
-			<span class="input-group-btn">
-				<button class="btn btn-default btn-share-item" ngclipboard data-clipboard-target="#shareLinkText">
-					<span class="fa fa-files-o"></span>
-				</button>
-			</span>
-		</div>
-	</div>
-	<div ng-if="deviceType == 'web'">
-		<strong>To email <em class="ng-binding">{{ item.name }}</em>:</strong>
-		<p class="margin-top10">Paste the url above into your own email message</p>
-		<p class="padding-left20"><em>— or —</em></p>
-		<p>let us <a href="" ng-click="sendEmail()">begin a pre-populated email</a> for you.</p>
-	</div>
-
-</div>
-
-<div class="modal-footer">
-	<button class="btn btn-done" ng-click="cancelClick()">Done</button>
-</div> -->

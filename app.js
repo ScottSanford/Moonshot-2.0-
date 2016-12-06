@@ -14,7 +14,7 @@ angular.module("moonshotApp", [
 
     .config(function ($compileProvider, $stateProvider, $urlRouterProvider) { 
 
-          $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/)/);
+          $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/|http:\/\/)/);
 
           // For any unmatched url, redirect to /state1
           $urlRouterProvider.otherwise("/cards");

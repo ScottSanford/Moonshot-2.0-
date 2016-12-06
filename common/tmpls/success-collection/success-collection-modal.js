@@ -8,4 +8,4 @@ angular.module('moonshotApp')
 		$uibModalInstance.dismiss('cancel');
 	}, 3000);
 
-});
+}); 

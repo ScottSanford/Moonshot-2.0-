@@ -760,6 +760,10 @@ md-tabs .md-tab.md-active {
 	color:#FFF;
 }
 
+md-toast .md-toast-content {
+	color:#9dbc3b;
+}
+
 .share-item-text {
 	font-size:16px;
 }
