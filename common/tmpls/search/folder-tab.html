@@ -1,0 +1,47 @@
+<div layout="row" class="search-tab-background" layout-padding>
+	<div flex="5"></div>
+<!-- START: FOLDER LIST VIEW -->
+	<div flex="50">
+		<md-content>
+			<md-list-item class="md-3-line" 
+						  ng-repeat="item in results" 
+						  ng-click="selectItem(item)"
+						  ng-if="item.type == 'folder'">
+          		<img ng-src="{{item.thumbnailUrl}}" class="md-avatar search-avatar" alt="{{item.name}}" />
+	          	<div class="md-list-item-text" layout="column">
+	            	<h3>{{ item.name }}</h3>
+	            	<h4><span class="selected-item-location-path" ng-repeat="item in item.hierarchy"><u ng-click="goToPath(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span></h4>
+	            	<p>Created: {{item.created | date:'shortDate'}}</p>
+	            	<p>{{item.type}}</p>
+	          </div>
+	        </md-list-item>
+		</md-content>
+	</div>
+	<md-card flex="35">
+        <img src="{{selectedResult.thumbnailUrl}}" class="md-card-image md-whiteframe-5dp" alt="Washed Out">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{selectedResult.name}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p>
+            <b>Created:</b> {{selectedResult.created | date:'shortDate'}}
+          </p>
+          <p ng-if="selectedResult.type == 'pdf'">
+          	<b>Pages:</b> {{ selectedResult.pages }}
+          </p>
+        </md-card-content>
+         <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button" ng-show="showFolderIcon" aria-label="Collections" ng-click="openCollectionModal(selectedResult, $event)"></>
+            <ng-md-icon icon="view_list"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button" ng-show="showFolderIcon" aria-label="Share" ng-click="openShareModal(selectedResult, $event)">
+            <ng-md-icon icon="share"></ng-md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Open Item" ng-click="goToPath(selectedResult)">
+            <ng-md-icon icon="open_in_new"></ng-md-icon>
+          </md-button>
+        </md-card-actions>
+    </md-card>
+</div>

@@ -1,5 +1,6 @@
 <nav-bar></nav-bar>
 
+<!-- START: SEARCH -->
 <md-toolbar class="background-green padding-top-10">
 	<div layout="row" flex>
 		<div flex="5"></div>
@@ -10,95 +11,99 @@
         	<ng-md-icon icon="search" class="search-icon"></ng-md-icon>
     	</md-button>
 	</div>
-    <div layout="row" ng-show="isSearchTrue">
-    	<div flex="5"></div>
-    	<md-nav-bar flex="70" md-selected-nav-item="currentNavItem" nav-bar-aria-label="Search Filters">
-  			<md-nav-item md-nav-click="getItems()" md-no-ink name="items">Items</md-nav-item>
- 			<md-nav-item md-nav-click="getFolders()" md-no-ink name="folders">Folders</md-nav-item>
-		</md-nav-bar>
-    </div>	
-
 </md-toolbar>
 
-	<div layout="row" 
-		 layout-sm="column" 
-		 layout-align="space-around" 
-		 class="loading-spinner" 
-		 ng-show="showSpinner">
-      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-    </div>
+<!-- START: TABS -->
+<section layout="row" ng-show="isSearchTrue">
+	<md-tabs flex md-dynamic-height md-border-bottom class="search-tabs" md-no-ink="true">
+      <md-tab label="Items">
+      	<item-tab></item-tab>
+      </md-tab>
+      <md-tab label="Folders">
+        <folder-tab></folder-tab>
+      </md-tab>
+      <md-tab label="Suggested">
+        <div layout="row" class="search-tab-background" layout-padding>
+			<div flex="5"></div>
+			<div flex="90">
+				<suggested-items></suggested-items>
+			</div>
+      	</div>
+      </md-tab>
+    </md-tabs>
+</section>
+
+<!-- START: SPINNER -->
+<div layout="row" 
+	 layout-sm="column" 
+	 layout-align="space-around" 
+	 class="loading-spinner" 
+	 ng-show="showSpinner">
+  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+
+<!-- START: INIT SUGGESTED ITEMS -->
+<section layout="row" layout-padding>
+
+
+	<div flex="5"></div>
+	<div flex="90">			
+		<suggested-items ng-show="showSuggestedItems"></suggested-items>
+	</div>
+	</section>
 
 	<section layout="row" layout-padding>
-		<div flex="5"></div>
-		<div flex="50" ng-show="showItemResults">
-			<md-chips>
-		      <md-chip ng-click="getSearchType('all')">
-		      	All
-		      </md-chip>
-		      <md-chip ng-repeat="chip in results | unique:'type'" 
-		      		   ng-click="getSearchType(chip.type)"
-		      		   ng-if="chip.type !== 'folder'">{{chip.type}}</md-chip>
-		    </md-chips>	
-		
-			<md-content>
-				<md-list-item class="md-3-line" 
-							  ng-repeat="item in results | filter:searchType" 
-							  ng-click="selectItem(item)"
-							  ng-if="item.type !== 'folder'">
-	          		<img ng-src="{{item.thumbnailUrl}}" class="md-avatar search-avatar" alt="{{item.name}}" />
-		          	<div class="md-list-item-text" layout="column">
-		            	<h3>{{ item.name }}</h3>
-		            	<h4><span class="selected-item-location-path" ng-repeat="item in selectedResult.hierarchy"><u ng-click="goToPath(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span></h4>
-		            	<p>{{item.created | date:'shortDate'}}</p>
-		          </div>
-		        </md-list-item>
-			</md-content>
-		</div>
 
-		<div flex="50" ng-show="showFolderResults">
-			<md-content>
-				<md-list-item class="md-3-line" 
-							  ng-repeat="item in results" 
-							  ng-click="selectItem(item)"
-							  ng-if="item.type == 'folder'">
-	          		<img ng-src="{{item.thumbnailUrl}}" class="md-avatar search-avatar" alt="{{item.name}}" />
-		          	<div class="md-list-item-text" layout="column">
-		            	<h3>{{ item.name }}</h3>
-		            	<h4><span class="selected-item-location-path" ng-repeat="item in selectedResult.hierarchy"><u ng-click="goToPath(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span></h4>
-		            	<p>{{item.created | date:'shortDate'}}</p>
-		          </div>
-		        </md-list-item>
-			</md-content>
-		</div>
-		<div flex="5"></div>
+	    <md-grid-list md-cols="1"
+	    			  md-cols-sm="2" 
+	    			  md-cols-md="4" 
+	    			  md-cols-gt-md="6" 
+	    			  md-row-height="4:3"
+	        		  md-gutter="8px" 
+	        		  ng-show="showGrid"
+	        		  layout="row"
+	        		  flex="95">
 
-		<md-card layout="column" flex="35" ng-show="showItemDetails">
-	        <img src="{{selectedResult.thumbnailUrl}}" class="md-card-image md-whiteframe-5dp" alt="Washed Out">
-	        <md-card-title>
-	          <md-card-title-text>
-	            <span class="md-headline">{{selectedResult.name}}</span>
-	          </md-card-title-text>
-	        </md-card-title>
-	        <md-card-content>
-	          <p>
-	            <b>Created:</b> {{selectedResult.created | date:'shortDate'}}
-	          </p>
-	          <p ng-if="selectedResult.type == 'pdf'">
-	          	<b>Pages:</b> {{ selectedResult.pages }}
-	          </p>
-	        </md-card-content>
-	         <md-card-actions layout="row" layout-align="end center">
-	          <md-button class="md-icon-button" ng-show="isFolderResult" aria-label="Collections" ng-click="openCollectionModal(selectedResult, $event)"></>
-	            <ng-md-icon icon="view_list"></ng-md-icon>
-	          </md-button>
-	          <md-button class="md-icon-button" ng-show="isFolderResult" aria-label="Share" ng-click="openShareModal(selectedResult, $event)">
-	            <ng-md-icon icon="share"></ng-md-icon>
-	          </md-button>
-	          <md-button class="md-icon-button" aria-label="Open Item" ng-click="goToPath(selectedResult)">
-	            <ng-md-icon icon="open_in_new"></ng-md-icon>
-	          </md-button>
-	        </md-card-actions>
-	    </md-card>
+		    <md-grid-tile ng-repeat="tile in results"
+		                  md-rowspan="1"
+		                  md-colspan="1"
+		                  md-colspan-sm="1"
+		                  md-colspan-xs="1">
+				
+			       	<img src="{{ tile.thumbnailUrl }}">
+
+		        
+		        <md-grid-tile-footer>
+		      	  
+		      	  	<md-menu>
+			          	
+			            <h3 ng-click="$mdOpenMenu($event)">{{tile.name}}</h3>
+			          	
+			          	<md-menu-content width="2">
+			            	<md-menu-item>
+				              	<md-button ng-click="openCollectionModal(tile, $event)">
+				                	<ng-md-icon icon="view_list"></ng-md-icon>
+				                	Add
+				                </md-button>
+			                </md-menu-item>
+			            	<md-menu-item>
+				              	<md-button ng-click="openShareModal(tile, $event)">
+				                	<ng-md-icon icon="share"></ng-md-icon>
+				                	Share
+				                </md-button>
+			                </md-menu-item>
+			            	<md-menu-item>
+				              	<md-button ng-click="goToPath(tile)">
+				                	<ng-md-icon icon="open_in_new"></ng-md-icon>
+				                	Open
+				                </md-button>
+			                </md-menu-item>
+			          	</md-menu-content>
+		        	</md-menu>
+
+		      	</md-grid-tile-footer>
+		    </md-grid-tile>
+		</md-grid-list>
 
 		<div flex></div>
 	</section>

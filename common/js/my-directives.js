@@ -100,6 +100,36 @@ angular.module('myDirectives', [])
 	}
 })
 
+.directive('itemTab', function($location){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/search/item-tab.html'
+	}
+})
+
+.directive('folderTab', function($location){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/search/folder-tab.html'
+	}
+})
+
+.directive('suggestedItems', function($location){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/search/suggested-items.html'
+	}
+})
+
 .directive('myEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
@@ -112,4 +142,5 @@ angular.module('myDirectives', [])
             }
         });
     };
-});
+})
+

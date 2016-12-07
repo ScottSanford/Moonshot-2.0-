@@ -245,6 +245,24 @@ a:hover, a:active {
 				   Search Styles
 
 ====================================================*/
+.search-tab-background {
+	background-color:#f7f7f7;
+}
+
+/****This is a global style****/
+md-tabs-canvas {
+	background: #FFF;
+}
+
+md-tabs.search-tabs > md-tabs-content-wrapper > md-tab-content {
+    transition: none;
+}
+
+/*****This is for the search tab to hard code labels to the left********/
+md-tabs.search-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper {
+	left:60px;
+}
+
 md-toolbar:not(.md-menu-toolbar) {
 	background-color: #FFF;
 }
@@ -265,6 +283,45 @@ md-toolbar:not(.md-menu-toolbar) {
 	height:35px;
 	border:2px solid #9dbc3b;
 	border-radius: 4px;
+}
+
+.selectedIndex {
+  background: #e6e7e8;
+}
+
+md-grid-tile img {
+	height:100%;
+	width:100%;
+}
+
+md-grid-tile {
+  transition: all 400ms ease-out 50ms; 
+}
+
+md-grid-tile-footer h3 {
+	/*text-align: center;*/
+	font-weight: 700;
+	margin: 0;
+	/*width:85%;*/
+}
+
+md-grid-tile md-button {
+	z-index: 100;
+	height:100%;
+	width:100%;
+}
+
+md-grid-list md-grid-tile md-grid-tile-footer {
+	background:rgba(0,0,0,0.6);
+}
+
+ng-md-icon .suggested-icon {
+	color:red;
+}
+
+.selected-item-location-path {
+	color:#8ba628;
+	font-size:12px;
 }
 
 .form-control:focus {
@@ -875,3 +932,14 @@ input.input-share-link.form-control:focus {
 		/*border:1px solid red;*/
 	}
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -145,6 +145,17 @@ angular.module('moonshotApp')
                 });
 
             return deferred.promise; 
+        }, 
+
+        getLastViewedContent: function() {
+            var deferred = $q.defer();
+
+             mflyCommands.getLastViewedContent()
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise; 
         }
 	}
 

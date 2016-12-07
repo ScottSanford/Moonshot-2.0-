@@ -10,7 +10,7 @@
 
 		<section layout="row" layout-padding>
 			<div flex="5"></div>
-          	<md-select ng-model="c" placeholder="Choose Collection" flex="95">
+          	<md-select ng-model="c" placeholder="Choose a collection" flex="95">
             	<md-option ng-repeat="c in collections track by $index" ng-value="c">{{c.name}}</md-option>
           	</md-select>
 		</section>
@@ -21,7 +21,7 @@
 				<label>Or create a new collection:</label>
 
 			    <md-input-container layout="row" flex="95" md-no-float class="md-block">
-			      <input ng-model="collectionName" type="text" placeholder="Collection Name">
+			      <input ng-model="collectionName" type="text" placeholder="Collection name">
 			    </md-input-container>
 			</div>
 		</section>

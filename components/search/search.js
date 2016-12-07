@@ -5,14 +5,22 @@ angular.module('moonshotApp')
     $scope.goToCards = function() {
         $location.url('/cards');
     };
-    //
+    
+
+    mflyCommands.getLastViewedContent()
+        .then(function(data){
+            $scope.suggestions = data;
+            $scope.$apply();
+        });
+
+    $scope.showSuggestedItems = true;
 
     $scope.getSearch = function(_term) {
-
-        $scope.showSpinner     = true;
-        $scope.showItemResults = false;
-        $scope.showItemDetails = false;
-        $scope.isFolderResult  = true;
+        $scope.showSpinner        = true;
+        $scope.showSuggestedItems = false;
+        $scope.showItemResults    = false;
+        
+        $scope.showFolderIcon  = true;
         $scope.noSearchResults = false;
         $scope.searchTerm      = '';
 
@@ -21,16 +29,16 @@ angular.module('moonshotApp')
             if (results.length == 0) {
 
                 $timeout(function(){
-                    $scope.showSpinner     = false;
-                    $scope.showItemResults = false;
-                    $scope.noSearchResults = true;
+                    $scope.showSpinner        = false;
+                    $scope.showSuggestedItems = false;
+                    $scope.showItemResults    = false;
+                    $scope.noSearchResults    = true;
                     $scope.term = _term;
                 }, getRandomLoadTime(500,2000));
 
             } else {
                 // highlight first item
                 var first = _.first(results);
-                $scope.toggleSearchResult = first.id;
                 $scope.selectedResult = first;
          
                 results.forEach(function(item, index, array){
@@ -55,15 +63,14 @@ angular.module('moonshotApp')
                 
                 $timeout(function() {
 
-                    $scope.showSpinner     = false;
-                    $scope.term            = _term;
-                    $scope.isSearchTrue    = true;
-                    $scope.currentNavItem  = 'items';
-                    $scope.noSearchResults = false;
-                    $scope.showItemResults = true;
-                    $scope.showItemDetails = true;
-                    $scope.isFolderResult  = true;
-                    $scope.results         = results;
+                    $scope.showSpinner        = false;
+                    $scope.term               = _term;
+                    $scope.isSearchTrue       = true;
+                    $scope.showSuggestedItems = false;
+                    $scope.noSearchResults    = false;
+                    $scope.showItemResults    = true;
+                    $scope.showFolderIcon     = true;
+                    $scope.results            = results;
 
                 },getRandomLoadTime(500,2000));
 
@@ -78,14 +85,24 @@ angular.module('moonshotApp')
 
     $scope.getItems = function() {
         $scope.showFolderResults = false;
+        $scope.showGrid          = false;
         $scope.showItemResults   = true;
-        $scope.isFolderResult    = true;
+        $scope.showFolderIcon    = true;
     };
 
     $scope.getFolders = function() {
         $scope.showItemResults   = false;
+        $scope.showGrid          = false;
         $scope.showFolderResults = true;
-        $scope.isFolderResult    = false;
+        $scope.showFolderIcon    = false;
+    };
+
+    $scope.getImages = function() {
+        $scope.showItemResults   = false;
+        
+        $scope.showGrid          = true;
+        $scope.showFolderResults = false;
+        $scope.showFolderIcon    = false;
     };
 
     $scope.getSearchType = function(filterType) {
@@ -99,7 +116,18 @@ angular.module('moonshotApp')
         }
     };
 
-    $scope.selectItem = function(item) {
+    $scope.selectedIndex = 0;
+    $scope.selectItem = function(item, index) {
+        if ($scope.selectedIndex === null) {
+          $scope.selectedIndex = index;
+        }
+        else if ($scope.selectedIndex === index) {
+          $scope.selectedIndex = null;
+        }
+        else {
+          $scope.selectedIndex = index;
+        }
+
     	$scope.selectedResult = item;
     };
 
@@ -127,6 +155,7 @@ angular.module('moonshotApp')
     };
 
     $scope.openCollectionModal = function(selectedItem, ev) {
+        console.log(selectedItem);
         $mdDialog.show({
           controller: 'AddToCollectionCtrl',
           templateUrl: 'common/tmpls/add-to-collection/add-to-collection-modal.html',
