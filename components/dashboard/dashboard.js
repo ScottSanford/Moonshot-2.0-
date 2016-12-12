@@ -2,29 +2,17 @@
 
 angular.module('moonshotApp')
 
-.controller('ReportsCtrl', function($scope, Reporting, Mfly, Weather, darkSky, $q){
+.controller('ReportsCtrl', function($scope, $location, Reporting, Mfly, Weather, darkSky, $q){
 
-    jQuery(function ($) {
-        $(".tile").height($("#tile1").width());
-        $(".carousel").height($("#tile1").width());
-        $(".item").height($("#tile1").width());
-        
-        $(window).on('resize', function () {
-            if (this.resizeTO) {
-                clearTimeout(this.resizeTO);
-            }
-            this.resizeTO = setTimeout(function () {
-                $(this).trigger('resizeEnd');
-
-            }, 10);
-        });
-
-        $(window).on('resizeEnd', function () {
-            $(".tile").height($("#tile1").width());
-            $(".carousel").height($("#tile1").width());
-            $(".item").height($("#tile1").width());
-        });
-    });
+    // FOR: FOLDER LIST PAGE
+    // Mfly.getFolder('__root__').then(function(data){
+    //   var folders = _.filter(data, function(item){
+    //     if (item.type === 'folder') {
+    //       return item;
+    //     }
+    //   });
+    //   console.log("folders bro :: ", folders);
+    // })
 
     function getTimeOfDay() {
       var today = new Date()
@@ -41,14 +29,36 @@ angular.module('moonshotApp')
 
     $scope.timeOfDay = getTimeOfDay();
 
+    // USER
     Mfly.getInteractiveInfo().then(function(data){
       $scope.user = data;
     });
 
+    // NEW ITEMS
     Mfly.getRecentlyCreatedContent().then(function(data){
       $scope.newItems = data.length;
-    })
+    });
 
+    // CARDS
+    $scope.goToCards = function() {
+        $location.url('/cards');
+    };
+
+    // COLLECTIONS
+    Mfly.getCollections().then(function(data){
+      $scope.collectionsLength = data.length;
+    });
+
+    $scope.goToCollections = function() {
+      $location.url('/collections');
+    };
+
+    // FOLDER 
+    $scope.goToHierarchy = function() {
+      $location.url('/hierarchy');
+    };
+
+    // WEATHER
     Weather.getCurrent().then(function(data){
       console.log(data);
       var skycons = new Skycons({color:"#FFF"});
@@ -62,12 +72,6 @@ angular.module('moonshotApp')
     Weather.getDaily().then(function(data){;
       $scope.dailyWeather = data.daily.data;
     });
-
-    var date = Date.now();
-    $scope.currentDate = date;
-
-
-
 
 });
 

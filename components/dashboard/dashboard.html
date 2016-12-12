@@ -21,7 +21,8 @@
 				</div>
 			</div>
 	  	</md-grid-tile>
-	  	<md-grid-tile md-colspan="2" md-rowspan="2" class="db db-cards md-whiteframe-4dp">
+
+	  	<md-grid-tile md-colspan="2" md-rowspan="2" class="db db-cards md-whiteframe-4dp" ng-click="goToCards()">
 	  		<div layout="column" layout-fill layout-align="space-between">
                 
                 <div flex="90" layout="row" layout-align="center center">
@@ -37,13 +38,13 @@
 		</md-grid-tile>
 
 		<!-- START: SECOND ROW -->
-	  <md-grid-tile md-colspan="2" md-rowspan="3" class="db db-collections md-whiteframe-4dp">
+	  <md-grid-tile md-colspan="2" md-rowspan="3" class="db db-collections md-whiteframe-4dp" ng-click="goToCollections()">
 	  		
 			<div layout="column" layout-fill layout-align="space-between">
                 
                 <div flex="90" layout="row" layout-align="center center" uib-carousel active="0" interval="3900" no-wrap="false" layout="column">
                     <i flex class="material-icons db-icon search-icon" uib-slide index="0">view_list</i>
-                    <div flex uib-slide index="1" class="collections-length">6</div>
+                    <div flex uib-slide index="1" class="collections-length">{{collectionsLength}}</div>
                 </div>
        
                 <div layout="row" layout-align="start end" class="db-menu-title">
@@ -53,7 +54,7 @@
             </div>
 
 	  </md-grid-tile>
-	   <md-grid-tile md-colspan="2" md-rowspan="3" class="db db-folder md-whiteframe-4dp">
+	   <md-grid-tile md-colspan="2" md-rowspan="3" class="db db-folder md-whiteframe-4dp" ng-click="goToHierarchy()">
 
 			<div layout="column" layout-fill layout-align="space-between">
                 
@@ -111,7 +112,7 @@
             </div>
 			
 	  </md-grid-tile>
-	  <md-grid-tile md-colspan="2" md-rowspan="2" class="db db-search md-whiteframe-4dp">
+	  <md-grid-tile md-colspan="2" md-rowspan="2" class="db db-search md-whiteframe-4dp" ng-click="goToSearch()">
 	  		<div layout="column" layout-fill layout-align="space-between">
                 
                 <div flex="90" layout="row" layout-align="center center">

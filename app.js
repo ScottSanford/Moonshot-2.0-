@@ -46,6 +46,11 @@ angular.module("moonshotApp", [
                     templateUrl: 'components/collection-details/collection-details.html', 
                     controller: 'CollectionDetailCtrl'
                 })
+                .state('hierarchy', {
+                    url: '/hierarchy', 
+                    templateUrl: 'components/hierarchy/hierarchy.html', 
+                    controller: 'HierachyCtrl'
+                })
                 .state('search', {
                     url: '/search', 
                     templateUrl: 'components/search/search.html', 

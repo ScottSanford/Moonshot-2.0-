@@ -1028,36 +1028,6 @@ md-grid-tile.db-settings {
 	font-family: 'Proxy-Light';
 }
 
-
-
-
-.carousel.fading .carousel-inner > .item {
-  /* Override the properties for the default sliding carousel */
-  display: block;
-  position: absolute;
-  left: 0 !important;
-
-  /* Hide slides by default */
-  opacity: 0;
-
-  /* Set transition to opactity */
-  -moz-transition: .6s slideInUp opacity;
-  -webkit-transition: .6s slideInUp opacity;
-  -o-transition: .6s slideInUp opacity;
-  transition: .6s slideInUp opacity;
-}
-
-/* Active slides are visible on transition end */
-.carousel.fading .carousel-inner > .active,
-/* Next slide is visible during transition */
-.carousel.fading .carousel-inner > .next.left {
-    opacity: 1;
-}
-.carousel.fading .carousel-inner > .next,
-.carousel.fading .carousel-inner > .active.left {
-    opacity: 0;
-}
-
 /*===================================================
 
 				Modal(s) Styles
