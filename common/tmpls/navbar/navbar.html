@@ -1,21 +1,21 @@
 <md-toolbar class="">
   <div class="md-toolbar-tools background-moonshot">
-    <img class="toolbar-logo" src="common/img/moonshot-logo.png" ng-click="goToCards()">
+    <img class="toolbar-logo" src="common/img/moonshot-logo.png" ng-click="goToDashboard()">
     <span flex></span>
+    
     <md-button class="md-icon-button" aria-label="List" ng-click="goToCollections()">
       <ng-md-icon icon="view_list"></ng-md-icon>
     </md-button>
     <md-button class="md-icon-button" aria-label="Search" ng-click="goToSearch()">
       <ng-md-icon icon="search"></ng-md-icon>
     </md-button>
-    <md-button class="md-icon-button" aria-label="Search" ng-click="goToReports()">
-      <ng-md-icon icon="pie_chart"></ng-md-icon>
-    </md-button>
+
     <md-menu md-position-mode="target-right target">
       <md-button class="md-icon-button" aria-label="More Vertical" ng-click="$mdOpenMenu($event)">
         <ng-md-icon icon="more_vert"></ng-md-icon>
       </md-button>
       <md-menu-content width="4">
+        </md-menu-item>
         <md-menu-item>
           <md-button ng-click="closeInteractive()">
               <div layout="row" flex>

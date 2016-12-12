@@ -1,0 +1,143 @@
+<nav-bar></nav-bar>
+
+<section layout="row" layout-padding>
+	<md-grid-list class= flex md-cols="8" md-gutter="1.5em" md-row-height="4:3">
+		<!-- START: FIRST ROW -->
+	  	<md-grid-tile md-colspan="3" md-rowspan="2" class="db db-user md-whiteframe-4dp">
+	  		<div layout="column" layout-align="center start">
+				<div flex class="user-display-name">{{timeOfDay}},</div>
+				<div flex class="user-display-name">{{user.displayName}}</div>
+			</div>
+	  	</md-grid-tile>
+	
+	  	<md-grid-tile md-colspan="3" md-rowspan="2" class="db db-new-items md-whiteframe-4dp">
+	  		<div layout="row" layout-fill layout-align="space-between">
+	  			<div flex="35" layout="row" layout-align="center center">
+	  				<i flex class="material-icons db-icon insert-drive-file">insert_drive_file</i>
+	  			</div>
+				
+				<div flex layout="row" class="db-new-items-text" layout-align="center center">
+					{{ newItems }} new items
+				</div>
+			</div>
+	  	</md-grid-tile>
+	  	<md-grid-tile md-colspan="2" md-rowspan="2" class="db db-cards md-whiteframe-4dp">
+	  		<div layout="column" layout-fill layout-align="space-between">
+                
+                <div flex="90" layout="row" layout-align="center center">
+                    <i flex class="fa fa-list-alt cards-icon"></i>
+                </div>
+       
+                <div layout="row" layout-align="start end" class="db-menu-title">
+                   	<span layout-padding>Cards</span>
+                </div>
+           
+            </div>
+	  	
+		</md-grid-tile>
+
+		<!-- START: SECOND ROW -->
+	  <md-grid-tile md-colspan="2" md-rowspan="3" class="db db-collections md-whiteframe-4dp">
+	  		
+			<div layout="column" layout-fill layout-align="space-between">
+                
+                <div flex="90" layout="row" layout-align="center center" uib-carousel active="0" interval="3900" no-wrap="false" layout="column">
+                    <i flex class="material-icons db-icon search-icon" uib-slide index="0">view_list</i>
+                    <div flex uib-slide index="1" class="collections-length">6</div>
+                </div>
+       
+                <div layout="row" layout-align="start end" class="db-menu-title">
+                   	<span layout-padding>Collections</span>
+                </div>
+           
+            </div>
+
+	  </md-grid-tile>
+	   <md-grid-tile md-colspan="2" md-rowspan="3" class="db db-folder md-whiteframe-4dp">
+
+			<div layout="column" layout-fill layout-align="space-between">
+                
+                <div flex="90" layout="row" layout-align="center center">
+                    <i flex class="material-icons db-icon search-icon">folder</i>
+                </div>
+       
+                <div layout="row" layout-align="start end" class="db-menu-title">
+                   	<span layout-padding>Folders</span>
+                </div>
+           
+            </div>
+         
+	  </md-grid-tile>
+	  <md-grid-tile md-colspan="4" md-rowspan="5" class="db db-weather md-whiteframe-4dp">
+
+         <div layout="column" layout-fill layout-align="space-between">
+                <div layout="row" 
+                     layout-padding 
+                     layout-wrap
+                     layout-fill
+                     layout-align="space-between">
+                  	<div flex="50" class="icon">
+						<canvas id="weatherIcon"></canvas>
+                  	</div>
+                  	<div flex="50" class="text">
+                    	<div layout="row" layout-align="end" layout-padding layout-margin>
+							<div flex class="weather-info">
+								<div class="weather-city">{{ weather.timezone }}</div>
+								<div class="weather-temperature">{{ weather.currently.temperature | number:0}}&deg;</div>
+								<div class="weather-summary">{{ weather.currently.summary }}</div>
+								<div class="weather-summary">Feels like {{ weather.currently.apparentTemperature | number:0 }}&deg;</div>
+							</div>
+                    	</div>
+                  	</div>
+                  	<div flex layout-padding>
+                    	<div layout="row" 
+                             layout-align="center center">
+                              <div class="daily-temps-container" ng-repeat="d in dailyWeather | limitTo:3" layout-padding>
+                              	<div class="daily-temps-date">
+                              		{{d.time * 1000 | amDateFormat: 'M/D ddd'}}
+                              	</div>
+                              	<div class="daily-temps-icon">
+                              		<sky-icon icon-type="{{d.icon}}"></sky-icon>
+                              	</div>
+                              	<div class="daily-temps-number">
+                              		<span class="daily-max">{{d.temperatureMax | number:0}}&deg;</span>
+                              		<span class="daily-min">{{d.temperatureMin | number:0}}&deg;</span>
+                              	</div>
+                              </div>
+                       </div>
+                    </div>
+             
+                </div>
+            </div>
+			
+	  </md-grid-tile>
+	  <md-grid-tile md-colspan="2" md-rowspan="2" class="db db-search md-whiteframe-4dp">
+	  		<div layout="column" layout-fill layout-align="space-between">
+                
+                <div flex="90" layout="row" layout-align="center center">
+                    <i flex class="material-icons db-icon search-icon">search</i>
+                </div>
+       
+                <div layout="row" layout-align="start end" class="db-menu-title">
+                   	<span layout-padding>Search</span>
+                </div>
+           
+            </div>
+	  </md-grid-tile>
+	  <md-grid-tile md-colspan="2" md-rowspan="2" class="db db-settings md-whiteframe-4dp">
+			
+			<div layout="column" layout-fill layout-align="space-between">
+                
+                <div flex="90" layout="row" layout-align="center center">
+                    <i flex class="material-icons db-icon settings-icon">settings</i>
+                </div>
+       
+                <div layout="row" layout-align="start end" class="db-menu-title">
+                   	<span layout-padding>Settings</span>
+                </div>
+           
+            </div>
+
+	  </md-grid-tile>
+	</md-grid-list>
+</section> 

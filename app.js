@@ -9,17 +9,28 @@ angular.module("moonshotApp", [
         'ngAnimate', 
         'ngMaterial', 
         'ngMdIcons', 
-        'md.data.table'
+        'md.data.table', 
+        'dark-sky', 
+        'angularMoment'
     ])
 
-    .config(function ($compileProvider, $stateProvider, $urlRouterProvider) { 
+    .config(function ($compileProvider, $stateProvider, $urlRouterProvider, darkSkyProvider) { 
+
+          darkSkyProvider.setApiKey('a0eb9b7587d7bcaf6e9e06bffc6cfdfc');
+          darkSkyProvider.setUnits('us');
+          darkSkyProvider.setLanguage('en');
 
           $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/|http:\/\/)/);
 
           // For any unmatched url, redirect to /state1
-          $urlRouterProvider.otherwise("/cards");
+          $urlRouterProvider.otherwise("/dashboard");
           
           $stateProvider
+                .state('dashboard', {
+                    url: '/dashboard', 
+                    templateUrl: 'components/dashboard/dashboard.html',                    
+                    controller: 'ReportsCtrl'
+                })
                 .state('cards', {
                     url: '/cards',
                     templateUrl: 'components/cards/cards.html', 

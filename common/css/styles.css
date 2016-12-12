@@ -49,6 +49,50 @@ a:hover, a:active {
     src: url(../fonts/ProximaNova-Semibold.ttf);
 }
 
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/MaterialIcons-Regular.ttf);
+}
+
+
+ng-md-icon {
+    margin: auto;
+    background-repeat: no-repeat no-repeat;
+    display: inline-block;
+    vertical-align: text-bottom;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+}
+
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
 .margin-top-25 {
 	margin-top:25px;
 }
@@ -295,7 +339,7 @@ md-grid-tile img {
 }
 
 md-grid-tile {
-  transition: all 400ms ease-out 50ms; 
+  transition: all 750ms ease-out 50ms; 
 }
 
 md-grid-tile-footer h3 {
@@ -797,6 +841,222 @@ md-tabs .md-tab.md-active {
     100% {left: 50%;}
 }
 
+/*===================================================
+
+				Dashboard Styles
+
+====================================================*/
+i.db-icon {
+	font-size:7vw;
+	color:#FFF;
+}
+
+.carousel-control.right, .carousel-control.left, .carousel-indicators {
+	display: none;
+}
+
+
+
+canvas#weatherIcon {
+	margin-left: -30px;
+	margin-top:25px;
+}
+
+dark-sky-icon.weather-icon {
+	font-size:80px;
+}
+
+.db-weather-date {
+	font-size:30px;
+	color:#FFF;
+	font-family: 'Proxy-Regular';
+}
+
+md-grid-tile.db {
+	background-color:#FFF;
+	color:#FFF;
+}
+
+md-grid-tile.db-user {
+	background-color:#9dbc3b;
+}
+
+.user-display-name {
+	font-size:28px;
+	font-family: 'Proxy-Regular';
+}
+
+md-grid-tile.db-new-items {
+	background-color:#89939F;
+}
+
+ng-md-icon.db-new-items-icon {
+	height:50px;
+}
+
+ng-md-icon.db-new-items-text {
+	fill:#FFF;
+	font-size:100px;
+	text-align: center;
+}
+
+.db-new-items-text {
+	font-size:30px;
+}
+
+/*i.db-icon.settings-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin:-60px 0 0 -45px;
+    -webkit-animation:spin 40s linear infinite;
+    -moz-animation:spin 40s linear infinite;
+    animation:spin 40s linear infinite;
+}*/
+
+.pulse {
+	-webkit-animation: pulse 5s infinite;
+	-moz-animation: pulse 5s infinite;
+	-o-animation: pulse 5s infinite;
+	animation: pulse 5s infinite;
+}
+
+.db-menu-title {
+	font-family: 'Proxy-Regular';
+	font-size:20px;
+}
+
+.db-menu-title span {
+	padding-bottom:4px;
+}
+
+i.search-icon, i.settings-icon, .cards-icon {
+	font-size:100px;
+	text-align: center;
+}
+
+.insert-drive-file {
+	font-size:85px;
+	text-align: center;
+}
+
+.collections-length {
+	font-family: 'Proxy-SemiBold';
+	font-size:70px;
+	text-align: center;
+}
+
+/*i.settings-icon {
+  -webkit-animation: fa-spin 45s infinite linear;
+  animation: fa-spin 45s infinite linear;
+}*/
+
+md-grid-tile.db-cards {
+	background-color:#9dbc3b;
+}
+
+md-grid-tile.db-collections {
+	background-color:#687484;
+}
+
+md-grid-tile.db-weather {
+	background-color:#343F4D;
+}
+
+md-grid-tile.db-folder {
+	background-color:#9DBC3B;
+}
+
+md-grid-tile.db-search {
+	background-color:#9dbc3b;
+}
+
+md-grid-tile.db-settings {
+	background-color:#475669;
+}
+
+.weather-info {
+	color:#FFF;
+}
+
+.weather-city {
+	font-size:20px;
+	font-family: 'Proxy-Light';
+}
+
+.weather-temperature {
+	font-size:75px;
+	font-family: 'Proxy-SemiBold';
+}
+
+.height100 {
+	height:100%;
+}
+
+.width100 {
+	width:100%;
+}
+
+.weather-summary {
+	font-size:20px;
+	font-family: 'Proxy-Light';
+}
+
+.weather-date {
+	color:#FFF;
+	font-size:20px;
+	font-family:'Proxy-Regular';
+}
+
+.daily-temps-container {
+    font-size: 20px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: -25px;
+}
+
+.daily-temps-date {
+	font-family: 'Proxy-Light';
+}
+
+.daily-temps-number .daily-max {
+	font-family: 'Proxy-SemiBold';
+}
+
+.daily-temps-number .daily-min {
+	font-family: 'Proxy-Light';
+}
+
+
+
+
+.carousel.fading .carousel-inner > .item {
+  /* Override the properties for the default sliding carousel */
+  display: block;
+  position: absolute;
+  left: 0 !important;
+
+  /* Hide slides by default */
+  opacity: 0;
+
+  /* Set transition to opactity */
+  -moz-transition: .6s slideInUp opacity;
+  -webkit-transition: .6s slideInUp opacity;
+  -o-transition: .6s slideInUp opacity;
+  transition: .6s slideInUp opacity;
+}
+
+/* Active slides are visible on transition end */
+.carousel.fading .carousel-inner > .active,
+/* Next slide is visible during transition */
+.carousel.fading .carousel-inner > .next.left {
+    opacity: 1;
+}
+.carousel.fading .carousel-inner > .next,
+.carousel.fading .carousel-inner > .active.left {
+    opacity: 0;
+}
 
 /*===================================================
 
@@ -941,5 +1201,89 @@ input.input-share-link.form-control:focus {
 
 
 
+.dynamicTile .col-sm-2.col-xs-4 {
+        padding: 5px;
+    }
+
+    .bigicon {
+        font-size: 67px;
+        color: white;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .icontext {
+        color: white;
+        font-size: 27px;
+    }
+
+    .bigicondark {
+        font-size: 67px;
+        color: black;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .icontextdark {
+        color: black;
+        font-size: 27px;
+    }
+
+    .dynamicTile .col-sm-4.col-xs-8 {
+        padding: 5px;
+    }
+
+    #tile1 {
+        background: #7C91C7;
+    }
+
+    #tile2 {
+        background: #3B579D;
+    }
+
+    #tile3 {
+        background: #153178;
+    }
+
+    #tile4 {
+        background: #EACF46;
+    }
+
+    #tile5 {
+        background: #EACF46;
+    }
+
+    #tile6 {
+        background: #FFED94;
+    }
+
+    #tile7 {
+        background: white;
+    }
+
+    #tile8 {
+        background: #03133C;
+    }
+
+    #tile9 {
+        background: #EACF46;
+    }
+
+    #tile10 {
+        background: #EACF46;
+    }
+
+    .tilecaption {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        margin: 0!important;
+        text-align: center;
+        color: white;
+        font-family: Segoe UI;
+        font-weight: lighter;
+    }
 
 

@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="common/libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="common/libs/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="common/libs/angular-material-icons/angular-material-icons.css">
+	<link rel="stylesheet" href="common/libs/weather-icons/css/weather-icons.css">
+	<link rel="stylesheet" href="common/libs/weather-icons/css/weather-icons-wind.css">
 	<link rel="stylesheet" href="common/libs/angular-material/angular-material.css">
 	<link rel="stylesheet" href="common/libs/angular-material-data-table/dist/md-data-table.css">
 	<link rel="stylesheet" href="common/libs/animate.css/animate.min.css">
@@ -22,8 +24,10 @@
 	<div ui-view class="ui-view-container"></div>
 
 	<!-- FRAMEWORK -->
-	<script src="common/libs/jquery/dist/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="common/libs/jquery-ui/jquery-ui.min.js"></script>
+  	
   	<script src="common/libs/angular/angular.js"></script>
   	<script src="app.js"></script>
 
@@ -44,12 +48,19 @@
 	<script src="common/libs/angular-ui-sortable/sortable.min.js"></script>
 	<script src="common/libs/ngstorage/ngStorage.min.js"></script>
 	<script src="common/libs/lodash/lodash.min.js"></script>
+	<script src="common/js/skycons.js"></script>
+	<script src="common/js/angular-dark-sky.js"></script>
+	<script src="common/libs/moment/moment.js"></script>
+	<script src="common/libs/angular-moment/angular-moment.js"></script>
+
   	
 	<!-- FACTORIES -->
 	<script src="common/js/data-service.js"></script>
 	<script src="common/js/angular-mfly-wrapper.js"></script>
 	<script src="common/js/icons.js"></script>
 	<script src="common/js/presentation-service.js"></script>
+	<script src="common/js/reporting.js"></script>
+	<script src="common/js/weather.js"></script>
 
 	<!-- DIRECTIVES -->
 	<script src="common/js/my-filters.js"></script>
@@ -61,6 +72,7 @@
 	<script src="components/collections/collections.js"></script>
 	<script src="components/collection-details/collection-details.js"></script>
 	<script src="components/search/search.js"></script>
+	<script src="components/dashboard/dashboard.js"></script>
 	<script src="components/presentation/presentation.js"></script>
 	<script src="common/tmpls/share-item/share-item-modal.js"></script>
 	<script src="common/tmpls/add-to-collection/add-to-collection-modal.js"></script>

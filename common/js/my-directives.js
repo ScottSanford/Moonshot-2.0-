@@ -11,7 +11,7 @@ angular.module('myDirectives', [])
 
 			scope.goToCards = function() {
 				$location.url('/cards');
-			}
+			};
 
 			scope.goToCollections = function () {
 		        $location.url('/collections');
@@ -19,6 +19,10 @@ angular.module('myDirectives', [])
 
 			scope.goToSearch = function() {
 				$location.url('/search');
+			};
+
+			scope.goToDashboard = function() {
+				$location.url('/dashboard');
 			};
 
 			scope.closeInteractive = function () {
@@ -143,4 +147,33 @@ angular.module('myDirectives', [])
         });
     };
 })
+
+.directive('skyIcon', function($location){
+	return {
+		restrict: 'E', 
+		link: function(scope, element, attrs) {
+			var canvas = document.createElement( "canvas" );
+		      canvas.height = 50;
+		      canvas.width = 50;
+		      var skycons = new Skycons({"color": "#FFF"});
+		      var iconType = attrs['iconType'];
+		      // ...or by the canvas DOM element itself.
+		      skycons.add(canvas, iconType || 'Rain');
+		    
+		      // if you're using the Forecast API, you can also supply
+		      // strings: "partly-cloudy-day" or "rain".
+		    
+		      // start animation!
+		      skycons.play();
+		      
+		      if ( element[0].nodeType === 8 ) {
+		          element.replaceWith( canvas );
+		      } else {
+		          element[0].appendChild( canvas );
+		      }
+		}
+
+	}
+})
+
 

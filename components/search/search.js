@@ -17,6 +17,7 @@ angular.module('moonshotApp')
 
     $scope.getSearch = function(_term) {
         $scope.showSpinner        = true;
+        $scope.isSearchTrue       = false;
         $scope.showSuggestedItems = false;
         $scope.showItemResults    = false;
         
