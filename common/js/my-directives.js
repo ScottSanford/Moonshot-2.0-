@@ -1,6 +1,6 @@
 angular.module('myDirectives', [])
 
-.directive('navBar', function($location){
+.directive('navBar', function($location, $mdDialog){
 	return {
 
 		restrict: 'E', 
@@ -27,6 +27,18 @@ angular.module('myDirectives', [])
 
 			scope.closeInteractive = function () {
 		        mflyCommands.close();
+		    };
+
+		    scope.openGifs = function(ev) {
+		        $mdDialog.show({
+		          controller: 'GifsCtrl',
+		          templateUrl: 'common/tmpls/gifs/gifs-modal.html',
+		          parent: angular.element(document.body),
+		          targetEvent: ev,
+		          clickOutsideToClose:true
+		        }).then(function() {
+		            
+		        });
 		    };
 		}
 
@@ -171,6 +183,16 @@ angular.module('myDirectives', [])
 		      } else {
 		          element[0].appendChild( canvas );
 		      }
+		}
+
+	}
+})
+
+.directive('sticky', function($mdSticky){
+	return {
+		restrict: 'A', 
+		link: function(scope, element, attrs) {
+			$mdSticky(scope, element);
 		}
 
 	}

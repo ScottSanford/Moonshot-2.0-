@@ -1,0 +1,67 @@
+<nav-bar></nav-bar>
+
+<section layout="row" layout-margin>
+	<h3>Settings</h3>
+</section>
+
+
+<md-tabs md-dynamic-height md-stretch-tabs="always" md-border-bottom class="md-whiteframe-2dp" layout-margin>
+  <md-tab label="Account">
+    <md-content layout-padding>
+      	
+    	<section layout="row">
+    		<md-list>
+			    <md-list-item class="md-2-line">
+			      <img src="common/img/mediafly-dragonfly.png" class="md-avatar">
+				  <div class="md-list-item-text" layout="column">
+				    <p>{{user.displayName}}</p>
+				    <p>{{user.user}}</p>
+				  </div>
+				</md-list-item>
+				<md-divider></md-divider>
+				<md-list-item class="md-2-line">
+				  <div class="md-list-item-text" layout="column">
+				    <h4>Collections</h4>
+				    <p>{{collectionsLength}} collections</p>
+				  </div>
+				</md-list-item>
+				<md-divider></md-divider>
+				<md-list-item class="md-2-line">
+				  <div class="md-list-item-text" layout="column">
+				    <h4>Groups</h4>
+				    <p ng-repeat="group in groups">{{ group.name }}</p>
+				  </div>
+				</md-list-item>
+		    </md-list>
+    	</section>
+
+
+
+    </md-content>
+  </md-tab>
+  <md-tab label="Folders">
+    <md-content layout-padding>
+      	<md-list layout="column" layout-wrap>
+		  <md-list-item flex="50" ng-repeat="f in folders | limitTo:15">
+		  	<!-- <i  class="material-icons settings-folder">folder</i> -->
+		  	<img class="md-avatar" src="{{f.thumbnailUrl}}">
+		    <div class="md-list-item-text">
+	            <h4> {{ f.name }} </h4>
+	            <div><i>{{ f.created | date: 'shortDate'}}<i></div>
+	        </div>
+		    <md-switch class="md-secondary" ng-model="setting.enabled" aria-label="folder toggle"></md-switch>
+		  	<!-- <md-divider></md-divider> -->
+		  </md-list-item>
+		</md-list>
+    </md-content>
+  </md-tab>
+  <md-tab label="About">
+    <md-content layout-padding>
+      <h3>Moonshot</h3>
+      <div>v. {{ version }}</div>
+      <span>Developed by Scott Sanford</span>
+    </md-content>
+  </md-tab>
+</md-tabs>
+
+

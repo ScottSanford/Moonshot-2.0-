@@ -1,0 +1,27 @@
+<md-dialog flex="50">
+	<md-dialog-content>
+	
+		<md-toolbar>
+	      <div class="md-toolbar-tools background-green">
+	        <h2>Motivation GIFs</h2>
+	        <span flex></span>
+	      </div>
+	    </md-toolbar>
+
+		<section layout="row" layout-align="center center" layout-padding>
+          	<img src="{{giphy.url}}">
+          	<div ng-show="noGifs">
+          		<h4>Couldn't find any Motivation GIFs</h4>
+          		<img src="{{errorGif}}">
+          	</div>
+		</section>
+
+		<md-divider></md-divider>
+
+		<section layout="row">
+			<md-button flex="50" ng-click="getNextGif()">Next GIF</md-button>
+			<md-button flex="50" ng-click="closeDialog()">I'm Motivated</md-button>
+		</section>
+
+	</md-dialog-content>
+</md-dialog>

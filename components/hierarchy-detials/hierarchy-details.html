@@ -1,0 +1,59 @@
+<nav-bar sticky></nav-bar>
+
+<section layout="row" layout-margin>
+	 
+		<h3>{{folder.name}}</h3>
+	 
+</section>
+
+<section layout="row" layout-margin>
+	<md-subheader flex>
+		<span class="selected-item-location-path hierarchy-breadcrumbs" ng-repeat="item in folder.hierarchy">
+			<u ng-click="goToFolder(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span>
+		</md-subheader>
+</section>
+
+<section layout="row">
+	<md-grid-list flex-offset="5" flex="90" md-cols="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height="4:3" md-gutter="20px">
+
+		    <md-grid-tile ng-repeat="i in items" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-click="goToItem(i)">
+				
+			       	<img src="{{ i.thumbnailUrl }}">
+
+		        
+		        	<md-grid-tile-footer class="child-figcaption-width-100">
+		        	<div layout="row" layout-align="space-between center">
+		        		
+					        <h3>{{i.name}}</h3>
+				        	<md-menu class="hierarchy-item-icon">
+				        		<i class="material-icons" ng-click="$mdOpenMenu($event)">{{i.icon}}</i>
+						        <md-menu-content width="2" ng-show="i.type !== 'folder'">
+					            	<md-menu-item>
+						              	<md-button ng-click="openCollectionModal(f, $event)">
+						                	<ng-md-icon icon="view_list"></ng-md-icon>
+						                	Add
+						                </md-button>
+					                </md-menu-item>
+					            	<md-menu-item>
+						              	<md-button ng-click="openShareModal(f, $event)">
+						                	<ng-md-icon icon="share"></ng-md-icon>
+						                	Share
+						                </md-button>
+					                </md-menu-item>
+					            	<md-menu-item>
+						              	<md-button ng-click="goToPath(f)">
+						                	<ng-md-icon icon="open_in_new"></ng-md-icon>
+						                	Open
+						                </md-button>
+					                </md-menu-item>
+					          	</md-menu-content>
+				        	</md-menu>
+
+				        
+			        </div>
+		      	</md-grid-tile-footer>
+		    </md-grid-tile>
+		</md-grid-list>
+
+		<div flex></div>
+	</section>

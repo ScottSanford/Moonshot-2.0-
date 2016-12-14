@@ -2,17 +2,7 @@
 
 angular.module('moonshotApp')
 
-.controller('ReportsCtrl', function($scope, $location, Reporting, Mfly, Weather, darkSky, $q){
-
-    // FOR: FOLDER LIST PAGE
-    // Mfly.getFolder('__root__').then(function(data){
-    //   var folders = _.filter(data, function(item){
-    //     if (item.type === 'folder') {
-    //       return item;
-    //     }
-    //   });
-    //   console.log("folders bro :: ", folders);
-    // })
+.controller('DashboardCtrl', function($scope, $timeout, $location, Mfly, Weather){
 
     function getTimeOfDay() {
       var today = new Date()
@@ -59,19 +49,37 @@ angular.module('moonshotApp')
     };
 
     // WEATHER
+    $scope.showSpinnerWeather = true;
+    $scope.showWeather = false;
+
     Weather.getCurrent().then(function(data){
-      console.log(data);
+     
       var skycons = new Skycons({color:"#FFF"});
       skycons.add('weatherIcon', data.currently.icon);
       skycons.play();
       
-      $scope.weather = data;
+      $timeout(function(){
+        $scope.showSpinnerWeather = false;
+        $scope.showWeather = true;
+        $scope.weather = data;
+      }, getRandomLoadTime(1500,3000));
 
     });
 
-    Weather.getDaily().then(function(data){;
-      $scope.dailyWeather = data.daily.data;
+    Weather.getDaily().then(function(data){
+      $scope.showSpinnerWeather = false;
+
+      $scope.dailyWeather = data.daily.data;   
     });
+
+    function getRandomLoadTime(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    // SETTINGS
+    $scope.goToSettings = function() {
+      $location.url('/settings');
+    };
 
 });
 

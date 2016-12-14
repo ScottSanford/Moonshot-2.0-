@@ -24,7 +24,7 @@ angular.module('moonshotApp')
 	        		params: params
 	        	}).success(function(data){
 		            	console.log(data);
-		                $sessionStorage.token = data.accessToken;
+		                // $sessionStorage.token = data.accessToken;
 		          })
 	        	  .error(function(err){
 	        	  		console.log("Error -->", err);
@@ -53,8 +53,8 @@ angular.module('moonshotApp')
         	})
         };
 
-        Reporting.listOfUsers = function() {
-            var url = accounts + "";
+        Reporting.user = function() {
+            
         };
 
         

@@ -14,6 +14,11 @@ angular.module("moonshotApp", [
         'angularMoment'
     ])
 
+    .constant('version', '2.0.0')
+    .run(function(version, $rootScope){
+        $rootScope = version;
+    })
+
     .config(function ($compileProvider, $stateProvider, $urlRouterProvider, darkSkyProvider) { 
 
           darkSkyProvider.setApiKey('a0eb9b7587d7bcaf6e9e06bffc6cfdfc');
@@ -29,7 +34,7 @@ angular.module("moonshotApp", [
                 .state('dashboard', {
                     url: '/dashboard', 
                     templateUrl: 'components/dashboard/dashboard.html',                    
-                    controller: 'ReportsCtrl'
+                    controller: 'DashboardCtrl'
                 })
                 .state('cards', {
                     url: '/cards',
@@ -51,6 +56,11 @@ angular.module("moonshotApp", [
                     templateUrl: 'components/hierarchy/hierarchy.html', 
                     controller: 'HierachyCtrl'
                 })
+                .state('hierarchy-details', {
+                    url: '/hierarchy/:hid', 
+                    templateUrl: 'components/hierarchy-detials/hierarchy-details.html', 
+                    controller: 'HierachyDetailsCtrl'
+                })
                 .state('search', {
                     url: '/search', 
                     templateUrl: 'components/search/search.html', 
@@ -60,6 +70,11 @@ angular.module("moonshotApp", [
                     url: '/presentation/{itemId}?collection&page&index', 
                     templateUrl: 'components/presentation/presentation.html',                    
                     controller: 'PresentationCtrl'
+                })
+                .state('settings', {
+                    url: '/settings', 
+                    templateUrl: 'components/settings/settings.html',                    
+                    controller: 'SettingsCtrl'
                 })
 
     });

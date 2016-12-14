@@ -1,28 +1,20 @@
-<nav-bar></nav-bar>
+<nav-bar sticky></nav-bar>
 
 <section layout="row" layout-padding>
-	<md-grid-list class= flex md-cols="8" md-gutter="1.5em" md-row-height="4:3">
+	<md-grid-list class= flex md-cols="8" md-cols-sm="6" md-gutter="1.5em" md-row-height="4:3">
 		<!-- START: FIRST ROW -->
-	  	<md-grid-tile md-colspan="3" md-rowspan="2" class="db db-user md-whiteframe-4dp">
-	  		<div layout="column" layout-align="center start">
-				<div flex class="user-display-name">{{timeOfDay}},</div>
-				<div flex class="user-display-name">{{user.displayName}}</div>
-			</div>
-	  	</md-grid-tile>
-	
-	  	<md-grid-tile md-colspan="3" md-rowspan="2" class="db db-new-items md-whiteframe-4dp">
-	  		<div layout="row" layout-fill layout-align="space-between">
-	  			<div flex="35" layout="row" layout-align="center center">
-	  				<i flex class="material-icons db-icon insert-drive-file">insert_drive_file</i>
-	  			</div>
-				
-				<div flex layout="row" class="db-new-items-text" layout-align="center center">
-					{{ newItems }} new items
-				</div>
-			</div>
-	  	</md-grid-tile>
+	  	<md-grid-tile md-colspan="2" md-rowspan="2" md-colspan-sm="2" md-rowspan-sm="2" class="db db-user md-whiteframe-4dp">
 
-	  	<md-grid-tile md-colspan="2" md-rowspan="2" class="db db-cards md-whiteframe-4dp" ng-click="goToCards()">
+      
+    	  		<div layout="column" layout-align="center start">
+    				  <div flex class="user-display-time">{{timeOfDay}},</div>
+    				  <div flex class="user-display-name">{{user.displayName || 'Flyer'}}</div>
+    			  </div>
+
+
+	  	</md-grid-tile>
+	  	
+      <md-grid-tile md-colspan="3" md-rowspan="2" md-colspan-sm="2" md-rowspan-sm="2" class="db db-cards md-whiteframe-4dp" ng-click="goToCards()">
 	  		<div layout="column" layout-fill layout-align="space-between">
                 
                 <div flex="90" layout="row" layout-align="center center">
@@ -35,10 +27,28 @@
            
             </div>
 	  	
-		</md-grid-tile>
+		  </md-grid-tile>
+
+      <md-grid-tile md-colspan="3" md-rowspan="2" md-colspan-sm="3" md-rowspan-sm="2" class="db db-folder md-whiteframe-4dp" ng-click="goToHierarchy()">
+
+      <div layout="column" layout-fill layout-align="space-between">
+                
+                <div flex="90" layout="row" layout-align="center center">
+                    <i flex class="material-icons db-icon search-icon">folder</i>
+                </div>
+       
+                <div layout="row" layout-align="start end" class="db-menu-title">
+                    <span layout-padding>Folders</span>
+                </div>
+           
+            </div>
+         
+    </md-grid-tile>
+  
+
 
 		<!-- START: SECOND ROW -->
-	  <md-grid-tile md-colspan="2" md-rowspan="3" class="db db-collections md-whiteframe-4dp" ng-click="goToCollections()">
+	  <md-grid-tile md-colspan="2" md-rowspan="3" md-colspan-sm="3" md-rowspan-sm="2" class="db db-collections md-whiteframe-4dp" ng-click="goToCollections()">
 	  		
 			<div layout="column" layout-fill layout-align="space-between">
                 
@@ -51,34 +61,56 @@
                    	<span layout-padding>Collections</span>
                 </div>
            
-            </div>
+      </div>
 
 	  </md-grid-tile>
-	   <md-grid-tile md-colspan="2" md-rowspan="3" class="db db-folder md-whiteframe-4dp" ng-click="goToHierarchy()">
 
-			<div layout="column" layout-fill layout-align="space-between">
+
+    <md-grid-tile md-colspan="2" md-rowspan="3" md-colspan-sm="2" md-rowspan-sm="2" class="db db-new-items md-whiteframe-4dp">
+
+        <div layout="column" layout-fill layout-align="space-between">
                 
-                <div flex="90" layout="row" layout-align="center center">
-                    <i flex class="material-icons db-icon search-icon">folder</i>
-                </div>
-       
-                <div layout="row" layout-align="start end" class="db-menu-title">
-                   	<span layout-padding>Folders</span>
-                </div>
-           
+            <div flex="90" layout="row" layout-align="center center" class="new-items-length">
+                {{newItems}}
             </div>
-         
-	  </md-grid-tile>
+   
+            <div layout="row" layout-align="start end" class="db-menu-title">
+                <span layout-padding>New Items</span>
+            </div>
+           
+        </div>
+
+        <!-- <div layout="row" layout-fill layout-align="space-between">
+          <div flex="35" layout="row" layout-align="center center">
+            <i flex class="material-icons db-icon insert-drive-file">insert_drive_file</i>
+          </div>
+        
+        <div flex layout="row" class="db-new-items-text" layout-align="center center">
+          {{ newItems }} new items
+        </div>
+      </div> -->
+      </md-grid-tile>
+
+
+	   
 	  <md-grid-tile md-colspan="4" md-rowspan="5" class="db db-weather md-whiteframe-4dp">
 
-         <div layout="column" layout-fill layout-align="space-between">
+        <!-- START: SPINNER -->
+        <div class="box" layout="column" ng-show="showSpinnerWeather" layout-fill>
+          <md-progress-linear flex="50" md-mode="indeterminate"></md-progress-linear>
+          <div class="init-weather" layout="row" layout-align="center">
+            <div>Finding your weather...</div>
+          </div>
+        </div>
+
+        <div layout="column" layout-fill layout-align="space-between" ng-show="showWeather">
                 <div layout="row" 
                      layout-padding 
                      layout-wrap
                      layout-fill
                      layout-align="space-between">
                   	<div flex="50" class="icon">
-						<canvas id="weatherIcon"></canvas>
+						          <canvas id="weatherIcon"></canvas>
                   	</div>
                   	<div flex="50" class="text">
                     	<div layout="row" layout-align="end" layout-padding layout-margin>
@@ -108,8 +140,8 @@
                        </div>
                     </div>
              
-                </div>
             </div>
+        </div>
 			
 	  </md-grid-tile>
 	  <md-grid-tile md-colspan="2" md-rowspan="2" class="db db-search md-whiteframe-4dp" ng-click="goToSearch()">
@@ -125,7 +157,7 @@
            
             </div>
 	  </md-grid-tile>
-	  <md-grid-tile md-colspan="2" md-rowspan="2" class="db db-settings md-whiteframe-4dp">
+	  <md-grid-tile md-colspan="2" md-rowspan="2" class="db db-settings md-whiteframe-4dp" ng-click="goToSettings()">
 			
 			<div layout="column" layout-fill layout-align="space-between">
                 
