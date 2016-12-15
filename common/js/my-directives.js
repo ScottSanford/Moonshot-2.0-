@@ -167,7 +167,7 @@ angular.module('myDirectives', [])
 			var canvas = document.createElement( "canvas" );
 		      canvas.height = 50;
 		      canvas.width = 50;
-		      var skycons = new Skycons({"color": "#FFF"});
+		      var skycons = new Skycons({"color": "#999"});
 		      var iconType = attrs['iconType'];
 		      // ...or by the canvas DOM element itself.
 		      skycons.add(canvas, iconType || 'Rain');

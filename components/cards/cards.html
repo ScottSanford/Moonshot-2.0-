@@ -1,19 +1,20 @@
 <nav-bar></nav-bar>
 
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
+<md-sidenav class="md-sidenav-left sort-slides-list" md-component-id="left" md-disable-backdrop md-whiteframe="4">
 
   	<md-toolbar >
     	<h1 class="md-toolbar-tools background-green">Sort Slides</h1>
   	</md-toolbar>
 
     <md-content layout-margin>
-        <md-list flex>
-	        <md-list-item class="md-3-line" ng-repeat="item in sortList">
-	          <!-- <img src="{{item.thumbnailUrl}}" class="md-avatar"> -->
-	          <div class="md-list-item-text" layout="column">
+        <md-list flex ui-sortable="sortList">
+	        <md-list-item class="md-2-line myHandle" ng-repeat="item in sortList">
+	          <img src="{{item.thumbnailUrl}}" class="md-avatar">
+	          <div class="md-list-item-text">
 	            <h3>{{ item.name }}</h3>
+	            <p>{{ item.type }}</p>
 	          </div>
-	          <ng-md-icon icon="menu"></ng-md-icon>
+	          <i class="material-icons sort-menu-icon">drag_handle</i>
 	        </md-list-item>
         </md-list>
     </md-content>
@@ -69,7 +70,7 @@
 		                <div class="row card-title-back">
 							
 							<div class="col-xs-2 card-title-back-left">
-								<span class="fa fa-arrow-circle-o-left goto-front-arrow" ng-click="isFlipped=!isFlipped"></span>
+								<i class="material-icons goto-front-arrow" ng-click="isFlipped=!isFlipped">arrow_back</i>
 							</div>
 							
 							<div class="col-xs-8 card-title-back-center">
@@ -83,18 +84,18 @@
 		                </div>
 
 		                <div class="folder-card-item-container">
-		                	<div class="row folder-card-item" ng-repeat="(k, item) in MoonshotData.cards[key].itemsObj track by k">
+		                	<div class="row folder-card-item" 
+		                		 ng-repeat="(k, item) in MoonshotData.cards[key].itemsObj track by k" ng-click="item.isItemSelected = !item.isItemSelected; MoonshotData.updateCount(key, item); MoonshotData.pushToPresentation(item)">
 		                		<div class="col-xs-2">
-		                			<span class="fa {{item.icon}} card-item-icon"></span>
+		                			<i class="material-icons">{{ item.icon }}</i>
 		                		</div>
 		                		<div class="col-xs-8">
-		                			<div class="card-item-name text-left" ng-click="viewCardItem(item.id)">{{item.name}}</div>
+		                			<div class="card-item-name text-left">{{item.name}}</div>
 		                		</div>
 
 		                		<div class="col-xs-2">
 									<span class="fa fa-circle" 
-										  ng-class="item.isItemSelected ? 'fa fa-check-circle check-circle' : 'fa fa-circle'"
-										  ng-click="item.isItemSelected = !item.isItemSelected; MoonshotData.updateCount(key, item); MoonshotData.pushToPresentation(item)"></span>
+										  ng-class="item.isItemSelected ? 'fa fa-check-circle check-circle' : 'fa fa-circle'"></span>
 		                		</div>
 		                	</div>
 		                </div>

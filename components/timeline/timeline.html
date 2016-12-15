@@ -1,0 +1,132 @@
+<nav-bar sticky></nav-bar>
+
+<!-- Timeline -->
+<main layout="row" layout-padding>
+	<!-- Main Column -->
+  	<section flex="65" layout="column">
+
+		<!-- START: CARDS -->
+  		<div flex layout-margin>
+  			<span class="timeline-card-title">Cards</span>
+  		 	<md-card>
+		        <md-card-title>
+		          <md-card-title-text>
+		            <span class="md-headline">Create a Presentation</span>
+		          </md-card-title-text>
+		        </md-card-title>
+		        <md-card-actions layout="column" layout-align="start">
+		          <md-button>Create</md-button>
+		        </md-card-actions>
+		    </md-card>
+  		</div>
+
+		<!-- START: FOLDERS -->
+		<div flex layout-margin> 
+			<span class="timeline-card-title">Folders</span>
+  		 	<md-card>
+		        <md-card-title>
+		          <md-card-title-text>
+		            <span class="md-headline">3 to 4 folder list views will go here</span>
+		          </md-card-title-text>
+		        </md-card-title>
+		        <md-card-actions layout="column" layout-align="start">
+		          <md-button>Create</md-button>
+		        </md-card-actions>
+		    </md-card>
+  		</div>
+
+		<!-- START: RECOMMENDED CONTENT -->
+		<div flex layout-margin> 
+			<span class="timeline-card-title">Recommended for You</span>
+  		 	<md-card>
+		        <md-card-title>
+		          <md-card-title-text>
+		            <span class="md-headline">Get Recently Viewed Content here</span>
+		          </md-card-title-text>
+		        </md-card-title>
+		        <md-card-actions layout="column" layout-align="start">
+		          <md-button>Create</md-button>
+		        </md-card-actions>
+		    </md-card>
+  		</div>
+  	</section>
+
+
+	<!-- RIGHT SIDE -->
+  	<section flex="35">
+
+  		<!-- START: USER INFO -->
+		<div flex layout-margin>
+  			<span class="timeline-card-title">{{timeOfDay}}</span>
+			<md-card>
+		        <md-card-title>
+		          <md-card-title-media>
+		            <div class="md-media-sm card-media"><img class="timeline-user-img" src="common/img/mediafly-dragonfly.png"></div>
+		          </md-card-title-media>
+		          <md-card-title-text>
+		            <span class="md-headline">{{user.displayName}}</span>
+		            <span class="md-subhead">{{user.user}}</span>
+		          </md-card-title-text>
+		        </md-card-title>
+		        <md-divider class="timeline-user-divider"></md-divider>
+		        <md-card-content class="timeline-user-collections-container">
+		        	<h2 class="timeline-user-collections-length">{{collectionsLength}}</h2>
+   					<p class="timeline-user-collections">Collections</p>
+		        </md-card-content>
+		    </md-card>
+  		</div>
+
+		<div flex layout-margin> 
+			<span class="timeline-card-title">Chicago, IL</span>
+
+  		 	<md-card>
+		    	<md-card-content class="timeline-weather-card">
+		    		<!-- START: SPINNER -->
+			        <div class="box" layout="column" ng-show="showSpinnerWeather" layout-fill>
+			          <md-progress-circular flex="50" md-mode="indeterminate"></md-progress-circular>
+			        </div>
+
+	        		
+	                <div layout="row" ng-show="showWeather">
+
+	                  	<div flex="50" layout="column" class="timeline-weather-currently-icon">
+							<canvas layout-fill flex id="weatherIcon"></canvas>
+			            </div>
+
+			            <div flex="50">
+		                	<div layout="row" layout-align="end center">
+								<div flex class="weather-info">
+									<div class="weather-city">{{ weather.timezone }}</div>
+									<div class="weather-temperature">{{ weather.currently.temperature | number:0}}&deg;</div>
+									<div class="weather-summary">{{ weather.currently.summary }}</div>
+									<div class="weather-summary">Feels like {{ weather.currently.apparentTemperature | number:0 }}&deg;</div>
+								</div>
+		                	</div>
+			            </div>
+
+			        </div>
+
+                  	<!-- div flex layout-padding>
+                    	<div layout="row" 
+                             layout-align="center center">
+                              <div class="daily-temps-container" ng-repeat="d in dailyWeather | limitTo:3" layout-padding>
+                              	<div class="daily-temps-date">
+                              		{{d.time * 1000 | amDateFormat: 'M/D ddd'}}
+                              	</div>
+                              	<div class="daily-temps-icon">
+                              		<sky-icon icon-type="{{d.icon}}"></sky-icon>
+                              	</div>
+                              	<div class="daily-temps-number">
+                              		<span class="daily-max">{{d.temperatureMax | number:0}}&deg;</span>
+                              		<span class="daily-min">{{d.temperatureMin | number:0}}&deg;</span>
+                              	</div>
+                              </div>
+                       </div>
+                    </div> -->
+				             
+					</div>
+		    	</md-card-content>
+		    </md-card>
+  		</div>
+  	</section>
+</main>

@@ -19,11 +19,11 @@ angular.module('moonshotApp')
     $scope.getFolderItems = function(_folderId) {
 
         Mfly.getFolder(_folderId).then(function(folderItems){   
-        console.log(folderItems); 
+    
+            var mIcons = ItemIcons.material();
             
             folderItems.forEach(function(_item){
-                
-                ItemIcons.forEach(function(icon){
+                mIcons.forEach(function(icon){
                     if (_item.type == icon.type) {
                         _item['icon'] = icon.icon;
                     }
@@ -50,11 +50,15 @@ angular.module('moonshotApp')
 
     };
 
-    $scope.viewCardItem = function(_itemId) {
-        // open in modal
-        Mfly.openItem(_itemId);
-    }
+    // Sort
+    $scope.sortableOptions = {
+        handle: '.myHandle',
+        stop: function(event, ui) {
+            var itemId   = ui.item.scope().item.id;
+            var newIndex = ui.item.sortable.dropindex;
 
+        }
+    };
 
 
 });

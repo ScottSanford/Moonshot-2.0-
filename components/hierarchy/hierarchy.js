@@ -16,8 +16,8 @@ angular.module('moonshotApp')
                 });
         });
 
-        console.log(hierarchy);
         $scope.folders = hierarchy;
+        
     });
 
     $scope.goToPath = function(item) {

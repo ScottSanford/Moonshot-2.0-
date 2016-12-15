@@ -4,6 +4,7 @@
 
 ====================================================*/
 html, body {
+	/*background-color: #F6F6F6;*/
 	background-color: #F6F6F6;
 	height:100%;
 }
@@ -107,6 +108,68 @@ a:hover, a:active {
 	color:#9fbe3c;
 }
 
+.rocket-icon {
+	width:24px;
+	height:24px;
+}
+
+/*===================================================
+
+				Timeline Styles
+
+====================================================*/
+.timeline-card-title {
+	text-transform: uppercase;
+	color:#999;
+	font-size:16px;
+	font-family: 'Proxy-SemiBold';
+}
+
+.timeline-user-img {
+	width:70%;
+	margin-top:6px;
+}
+
+.timeline-user-divider {
+	border-top-width:3px;
+}
+
+.timeline-user-collections-container {
+	padding-top:5px;
+}
+
+.timeline-user-collections-length {
+	text-align: center;
+	font-family: 'Proxy-Regular';
+}
+
+.timeline-user-collections {
+	text-align:center;
+	font-family:'Proxy-Light';
+	font-size:24px;
+}
+
+md-card-content.timeline-weather-card {
+	padding:16px 0;
+}
+
+.timeline-weather-currently-icon canvas#weatherIcon {
+	/*border:1px solid red;*/
+	width:100%;
+	height:100%;
+}
+
+.weather-info {
+	color:#999;
+}
+
+.weather-city {
+	font-family: 'Proxy-Light';
+}
+
+.weather-temperature {
+	font-family: 'Proxy-SemiBold';
+}
 /*===================================================
 
 				Cards Styles
@@ -165,6 +228,15 @@ a:hover, a:active {
 	margin:40px 20px 0 0;
 }
 
+.sort-slides-list {
+	width:400px;
+}
+
+.sort-menu-icon {
+	margin-top:15px;
+	margin-left:10px;
+}
+
 /*=============================
 
 		   Card Flip
@@ -215,6 +287,7 @@ a:hover, a:active {
 	margin:15px 0 0 0;
 	padding-bottom:15px;
 	border-bottom: 1px solid #e3e4e5;
+	font-size:20px;
 }
 
 .card-img img {
@@ -231,7 +304,7 @@ a:hover, a:active {
 .card-title-back-center {
 	font-family: 'Proxy-Light';
 	margin-top:2px;
-	/*font-size:18px;*/
+	font-size:20px;
 }
 
 .card-title-back-right {
@@ -241,17 +314,9 @@ a:hover, a:active {
 }
 
 .circle-counter {
-	display: block;
-	height:20px;
-	width:20px;
-	line-height: 20px;
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	background-color:#475669;
-	color:#fff;
-	position: relative;
-	left:-5px;
+	color:#7C7C7C;
+	font-family: 'Proxy-SemiBold';
+	font-size:16px;
 }
 
 .folder-card-item-container {
@@ -262,7 +327,7 @@ a:hover, a:active {
 
 .folder-card-item {
 	border-bottom:1px solid #e3e4e5;
-	padding:5px 5px 10px 5px;
+	padding:15px 5px 15px 5px;
 	margin:10px 0;
 	color: #7c7c7c;
 }
@@ -270,7 +335,7 @@ a:hover, a:active {
 .card-item-name {
 	margin-top:2px;
 	font-family: 'Proxy-Regular';
-	font-size:14px;
+	font-size:16px;
 	text-decoration: underline;
 	white-space: nowrap;
   	overflow: hidden;
@@ -352,7 +417,7 @@ md-grid-tile md-button {
 }
 
 md-grid-list md-grid-tile md-grid-tile-footer {
-	background:rgba(0,0,0,0.6);
+	background:rgba(0,0,0,0.75);
 }
 
 ng-md-icon .suggested-icon {
@@ -851,13 +916,6 @@ i.db-icon {
 	display: none;
 }
 
-
-
-canvas#weatherIcon {
-	margin-left: -30px;
-	margin-top:25px;
-}
-
 dark-sky-icon.weather-icon {
 	font-size:80px;
 }
@@ -969,11 +1027,6 @@ md-grid-tile.db-weather {
 	background-color:#475669;
 }
 
-.init-weather {
-	font-family: 'Proxy-Light';
-	font-size:24px;
-}
-
 md-progress-linear .md-container {
 	height:7px;
 }
@@ -992,20 +1045,6 @@ md-grid-tile.db-search {
 
 md-grid-tile.db-settings {
 	background-color:#89939F;
-}
-
-.weather-info {
-	color:#FFF;
-}
-
-.weather-city {
-	font-size:20px;
-	font-family: 'Proxy-Light';
-}
-
-.weather-temperature {
-	font-size:75px;
-	font-family: 'Proxy-SemiBold';
 }
 
 .height100 {

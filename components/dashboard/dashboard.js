@@ -1,5 +1,3 @@
-
-
 angular.module('moonshotApp')
 
 .controller('DashboardCtrl', function($scope, $timeout, $location, Mfly, Weather){

@@ -14,7 +14,7 @@
 		        <md-grid-tile-footer class="child-figcaption-width-100">
 		        	<div layout="row" layout-align="space-between center">
 		        		
-					        <h3>{{f.name}}</h3>
+					        <h3 ng-click="$mdOpenMenu($event)">{{f.name}}</h3>
 				        	<md-menu class="hierarchy-item-icon">
 				        		<i class="material-icons" ng-click="$mdOpenMenu($event)">{{f.icon}}</i>
 						        <md-menu-content width="2" ng-show="f.type !== 'folder'">
