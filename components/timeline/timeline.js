@@ -1,8 +1,87 @@
 angular.module('moonshotApp')
 
-.controller('TimelineCtrl', function($scope, $location, $timeout, Mfly, Weather){
+.controller('TimelineCtrl', function($scope, $location, $timeout, Mfly, ItemIcons, Weather, $mdDialog){
 
     // LEFT
+
+    // CARDS
+    $scope.goToCards = function() {
+        $location.url('/cards');
+    };
+
+    // FOLDERS
+    Mfly.getFolder('__root__').then(function(hierarchy){
+        var onlyFolders = _.filter(hierarchy, function(obj){
+          return obj.type === 'folder';
+        });
+
+        var mIcons = ItemIcons.material();
+            
+        onlyFolders.forEach(function(_item){
+            mIcons.forEach(function(icon){
+                if (_item.type == icon.type) {
+                    _item['icon'] = icon.icon;
+                }
+            });
+        });
+
+        $scope.folders = onlyFolders;
+        
+    });
+
+    $scope.goToFolderDetails = function(id) {
+      $location.url('/hierarchy/' + id);
+    };
+
+    // RECOMMENDED
+    mflyCommands.getLastViewedContent()
+      .then(function(data){
+        var mIcons = ItemIcons.material();
+            
+        data.forEach(function(_item){
+            mIcons.forEach(function(icon){
+                if (_item.type == icon.type) {
+                    _item['icon'] = icon.icon;
+                }
+            });
+        });
+        console.log(data);
+
+        $scope.suggestions = data;
+        $scope.$apply();
+      });
+
+    $scope.openShareModal = function(selectedItem, ev) {
+        $mdDialog.show({
+          controller: 'ShareItemCtrl',
+          templateUrl: 'common/tmpls/share-item/share-item-modal.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true, 
+          locals: {
+            item: selectedItem
+          }
+        }).then(function() {
+            
+        });
+    };
+
+    $scope.openCollectionModal = function(selectedItem, ev) {
+        console.log(selectedItem);
+        $mdDialog.show({
+          controller: 'AddToCollectionCtrl',
+          templateUrl: 'common/tmpls/add-to-collection/add-to-collection-modal.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true, 
+          locals: {
+            item: selectedItem
+          }
+        }).then(function() {
+            
+        });
+       
+    };
 
     // RIGHT
     function getTimeOfDay() {
@@ -22,7 +101,6 @@ angular.module('moonshotApp')
 
     // USER
     Mfly.getInteractiveInfo().then(function(data){
-      console.log("user data brah", data);
       $scope.user = data;
     });
 

@@ -125,13 +125,74 @@ a:hover, a:active {
 	font-family: 'Proxy-SemiBold';
 }
 
+.timeline-card-icon {
+	font-size:80px;
+	color:#9fbe3c;
+}
+
+md-list.timeline-folder-list {
+	padding:0;
+	background-color:#FFF;
+}
+
+.timeline-folder-card-arrow {
+	color:#999;
+}
+
+md-list-item.timeline-folder-list-item {
+	border-top: 1px solid rgba(0,0,0,0.12);
+}
+
+md-card .timeline-folder-thumbnailUrl {
+	height:150px;
+}
+
+.timeline-folder-name {
+	font-family: 'Proxy-Regular';
+	font-size:18px;
+	text-align: center;
+	color:#535353;
+}
+
+md-card md-card-header.timeline-recommended-header-container {
+	padding:16px 16px 0 16px;
+}
+
+.timeline-recommended-title-container {
+	margin-top: 5px;
+}
+
+.timeline-recommended-icon {
+	color:#9fbe3c;
+	margin:0;
+}
+
+.timeline-item-name {
+	font-size:18px;
+	font-family: 'Proxy-Regular';
+	line-height: 24px;
+}
+
+md-card md-card-title.timeline-recommended-card-title {
+	padding:10px 10px 16px;
+}
+
+md-card md-card-title md-card-title-text:only-child .md-subhead{
+	padding-top:0px;
+}
+
+.timeline-recommended-button {
+	color:#AD514C;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+/*Right*/
+
 .timeline-user-img {
 	width:70%;
 	margin-top:6px;
-}
-
-.timeline-user-divider {
-	border-top-width:3px;
 }
 
 .timeline-user-collections-container {
@@ -141,10 +202,12 @@ a:hover, a:active {
 .timeline-user-collections-length {
 	text-align: center;
 	font-family: 'Proxy-Regular';
+	color:#535353;
 }
 
 .timeline-user-collections {
 	text-align:center;
+	color:#535353;
 	font-family:'Proxy-Light';
 	font-size:24px;
 }
@@ -160,16 +223,19 @@ md-card-content.timeline-weather-card {
 }
 
 .weather-info {
-	color:#999;
-}
-
-.weather-city {
-	font-family: 'Proxy-Light';
+	color:#535353;
 }
 
 .weather-temperature {
 	font-family: 'Proxy-SemiBold';
+	font-size:30px;
 }
+
+.weather-summary {
+	font-size:14px;
+	font-family: 'Proxy-Light';
+}
+
 /*===================================================
 
 				Cards Styles
@@ -1053,11 +1119,6 @@ md-grid-tile.db-settings {
 
 .width100 {
 	width:100%;
-}
-
-.weather-summary {
-	font-size:20px;
-	font-family: 'Proxy-Light';
 }
 
 .weather-date {

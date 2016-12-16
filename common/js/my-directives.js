@@ -9,26 +9,14 @@ angular.module('myDirectives', [])
 		templateUrl: 'common/tmpls/navbar/navbar.html', 
 		link: function(scope, element, attrs) {
 
-			scope.goToCards = function() {
-				$location.url('/cards');
+			scope.goToTimeline = function() {
+				$location.url('/timeline');
 			};
-
-			scope.goToCollections = function () {
-		        $location.url('/collections');
-		    };
 
 			scope.goToSearch = function() {
 				$location.url('/search');
 			};
-
-			scope.goToDashboard = function() {
-				$location.url('/dashboard');
-			};
-
-			scope.closeInteractive = function () {
-		        mflyCommands.close();
-		    };
-
+			
 		    scope.openGifs = function(ev) {
 		        $mdDialog.show({
 		          controller: 'GifsCtrl',
@@ -40,6 +28,21 @@ angular.module('myDirectives', [])
 		            
 		        });
 		    };
+
+			scope.closeInteractive = function () {
+		        mflyCommands.close();
+		    };
+		    
+			// scope.goToCards = function() {
+			// 	$location.url('/cards');
+			// };
+
+			// scope.goToCollections = function () {
+		 //        $location.url('/collections');
+		 //    };
+
+
+
 		}
 
 	}

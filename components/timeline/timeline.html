@@ -3,63 +3,118 @@
 <!-- Timeline -->
 <main layout="row" layout-padding>
 	<!-- Main Column -->
-  	<section flex="65" layout="column">
+  	<section flex="70" layout="column">
 
 		<!-- START: CARDS -->
-  		<div flex layout-margin>
+  		<div layout-margin>
   			<span class="timeline-card-title">Cards</span>
-  		 	<md-card>
+  		 	<md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
 		        <md-card-title>
 		          <md-card-title-text>
-		            <span class="md-headline">Create a Presentation</span>
+		            <span class="md-headline">Create Dynamic Presentations</span>
+		            <span class="md-subhead">now!!!</span>
 		          </md-card-title-text>
+		          <md-card-title-media>
+		            <div class="md-media-sm card-media">
+		            	<i flex class="fa fa-list-alt timeline-card-icon"></i>
+		            </div>
+		          </md-card-title-media>
 		        </md-card-title>
-		        <md-card-actions layout="column" layout-align="start">
-		          <md-button>Create</md-button>
+		        <md-card-actions layout="row" layout-align="end center">
+		          <md-button ng-click="goToCards()">Create</md-button>
 		        </md-card-actions>
 		    </md-card>
   		</div>
 
 		<!-- START: FOLDERS -->
-		<div flex layout-margin> 
-			<span class="timeline-card-title">Folders</span>
-  		 	<md-card>
-		        <md-card-title>
-		          <md-card-title-text>
-		            <span class="md-headline">3 to 4 folder list views will go here</span>
-		          </md-card-title-text>
-		        </md-card-title>
-		        <md-card-actions layout="column" layout-align="start">
-		          <md-button>Create</md-button>
-		        </md-card-actions>
-		    </md-card>
+		<div layout-margin> 
+
+			<div layout="row">
+				<span flex="95" class="timeline-card-title">Folders</span>
+				<i flex class="material-icons timeline-folder-card-arrow" ui-sref="hierarchy">arrow_forward</i>
+			</div>
+
+			<div layout="row">
+				 <md-card flex="25" ng-repeat="folder in folders | limitTo:4">
+			        <img src="{{folder.thumbnailUrl}}" class="md-card-image timeline-folder-thumbnailUrl">
+			        <md-card-title>
+			          <md-card-title-text class="timeline-folder-name-container">
+			            <span class="md-headline timeline-folder-name">{{folder.name}}</span>
+			          </md-card-title-text>
+			        </md-card-title>
+			        <md-card-actions layout="column" layout-align="start">
+			          <md-button class="timeline-recommended-button" ng-click="goToFolderDetails(folder.id)">Open Folder</md-button>
+			        </md-card-actions>
+			    </md-card>
+			</div>
+
   		</div>
 
 		<!-- START: RECOMMENDED CONTENT -->
-		<div flex layout-margin> 
+		<div layout-margin> 
 			<span class="timeline-card-title">Recommended for You</span>
-  		 	<md-card>
-		        <md-card-title>
-		          <md-card-title-text>
-		            <span class="md-headline">Get Recently Viewed Content here</span>
-		          </md-card-title-text>
+  		 	<div layout="row">
+  		 	<md-card flex="25" layout-wrap ng-repeat="item in suggestions | limitTo:4">
+		        <img ng-src="{{item.thumbnailUrl}}" class="md-card-image">
+		        	<div layout="row" class="timeline-recommended-title-container">
+		            	<span flex-offset="5" flex="90" class="md-headline timeline-item-name">{{item.name}}</span>
+			            <md-button class="md-icon-button" aria-label="More Vertical">
+			              <md-menu class="hierarchy-item-icon">
+				        		<i class="material-icons" ng-click="$mdOpenMenu($event)">more_vert</i>
+						        <md-menu-content width="2">
+					            	<md-menu-item>
+						              	<md-button ng-click="openCollectionModal(item, $event)">
+						                	<ng-md-icon icon="view_list"></ng-md-icon>
+						                	Add
+						                </md-button>
+					                </md-menu-item>
+					            	<md-menu-item>
+						              	<md-button ng-click="openShareModal(item, $event)">
+						                	<ng-md-icon icon="share"></ng-md-icon>
+						                	Share
+						                </md-button>
+					                </md-menu-item>
+					          	</md-menu-content>
+				        	</md-menu>
+			            </md-button>
+			        </div>
+		        <md-card-title class="timeline-recommended-card-title">
+		        	<md-card-title-text>
+		            	<div class="md-subhead timeline-subhead-item">Created on {{item.created | date: 'shortDate'}}</div>
+		            	<div class="md-subhead timeline-subhead-item uppercase">{{item.type}}</div>
+		            </md-card-title-text>
+		            
 		        </md-card-title>
-		        <md-card-actions layout="column" layout-align="start">
-		          <md-button>Create</md-button>
+		        <md-card-actions layout="row" layout-align="start center">
+		          <md-button class="timeline-recommended-button">View Item</md-button>
 		        </md-card-actions>
-		    </md-card>
+		      </md-card>
+				<!--  <md-card flex="33" ng-repeat="item in suggestions | limitTo:4">
+			        <img src="{{item.thumbnailUrl}}" class="md-card-image timeline-folder-thumbnailUrl">
+			        <md-card-actions layout="row" layout-align="end center">
+			          <md-button class="md-icon-button" aria-label="More">
+			            <i class="material-icons">more_vert</i>
+			          </md-button>
+			        </md-card-actions>
+			        <md-card-title>
+			          <md-card-title-text>
+			            <span class="md-headline timeline-recommended-name">{{item.name}}</span>
+			          </md-card-title-text>
+			        </md-card-title>
+			    </md-card> -->
+			</div>
   		</div>
   	</section>
 
 
 	<!-- RIGHT SIDE -->
-  	<section flex="35">
+  	<section flex="30">
 
   		<!-- START: USER INFO -->
 		<div flex layout-margin>
   			<span class="timeline-card-title">{{timeOfDay}}</span>
 			<md-card>
-		        <md-card-title>
+		        <md-card-title ui-sref="settings">
 		          <md-card-title-media>
 		            <div class="md-media-sm card-media"><img class="timeline-user-img" src="common/img/mediafly-dragonfly.png"></div>
 		          </md-card-title-media>
@@ -69,7 +124,7 @@
 		          </md-card-title-text>
 		        </md-card-title>
 		        <md-divider class="timeline-user-divider"></md-divider>
-		        <md-card-content class="timeline-user-collections-container">
+		        <md-card-content class="timeline-user-collections-container" ui-sref="collections">
 		        	<h2 class="timeline-user-collections-length">{{collectionsLength}}</h2>
    					<p class="timeline-user-collections">Collections</p>
 		        </md-card-content>
@@ -77,13 +132,13 @@
   		</div>
 
 		<div flex layout-margin> 
-			<span class="timeline-card-title">Chicago, IL</span>
+			<span class="timeline-card-title">{{ weather.timezone }}</span>
 
   		 	<md-card>
 		    	<md-card-content class="timeline-weather-card">
 		    		<!-- START: SPINNER -->
-			        <div class="box" layout="column" ng-show="showSpinnerWeather" layout-fill>
-			          <md-progress-circular flex="50" md-mode="indeterminate"></md-progress-circular>
+			        <div layout="column" layout-align="center center" ng-show="showSpinnerWeather">
+			          <md-progress-circular flex="50" md-diameter="40" md-mode="indeterminate"></md-progress-circular>
 			        </div>
 
 	        		
@@ -96,7 +151,6 @@
 			            <div flex="50">
 		                	<div layout="row" layout-align="end center">
 								<div flex class="weather-info">
-									<div class="weather-city">{{ weather.timezone }}</div>
 									<div class="weather-temperature">{{ weather.currently.temperature | number:0}}&deg;</div>
 									<div class="weather-summary">{{ weather.currently.summary }}</div>
 									<div class="weather-summary">Feels like {{ weather.currently.apparentTemperature | number:0 }}&deg;</div>
