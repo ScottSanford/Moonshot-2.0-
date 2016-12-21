@@ -15,6 +15,17 @@ angular.module('moonshotApp')
             return deferred.promise;
         },
 
+        filter: function(filterObject) {
+            var deferred = $q.defer();
+
+            mflyCommands.filter(filterObject)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+
         addItemToCollection: function(collectionId, itemId) {
             var deferred = $q.defer();
 
@@ -70,10 +81,55 @@ angular.module('moonshotApp')
             return deferred.promise;
         },
 
+
         getData: function(id) {
             var deferred = $q.defer();
 
             mflyCommands.getData(id)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        }, 
+
+        putSyncedValue: function(key, value) {
+            var deferred = $q.defer();
+
+            mflyCommands.putSyncedValue(key, value)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        }, 
+
+        getSyncedValue: function(key) {
+            var deferred = $q.defer();
+
+            mflyCommands.getSyncedValue(key)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        }, 
+
+        getSyncedValues: function() {
+            var deferred = $q.defer();
+
+            mflyCommands.getSyncedValues()
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        }, 
+
+        deleteSyncedKey: function(key) {
+            var deferred = $q.defer();
+
+            mflyCommands.deleteSyncedKey(key)
                 .done(function(data){
                     deferred.resolve(data);
                 });
@@ -162,6 +218,17 @@ angular.module('moonshotApp')
             var deferred = $q.defer();
 
              mflyCommands.getRecentlyCreatedContent()
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
+        },
+
+        getDownloadStatus: function() {
+            var deferred = $q.defer();
+
+             mflyCommands.getDownloadStatus()
                 .done(function(data){
                     deferred.resolve(data);
                 });

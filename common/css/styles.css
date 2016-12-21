@@ -90,6 +90,10 @@ a:hover, a:active {
 	margin-top:25px;
 }
 
+.margin-left-8 {
+	margin-left:8px;
+}
+
 .brand-centered {
   display: flex;
   justify-content: center;
@@ -118,6 +122,15 @@ a:hover, a:active {
 				Timeline Styles
 
 ====================================================*/
+md-card.timeline-cards-top-container {
+	margin:0 8px 0 0;
+}
+
+/*md-card.timeline-cards-top-container:last-of-type {
+	margin:0;
+}
+*/
+
 .timeline-card-title {
 	text-transform: uppercase;
 	color:#999;
@@ -128,6 +141,22 @@ a:hover, a:active {
 .timeline-card-icon {
 	font-size:80px;
 	color:#9fbe3c;
+}
+
+md-card .drop-zone {
+	border:2px dashed #9fbe3c;
+}
+
+md-card .drop-zone:hover {
+	background-color:#9fbe3c;
+	color:#FFF;
+	border:2px dashed #FFF;
+}
+
+.my-items-drop-zone-text {
+	font-size:30px;
+	font-style: italic;
+	font-family: 'Proxy-Regular';
 }
 
 md-list.timeline-folder-list {
@@ -143,8 +172,13 @@ md-list-item.timeline-folder-list-item {
 	border-top: 1px solid rgba(0,0,0,0.12);
 }
 
+md-card.timeline-folder-container .md-card-image {
+	/*min-height:212px; */
+	vertical-align:bottom;
+}
+
 md-card .timeline-folder-thumbnailUrl {
-	height:150px;
+	max-height:212px;
 }
 
 .timeline-folder-name {
@@ -171,6 +205,10 @@ md-card md-card-header.timeline-recommended-header-container {
 	font-size:18px;
 	font-family: 'Proxy-Regular';
 	line-height: 24px;
+}
+
+md-card.margin-left-fix {
+	margin:8px 8px 8px 0;
 }
 
 md-card md-card-title.timeline-recommended-card-title {
@@ -224,6 +262,8 @@ md-card-content.timeline-weather-card {
 
 .weather-info {
 	color:#535353;
+	margin-top:25px;
+	text-align: center;
 }
 
 .weather-temperature {
@@ -234,6 +274,28 @@ md-card-content.timeline-weather-card {
 .weather-summary {
 	font-size:14px;
 	font-family: 'Proxy-Light';
+}
+
+.daily-temps-container {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 25px;
+    margin-left: 5px;
+}
+
+.daily-temps-date, .daily-temps-number .daily-min {
+	font-family: 'Proxy-Light';
+	font-size:16px;
+}
+
+.daily-temps-number .daily-max {
+	font-family: 'Proxy-SemiBold';
+	font-size:16px;
+}
+
+.md-button.md-raised:not([disabled]).timeline-filter-button {
+	background:#9fbe3c;
+	color:#FFF;
 }
 
 /*===================================================
@@ -826,34 +888,10 @@ md-tabs .md-tab.md-active {
 			Presentation Styles
 
 ====================================================*/
-.flexbox {
-   display: flex;
-   flex-direction: column;
-   height: 100%;
-}
+.presentation-container {}
 
-.flexbox > * {
-	flex: 0 0 auto;
-}
-
-.presentation-header-container {
-	height:60px;
-	background-color:#475669;
-	color:#fff;
-}
-
-.presentation-container {
-    flex: 1 1 auto;
-    position: relative;
-}
-
-.presentation-container img, .presentation-container iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    max-width: 100%;
-    max-height: 100%;
+.slide-item {
+	width:100%;
 }
 
 .interactive-frame {
@@ -930,43 +968,6 @@ md-tabs .md-tab.md-active {
 	margin-left:15px;
 }
 
-.presentation-arrows {
-	margin-top:-5px;
-}
-
-.slide-item.ng-enter {
-    animation-name: slideFromRight;
-    -webkit-animation-name: slideFromRight;
-}
-
-.slide-item.moveToLeft.ng-enter {
-    animation-name: slideFromLeft;
-    -webkit-animation-name: slideFromLeft;
-}
-
-.slide-item.ng-leave {
-    animation-name: slideFromLeft;
-    animation-direction: reverse;
-    -webkit-animation-name: slideFromLeft;
-    -webkit-animation-direction: reverse;
-}
-
-.slide-item.moveToLeft.ng-leave {
-    animation-name: slideFromRight;
-    animation-direction: reverse;
-    -webkit-animation-name: slideFromRight;
-    -webkit-animation-direction: reverse;
-}
-
-@keyframes slideFromRight {
-    0% {left: 100%;}
-    100% {left:50%;}
-}
-
-@keyframes slideFromLeft {
-    0% {left: 0%;}
-    100% {left: 50%;}
-}
 
 /*===================================================
 
@@ -1127,25 +1128,6 @@ md-grid-tile.db-settings {
 	font-family:'Proxy-Regular';
 }
 
-.daily-temps-container {
-    font-size: 20px;
-    text-align: center;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: -25px;
-}
-
-.daily-temps-date {
-	font-family: 'Proxy-Light';
-}
-
-.daily-temps-number .daily-max {
-	font-family: 'Proxy-SemiBold';
-}
-
-.daily-temps-number .daily-min {
-	font-family: 'Proxy-Light';
-}
 
 /*===================================================
 

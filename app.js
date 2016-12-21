@@ -11,7 +11,9 @@ angular.module("moonshotApp", [
         'ngMdIcons', 
         'md.data.table', 
         'dark-sky', 
-        'angularMoment'
+        'angularMoment', 
+        'ngFileUpload', 
+        'angularFileUpload'
     ])
 
     .constant('version', '2.0.0')
@@ -25,7 +27,7 @@ angular.module("moonshotApp", [
           darkSkyProvider.setUnits('us');
           darkSkyProvider.setLanguage('en');
 
-          $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/|http:\/\/)/);
+          $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/|http:\/\/|data:image)/);
 
           // For any unmatched url, redirect to /state1
           $urlRouterProvider.otherwise("/timeline");

@@ -1,4 +1,38 @@
-<div class="presentation-header-container">
+<md-toolbar class="">
+  <div class="md-toolbar-tools background-moonshot" layout="row">
+    <md-button class="md-icon-button" aria-label="More Vertical" ng-click="goToTimeline()">
+        <ng-md-icon icon="menu"></ng-md-icon>
+      </md-button>
+      'Slide Item Name'
+    <span flex></span>
+    
+    <!-- RIGHT SIDE -->
+    <md-button class="md-icon-button" aria-label="More Vertical" ng-click="goToTimeline()">
+        <img src="common/img/rocket.png" class="rocket-icon">
+    </md-button>
+
+    <md-button class="md-icon-button" aria-label="Search" ng-click="goToSearch()">
+      <ng-md-icon icon="search"></ng-md-icon>
+    </md-button>
+
+    <md-menu md-position-mode="target-right target">
+      <md-button class="md-icon-button" aria-label="More Vertical" ng-click="$mdOpenMenu($event)">
+        <ng-md-icon icon="more_vert"></ng-md-icon>
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="closeInteractive()">
+              <div layout="row" flex>
+                <p flex>Quit Application</p>
+              </div>
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </div>
+</md-toolbar>
+
+<!-- <div class="presentation-header-container">
 	<nav class="row cards-header">
 		<div class="col-xs-4">
 			<span class="fa fa-bars fa-2x hamburger-menu-icon" ng-click="toggle()"></span>
@@ -25,4 +59,4 @@
 		    </ul>
 		</div>
 	</nav>
-</div>
+</div> -->

@@ -33,9 +33,9 @@ angular.module('myDirectives', [])
 		        mflyCommands.close();
 		    };
 		    
-			// scope.goToCards = function() {
-			// 	$location.url('/cards');
-			// };
+			scope.goToSettings = function() {
+				$location.url('/settings');
+			};
 
 			// scope.goToCollections = function () {
 		 //        $location.url('/collections');
@@ -48,7 +48,41 @@ angular.module('myDirectives', [])
 	}
 })
 
-.directive('presentationHeader', function($location, $stateParams, Mfly, $uibModal){
+// TIMELINE
+.directive('userCard', function($location){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/timeline/user-card.html'
+	}
+})
+
+.directive('weatherCard', function($location){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/timeline/weather-card.html'
+	}
+})
+
+.directive('filterCard', function($location){
+	return {
+
+		restrict: 'E', 
+		scope: {
+			card: '='
+		},
+		replace:true,
+		templateUrl: 'common/tmpls/timeline/filter-card.html'
+	}
+})
+
+
+.directive('presHeader', function($location, $stateParams, Mfly, $uibModal){
 	return {
 
 		restrict: 'E',
@@ -56,7 +90,6 @@ angular.module('myDirectives', [])
 			slide: '=', 
 			current: '='
 		},
-		replace: true, 
 		transclude: true,
 		templateUrl: 'common/tmpls/presentation/presentation-header.html', 
 		link: function(scope, element, attrs) {

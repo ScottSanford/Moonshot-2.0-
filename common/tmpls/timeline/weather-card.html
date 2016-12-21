@@ -1,0 +1,47 @@
+<div>
+<md-card>
+	<md-card-content class="timeline-weather-card">
+		<!-- START: SPINNER -->
+        <div layout="column" layout-align="center center" ng-show="showSpinnerWeather">
+          <md-progress-circular flex="50" md-diameter="40" md-mode="indeterminate"></md-progress-circular>
+        </div>
+
+		
+        <div layout="row" ng-show="showWeather">
+
+          	<div flex="50" layout="column" class="timeline-weather-currently-icon">
+				<canvas layout-fill flex id="weatherIcon"></canvas>
+            </div>
+
+            <div flex="50">
+            	<div layout="row" layout-align="end center">
+					<div flex class="weather-info">
+						<div class="weather-temperature">{{ weather.currently.temperature | number:0}}&deg;</div>
+						<div class="weather-summary">{{ weather.currently.summary }}</div>
+						<div class="weather-summary">Feels like {{ weather.currently.apparentTemperature | number:0 }}&deg;</div>
+					</div>
+            	</div>
+            </div>
+
+        </div>
+
+   
+    	<div layout="row" layout-align="center center" ng-show="showWeather">
+              <div flex class="daily-temps-container" ng-repeat="d in dailyWeather | limitTo:4" ng-if="$index > 0" layout-padding>
+              	<div class="daily-temps-date">
+              		{{d.time * 1000 | amDateFormat: 'ddd'}}
+              	</div>
+              	<div class="daily-temps-icon">
+              		<sky-icon icon-type="{{d.icon}}"></sky-icon>
+              	</div>
+              	<div class="daily-temps-number">
+              		<span class="daily-max">{{d.temperatureMax | number:0}}&deg;</span>
+              		<span class="daily-min">{{d.temperatureMin | number:0}}&deg;</span>
+              	</div>
+              </div>
+        </div>
+  
+	             
+	</md-card-content>
+</md-card>
+</div>

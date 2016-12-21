@@ -1,12 +1,21 @@
 angular.module('moonshotApp')
 
-.controller('TimelineCtrl', function($scope, $location, $timeout, Mfly, ItemIcons, Weather, $mdDialog){
+.controller('TimelineCtrl', function(
+    $scope, $location, $timeout, 
+    Mfly, Launchpad, ItemIcons, Weather, Dialog, 
+    $mdDialog){
+
+
 
     // LEFT
-
     // CARDS
     $scope.goToCards = function() {
         $location.url('/cards');
+    };
+
+    // MY ITEMS
+    $scope.upload = function (file) {
+      Dialog.box('UploadItemCtrl', 'common/tmpls/uploader/uploader-dialog.html', null, file);
     };
 
     // FOLDERS
@@ -45,42 +54,19 @@ angular.module('moonshotApp')
                 }
             });
         });
-        console.log(data);
 
         $scope.suggestions = data;
         $scope.$apply();
       });
 
     $scope.openShareModal = function(selectedItem, ev) {
-        $mdDialog.show({
-          controller: 'ShareItemCtrl',
-          templateUrl: 'common/tmpls/share-item/share-item-modal.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose:true, 
-          locals: {
-            item: selectedItem
-          }
-        }).then(function() {
-            
-        });
+      console.log(ev);
+        Dialog.box('ShareItemCtrl', 'common/tmpls/share-item/share-item-modal.html', ev, selectedItem);
     };
 
     $scope.openCollectionModal = function(selectedItem, ev) {
-        console.log(selectedItem);
-        $mdDialog.show({
-          controller: 'AddToCollectionCtrl',
-          templateUrl: 'common/tmpls/add-to-collection/add-to-collection-modal.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose:true, 
-          locals: {
-            item: selectedItem
-          }
-        }).then(function() {
-            
-        });
-       
+      console.log(ev);
+        Dialog.box('AddToCollectionCtrl', 'common/tmpls/add-to-collection/add-to-collection-modal.html', ev, selectedItem);
     };
 
     // RIGHT
@@ -136,6 +122,43 @@ angular.module('moonshotApp')
     function getRandomLoadTime(min, max) {
       return Math.random() * (max - min) + min;
     }
+
+    // CUSTOM FILTER SEARCH
+    $scope.openFilterDialog = function(ev) {
+        
+        $mdDialog.show({
+          controller: 'FilteredSearchCtrl',
+          templateUrl: 'common/tmpls/timeline/custom-filter-dialog.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true
+        }).then(function(obj) {
+          
+          $scope.showFilterSearch = true;
+
+          $scope.filterKeyword = obj.keywords;
+          $scope.filterType    = obj.type;
+
+          var filteredResults = [];
+          Mfly.filter(obj).then(function(results){
+            $scope.results = results;
+            filteredResults.push(results);
+          });
+
+          $scope.filteredResults = filteredResults;
+
+          $scope.goToFilterItem = function(item) {
+            if(item.type == 'folder') {
+              $location.url('/hierarchy/' + item.id);
+            } else {
+              mflyCommands.openItem(item.id);
+            }
+          }
+        });
+       
+    };
+
+
 
 });
 

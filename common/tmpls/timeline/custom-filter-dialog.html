@@ -1,0 +1,40 @@
+<md-dialog flex="50">
+	<md-dialog-content>
+	
+		<md-toolbar>
+	      <div class="md-toolbar-tools background-green">
+	        <h2>Filtered Search</h2>
+	        <span flex></span>
+	      </div>
+	    </md-toolbar>
+
+		<section layout="row" layout-padding>
+			<div flex="5"></div>
+			<div flex="95">
+				<label>Search by keyword and media format.</label>
+
+			    <md-input-container layout="row" flex="95" md-no-float class="md-block">
+			      <input ng-model="filterKeyword" type="text" placeholder="Keyword">
+			    </md-input-container>
+
+			    <md-input-container class="md-block" flex-gt-sm>
+	            	<label>Media Format</label>
+	            	<md-select ng-model="f.format">
+	              		<md-option ng-repeat="f in formats" value="{{f.value}}">
+	                		{{f.format}}
+	              		</md-option>
+	            	</md-select>
+	          	</md-input-container>
+
+			</div>
+		</section>
+
+		<md-divider></md-divider>
+
+		<md-dialog-actions layout="row">
+			<md-button ng-click="createFilter(filterKeyword, f.format)">Create</md-button>
+			<md-button ng-click="closeDialog()">Cancel</md-button>
+		</md-dialog-actions>
+
+	</md-dialog-content>
+</md-dialog>
