@@ -51,7 +51,9 @@ angular.module('moonshotApp')
                         });
                     };
 
-                    ItemIcons.forEach(function(icon){
+                    var mIcons = ItemIcons.material();
+
+                    mIcons.forEach(function(icon){
                         
                         if (item.type == icon.type) {
                             item['icon'] = icon.icon;

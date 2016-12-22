@@ -1,6 +1,9 @@
 angular.module('moonshotApp')
 
-.controller('UploadItemCtrl', function($scope, $q, $window, item, Mfly, Launchpad, $mdDialog, $mdToast, Upload){
+.controller('UploadItemCtrl', function(
+    $scope, $q, $window, $timeout,
+    item, Mfly, Launchpad, Accounts,
+    $mdDialog, $mdToast, Upload, $cookies){
     
     var file = item;
 
@@ -33,19 +36,98 @@ angular.module('moonshotApp')
 
     file['src'] = getInt64Bytes(file.size);
 
+    var files = [];
     fileThumbnail(file).then(function(data){
         file['imgSrc'] = data;
+        files.push(file);
+        $scope.files = files;
     });
 
-    var files = [];
-    files.push(file);
-    console.log(files);
-    $scope.files = files;
+    function getRandomLoadTime(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function initUpload() {
+        var cookie = $cookies.get('accessToken');
+        if (cookie) {
+            console.log("COOKIE :: ", cookie);
+            $scope.showPasswordInput = false;
+            $scope.isUploadingItem   = true;
+             Launchpad.getPresignedUrl(cookie, file)
+                .then(function(s3){
+
+                    // Launchpad.createItem(token, s3, file);
+                    // hide loading bar
+                    $timeout(function(){
+                        $scope.isUploadingItem = false;
+
+                        $mdDialog.cancel();
+
+                        $mdToast.show(
+                          $mdToast.simple()
+                            .textContent(`${file.name} uploaded successfully!`)
+                            .position('top right')
+                            .hideDelay(5000)
+                        );
+
+                    }, getRandomLoadTime(1500,3500));
+
+                });
+
+        } else {
+            $scope.showPasswordInput = true;
+            console.log('cookie does not exist or has expired!');
+        }
+    }
+
+    initUpload();
+    ////////////////////////////////////////////////
+
+    $scope.uploadItems = function(accountPass) {
+        $scope.accountPassword = '';
+        $scope.isPasswordWrong = false;
+
+        Accounts.getAccessToken(accountPass)
+            .then(function(token){
+         
+                if (token.statusCode === null) {
+                    
+                    $cookies.put('accessToken', token.accessToken, {'expires': token.expires});
+
+                    $scope.showPasswordInput = false;
+                    $scope.isUploadingItem = true;
+
+                    Launchpad.getPresignedUrl(token, file)
+                        .then(function(s3){
+
+                            // Launchpad.createItem(token, s3, file);
+                            // hide loading bar
+                            $timeout(function(){
+                                $scope.isUploadingItem = false;
+
+                                $mdDialog.cancel();
+
+                                $mdToast.show(
+                                  $mdToast.simple()
+                                    .textContent(`${file.name} uploaded successfully!`)
+                                    .position('top right')
+                                    .hideDelay(5000)
+                                );
+
+                            }, getRandomLoadTime(1500,3500));
+
+                        });
+
+                } else if (token.statusCode === 402) {
+                    
+                    $scope.isPasswordWrong = true;
+                    console.log('you did not provide the right password');
+
+                }
+
+        });
 
 
-    $scope.uploadFile = function(file) {
-        console.log("file upload button", file);
-        // Launchpad.createItem(file);
     };
 
 	$scope.closeDialog = function() {

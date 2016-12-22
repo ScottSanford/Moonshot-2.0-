@@ -8,12 +8,9 @@
 		<!-- START: CARDS -->
   		<div layout="row" layout-margin>
   			
-		  
-		  		<div flex="50">		
+		  		
 
-		  			<span class="timeline-card-title">Cards</span>
-
-		  		 	<md-card class="timeline-cards-top-container">
+		  		 	<md-card flex="50" class="timeline-cards-top-container">
 				        <md-card-title>
 				          <md-card-title-text>
 				            <span class="md-headline">Cards</span>
@@ -30,25 +27,14 @@
 				        </md-card-actions>
 				    </md-card>
 
-				</div>
-		
 
-
-
-		  		<div flex="50">
-
-
-					<span class="timeline-card-title">Upload</span>
-
-
-		  		 	<md-card class="timeline-cards-top-container">
+		  		 	<md-card flex="50" class="timeline-cards-top-container">
 				        <md-card-content layout="row" 
 				        				 layout-align="center center" 
 				        				 class="drop-zone" 
 				        				 layout-margin 
 				        				 ngf-drop="upload($file)" 
-				        				 ngf-select 
-				        				 ng-model="file"
+				        				 ngf-select="upload($file)" 
         								 ngf-drag-over-class="'dragover'" 
         								 ngf-multiple="true" 
         								 ngf-allow-dir="true">
@@ -56,10 +42,7 @@
 				        	<span class="my-items-drop-zone-text">My Items</span>
 				        </md-card-content>
 				    </md-card>
-
-		    	</div>
 		    
-
   		</div>
 
 		<!-- START: FOLDERS -->
@@ -152,7 +135,7 @@
 
   		<!-- START: USER INFO -->
 		<div>
-  			<span class="timeline-card-title margin-left-8">{{timeOfDay}}</span>
+  			<!-- <span class="timeline-card-title margin-left-8">{{timeOfDay}}</span> -->
 			<user-card></user-card>
   		</div>
 

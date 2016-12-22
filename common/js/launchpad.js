@@ -5,34 +5,31 @@ angular.module('moonshotApp')
     	var launchpadUrl = "https://launchpadapi.mediafly.com/2/items/";
         var contentSourceId = "f61ef3521a9b458eb757b619e2e4c39e"; // Sanford Designs
 
-        Launchpad.getPresignedUrl = function(file, callback) {
-            
-            Accounts.getAccessToken(function(token){
-        		var url = 'https://launchpadapi.mediafly.com/uploads/signedurl';
+        Launchpad.getPresignedUrl = function(token, file) {
+            var deferred = $q.defer();
+    		var url = 'https://launchpadapi.mediafly.com/uploads/signedurl';
 
-                var params = {
-                    accessToken: token.accessToken,
-                    productId: contentSourceId, 
-                    contentType: file.type,
-                    extension: file.ext
-                };
+            var params = {
+                accessToken: token.accessToken,
+                productId: contentSourceId, 
+                contentType: file.type,
+                extension: file.ext
+            };
 
-        		$http({
-        			method: 'GET', 
-        			url: url, 
-                    params:params, 
-                    headers: {"Content-Type": file.type}
-        		}).success(function(s3){
-        			callback(s3)
-        		})
-        	});
+    		$http({
+    			method: 'GET', 
+    			url: url, 
+                params:params, 
+                headers: {"Content-Type": file.type}
+    		}).success(function(s3){
+    			deferred.resolve(s3);
+    		});
+
+            return deferred.promise;
 
         };
 
-
-
         Launchpad.uploadToS3 = function(signedUrl, file) {
-            console.log(file.src);
             $http({
                 method: 'PUT', 
                 url: signedUrl, 
@@ -42,61 +39,54 @@ angular.module('moonshotApp')
                 data: file
             })
             .success(function(response){
-                console.log(response);
-            }).error(function(err){
-                console.log(err);
-            })
 
+            }).error(function(err){
+
+            })
         };
 
-        Launchpad.createItem = function(file) {
+        Launchpad.createItem = function(token, s3, file) {
        
-        	Accounts.getAccessToken(function(token){
-                Launchpad.getPresignedUrl(file, function(s3){
+                var res         = s3.response;
+                var responseUrl = res.url;
+                var signedUrl   = res.signedUrl;
 
-                    var res         = s3.response;
-                    var responseUrl = res.url;
-                    var signedUrl   = res.signedUrl;
+                Launchpad.uploadToS3(signedUrl, file);                
+                 
+    		    var createItemUrl = launchpadUrl + 'create';
 
-                    Launchpad.uploadToS3(signedUrl, file);                
-             
-        		    var createItemUrl = launchpadUrl + 'create';
+                var params = {
+                    accessToken: token.accessToken,
+                    productId: contentSourceId
+                };
 
-                    var params = {
-                        accessToken: token.accessToken,
-                        productId: contentSourceId
-                    };
-
-                    var payload = {
-                        metadata: {
-                           title: file.name
-                       },
-                       type: 'file', 
-                       asset: {
-                           url: responseUrl, 
-                           sourceType: 's3'
-                       },
-                       parentId: "0-myitems"      
-                    };
+                var payload = {
+                    metadata: {
+                       title: file.name
+                   },
+                   type: 'file', 
+                   asset: {
+                       url: responseUrl, 
+                       sourceType: 's3'
+                   },
+                   parentId: "0-myitems"      
+                };
                     
-                    $http({
-                        method: 'POST', 
-                        url: createItemUrl, 
-                        params: params, 
-                        data: payload
-                    })
-                    .success(function(data, status, headers){
-                        console.log("Created Item in Airship");
-                    })
-                    .error(function(res){
-                        console.log('Unsuccessful Airship Item Creation!');
-                    });
+                $http({
+                    method: 'POST', 
+                    url: createItemUrl, 
+                    params: params, 
+                    data: payload
+                })
+                .success(function(data, status, headers){
+                    console.log("Created Item in Airship");
+                    console.log(data);
+                })
+                .error(function(res){
+                    console.log('Unsuccessful Airship Item Creation!');
+                    console.log(res);
                 });
-
-
-
         		
-        	});
         };
 
     	return Launchpad;

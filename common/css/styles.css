@@ -145,6 +145,13 @@ md-card.timeline-cards-top-container {
 
 md-card .drop-zone {
 	border:2px dashed #9fbe3c;
+	height:100%;
+}
+
+.dragover {
+	background-color:#9fbe3c;
+	color:#FFF;
+	border:2px dashed #FFF;
 }
 
 md-card .drop-zone:hover {
@@ -221,6 +228,7 @@ md-card md-card-title md-card-title-text:only-child .md-subhead{
 
 .timeline-recommended-button {
 	color:#AD514C;
+	width:100%;
 }
 
 .uppercase {
@@ -296,8 +304,23 @@ md-card-content.timeline-weather-card {
 .md-button.md-raised:not([disabled]).timeline-filter-button {
 	background:#9fbe3c;
 	color:#FFF;
+	width:100%;
 }
 
+
+/*MY ITEMS UPLOAD DIALOG*/
+.item-uploading-response {
+	font-family: 'Proxy-Regular';
+	font-size:20px;
+}
+
+md-progress-linear .md-bar {
+	background-color:#9fbe3c;
+}
+
+table.md-table th.md-column.item-upload-table {
+	font-size:14px;
+}
 /*===================================================
 
 				Cards Styles

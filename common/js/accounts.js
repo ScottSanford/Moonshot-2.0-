@@ -4,12 +4,12 @@ angular.module('moonshotApp')
     	var Accounts = {};
         var accountsUrl  = "https://accounts.mediafly.com/api/3.0/";
 
-        Accounts.getAccessToken = function(callback) {
-
+        Accounts.getAccessToken = function(accountPass) {
+            var deferred = $q.defer();
         	Mfly.getInteractiveInfo().then(function(data){
                 var accessUrl = accountsUrl + 'authentication/authenticate'
         		var user = data.user;
-        		var pass = "Kiyo$aki123";
+        		var pass = accountPass; // password
 	        	var params = {
 	        		username: user, 
 	        		password: pass
@@ -20,14 +20,15 @@ angular.module('moonshotApp')
 	        		url: accessUrl, 
 	        		params: params
 	        	})
-                .success(function(data){
-                    callback(data);
+                .success(function(data, status){
+                    deferred.resolve(data);
 		        })
-        	    .error(function(err){
-        	  		callback(err);
+        	    .error(function(err, status){
+        	  		deferred.resolve(data);
         	    })
 	        });
 
+            return deferred.promise;
 
 	    };
 

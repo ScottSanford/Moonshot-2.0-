@@ -15,7 +15,12 @@ angular.module('moonshotApp')
 
     // MY ITEMS
     $scope.upload = function (file) {
-      Dialog.box('UploadItemCtrl', 'common/tmpls/uploader/uploader-dialog.html', null, file);
+      // monkey patch for ngf-select trigger too early
+      if (file === null) {
+        return;
+      } else {
+        Dialog.box('UploadItemCtrl', 'common/tmpls/uploader/uploader-dialog.html', null, file);
+      }
     };
 
     // FOLDERS

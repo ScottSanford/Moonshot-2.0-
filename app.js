@@ -13,7 +13,8 @@ angular.module("moonshotApp", [
         'dark-sky', 
         'angularMoment', 
         'ngFileUpload', 
-        'angularFileUpload'
+        'angularFileUpload', 
+        'ngCookies'
     ])
 
     .constant('version', '2.0.0')

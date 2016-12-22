@@ -1,4 +1,4 @@
-<md-dialog flex="50">
+<md-dialog flex="75">
 	<md-dialog-content>
 	
 		<md-toolbar>
@@ -8,16 +8,42 @@
 	      </div>
 	    </md-toolbar>
 
+		<!-- LOADING SPINNER -->
+		<section layout="row" layout-padding ng-show='isUploadingItem'>
+			<div flex-offset="5" flex="90">
+				<md-progress-linear class="upload-item-progress" md-mode="indeterminate"></md-progress-linear>
+			</div>
+		</section>
 
-		<section>
-			<md-table-container class="md-whiteframe-2dp">
+		<!-- PASSWORD INPUT -->
+	    <section layout="row" layout-padding ng-show="showPasswordInput">
+			<div flex="5"></div>
+			<div flex="95">
+				<label>Please enter your SalesKit password.</label>
+
+			    <md-input-container flex="40" md-no-float class="md-block">
+			      <input ng-model="accountPassword" type="password" placeholder="Enter password" my-enter="uploadItems(accountPassword)">
+			    </md-input-container>
+			</div>
+		</section>
+
+		<!-- ERROR MESSAGE -->
+		<section layout="row" layout-padding ng-show="isPasswordWrong">
+			<md-subheader flex-offset="10" flex="90" class="md-subheader error-message">
+				The password you provided is incorrect.
+			</md-subheader>
+		</section>
+	
+
+		<!-- UPLOAD ITEMS TABLE -->
+		<section layout="row" layout-padding>
+			<md-table-container flex="90" flex-offset="5" class="md-whiteframe-2dp">
 				<table md-table>
 				    <thead md-head>
 				      <tr md-row>
-				        <th md-column><span>Thumbnail</span></th>
-				        <th md-column><span>Name</span></th>
-				        <th md-column md-numeric>Size</th>
-				        <th md-column md-numeric>Actions</th>
+				        <th class="item-upload-table" md-column><span>Thumbnail</span></th>
+				        <th class="item-upload-table" md-column><span>Name</span></th>
+				        <th class="item-upload-table" md-column md-numeric>Size</th>
 				      </tr>
 				    </thead>
 				    <tbody md-body>
@@ -25,9 +51,6 @@
 				        <td md-cell class="table-collection-name"><img src="{{file.imgSrc}}" style="height:50px"></td>
 				        <td md-cell class="table-collection-action">{{file.name}}</td>
 				        <td md-cell class="table-collection-action">{{file.size / 1024 | number:2}} kB</td>
-				        <td md-cell class="table-collection-action">
-				        	<md-button class="md-raised" ng-click="uploadFile(file)">Upload</md-button>
-				        </td>
 				      </tr>
 				    </tbody>
 				</table>
@@ -37,6 +60,7 @@
 		<md-divider></md-divider>
 
 		<md-dialog-actions layout="row">
+			<md-button ng-click="uploadItems(accountPassword)">Upload</md-button>
 			<md-button ng-click="closeDialog()">Cancel</md-button>
 		</md-dialog-actions>
 
