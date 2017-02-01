@@ -8,40 +8,41 @@
 		<!-- START: CARDS -->
   		<div layout="row" layout-margin>
   			
-		  		
 
-		  		 	<md-card flex="50" class="timeline-cards-top-container">
-				        <md-card-title>
-				          <md-card-title-text>
-				            <span class="md-headline">Cards</span>
-				            <span class="md-subhead">Select items to present in meeting.</span>
-				          </md-card-title-text>
-				          <md-card-title-media>
-				            <div class="md-media-sm card-media">
-				            	<i flex class="fa fa-list-alt timeline-card-icon"></i>
-				            </div>
-				          </md-card-title-media>
-				        </md-card-title>
-				        <md-card-actions layout="row">
-				          <md-button class="timeline-recommended-button" ng-click="goToCards()">Build Presentation</md-button>
-				        </md-card-actions>
-				    </md-card>
+  		 	<md-card flex="50" class="timeline-cards-top-container md-whiteframe-7dp">
+		        <md-card-title>
+		          <md-card-title-text>
+		            <span class="md-headline">Cards</span>
+		            <span class="md-subhead">Build a presentation.</span>
+		          </md-card-title-text>
+		          <md-card-title-media>
+		            <div class="md-media-sm card-media">
+		            	<i flex class="fa fa-list-alt timeline-card-icon"></i>
+		            </div>
+		          </md-card-title-media>
+		        </md-card-title>
+		        <md-card-actions layout="row">
+		          <md-button class="timeline-recommended-button" ng-click="goToCards()">Build Presentation</md-button>
+		        </md-card-actions>
+		    </md-card>  			
 
-
-		  		 	<md-card flex="50" class="timeline-cards-top-container">
-				        <md-card-content layout="row" 
-				        				 layout-align="center center" 
-				        				 class="drop-zone" 
-				        				 layout-margin 
-				        				 ngf-drop="upload($file)" 
-				        				 ngf-select="upload($file)" 
-        								 ngf-drag-over-class="'dragover'" 
-        								 ngf-multiple="true" 
-        								 ngf-allow-dir="true">
-				        	<div><i class="material-icons">cloud_upload</i></div>
-				        	<span class="my-items-drop-zone-text">My Items</span>
-				        </md-card-content>
-				    </md-card>
+  		 	<md-card flex="50" class="timeline-cards-top-container md-whiteframe-7dp">
+		        <md-card-title>
+		          <md-card-title-text>
+		            <span class="md-headline">Collections</span>
+		            <span class="md-subhead">View all your saved collections.</span>
+		          </md-card-title-text>
+		          <md-card-title-media>
+		            <div class="md-media-sm card-media">
+		            	<i flex class="fa fa-list timeline-card-icon"></i>
+		            	<!-- <ng-md-icon icon="view_list" size="80" style="fill: #9fbe3c"></ng-md-icon> -->
+		            </div>
+		          </md-card-title-media>
+		        </md-card-title>
+		        <md-card-actions layout="row">
+		          <md-button class="timeline-recommended-button" ui-sref="collections">View Collections</md-button>
+		        </md-card-actions>
+		    </md-card>
 		    
   		</div>
 
@@ -54,7 +55,7 @@
 			</div>
 
 			<div layout="row">
-				 <md-card class="timeline-folder-container margin-left-fix" flex="25" ng-repeat="folder in folders | limitTo:4">
+				 <md-card class="timeline-folder-container margin-left-fix md-whiteframe-7dp" flex="25" ng-repeat="folder in folders | limitTo:4">
 			        <img src="{{folder.thumbnailUrl}}" class="md-card-image timeline-folder-thumbnailUrl">
 			        <md-card-title>
 			          <md-card-title-text class="timeline-folder-name-container">
@@ -73,7 +74,7 @@
 		<div layout-margin> 
 			<span class="timeline-card-title">Recommended for You</span>
   		 	<div layout="row">
-  		 	<md-card class="margin-left-fix" flex="25" layout-wrap ng-repeat="item in suggestions | limitTo:4">
+  		 	<md-card class="margin-left-fix md-whiteframe-7dp" flex="25" layout-wrap ng-repeat="item in suggestions | limitTo:4">
 		        <img ng-src="{{item.thumbnailUrl}}" class="md-card-image">
 		        	<div layout="row" class="timeline-recommended-title-container">
 		            	<span flex-offset="5" flex="90" class="md-headline timeline-item-name">{{item.name}}</span>
@@ -141,21 +142,42 @@
 
 
 		<!-- START: WEATHER -->
-		<div> 
+		<div class="margin-top-10"> 
 
-			<span class="timeline-card-title margin-left-8">{{ weather.timezone }}</span>
+			<span class="timeline-card-title margin-left-8">{{ currentLocation }}</span>
 
   		 	<weather-card></weather-card>
 
   		</div>
 
+
+		<span class="timeline-card-title margin-left-8 margin-top-10">Upload to My Items</span>
+
+			<md-card class="timeline-cards-upload-myitems-container md-whiteframe-7dp">
+	        <md-card-content layout="row" 
+	        				 layout-align="center center" 
+	        				 class="drop-zone" 
+	        				 layout-margin 
+	        				 ngf-drop="upload($file)" 
+	        				 ngf-select="upload($file)" 
+							 ngf-drag-over-class="'dragover'" 
+							 ngf-multiple="true" 
+							 ngf-allow-dir="true">
+	        	<div><i class="material-icons">cloud_upload</i></div>
+	        	<span class="my-items-drop-zone-text">My Items</span>
+	        </md-card-content>
+	    </md-card>
+
+
+
 		<!-- FILTERED SEARCH BUTTON -->
-  		<div> 
+		<!-- MIGHT USE THIS FOR V.2.1 -->
+<!--   		<div> 
   			<span class="timeline-card-title margin-left-8">Filtered Search</span>
   			<div layout="row">
 				<md-button class="md-raised timeline-filter-button" ng-click="openFilterDialog()">Create</md-button>
 			</div>
-  		</div>
+  		</div> -->
 
   	</section>
 </main>

@@ -10,7 +10,7 @@ angular.module('moonshotApp')
     		var url = 'https://launchpadapi.mediafly.com/uploads/signedurl';
 
             var params = {
-                accessToken: token.accessToken,
+                accessToken: token,
                 productId: contentSourceId, 
                 contentType: file.type,
                 extension: file.ext
@@ -46,7 +46,7 @@ angular.module('moonshotApp')
         };
 
         Launchpad.createItem = function(token, s3, file) {
-       
+            
                 var res         = s3.response;
                 var responseUrl = res.url;
                 var signedUrl   = res.signedUrl;
@@ -56,13 +56,13 @@ angular.module('moonshotApp')
     		    var createItemUrl = launchpadUrl + 'create';
 
                 var params = {
-                    accessToken: token.accessToken,
+                    accessToken: token,
                     productId: contentSourceId
                 };
 
                 var payload = {
                     metadata: {
-                       title: file.name
+                       title: file.fileName
                    },
                    type: 'file', 
                    asset: {

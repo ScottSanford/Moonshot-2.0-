@@ -2,9 +2,12 @@ angular.module('moonshotApp')
 
 .controller('TimelineCtrl', function(
     $scope, $location, $timeout, 
-    Mfly, Launchpad, ItemIcons, Weather, Dialog, 
-    $mdDialog){
+    Mfly, Launchpad, ItemIcons, Weather, Dialog, Reporting, 
+    $mdDialog, $cookies, Accounts){
 
+    Weather.getCurrentLocation().then(function(data){
+      $scope.currentLocation = data.results[4].formatted_address;
+    });
 
 
     // LEFT

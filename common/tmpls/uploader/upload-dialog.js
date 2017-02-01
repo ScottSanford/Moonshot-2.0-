@@ -9,7 +9,8 @@ angular.module('moonshotApp')
 
     var ext = file.name.substr(file.name.lastIndexOf('.'));
     file['ext'] = ext;
-
+    var name = file.name.substring(0, file.name.indexOf('.'));
+    file['fileName'] = name;
 
     function getInt64Bytes(x){
         var bytes = [];
@@ -47,7 +48,7 @@ angular.module('moonshotApp')
       return Math.random() * (max - min) + min;
     }
 
-    function initUpload() {
+    function initUploadToLaunchpad() {
         var cookie = $cookies.get('accessToken');
         if (cookie) {
             console.log("COOKIE :: ", cookie);
@@ -56,7 +57,7 @@ angular.module('moonshotApp')
              Launchpad.getPresignedUrl(cookie, file)
                 .then(function(s3){
 
-                    // Launchpad.createItem(token, s3, file);
+                    Launchpad.createItem(cookie, s3, file);
                     // hide loading bar
                     $timeout(function(){
                         $scope.isUploadingItem = false;
@@ -80,7 +81,7 @@ angular.module('moonshotApp')
         }
     }
 
-    initUpload();
+    initUploadToLaunchpad();
     ////////////////////////////////////////////////
 
     $scope.uploadItems = function(accountPass) {
@@ -89,18 +90,20 @@ angular.module('moonshotApp')
 
         Accounts.getAccessToken(accountPass)
             .then(function(token){
-         
-                if (token.statusCode === null) {
+                
+                if (token) {
                     
                     $cookies.put('accessToken', token.accessToken, {'expires': token.expires});
+                    
+                    var cookie = $cookies.get('accessToken');
 
                     $scope.showPasswordInput = false;
                     $scope.isUploadingItem = true;
 
-                    Launchpad.getPresignedUrl(token, file)
+                    Launchpad.getPresignedUrl(cookie, file)
                         .then(function(s3){
-
-                            // Launchpad.createItem(token, s3, file);
+                            console.log(s3);
+                            Launchpad.createItem(cookie, s3, file);
                             // hide loading bar
                             $timeout(function(){
                                 $scope.isUploadingItem = false;

@@ -1,5 +1,5 @@
 <div>
-<md-card>
+<md-card class="md-whiteframe-7dp">
 	<md-card-content class="timeline-weather-card">
 		<!-- START: SPINNER -->
         <div layout="column" layout-align="center center" ng-show="showSpinnerWeather">
@@ -9,19 +9,15 @@
 		
         <div layout="row" ng-show="showWeather">
 
-          	<div flex="50" layout="column" class="timeline-weather-currently-icon">
-				<canvas layout-fill flex id="weatherIcon"></canvas>
+          	<div flex="50" class="timeline-weather-currently-icon">
+				        <canvas id="weatherIcon"></canvas>
             </div>
 
-            <div flex="50">
-            	<div layout="row" layout-align="end center">
-					<div flex class="weather-info">
-						<div class="weather-temperature">{{ weather.currently.temperature | number:0}}&deg;</div>
-						<div class="weather-summary">{{ weather.currently.summary }}</div>
-						<div class="weather-summary">Feels like {{ weather.currently.apparentTemperature | number:0 }}&deg;</div>
-					</div>
-            	</div>
-            </div>
+  					<div flex class="weather-info">
+  						<div class="weather-temperature">{{ weather.currently.temperature | number:0}}&deg;</div>
+  						<div class="weather-summary">{{ weather.currently.summary }}</div>
+  						<div class="weather-summary">Feels like {{ weather.currently.apparentTemperature | number:0 }}&deg;</div>
+  					</div>
 
         </div>
 

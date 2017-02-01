@@ -32,34 +32,27 @@ angular.module('moonshotApp')
 
 	    };
 
-        Accounts.user = function() {
+        Accounts.user = function(accessToken, userId) {
             var deferred = $q.defer();
 
-            Accounts.getAccessToken(function(access){
+            var userUrl = accountsUrl + 'users/get';
 
-                var token   = access.accessToken;
-                var user    = access.emailAddress;
-                
-                var envId   = access.products[8].id;
-                var params  = {
-                    accessToken: token,
-                    productId: envId,
-                    username: user 
-                }
+            var params = {
+                accessToken: accessToken,
+                productId: "f61ef3521a9b458eb757b619e2e4c39e",  
+                userId: userId
+            };
 
-                var userUrl = accountsUrl + 'users/get';
-
-                $http({
-                    method: 'GET', 
-                    url: userUrl,
-                    params: params
-                })
-                .success(function(response){
-                    deferred.resolve(response); 
-                })
-                .error(function(err){
-                    console.log("Error -->", err);
-                })
+            $http({
+                method: 'GET', 
+                url: userUrl,
+                params: params
+            })
+            .success(function(response){
+                deferred.resolve(response); 
+            })
+            .error(function(err){
+                console.log("Error -->", err);
             })
 
             return deferred.promise;

@@ -3,59 +3,54 @@ angular.module('moonshotApp')
     
     	var Reporting = {};
 
-    	var warehouse = "https://warehouseapi.mediafly.com/";
-    	var launchpad = "https://launchpadapi.mediafly.com/2/items/";
-        var accounts  = "https://accounts.mediafly.com/api/3.0/";
+    	var warehouse  = "https://warehouseapi.mediafly.com/";
+        var reportData = "reports/data";
 
-        Reporting.getAccessToken = function() {
-        	var baseUrl = "https://accounts.mediafly.com/api/3.0/authentication/authenticate";
+        // YOU MUST HAVE REPORTING ACCESS INSIDE OF AIRSHIP
 
-        	Mfly.getInteractiveInfo().then(function(data){
-        		console.log(data.user);
-        		var user = data.user;
-        		var pass = "Kiyo$aki123";
-	        	var params = {
-	        		username: user, 
-	        		password: pass
-	        	}
-	        	$http({
-	        		method: 'POST',
-	        		url: baseUrl, 
-	        		params: params
-	        	}).success(function(data){
-		            	console.log(data);
-		                // $sessionStorage.token = data.accessToken;
-		          })
-	        	  .error(function(err){
-	        	  		console.log("Error -->", err);
-	        	  })
-	        });
+        Reporting.summary = function(token) {
+            var summaryUrl = warehouse + 'summary';
 
-
-	    };
-
-        Reporting.summary = function() {
-        	var token = $sessionStorage.token;
-        	var params = {
-        		accessToken: token, 
-        		productId: "f61ef3521a9b458eb757b619e2e4c39e", 
-        		dateRangefrom: "11/01/2016",
-        		dateRangeto: "12/05/2016"
-        	}
-        	$http({
-        		method: "GET",
-        		url: warehouse, 
-        		params: params
-        	}).success(function(response){
-        		console.log("SUCCESS == ", response);
-        	}).error(function(response){
-        		console.log("Something went wrong :: ", response);
-        	})
+            var params = {
+                accessToken: token, 
+                // productId: "f61ef3521a9b458eb757b619e2e4c39e", // Sanford Designs
+                productId: 'f7e484d0e3ee4e87901ee34fe2fcbe1a', // Inside Mediafly
+                daterangefrom: "11/01/2016",
+                daterangeto: "1/20/2017"
+            }
+            $http({
+                method: "GET",
+                url: summaryUrl, 
+                params: params
+            }).success(function(response){
+                console.log("Summary: ", response);
+            }).error(function(response){
+                console.log("Something went wrong :: ", response);
+            })
         };
 
-        Reporting.user = function() {
-            
+
+        Reporting.viewsByUser = function(token) {
+
+            var viewByUserUrl = warehouse + 'reports/data/ViewsByUser';
+
+            var params = {
+                accessToken: token, 
+                productId: "f61ef3521a9b458eb757b619e2e4c39e", // Sanford Designs
+                daterangefrom: "11/01/2016",
+                daterangeto: "1/20/2017"
+            }
+            $http({
+                method: "GET",
+                url: viewByUserUrl, 
+                params: params
+            }).success(function(response){
+                console.log("ViewsByUser:  ", response);
+            }).error(function(response){
+                console.log("Something went wrong :: ", response);
+            })
         };
+
 
         
 
