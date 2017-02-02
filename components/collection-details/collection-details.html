@@ -83,13 +83,13 @@
 			<div class="alert alert-info alert-no-items md-whiteframe-2dp" role="alert" ng-if="selectedCollection.length == 0">You cannot play your Collection. Please add items to the '{{ cName }}' Collection using the Search tool.</div>
 
           	<div class="content-flat" ng-if="selectedCollection.length >= 1">
+	      		<div class="alert alert-info play-alert-info md-whiteframe-2dp">
+					View collection in 'presentation mode'. 
+				</div>
           		<md-button class="md-raised collection-details-delete-button" ng-click="playCollection()">
           			<ng-md-icon icon="play_arrow"></ng-md-icon>
           			Play Collection
           		</md-button>	
-	      		<div class="alert alert-info play-alert-info md-whiteframe-2dp">
-					Play your collection as a presentation in front of prospects and customers inside Moonshot 2.0. 
-				</div>
 	      	</div>
         </md-content>
       </md-tab>

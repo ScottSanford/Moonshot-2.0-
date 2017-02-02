@@ -156,7 +156,6 @@ angular.module('myDirectives', [])
 	return {
 
 		restrict: 'E', 
-		replace: true, 
 		transclude: true,
 		templateUrl: 'common/tmpls/search/item-tab.html'
 	}

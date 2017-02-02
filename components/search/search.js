@@ -108,9 +108,13 @@ angular.module('moonshotApp')
         $scope.showFolderIcon    = false;
     };
 
-    $scope.getSearchType = function(filterType) {
+    $scope.selectedChipIndex = 'firstChipAll';
+    $scope.getSearchType = function(filterType, index) {
         
-        if (filterType == 'all') {
+        $scope.selectedChipIndex = index;
+
+        if (filterType == 'all' && index == 'firstChipAll') {
+            $scope.selectedChipIndex = 'firstChipAll';
             $scope.searchType = null;
         } else {
             $scope.searchType = {

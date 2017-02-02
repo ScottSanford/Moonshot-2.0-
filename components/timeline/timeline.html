@@ -6,7 +6,7 @@
   	<section flex="70" layout="column">
 
 		<!-- START: CARDS -->
-  		<div layout="row" layout-margin>
+  		<div layout="row">
   			
 
   		 	<md-card flex="50" class="timeline-cards-top-container md-whiteframe-7dp">
@@ -47,16 +47,19 @@
   		</div>
 
 		<!-- START: FOLDERS -->
-		<div layout-margin> 
+		<div> 
 
-			<div layout="row">
-				<span flex="95" class="timeline-card-title">Folders</span>
+			<div layout="row" class="margin-top-10 margin-bottom-5">
+				<span flex="95" class="timeline-card-title margin-left-8">Folders</span>
 				<i flex class="material-icons timeline-folder-card-arrow" ui-sref="hierarchy">arrow_forward</i>
 			</div>
 
 			<div layout="row">
-				 <md-card class="timeline-folder-container margin-left-fix md-whiteframe-7dp" flex="25" ng-repeat="folder in folders | limitTo:4">
-			        <img src="{{folder.thumbnailUrl}}" class="md-card-image timeline-folder-thumbnailUrl">
+				 <md-card class="timeline-folder-container md-whiteframe-7dp" flex="25" ng-repeat="folder in folders | limitTo:4">
+			       	<div class="md-card-image-container">
+			        	<img src="{{folder.thumbnailUrl}}" class="md-card-image">
+			       	</div>
+
 			        <md-card-title>
 			          <md-card-title-text class="timeline-folder-name-container">
 			            <span class="md-headline timeline-folder-name">{{folder.name}}</span>
@@ -65,16 +68,21 @@
 			        <md-card-actions layout="column" layout-align="start">
 			          <md-button class="timeline-recommended-button" ng-click="goToFolderDetails(folder.id)">Open Folder</md-button>
 			        </md-card-actions>
+
 			    </md-card>
 			</div>
 
   		</div>
 
 		<!-- START: RECOMMENDED CONTENT -->
-		<div layout-margin> 
-			<span class="timeline-card-title">Recommended for You</span>
+		<div> 
+				
+			<div layout="row" class="margin-top-10 margin-bottom-5">
+				<span class="timeline-card-title margin-left-8 margin-top-10">Recommended for You</span>
+			</div>
+
   		 	<div layout="row">
-  		 	<md-card class="margin-left-fix md-whiteframe-7dp" flex="25" layout-wrap ng-repeat="item in suggestions | limitTo:4">
+  		 	<md-card class="md-whiteframe-7dp" flex="25" layout-wrap ng-repeat="item in suggestions | limitTo:4">
 		        <img ng-src="{{item.thumbnailUrl}}" class="md-card-image">
 		        	<div layout="row" class="timeline-recommended-title-container">
 		            	<span flex-offset="5" flex="90" class="md-headline timeline-item-name">{{item.name}}</span>
@@ -136,7 +144,6 @@
 
   		<!-- START: USER INFO -->
 		<div>
-  			<!-- <span class="timeline-card-title margin-left-8">{{timeOfDay}}</span> -->
 			<user-card></user-card>
   		</div>
 

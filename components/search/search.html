@@ -50,63 +50,64 @@
 	<div flex="90">			
 		<suggested-items ng-show="showSuggestedItems"></suggested-items>
 	</div>
-	</section>
+</section>
 
-	<section layout="row" layout-padding>
+<section layout="row" layout-padding>
 
-	    <md-grid-list md-cols="1"
-	    			  md-cols-sm="2" 
-	    			  md-cols-md="4" 
-	    			  md-cols-gt-md="6" 
-	    			  md-row-height="4:3"
-	        		  md-gutter="8px" 
-	        		  ng-show="showGrid"
-	        		  layout="row"
-	        		  flex="95">
+    <md-grid-list md-cols="1"
+    			  md-cols-sm="2" 
+    			  md-cols-md="4" 
+    			  md-cols-gt-md="6" 
+    			  md-row-height="4:3"
+        		  md-gutter="8px" 
+        		  ng-show="showGrid"
+        		  layout="row"
+        		  flex="95">
 
-		    <md-grid-tile ng-repeat="tile in results"
-		                  md-rowspan="1"
-		                  md-colspan="1"
-		                  md-colspan-sm="1"
-		                  md-colspan-xs="1">
-				
-			       	<img src="{{ tile.thumbnailUrl }}">
+	    <md-grid-tile ng-repeat="tile in results"
+	                  md-rowspan="1"
+	                  md-colspan="1"
+	                  md-colspan-sm="1"
+	                  md-colspan-xs="1">
+			
+		       	<img src="{{ tile.thumbnailUrl }}">
 
-		        
-		        <md-grid-tile-footer>
-		      	  
-		      	  	<md-menu>
-			          	
-			            <h3 ng-click="$mdOpenMenu($event)">{{tile.name}}</h3>
-			          	
-			          	<md-menu-content width="2">
-			            	<md-menu-item>
-				              	<md-button ng-click="openCollectionModal(tile, $event)">
-				                	<ng-md-icon icon="view_list"></ng-md-icon>
-				                	Add
-				                </md-button>
-			                </md-menu-item>
-			            	<md-menu-item>
-				              	<md-button ng-click="openShareModal(tile, $event)">
-				                	<ng-md-icon icon="share"></ng-md-icon>
-				                	Share
-				                </md-button>
-			                </md-menu-item>
-			            	<md-menu-item>
-				              	<md-button ng-click="goToPath(tile)">
-				                	<ng-md-icon icon="open_in_new"></ng-md-icon>
-				                	Open
-				                </md-button>
-			                </md-menu-item>
-			          	</md-menu-content>
-		        	</md-menu>
+	        
+	        <md-grid-tile-footer>
+	      	  
+	      	  	<md-menu>
+		          	
+		            <h3 ng-click="$mdOpenMenu($event)">{{tile.name}}</h3>
+		          	
+		          	<md-menu-content width="2">
+		            	<md-menu-item>
+			              	<md-button ng-click="openCollectionModal(tile, $event)">
+			                	<ng-md-icon icon="view_list"></ng-md-icon>
+			                	Add
+			                </md-button>
+		                </md-menu-item>
+		            	<md-menu-item>
+			              	<md-button ng-click="openShareModal(tile, $event)">
+			                	<ng-md-icon icon="share"></ng-md-icon>
+			                	Share
+			                </md-button>
+		                </md-menu-item>
+		            	<md-menu-item>
+			              	<md-button ng-click="goToPath(tile)">
+			                	<ng-md-icon icon="open_in_new"></ng-md-icon>
+			                	Open
+			                </md-button>
+		                </md-menu-item>
+		          	</md-menu-content>
+	        	</md-menu>
 
-		      	</md-grid-tile-footer>
-		    </md-grid-tile>
-		</md-grid-list>
+	      	</md-grid-tile-footer>
+	    </md-grid-tile>
+	</md-grid-list>
 
-		<div flex></div>
-	</section>
+	<div flex></div>
+	
+</section>
 
 	<div layout="row" layout-align="center center" ng-if="noSearchResults">
 		<md-card flex="40" class="md-whiteframe-2dp">

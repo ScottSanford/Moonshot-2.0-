@@ -69,6 +69,7 @@ angular.module('moonshotApp')
                             .textContent(`${file.name} uploaded successfully!`)
                             .position('top right')
                             .hideDelay(5000)
+                            // .toastClass('upload-success-message')
                         );
 
                     }, getRandomLoadTime(1500,3500));

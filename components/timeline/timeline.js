@@ -77,21 +77,7 @@ angular.module('moonshotApp')
         Dialog.box('AddToCollectionCtrl', 'common/tmpls/add-to-collection/add-to-collection-modal.html', ev, selectedItem);
     };
 
-    // RIGHT
-    function getTimeOfDay() {
-        var today = new Date()
-        var curHr = today.getHours()
-
-        if (curHr < 12) {
-          return "Good Morning";
-        } else if (curHr < 18) {
-          return "Good Afternoon";
-        } else {
-          return "Good Evening";
-        }
-    };
-
-    $scope.timeOfDay = getTimeOfDay();
+    // RIGHT SIDE
 
     // USER
     Mfly.getInteractiveInfo().then(function(data){
@@ -107,23 +93,20 @@ angular.module('moonshotApp')
     $scope.showSpinnerWeather = true;
     $scope.showWeather = false;
 
-    Weather.getCurrent().then(function(data){
-     
+    Weather.getCurrent().then(function(data){ 
+      console.log('weather', data);
       var skycons = new Skycons({color:"#999"});
       skycons.add('weatherIcon', data.currently.icon);
       skycons.play();
       
-      $timeout(function(){
-        $scope.showSpinnerWeather = false;
-        $scope.showWeather = true;
-        $scope.weather = data;
-      }, getRandomLoadTime(1500,3000));
+      $scope.showSpinnerWeather = false;
+      $scope.showWeather = true;
+      $scope.weather = data;
 
     });
 
     Weather.getDaily().then(function(data){
       $scope.showSpinnerWeather = false;
-
       $scope.dailyWeather = data.daily.data;   
     });
 

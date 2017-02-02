@@ -5,43 +5,8 @@
 </section>
 
 <section layout="row" layout-wrap layout-margin>
-<!-- 	<md-card class="margin-left-fix" flex="20" ng-repeat="f in folders">
-        <img ng-src="{{f.thumbnailUrl}}" class="md-card-image md-whiteframe-3dp">
-        	<div layout="row" class="timeline-recommended-title-container">
-            	<span flex-offset="5" flex="90" class="md-headline timeline-item-name">{{f.name}}</span>
-	            <md-button class="md-icon-button" aria-label="More Vertical">
-	              <md-menu class="hierarchy-item-icon">
-		        		<i class="material-icons" ng-click="$mdOpenMenu($event)">more_vert</i>
-				        <md-menu-content width="2">
-			            	<md-menu-item>
-				              	<md-button ng-click="openCollectionModal(f, $event)">
-				                	<ng-md-icon icon="view_list"></ng-md-icon>
-				                	Add
-				                </md-button>
-			                </md-menu-item>
-			            	<md-menu-item>
-				              	<md-button ng-click="openShareModal(f, $event)">
-				                	<ng-md-icon icon="share"></ng-md-icon>
-				                	Share
-				                </md-button>
-			                </md-menu-item>
-			          	</md-menu-content>
-		        	</md-menu>
-	            </md-button>
-	        </div>
-        <md-card-title class="timeline-recommended-card-title">
-        	<md-card-title-text>
-            	<!-- <div class="md-headline">{{f.name}}</div>
-            </md-card-title-text>
-        </md-card-title>
 
-        <md-divider></md-divider>
-
-        <md-card-actions layout="row" layout-align="start center">
-          <md-button class="timeline-recommended-button">View Item</md-button>
-        </md-card-actions>
-      </md-card> --> 
-	<md-grid-list flex-offset="5" flex md-cols="1" md-cols-sm="2" md-cols-md="5" md-cols-gt-md="5" md-row-height="4:3" md-gutter="10px">
+	<md-grid-list flex-offset="4" flex md-cols="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-row-height="4:3" md-gutter="10px">
 
 		<md-grid-tile ng-repeat="f in folders" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ui-sref="hierarchy-details({hid: f.id})">
 
@@ -52,7 +17,9 @@
 		        		
 					        <h3 ng-click="$mdOpenMenu($event)">{{f.name}}</h3>
 				        	<md-menu class="hierarchy-item-icon">
-				        		<i class="material-icons" ng-click="$mdOpenMenu($event)">{{f.icon}}</i>
+				        		
+				        		<i class="material-icons " ng-click="$mdOpenMenu($event)">{{f.icon}}</i>
+								
 						        <md-menu-content width="2" ng-show="f.type !== 'folder'">
 					            	<md-menu-item>
 						              	<md-button ng-click="openCollectionModal(f, $event)">

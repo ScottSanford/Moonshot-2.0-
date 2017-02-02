@@ -86,6 +86,10 @@ a:hover, a:active {
   font-feature-settings: 'liga';
 }
 
+md-list-item.margin-5 {
+	margin:5px;
+}
+
 .margin-top-10 {
 	margin-top:10px;
 }
@@ -96,6 +100,10 @@ a:hover, a:active {
 
 .margin-left-8 {
 	margin-left:8px;
+}
+
+.margin-bottom-5 {
+	margin-bottom:5px;
 }
 
 .brand-centered {
@@ -184,13 +192,12 @@ md-list-item.timeline-folder-list-item {
 	border-top: 1px solid rgba(0,0,0,0.12);
 }
 
-md-card.timeline-folder-container .md-card-image {
-	/*min-height:212px; */
-	vertical-align:bottom;
+md-card .md-card-image-container {
+	height:160px;
 }
 
-md-card .timeline-folder-thumbnailUrl {
-	max-height:212px;
+md-card .md-card-image-container img {
+ 	width:100%;
 }
 
 .timeline-folder-name {
@@ -206,6 +213,7 @@ md-card md-card-header.timeline-recommended-header-container {
 
 .timeline-recommended-title-container {
 	margin-top: 5px;
+	height:100px;
 }
 
 .timeline-recommended-icon {
@@ -220,7 +228,7 @@ md-card md-card-header.timeline-recommended-header-container {
 }
 
 md-card.margin-left-fix {
-	margin:8px 8px 8px 0;
+	/*margin:8px 8px 8px 0;*/
 }
 
 md-card md-card-title.timeline-recommended-card-title {
@@ -229,6 +237,7 @@ md-card md-card-title.timeline-recommended-card-title {
 
 md-card md-card-title md-card-title-text:only-child .md-subhead{
 	padding-top:0px;
+	font-family:'Proxy-SemiBold';
 }
 
 .timeline-recommended-button {
@@ -239,7 +248,12 @@ md-card md-card-title md-card-title-text:only-child .md-subhead{
 .uppercase {
 	text-transform: uppercase;
 }
+
 /*Right*/
+
+md-card md-card-title.timeline-user-card {
+	padding:24px 16px 0;
+}
 
 .timeline-user-img {
 	width:70%;
@@ -323,6 +337,11 @@ md-progress-linear .md-bar {
 
 table.md-table th.md-column.item-upload-table {
 	font-size:14px;
+}
+
+.upload-success-message {
+	background-color:#9fbe3c;
+	color:#fff;
 }
 /*===================================================
 
@@ -571,8 +590,9 @@ md-grid-tile md-button {
 }
 
 md-grid-list md-grid-tile md-grid-tile-footer {
-	background:rgba(0,0,0,0.75);
+	background:rgba(0,0,0,0.8);
 }
+
 
 ng-md-icon .suggested-icon {
 	color:red;
@@ -685,8 +705,29 @@ md-progress-circular path {
 	background-color:#E0E2DD;
 }
 
-md-chips .md-chips {
-	box-shadow: none;
+md-chips md-chip {
+	background-color: #9fbe3c;
+	color:#fff;
+}
+
+md-chips md-chip:hover, .selectedChip {
+	background-color: #475669;
+}
+
+.search-suggested-subheader {
+	margin-bottom: 15px;
+}
+
+md-card .selected-search-result {
+	max-height:800px;
+}
+
+md-card.selected-item-result {
+	height:450px;
+}
+
+.selected-item-image {
+	width:150px;
 }
 
 md-list-item .md-avatar, md-list-item .md-avatar-icon, 
@@ -1191,6 +1232,7 @@ md-grid-list md-grid-tile md-grid-tile-footer h3 {
 
 .hierarchy-item-icon {
 	padding-right:10px;
+	color:#9fbe3c;
 }
 
 /*===================================================
