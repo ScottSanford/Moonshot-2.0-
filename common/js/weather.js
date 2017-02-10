@@ -5,28 +5,18 @@ angular.module('moonshotApp')
 
         Weather.getCurrentLocation = function() {
             var deferred = $q.defer();
+            var geocoder = new google.maps.Geocoder();
 
             navigator.geolocation.getCurrentPosition(function(position) {
                 var lat = position.coords.latitude;
                 var lng = position.coords.longitude
-                var latlng = lat + ',' + lng;
+                var latlng = new google.maps.LatLng(lat, lng);
 
-                var apiKey = 'AIzaSyDsX8nXmIhbNOchioaaGj-1Wn9RH6L4S14';
-
-                var gURL = "https://maps.googleapis.com/maps/api/geocode/json";
-
-                var params = {
-                    latlng: latlng, 
-                    key: apiKey
-                };
-
-                $http({
-                    method: 'GET', 
-                    url: gURL, 
-                    params: params
-                }).success(function(results){
+                geocoder.geocode({
+                    'location': latlng 
+                }, function(results, status){
                     deferred.resolve(results);
-                });
+                })
                 
             });
 

@@ -1,19 +1,14 @@
 angular.module('moonshotApp')
 
-.controller('CardsCtrl', function($scope, $location, Mfly, ItemIcons, MoonshotData, $localStorage, $mdSidenav, $http, $sessionStorage){
+.controller('CardsCtrl', function($scope, $timeout, $location, Mfly, ItemIcons, MoonshotData, $localStorage, $mdSidenav, $sessionStorage){
 
     $scope.openSort = function() {
         $mdSidenav('left').toggle();
     };  
 
-    var lsSlides = $localStorage.slides;
-
-    $scope.sortList = lsSlides;
-
     // BEGIN: GET 6 MOONSHOT FOLDERS
     $scope.MoonshotData = MoonshotData;
 
-    
     MoonshotData.getFolders();
 
     $scope.getFolderItems = function(_folderId) {
@@ -50,13 +45,36 @@ angular.module('moonshotApp')
 
     };
 
+    $scope.resetCollection = function() {
+        MoonshotData.resetCollection();
+        MoonshotData.presentation.length = 0;
+    };
+
+
+
+
     // Sort
+    $scope.sortList = $localStorage.slides;;
+
+    $scope.connectLists = function() {
+        $scope.$broadcast('updateSortList');
+    };
+
+    $scope.$on('updateSortList', function(){
+        $scope.sortList = $localStorage.slides;
+    });
+
     $scope.sortableOptions = {
-        handle: '.myHandle',
+        handle: '> .myHandle',
+        axis: 'y',
         stop: function(event, ui) {
-            var itemId   = ui.item.scope().item.id;
+            var item   = ui.item.scope().item;
             var newIndex = ui.item.sortable.dropindex;
 
+            $localStorage.slides = $scope.sortList;
+
+            console.log('moonshot presentation array:: ', MoonshotData.presentation);
+            console.log("Local Storage Updated :: ", $localStorage.slides);
         }
     };
 

@@ -2,11 +2,10 @@ angular.module('moonshotApp')
 
 .controller('CollectionsCtrl', 
     function($scope, $window, $location, $stateParams, Mfly, 
-             ItemIcons, $uibModal, PresentationService, $mdDialog){
+             ItemIcons, $uibModal, $mdDialog){
    
     // COLLECTIONS VIEW 
     Mfly.getCollections().then(function(collections){
-      console.log(collections);
         $scope.collections = collections;
     });
 

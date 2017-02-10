@@ -213,7 +213,7 @@ md-card md-card-header.timeline-recommended-header-container {
 
 .timeline-recommended-title-container {
 	margin-top: 5px;
-	height:100px;
+	height:90px;
 }
 
 .timeline-recommended-icon {
@@ -222,7 +222,7 @@ md-card md-card-header.timeline-recommended-header-container {
 }
 
 .timeline-item-name {
-	font-size:18px;
+	font-size:16px;
 	font-family: 'Proxy-Regular';
 	line-height: 24px;
 }
@@ -232,7 +232,7 @@ md-card.margin-left-fix {
 }
 
 md-card md-card-title.timeline-recommended-card-title {
-	padding:10px 10px 16px;
+	padding:10px 10px 0px;
 }
 
 md-card md-card-title md-card-title-text:only-child .md-subhead{
@@ -955,10 +955,31 @@ md-tabs .md-tab.md-active {
 			Presentation Styles
 
 ====================================================*/
-.presentation-container {}
+/*header*/
+.background-presentation-header {
+	background-color:#494948;
+}
+
+.background-presentation-footer {
+	background-color:#353535;
+	position: fixed;
+	bottom:0;
+}
+
+.presentation-container {
+	height: 100vh;
+	background-color:#535353;
+	box-sizing: border-box;
+	padding:64px 0;
+}
+
+.slide-menu-container {
+	height:100%;
+	width:100%;
+}
 
 .slide-item {
-	width:100%;
+	max-height:100%;
 }
 
 .interactive-frame {
@@ -979,6 +1000,12 @@ md-tabs .md-tab.md-active {
     box-shadow: 0 3px 5px rgba(25,25,25,.75);
     z-index: 1000;
     background-color:#475669;
+}
+
+.md-button.md-raised.view-presentation-btn {
+	background-color:#7c7c7c;
+	border-color:#333;
+	color:#fff;
 }
 
 .navbar-text {
@@ -1359,7 +1386,7 @@ input.input-share-link.form-control:focus {
 	}
 
 	.card-title-back-center {
-		font-size:18px;
+		font-size:17px;
 	}
 }
 

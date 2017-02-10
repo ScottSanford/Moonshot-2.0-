@@ -57,7 +57,7 @@
 			<div layout="row">
 				 <md-card class="timeline-folder-container md-whiteframe-7dp" flex="25" ng-repeat="folder in folders | limitTo:4">
 			       	<div class="md-card-image-container">
-			        	<img src="{{folder.thumbnailUrl}}" class="md-card-image">
+			        	<img ng-src="{{folder.thumbnailUrl}}" class="md-card-image">
 			       	</div>
 
 			        <md-card-title>
@@ -108,7 +108,7 @@
 			        </div>
 		        <md-card-title class="timeline-recommended-card-title">
 		        	<md-card-title-text>
-		            	<div class="md-subhead timeline-subhead-item">Created on {{item.created | date: 'shortDate'}}</div>
+		            	<!-- <div class="md-subhead timeline-subhead-item">Created on {{item.created | date: 'shortDate'}}</div> -->
 		            	<div class="md-subhead timeline-subhead-item uppercase">{{item.type}}</div>
 		            </md-card-title-text>
 		            

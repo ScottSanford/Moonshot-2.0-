@@ -6,7 +6,7 @@ angular.module('moonshotApp')
     $mdDialog, $cookies, Accounts){
 
     Weather.getCurrentLocation().then(function(data){
-      $scope.currentLocation = data.results[4].formatted_address;
+      $scope.currentLocation = data[4].formatted_address;
     });
 
 
@@ -14,16 +14,6 @@ angular.module('moonshotApp')
     // CARDS
     $scope.goToCards = function() {
         $location.url('/cards');
-    };
-
-    // MY ITEMS
-    $scope.upload = function (file) {
-      // monkey patch for ngf-select trigger too early
-      if (file === null) {
-        return;
-      } else {
-        Dialog.box('UploadItemCtrl', 'common/tmpls/uploader/uploader-dialog.html', null, file);
-      }
     };
 
     // FOLDERS
@@ -67,13 +57,11 @@ angular.module('moonshotApp')
         $scope.$apply();
       });
 
-    $scope.openShareModal = function(selectedItem, ev) {
-      console.log(ev);
+    $scope.openShareModal = function(selectedItem, ev) {  
         Dialog.box('ShareItemCtrl', 'common/tmpls/share-item/share-item-modal.html', ev, selectedItem);
     };
 
     $scope.openCollectionModal = function(selectedItem, ev) {
-      console.log(ev);
         Dialog.box('AddToCollectionCtrl', 'common/tmpls/add-to-collection/add-to-collection-modal.html', ev, selectedItem);
     };
 
@@ -94,7 +82,6 @@ angular.module('moonshotApp')
     $scope.showWeather = false;
 
     Weather.getCurrent().then(function(data){ 
-      console.log('weather', data);
       var skycons = new Skycons({color:"#999"});
       skycons.add('weatherIcon', data.currently.icon);
       skycons.play();
@@ -147,6 +134,16 @@ angular.module('moonshotApp')
           }
         });
        
+    };
+
+    // MY ITEMS
+    $scope.upload = function (file) {
+      // monkey patch for ngf-select trigger too early
+      if (file === null) {
+        return;
+      } else {
+        Dialog.box('UploadItemCtrl', 'common/tmpls/uploader/uploader-dialog.html', null, file);
+      }
     };
 
 

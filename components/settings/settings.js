@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('SettingsCtrl', function($scope, version, Mfly, Accounts, Launchpad){
+.controller('SettingsCtrl', function($scope, version, Mfly, Accounts, Launchpad, Folders){
 
 	  // PROFILE
     Mfly.getInteractiveInfo().then(function(data){
@@ -12,25 +12,20 @@ angular.module('moonshotApp')
       $scope.collectionsLength = data.length;
     });
 
-    Accounts.user().then(function(user){
-      console.log('User info :: ', user);
-      var groups = user.product.roles;
-      $scope.groups = groups;
-    });
+    // Accounts.user().then(function(user){
+    //   console.log('User info :: ', user);
+    //   var groups = user.product.roles;
+    //   $scope.groups = groups;
+    // });
 
-    Accounts.user();
+    // Accounts.user();
 
     // FOLDERS
-    Mfly.getFolder('__root__').then(function(data){
-      var folders = _.filter(data, function(item){
-        if (item.type === 'folder') {
-          return item;
-        }
-      });
-      
+    Folders.getFolders().then(function(folders){
+      console.log('folders', folders);
       $scope.folders = folders;
     });
-
+      
     // ABOUT
     $scope.version = version;
 

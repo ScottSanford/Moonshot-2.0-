@@ -1,5 +1,6 @@
 <nav-bar></nav-bar>
 
+<!-- SORT SELECTED SLIDES -->
 <md-sidenav class="md-sidenav-left sort-slides-list" md-component-id="left" md-disable-backdrop md-whiteframe="4">
 
   	<md-toolbar >
@@ -7,14 +8,14 @@
   	</md-toolbar>
 
     <md-content layout-margin>
-        <md-list flex ui-sortable="sortList">
-	        <md-list-item class="md-2-line myHandle" ng-repeat="item in sortList">
-	          <img src="{{item.thumbnailUrl}}" class="md-avatar">
+        <md-list flex ui-sortable="sortableOptions" ng-model="sortList">
+	        <md-list-item class="md-2-line" ng-repeat="item in sortList">
+	          <img ng-src="{{item.thumbnailUrl}}" class="md-avatar">
 	          <div class="md-list-item-text">
 	            <h3>{{ item.name }}</h3>
 	            <p>{{ item.type }}</p>
 	          </div>
-	          <i class="material-icons sort-menu-icon">drag_handle</i>
+	          <i class="material-icons sort-menu-icon myHandle">drag_handle</i>
 	        </md-list-item>
         </md-list>
     </md-content>
@@ -32,7 +33,7 @@
 	</div>
 
 	<div layout="row" flex="40" layout-align="end center" class="cards-button-container">
-		<md-button class="md-raised" ng-click="MoonshotData.resetCollection()">
+		<md-button class="md-raised" ng-click="resetCollection()">
 			<ng-md-icon icon="refresh"></ng-md-icon>
 			Reset
 		</md-button>
@@ -85,7 +86,7 @@
 
 		                <div class="folder-card-item-container">
 		                	<div class="row folder-card-item" 
-		                		 ng-repeat="(k, item) in MoonshotData.cards[key].itemsObj track by k" ng-click="item.isItemSelected = !item.isItemSelected; MoonshotData.updateCount(key, item); MoonshotData.pushToPresentation(item)">
+		                		 ng-repeat="(k, item) in MoonshotData.cards[key].itemsObj track by k" ng-click="item.isItemSelected = !item.isItemSelected; MoonshotData.updateCount(key, item); MoonshotData.pushToPresentation(item); connectLists()">
 		                		<div class="col-xs-2">
 		                			<i class="material-icons">{{ item.icon }}</i>
 		                		</div>

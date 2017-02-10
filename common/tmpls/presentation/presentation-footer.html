@@ -1,7 +1,12 @@
-<nav class="row presentation-footer-container">
-	<div class="col-xs-12 text-center">
-		<div ng-repeat="s in slide">
-			<span class="current-slide-name" ng-if="current === $index">{{ s.name }}</span>
-		</div>
+<md-toolbar class="">
+	<div class="md-toolbar-tools background-presentation-footer" layout="row">
+	  <span flex="25"></span>
+	  <div flex="50" layout="row">
+	  	<span flex="30"></span>
+	  	<md-button flex="20" class="md-raised">Previous</md-button>
+	  	<md-button flex="20" class="md-raised">Next</md-button>
+	  	<span flex="30"></span>
+	  </div>
+	  <span flex="25"></span>
 	</div>
-</nav>
+</md-toolbar>

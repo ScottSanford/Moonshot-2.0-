@@ -1,62 +1,26 @@
-<md-toolbar class="">
-  <div class="md-toolbar-tools background-moonshot" layout="row">
-    <md-button class="md-icon-button" aria-label="More Vertical" ng-click="goToTimeline()">
-        <ng-md-icon icon="menu"></ng-md-icon>
-      </md-button>
-      'Slide Item Name'
+<md-toolbar class="md-whiteframe-5dp" style="position: fixed; top:0; left:0;">
+  <div class="md-toolbar-tools background-presentation-header" layout="row">
+  
+    <md-button class="md-raised view-presentation-btn" 
+               ng-click="">
+        <i class="fa fa-list-alt"></i>&nbsp;
+        <!-- <span ng-if="contentService.listOpen">Hide List</span> -->
+        <span ng-if="!contentService.listOpen">Show List</span>
+    </md-button>
+
+
+    <div ng-repeat="s in slide">
+      <span ng-if="current === $index">{{ s.name }}</span>
+    </div>
+
     <span flex></span>
-    
-    <!-- RIGHT SIDE -->
+
+    <md-button class="md-icon-button" aria-label="Search" ng-click="createNewCollection()">
+      <span class="fa fa-list"></span>
+    </md-button>
     <md-button class="md-icon-button" aria-label="More Vertical" ng-click="goToTimeline()">
         <img src="common/img/rocket.png" class="rocket-icon">
     </md-button>
 
-    <md-button class="md-icon-button" aria-label="Search" ng-click="goToSearch()">
-      <ng-md-icon icon="search"></ng-md-icon>
-    </md-button>
-
-    <md-menu md-position-mode="target-right target">
-      <md-button class="md-icon-button" aria-label="More Vertical" ng-click="$mdOpenMenu($event)">
-        <ng-md-icon icon="more_vert"></ng-md-icon>
-      </md-button>
-      <md-menu-content width="4">
-        <md-menu-item>
-          <md-button ng-click="closeInteractive()">
-              <div layout="row" flex>
-                <p flex>Quit Application</p>
-              </div>
-          </md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
   </div>
 </md-toolbar>
-
-<!-- <div class="presentation-header-container">
-	<nav class="row cards-header">
-		<div class="col-xs-4">
-			<span class="fa fa-bars fa-2x hamburger-menu-icon" ng-click="toggle()"></span>
-			<div class="btn-group" uib-dropdown is-open="status.isopen">
-			      <button type="button" class="btn btn-presentation" uib-dropdown-toggle ng-disabled="disabled">{{ current + 1 }} of {{slide.length}} <span class="caret"></span>
-			      </button>
-			      <ul class="dropdown-menu dropdown-menu-slides" uib-dropdown-menu role="menu">
-			        <li role="menuitem" ng-repeat="s in slide">
-			        	<a ng-click="getCurrentSlide($index, s.id)">
-			        		<span class="fa fa-check" ng-if="current == $index"></span>
-			        		<span class="fa {{s.icon}}" ng-if="current !== $index"></span> {{s.name}}
-			        	</a>
-			        </li>
-			      </ul>
-			</div>
-		</div>
-		<div class="col-xs-4">
-			<img class="img-responsive center-block header-logo" src="common/img/moonshot-logo.png">
-		</div>
-		<div class="col-xs-4">
-			<ul class="nav navbar-nav navbar-right presentation-header-icons">
-		      <li><a ng-click="createNewCollection()"><span class="fa fa-list" ng-show="isCardPresentation"></span></a></li>
-		      <li><a ui-sref="cards"><span class="fa fa-times"></span></a></li> 
-		    </ul>
-		</div>
-	</nav>
-</div> -->
