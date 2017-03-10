@@ -31,7 +31,7 @@ angular.module("moonshotApp", [
           $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/|http:\/\/|data:image)/);
 
           // For any unmatched url, redirect to /state1
-          $urlRouterProvider.otherwise("/timeline");
+          $urlRouterProvider.otherwise("/dashboard");
           
           $stateProvider
                 .state('timeline', {

@@ -1,7 +1,7 @@
-<nav-bar sticky></nav-bar>
+<nav-bar></nav-bar>
 
 <!-- Timeline -->
-<main layout="row" layout-padding>
+<main layout="row" layout-padding flex>
 	<!-- Main Column -->
   	<section flex="70" layout="column">
 
@@ -9,7 +9,7 @@
   		<div layout="row">
   			
 
-  		 	<md-card flex="50" class="timeline-cards-top-container md-whiteframe-7dp">
+  		 	<md-card flex="50" class="timeline-cards-top-container md-whiteframe-2dp">
 		        <md-card-title>
 		          <md-card-title-text>
 		            <span class="md-headline">Cards</span>
@@ -26,7 +26,7 @@
 		        </md-card-actions>
 		    </md-card>  			
 
-  		 	<md-card flex="50" class="timeline-cards-top-container md-whiteframe-7dp">
+  		 	<md-card flex="50" class="timeline-cards-top-container md-whiteframe-2dp">
 		        <md-card-title>
 		          <md-card-title-text>
 		            <span class="md-headline">Collections</span>
@@ -55,7 +55,7 @@
 			</div>
 
 			<div layout="row">
-				 <md-card class="timeline-folder-container md-whiteframe-7dp" flex="25" ng-repeat="folder in folders | limitTo:4">
+				 <md-card class="timeline-folder-container md-whiteframe-2dp" flex="25" ng-repeat="folder in folders | limitTo:4">
 			       	<div class="md-card-image-container">
 			        	<img ng-src="{{folder.thumbnailUrl}}" class="md-card-image">
 			       	</div>
@@ -82,7 +82,7 @@
 			</div>
 
   		 	<div layout="row">
-  		 	<md-card class="md-whiteframe-7dp" flex="25" layout-wrap ng-repeat="item in suggestions | limitTo:4">
+  		 	<md-card class="md-whiteframe-2dp" flex="25" layout-wrap ng-repeat="item in suggestions | limitTo:4">
 		        <img ng-src="{{item.thumbnailUrl}}" class="md-card-image">
 		        	<div layout="row" class="timeline-recommended-title-container">
 		            	<span flex-offset="5" flex="90" class="md-headline timeline-item-name">{{item.name}}</span>
@@ -160,7 +160,7 @@
 
 		<span class="timeline-card-title margin-left-8 margin-top-10">Upload to My Items</span>
 
-			<md-card class="timeline-cards-upload-myitems-container md-whiteframe-7dp">
+			<md-card class="timeline-cards-upload-myitems-container md-whiteframe-2dp">
 	        <md-card-content layout="row" 
 	        				 layout-align="center center" 
 	        				 class="drop-zone" 

@@ -25,7 +25,6 @@ angular.module('moonshotApp')
 
   $scope.nextSlide = function() {
     ContentService.goToNextSlide().then(function(data){
-      console.log(data);
       $scope.slide = data.resourceUrl;
     });
   };

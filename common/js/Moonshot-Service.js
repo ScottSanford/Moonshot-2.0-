@@ -75,7 +75,7 @@ angular.module('moonshotApp')
 
     Moonshot.playCollection = function() {
 
-        var first = _.head(Moonshot.presentation);
+        var first = _.head($localStorage.slides);
 
         $location.url('/presentation/' + first.id + '?index=' + 0 + '&page=' + first.pages);
     };

@@ -20,11 +20,12 @@ angular.module('moonshotApp')
 
     // Accounts.user();
 
+    // DYNAMIC MOONSHOT CARD FOLDERS WILL BE IN A PHASE II 
     // FOLDERS
-    Folders.getFolders().then(function(folders){
-      console.log('folders', folders);
-      $scope.folders = folders;
-    });
+    // Folders.getFolders().then(function(folders){
+    //   console.log('folders', folders);
+    //   $scope.folders = folders;
+    // });
       
     // ABOUT
     $scope.version = version;

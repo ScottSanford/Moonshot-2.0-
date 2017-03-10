@@ -1,83 +1,63 @@
 angular.module('moonshotApp')
 
-.controller('DashboardCtrl', function($scope, $timeout, $location, Mfly, Weather){
+.controller('DashboardCtrl', function($scope, $state, Mfly, ItemIcons, $mdMedia, $mdSidenav){
 
-    function getTimeOfDay() {
-      var today = new Date()
-      var curHr = today.getHours()
+  var leftMenu = [
+    {name: 'Dashboard', icon: 'home', state: 'dashboard'},
+    {name: 'Present', icon: 'star', state: 'cards'},
+    {name: 'Hierarchy', icon: 'folder', state: 'hierarchy'},
+    {name: 'Collections', icon: 'featured_play_list', state: 'collections'},
+    {name: 'Search', icon: 'search', state: 'search'},
+    {name: 'Upload', icon: 'cloud_upload', state: 'search'}
+  ];
 
-      if (curHr < 12) {
-        return "Good Morning";
-      } else if (curHr < 18) {
-        return "Good Afternoon";
-      } else {
-        return "Good Evening";
-      }
-    };
+  $scope.menu = leftMenu;
 
-    $scope.timeOfDay = getTimeOfDay();
+  $scope.isSideNavOpen = true;
+  $scope.openNavigationMenu = function() {
+    $scope.isSideNavOpen = !$scope.isSideNavOpen;
+  };
 
-    // USER
-    Mfly.getInteractiveInfo().then(function(data){
-      $scope.user = data;
-    });
 
-    // NEW ITEMS
-    Mfly.getRecentlyCreatedContent().then(function(data){
-      $scope.newItems = data.length;
-    });
+  // RIGHT SIDE
+  var pageTitle = $state.current.name;
+  $scope.pageTitle = pageTitle;
 
-    // CARDS
-    $scope.goToCards = function() {
-        $location.url('/cards');
-    };
+  // USER
+  Mfly.getInteractiveInfo().then(function(data){
+    var user      = data.displayName;
+    var firstName = user.substr(0,user.indexOf(' '));
+    $scope.userName = firstName;
+  });
 
-    // COLLECTIONS
-    Mfly.getCollections().then(function(data){
-      $scope.collectionsLength = data.length;
-    });
+  // FOLDERS
+  Mfly.getFolder('__root__').then(function(hierarchy){
+      var onlyFolders = _.filter(hierarchy, function(obj){
+        return obj.type === 'folder';
+      });
 
-    $scope.goToCollections = function() {
-      $location.url('/collections');
-    };
+      console.log(onlyFolders);
 
-    // FOLDER 
-    $scope.goToHierarchy = function() {
-      $location.url('/hierarchy');
-    };
-
-    // WEATHER
-    $scope.showSpinnerWeather = true;
-    $scope.showWeather = false;
-
-    Weather.getCurrent().then(function(data){
-     
-      var skycons = new Skycons({color:"#FFF"});
-      skycons.add('weatherIcon', data.currently.icon);
-      skycons.play();
+      $scope.folders = onlyFolders;
       
-      $timeout(function(){
-        $scope.showSpinnerWeather = false;
-        $scope.showWeather = true;
-        $scope.weather = data;
-      }, getRandomLoadTime(1500,3000));
+  });
 
+  // RECOMMENDED
+  mflyCommands.getLastViewedContent()
+    .then(function(data){
+      var mIcons = ItemIcons.material();
+          
+      data.forEach(function(_item){
+          mIcons.forEach(function(icon){
+              if (_item.type == icon.type) {
+                  _item['icon'] = icon.icon;
+              }
+          });
+      });
+
+      $scope.suggestions = data;
+      $scope.$apply();
     });
-
-    Weather.getDaily().then(function(data){
-      $scope.showSpinnerWeather = false;
-
-      $scope.dailyWeather = data.daily.data;   
-    });
-
-    function getRandomLoadTime(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    // SETTINGS
-    $scope.goToSettings = function() {
-      $location.url('/settings');
-    };
 
 });
 

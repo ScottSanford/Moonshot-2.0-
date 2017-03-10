@@ -1,0 +1,30 @@
+<md-sidenav class="md-sidenav-left" md-is-locked-open="isSideNavOpen">
+    <div class="menu-icon-container" ng-click="goToDashboard()">
+      <img src="common/img/rocket.png">
+    </div>
+    <div class="menu-icon-container" ng-click="goToCards()">
+      <i flex class="fa fa-list-alt menu-icon"></i>
+      <div class="menu-item-text">Cards</div>
+    </div>
+    <div class="menu-icon-container" ng-click="goToCollections()">
+      <i flex class="fa fa-list menu-icon"></i>
+      <div class="menu-item-text">Collections</div>
+    </div>
+    <div class="menu-icon-container" ng-click="goToHierarchy()">
+      <ng-md-icon size="24" icon="folder"></ng-md-icon>
+      <div class="menu-item-text">Folders</div>
+    </div>
+    <div class="menu-icon-container" ng-click="goToUpload()">
+      <ng-md-icon size="24" icon="cloud_upload"></ng-md-icon>
+      <div class="menu-item-text">Upload</div>
+    </div>
+    <div class="menu-icon-container" ng-click="goToSearch()">
+      <ng-md-icon size="24" icon="search"></ng-md-icon>
+      <div class="menu-item-text">Search</div>
+    </div>
+    <div class="menu-icon-container" ng-click="goToSettings()">
+      <ng-md-icon size="24" icon="settings"></ng-md-icon>
+      <div class="menu-item-text">Settings</div>
+    </div>
+</md-sidenav>
+

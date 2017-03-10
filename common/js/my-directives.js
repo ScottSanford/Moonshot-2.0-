@@ -1,5 +1,45 @@
 angular.module('myDirectives', [])
 
+.directive('leftMenuBar', function($location, $mdDialog){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/sidenavbar/sidenavbar.html', 
+		link: function(scope, element, attrs) {
+
+			scope.shouldLockOpen = true;
+
+			scope.goToDashboard = function() {
+				$location.url('/dashboard');
+			};
+
+			scope.goToCards = function () {
+		        $location.url('/cards');
+		    };
+
+			scope.goToCollections = function () {
+		        $location.url('/collections');
+		    };
+
+			scope.goToHierarchy = function() {
+				$location.url('/hierarchy');
+			};
+
+			scope.goToSearch = function() {
+				$location.url('/search');
+			};
+		    
+			scope.goToSettings = function() {
+				$location.url('/settings');
+			};
+
+		}
+
+	}
+})
+
 .directive('navBar', function($location, $mdDialog){
 	return {
 
@@ -97,6 +137,11 @@ angular.module('myDirectives', [])
 			// goes back home
 			scope.goToTimeline = function() {
 				$location.url('/timeline');
+			};	
+
+			// goes back to cards
+			scope.goToCards = function() {
+				$location.url('/cards');
 			};		
 
 			// creates a new collection from the presentation list 

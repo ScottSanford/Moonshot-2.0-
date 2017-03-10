@@ -3,7 +3,7 @@ angular.module('moonshotApp')
 .controller('TimelineCtrl', function(
     $scope, $location, $timeout, 
     Mfly, Launchpad, ItemIcons, Weather, Dialog, Reporting, 
-    $mdDialog, $cookies, Accounts){
+    $mdDialog, $mdMedia, $cookies, Accounts){
 
     Weather.getCurrentLocation().then(function(data){
       $scope.currentLocation = data[4].formatted_address;
@@ -146,6 +146,11 @@ angular.module('moonshotApp')
       }
     };
 
+
+    // Media Queries
+    $scope.iPadPortrait  = $mdMedia('sm');
+    $scope.iPadLandscape = $mdMedia('md');
+    $scope.iPadAll       = $mdMedia('gt-md');
 
 
 });

@@ -1,176 +1,234 @@
-<nav-bar sticky></nav-bar>
+<md-toolbar class="main-toolbar md-whiteframe-2dp">
+	<div class="md-toolbar-tools">
 
-<section layout="row" layout-padding>
-	<md-grid-list class= flex md-cols="8" md-cols-sm="6" md-gutter="1.5em" md-row-height="4:3">
-		<!-- START: FIRST ROW -->
-	  	<md-grid-tile md-colspan="2" md-rowspan="2" md-colspan-sm="2" md-rowspan-sm="2" class="db db-user md-whiteframe-4dp">
+  		<md-button class="md-icon-button" aria-label="Menu" ng-click="openNavigationMenu()">
+	        <md-icon class="main-toolbar-icons">menu</md-icon>
+	    </md-button>
 
-      
-    	  		<div layout="column" layout-align="center start">
-    				  <div flex class="user-display-time">{{timeOfDay}},</div>
-    				  <div flex class="user-display-name">{{user.displayName || 'Flyer'}}</div>
-    			  </div>
+		<!-- PAGE TITLE -->
+	  	<h2 flex md-truncate class="main-toolbar-page-title">{{pageTitle}}</h2>
+     	
+     	<!-- TOOLBAR ICONS -->
+     	<div>
+
+     		<md-menu md-offset="-225 25">
+		       	<md-button flex class="md-icon-button" aria-label="Notification" ng-click="$mdOpenMenu($event)">
+		          <md-icon class="main-toolbar-icons">notifications</md-icon>
+		        </md-button>
+
+		        <!-- NOTIFICATIONS DROP DOWN -->
+		        <md-menu-content width="4">
+		        <md-menu-item>
+		          	<p>Notifications Go Here</p>
+		        </md-menu-item>
+	          </md-menu-content>
+		    </md-menu>
+
+	        <md-button flex class="md-icon-button" aria-label="Settings">
+	          <md-icon class="main-toolbar-icons">settings</md-icon>
+	        </md-button>
+
+	        <md-menu>
+	            <md-button class="" aria-label="Settings" ng-click="$mdOpenMenu($event)">
+	          		{{userName}}
+	            </md-button>
+	          <md-menu-content width="4">
+		        <md-menu-item>
+		          	<md-button ng-click="goToSettings()">
+		              	<md-icon>person</md-icon>
+		                <p>Profile</p>
+		          	</md-button>
+		        </md-menu-item>
+		        <md-menu-item>
+		          	<md-button ng-click="goToSettings()">
+		              	<md-icon>settings</md-icon>
+		                <p>Settings</p>
+		          	</md-button>
+		        </md-menu-item>
+	            <md-menu-item>
+		          <md-button ng-click="openGifs()">
+		             <md-icon>gif</md-icon>
+		             <p>Motivation GIFs</p> 
+		          </md-button>
+		        </md-menu-item>
+		        <md-divider></md-divider>
+		        <md-menu-item>
+		          	<md-button ng-click="closeInteractive()">
+		              	<md-icon>exit_to_app</md-icon>
+		                <p>Close</p>
+		          	</md-button>
+		        </md-menu-item>
+	          </md-menu-content>
+	        </md-menu>
+	    </div>
+
+    </div>
+	</md-toolbar>
+
+<section layout="row" flex>
+
+	<!-- START: LEFT NAVIGATION MENU -->
+	<md-sidenav md-component-id="left" 
+				md-is-locked-open="isSideNavOpen && $mdMedia('gt-md')" 
+				class="md-sidenav-left md-whiteframe-2dp left-nav-menu"
+				ng-class="{'left-nav-menu-collapsed': !isSideNavOpen}">
+	
+		<md-list>
+			<md-list-item ng-class="{ 'isNavMenuActive': item.state === pageTitle }" ng-repeat="item in menu" ui-sref="{{item.state}}">
+				<ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+    			<p>{{item.name}}</p>
+			</md-list-item>
+		</md-list>
+	</md-sidenav>
+	<!-- END: LEFT NAVIGATION MENU -->
+
+	<!-- START: RIGHT SIDE CONTENT -->
+	<md-content flex layout-fill layout="column">
+			<!--START: PRESENT & COLLECTIONS -->
+			<div layout="row">
+				<md-card flex="50" class="timeline-cards-top-container md-whiteframe-2dp">
+			        <md-card-title>
+			          <md-card-title-text>
+			            <span class="md-headline">Present</span>
+			            <span class="md-subhead">Create and present a presentation.</span>
+			          </md-card-title-text>
+			          <md-card-title-media>
+			            <div class="md-media-sm card-media">
+			            	<md-icon class="timeline-card-icon">star</md-icon>
+			            </div>
+			          </md-card-title-media>
+			        </md-card-title>
+			        <md-card-actions layout="row">
+			          <md-button class="timeline-recommended-button" ng-click="goToCards()">Create a Presentation</md-button>
+			        </md-card-actions>
+			    </md-card>  			
+
+	  		 	<md-card flex="50" class="timeline-cards-top-container md-whiteframe-2dp">
+			        <md-card-title>
+			          <md-card-title-text>
+			            <span class="md-headline">Collections</span>
+			            <span class="md-subhead">View all your saved collections.</span>
+			          </md-card-title-text>
+			          <md-card-title-media>
+			            <div class="md-media-sm card-media">
+			            	<i flex class="fa fa-list timeline-card-icon"></i>
+			            	<!-- <ng-md-icon icon="view_list" size="80" style="fill: #9fbe3c"></ng-md-icon> -->
+			            </div>
+			          </md-card-title-media>
+			        </md-card-title>
+			        <md-card-actions layout="row">
+			          <md-button class="timeline-recommended-button" ui-sref="collections">View Collections</md-button>
+			        </md-card-actions>
+			    </md-card>
+			</div>
 
 
-	  	</md-grid-tile>
-	  	
-      <md-grid-tile md-colspan="3" md-rowspan="2" md-colspan-sm="2" md-rowspan-sm="2" class="db db-cards md-whiteframe-4dp" ng-click="goToCards()">
-	  		<div layout="column" layout-fill layout-align="space-between">
-                
-                <div flex="90" layout="row" layout-align="center center">
-                    <i flex class="fa fa-list-alt cards-icon"></i>
-                </div>
-       
-                <div layout="row" layout-align="start end" class="db-menu-title">
-                   	<span layout-padding>Cards</span>
-                </div>
-           
-            </div>
-	  	
-		  </md-grid-tile>
+			<!-- START: HIERARCHY -->
+			<div layout="row">
+		        <md-card>
 
-      <md-grid-tile md-colspan="3" md-rowspan="2" md-colspan-sm="3" md-rowspan-sm="2" class="db db-folder md-whiteframe-4dp" ng-click="goToHierarchy()">
+		        	<md-card-title>
+		          		<md-card-title-text>
+		            		<span class="md-headline">Hierarchy</span>
+		            		<span class="md-subhead">View Inside Mediafly's folder hierarchy.</span>
+		          		</md-card-title-text>
+		        	</md-card-title>
 
-      <div layout="column" layout-fill layout-align="space-between">
-                
-                <div flex="90" layout="row" layout-align="center center">
-                    <i flex class="material-icons db-icon search-icon">folder</i>
-                </div>
-       
-                <div layout="row" layout-align="start end" class="db-menu-title">
-                    <span layout-padding>Folders</span>
-                </div>
-           
-            </div>
-         
-    </md-grid-tile>
-  
+		          	<md-card-content layout="row">
 
+			            <!-- FOLDERS GO HERE -->
+			            <md-card flex="25" class="timeline-folder-container" ng-repeat="folder in folders | limitTo:4">
+					       	
+					       	<div class="md-card-image-container">
+					        	<img ng-src="{{folder.thumbnailUrl}}" class="md-card-image">
+					       	</div>
 
-		<!-- START: SECOND ROW -->
-	  <md-grid-tile md-colspan="2" md-rowspan="3" md-colspan-sm="3" md-rowspan-sm="2" class="db db-collections md-whiteframe-4dp" ng-click="goToCollections()">
-	  		
-			<div layout="column" layout-fill layout-align="space-between">
-                
-                <div flex="90" layout="row" layout-align="center center" uib-carousel active="0" interval="3900" no-wrap="false" layout="column">
-                    <i flex class="material-icons db-icon search-icon" uib-slide index="0">view_list</i>
-                    <div flex uib-slide index="1" class="collections-length">{{collectionsLength}}</div>
-                </div>
-       
-                <div layout="row" layout-align="start end" class="db-menu-title">
-                   	<span layout-padding>Collections</span>
-                </div>
-           
-      </div>
+					        <md-card-title>
+					          <md-card-title-text class="timeline-folder-name-container">
+					            	<span class="md-headline timeline-folder-name">{{folder.name}}</span>
+					          </md-card-title-text>
+					        </md-card-title>
 
-	  </md-grid-tile>
+					        <md-divider></md-divider>
 
+					        <md-card-footer class="dashboard-hierarchy-footer" layout="row" layout-align="end center">
+					        	<md-icon flex class="hierarchy-icon">folder</md-icon>
+					        	<md-button class="dashboard-hierarchy-footer-button" ui-sref="hierarchy-details({hid: folder.id})">
+					        		<md-icon class="main-toolbar-icons dashboard-hierarchy-footer-icon">keyboard_arrow_up</md-icon>
+					        		more
+					        	</md-button>
+					        </md-card-footer>
 
-    <md-grid-tile md-colspan="2" md-rowspan="3" md-colspan-sm="2" md-rowspan-sm="2" class="db db-new-items md-whiteframe-4dp">
+					    </md-card>
 
-        <div layout="column" layout-fill layout-align="space-between">
-                
-            <div flex="90" layout="row" layout-align="center center" class="new-items-length">
-                {{newItems}}
-            </div>
-   
-            <div layout="row" layout-align="start end" class="db-menu-title">
-                <span layout-padding>New Items</span>
-            </div>
-           
-        </div>
+		          	</md-card-content>
+		
+			    </md-card>
+			</div>
 
-        <!-- <div layout="row" layout-fill layout-align="space-between">
-          <div flex="35" layout="row" layout-align="center center">
-            <i flex class="material-icons db-icon insert-drive-file">insert_drive_file</i>
-          </div>
-        
-        <div flex layout="row" class="db-new-items-text" layout-align="center center">
-          {{ newItems }} new items
-        </div>
-      </div> -->
-      </md-grid-tile>
+			<!-- START: RECOMMENDED -->
+			<div layout="row">
+				<md-card>
+			        <md-card-title>
+			          <md-card-title-text>
+			            <span class="md-headline">Recomended</span>
+			            <span class="md-subhead">Recently created content you uploaded.</span>
+			          </md-card-title-text>
+			        </md-card-title>
 
+					<md-card-content layout="row">
 
-	   
-	  <md-grid-tile md-colspan="4" md-rowspan="5" class="db db-weather md-whiteframe-4dp">
+			            <!-- FOLDERS GO HERE -->
+			            <md-card flex="25" class="timeline-folder-container" ng-repeat="item in suggestions | limitTo:4">
+					       	
+					       	<div class="md-card-image-container">
+					        	<img ng-src="{{item.thumbnailUrl}}" class="md-card-image">
+					       	</div>
 
-        <!-- START: SPINNER -->
-        <div class="box" layout="column" ng-show="showSpinnerWeather" layout-fill>
-          <md-progress-linear flex="50" md-mode="indeterminate"></md-progress-linear>
-          <div class="init-weather" layout="row" layout-align="center">
-            <div>Finding your weather...</div>
-          </div>
-        </div>
+					        <md-card-title>
+					          <md-card-title-text class="dashboard-recommended-title-container">
+					            	<span class="md-headline dashboard-recommended-title">{{item.name}}</span>
+					          </md-card-title-text>
+					        </md-card-title>
 
-        <div layout="column" layout-fill layout-align="space-between" ng-show="showWeather">
-                <div layout="row" 
-                     layout-padding 
-                     layout-wrap
-                     layout-fill
-                     layout-align="space-between">
-                  	<div flex="50" class="icon">
-						          <canvas id="weatherIcon"></canvas>
-                  	</div>
-                  	<div flex="50" class="text">
-                    	<div layout="row" layout-align="end" layout-padding layout-margin>
-							<div flex class="weather-info">
-								<div class="weather-city">{{ weather.timezone }}</div>
-								<div class="weather-temperature">{{ weather.currently.temperature | number:0}}&deg;</div>
-								<div class="weather-summary">{{ weather.currently.summary }}</div>
-								<div class="weather-summary">Feels like {{ weather.currently.apparentTemperature | number:0 }}&deg;</div>
-							</div>
-                    	</div>
-                  	</div>
-                  	<div flex layout-padding>
-                    	<div layout="row" 
-                             layout-align="center center">
-                              <div class="daily-temps-container" ng-repeat="d in dailyWeather | limitTo:3" layout-padding>
-                              	<div class="daily-temps-date">
-                              		{{d.time * 1000 | amDateFormat: 'M/D ddd'}}
-                              	</div>
-                              	<div class="daily-temps-icon">
-                              		<sky-icon icon-type="{{d.icon}}"></sky-icon>
-                              	</div>
-                              	<div class="daily-temps-number">
-                              		<span class="daily-max">{{d.temperatureMax | number:0}}&deg;</span>
-                              		<span class="daily-min">{{d.temperatureMin | number:0}}&deg;</span>
-                              	</div>
-                              </div>
-                       </div>
-                    </div>
-             
-            </div>
-        </div>
-			
-	  </md-grid-tile>
-	  <md-grid-tile md-colspan="2" md-rowspan="2" class="db db-search md-whiteframe-4dp" ng-click="goToSearch()">
-	  		<div layout="column" layout-fill layout-align="space-between">
-                
-                <div flex="90" layout="row" layout-align="center center">
-                    <i flex class="material-icons db-icon search-icon">search</i>
-                </div>
-       
-                <div layout="row" layout-align="start end" class="db-menu-title">
-                   	<span layout-padding>Search</span>
-                </div>
-           
-            </div>
-	  </md-grid-tile>
-	  <md-grid-tile md-colspan="2" md-rowspan="2" class="db db-settings md-whiteframe-4dp" ng-click="goToSettings()">
-			
-			<div layout="column" layout-fill layout-align="space-between">
-                
-                <div flex="90" layout="row" layout-align="center center">
-                    <i flex class="material-icons db-icon settings-icon">settings</i>
-                </div>
-       
-                <div layout="row" layout-align="start end" class="db-menu-title">
-                   	<span layout-padding>Settings</span>
-                </div>
-           
-            </div>
+					        <md-divider></md-divider>
 
-	  </md-grid-tile>
-	</md-grid-list>
-</section> 
+					        <md-card-footer class="dashboard-recommended-footer" layout="row" layout-align="end center">
+								<md-icon flex class="recommended-icon">{{item.icon}}</md-icon>
+								<md-menu>
+						        <!-- 	<md-button class="dashboard-hierarchy-footer-button" ng-click="$mdOpenMenu($event)"> -->
+						        		<md-icon flex class="main-toolbar-icons dashboard-hierarchy-footer-icon" ng-click="$mdOpenMenu($event)">more_vert</md-icon>
+						        	<!-- </md-button> -->
+
+						        		<!-- ITEM MENU -->
+						        		<md-menu-content width="2" ng-show="f.type !== 'folder'">
+							            	<md-menu-item>
+								              	<md-button ng-click="openCollectionModal(f, $event)">
+								                	<md-icon>add</md-icon>
+								                	Add
+								                </md-button>
+							                </md-menu-item>
+							            	<md-menu-item>
+								              	<md-button ng-click="openShareModal(f, $event)">
+								                	<md-icon>share</md-icon>
+								                	Share
+								                </md-button>
+							                </md-menu-item>
+							            	<md-menu-item>
+								              	<md-button ng-click="goToPath(f)">
+								                	<md-icon>open_in_new</md-icon>
+								                	Open
+								                </md-button>
+							                </md-menu-item>
+						          		</md-menu-content>
+
+					        </md-card-footer>
+
+					    </md-card>
+
+		          	</md-card-content>
+
+			    </md-card>
+			</div>
+	</md-content>
+</section>

@@ -6,9 +6,18 @@ angular.module('moonshotApp')
         $location.url('/cards');
     };
     
-
+    // SUGGESTED CONTENT
+    var mIcons = ItemIcons.material();
     mflyCommands.getLastViewedContent()
         .then(function(data){
+            data.forEach(function(_item){
+                mIcons.forEach(function(icon){
+                    if (_item.type == icon.type) {
+                        _item['icon'] = icon.icon;
+                    }
+                });
+            });
+            console.log('suggested', data);
             $scope.suggestions = data;
             $scope.$apply();
         });

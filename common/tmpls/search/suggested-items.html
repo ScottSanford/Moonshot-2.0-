@@ -1,38 +1,42 @@
 <div>
 	<md-subheader class="search-suggested-subheader">Suggested Items</md-subheader>
-	<md-grid-list md-cols="2" md-cols-sm="3"  md-cols-md="4"  md-cols-gt-md="4"  md-row-height="4:3" md-gutter="8px">
+	<md-grid-list flex-offset="4" flex md-cols="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-row-height="4:3" md-gutter="10px">
 
-	    <md-grid-tile ng-repeat="suggest in suggestions | limitTo: 10" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+	    <md-grid-tile ng-repeat="suggest in suggestions | limitTo: 8" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
 			
-		    <img src="{{ suggest.thumbnailUrl}}">
+		    <img ng-src="{{ suggest.thumbnailUrl }}">
 
-	        <md-grid-tile-footer>
+	        <md-grid-tile-footer class="child-figcaption-width-100">
+	        	<div layout="row" layout-align="space-between center">
 	      	  
-	      	  	<md-menu>
-		          	
-		            <h3 ng-click="$mdOpenMenu($event)">{{suggest.name}}</h3>
-		          	
-		          	<md-menu-content width="2">
-		            	<md-menu-item>
-			              	<md-button ng-click="openCollectionModal(suggest, $event)">
-			                	<ng-md-icon icon="view_list"></ng-md-icon>
-			                	Add
-			                </md-button>
-		                </md-menu-item>
-		            	<md-menu-item>
-			              	<md-button ng-click="openShareModal(suggest, $event)">
-			                	<ng-md-icon icon="share"></ng-md-icon>
-			                	Share
-			                </md-button>
-		                </md-menu-item>
-		            	<md-menu-item>
-			              	<md-button ng-click="goToPath(suggest)">
-			                	<ng-md-icon icon="open_in_new"></ng-md-icon>
-			                	Open
-			                </md-button>
-		                </md-menu-item>
-		          	</md-menu-content>
-	        	</md-menu>
+			        <h3 ng-click="$mdOpenMenu($event)">{{suggest.name}}</h3>
+
+		      	  	<md-menu class="hierarchy-item-icon">
+			          	
+			          	<i class="material-icons" ng-click="$mdOpenMenu($event)">{{suggest.icon}}</i>
+
+			          	<md-menu-content width="2" ng-show="suggest.type !== 'folder'">
+			            	<md-menu-item>
+				              	<md-button ng-click="openCollectionModal(suggest, $event)">
+				                	<ng-md-icon icon="view_list"></ng-md-icon>
+				                	Add
+				                </md-button>
+			                </md-menu-item>
+			            	<md-menu-item>
+				              	<md-button ng-click="openShareModal(suggest, $event)">
+				                	<ng-md-icon icon="share"></ng-md-icon>
+				                	Share
+				                </md-button>
+			                </md-menu-item>
+			            	<md-menu-item>
+				              	<md-button ng-click="goToPath(suggest)">
+				                	<ng-md-icon icon="open_in_new"></ng-md-icon>
+				                	Open
+				                </md-button>
+			                </md-menu-item>
+			          	</md-menu-content>
+		        	</md-menu>
+	        	</div>
 
 	      	</md-grid-tile-footer>
 	    </md-grid-tile>

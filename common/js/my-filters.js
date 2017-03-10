@@ -23,6 +23,12 @@ angular.module('myFilters', [])
 
       return output;
    };
+})
+
+.filter("matchMedia", function($window) {
+    return function matchMedia (mediaQueryString) {
+        return $window.matchMedia(mediaQueryString).matches;
+    }
 });
 
 
