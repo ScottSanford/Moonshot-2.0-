@@ -2,6 +2,10 @@ angular.module('moonshotApp')
 
 .controller('DashboardCtrl', function($scope, $state, Mfly, ItemIcons, $mdMedia, $mdSidenav){
 
+  mflyCommands.getNotificationStatus('__root__').done(function(data){
+    console.log(data);
+  });
+
   var leftMenu = [
     {name: 'Dashboard', icon: 'home', state: 'dashboard'},
     {name: 'Present', icon: 'star', state: 'cards'},
@@ -36,7 +40,15 @@ angular.module('moonshotApp')
         return obj.type === 'folder';
       });
 
-      console.log(onlyFolders);
+      var mIcons = ItemIcons.material();
+          
+      onlyFolders.forEach(function(_item){
+          mIcons.forEach(function(icon){
+              if (_item.type == icon.type) {
+                  _item['icon'] = icon.icon;
+              }
+          });
+      });
 
       $scope.folders = onlyFolders;
       

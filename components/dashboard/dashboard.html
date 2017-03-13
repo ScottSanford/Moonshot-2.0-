@@ -11,7 +11,7 @@
      	<!-- TOOLBAR ICONS -->
      	<div>
 
-     		<md-menu md-offset="-225 25">
+     		<md-menu md-offset="-150 0">
 		       	<md-button flex class="md-icon-button" aria-label="Notification" ng-click="$mdOpenMenu($event)">
 		          <md-icon class="main-toolbar-icons">notifications</md-icon>
 		        </md-button>
@@ -28,7 +28,7 @@
 	          <md-icon class="main-toolbar-icons">settings</md-icon>
 	        </md-button>
 
-	        <md-menu>
+	        <md-menu md-offset="-150 0">
 	            <md-button class="" aria-label="Settings" ng-click="$mdOpenMenu($event)">
 	          		{{userName}}
 	            </md-button>
@@ -63,7 +63,7 @@
 	    </div>
 
     </div>
-	</md-toolbar>
+</md-toolbar>
 
 <section layout="row" flex>
 
@@ -83,61 +83,67 @@
 	<!-- END: LEFT NAVIGATION MENU -->
 
 	<!-- START: RIGHT SIDE CONTENT -->
-	<md-content flex layout-fill layout="column">
+	<md-content flex layout="column">
 			<!--START: PRESENT & COLLECTIONS -->
 			<div layout="row">
-				<md-card flex="50" class="timeline-cards-top-container md-whiteframe-2dp">
-			        <md-card-title>
-			          <md-card-title-text>
-			            <span class="md-headline">Present</span>
-			            <span class="md-subhead">Create and present a presentation.</span>
-			          </md-card-title-text>
-			          <md-card-title-media>
-			            <div class="md-media-sm card-media">
-			            	<md-icon class="timeline-card-icon">star</md-icon>
-			            </div>
-			          </md-card-title-media>
-			        </md-card-title>
-			        <md-card-actions layout="row">
-			          <md-button class="timeline-recommended-button" ng-click="goToCards()">Create a Presentation</md-button>
-			        </md-card-actions>
-			    </md-card>  			
+				<div flex="50">
+					<md-card class="timeline-cards-top-container md-whiteframe-2dp">
+				        <md-card-title>
+				          <md-card-title-text>
+				            <span class="md-headline">Present</span>
+				            <span class="md-subhead">Create and present a presentation.</span>
+				          </md-card-title-text>
+				          <md-card-title-media>
+				            <div class="md-media-sm card-media">
+				            	<md-icon class="timeline-card-icon">star</md-icon>
+				            </div>
+				          </md-card-title-media>
+				        </md-card-title>
+				        <md-card-actions layout="row">
+				          <md-button class="timeline-recommended-button" ng-click="goToCards()">Create a Presentation</md-button>
+				        </md-card-actions>
+				    </md-card>  
+			    </div>
 
-	  		 	<md-card flex="50" class="timeline-cards-top-container md-whiteframe-2dp">
-			        <md-card-title>
-			          <md-card-title-text>
-			            <span class="md-headline">Collections</span>
-			            <span class="md-subhead">View all your saved collections.</span>
-			          </md-card-title-text>
-			          <md-card-title-media>
-			            <div class="md-media-sm card-media">
-			            	<i flex class="fa fa-list timeline-card-icon"></i>
-			            	<!-- <ng-md-icon icon="view_list" size="80" style="fill: #9fbe3c"></ng-md-icon> -->
-			            </div>
-			          </md-card-title-media>
-			        </md-card-title>
-			        <md-card-actions layout="row">
-			          <md-button class="timeline-recommended-button" ui-sref="collections">View Collections</md-button>
-			        </md-card-actions>
-			    </md-card>
+				<div flex="50">
+		  		 	<md-card class="timeline-cards-top-container md-whiteframe-2dp">
+				        <md-card-title>
+				          <md-card-title-text>
+				            <span class="md-headline">Collections</span>
+				            <span class="md-subhead">View all your saved collections.</span>
+				          </md-card-title-text>
+				          <md-card-title-media>
+				            <div class="md-media-sm card-media">
+				            	<i flex class="fa fa-list timeline-card-icon"></i>
+				            	<!-- <ng-md-icon icon="view_list" size="80" style="fill: #9fbe3c"></ng-md-icon> -->
+				            </div>
+				          </md-card-title-media>
+				        </md-card-title>
+				        <md-card-actions layout="row">
+				          <md-button class="timeline-recommended-button" ui-sref="collections">View Collections</md-button>
+				        </md-card-actions>
+				    </md-card>
+			    </div>
 			</div>
 
 
 			<!-- START: HIERARCHY -->
 			<div layout="row">
-		        <md-card>
+				<div flex>
+	       		<md-card>
 
-		        	<md-card-title>
-		          		<md-card-title-text>
-		            		<span class="md-headline">Hierarchy</span>
-		            		<span class="md-subhead">View Inside Mediafly's folder hierarchy.</span>
-		          		</md-card-title-text>
-		        	</md-card-title>
+	        	<md-card-title>
+	          		<md-card-title-text>
+	            		<span class="md-headline">Hierarchy</span>
+	            		<span class="md-subhead">View Inside Mediafly's folder hierarchy.</span>
+	          		</md-card-title-text>
+	        	</md-card-title>
 
-		          	<md-card-content layout="row">
+	          	<md-card-content layout="row" layout-wrap>
 
-			            <!-- FOLDERS GO HERE -->
-			            <md-card flex="25" class="timeline-folder-container" ng-repeat="folder in folders | limitTo:4">
+		            <!-- FOLDERS GO HERE -->
+		            <div flex="25" ng-repeat="folder in folders | limitTo:8">
+		            	<md-card>
 					       	
 					       	<div class="md-card-image-container">
 					        	<img ng-src="{{folder.thumbnailUrl}}" class="md-card-image">
@@ -160,14 +166,17 @@
 					        </md-card-footer>
 
 					    </md-card>
+				    </div>
 
-		          	</md-card-content>
-		
-			    </md-card>
-			</div>
+	          	</md-card-content>
+	
+		    	</md-card>
+		    	</div>
+		    </div>
 
 			<!-- START: RECOMMENDED -->
-			<div layout="row">
+			<div flex layout="row">
+				<div flex>
 				<md-card>
 			        <md-card-title>
 			          <md-card-title-text>
@@ -176,59 +185,64 @@
 			          </md-card-title-text>
 			        </md-card-title>
 
-					<md-card-content layout="row">
+					<md-card-content layout="row" layout-wrap>
 
 			            <!-- FOLDERS GO HERE -->
-			            <md-card flex="25" class="timeline-folder-container" ng-repeat="item in suggestions | limitTo:4">
-					       	
-					       	<div class="md-card-image-container">
-					        	<img ng-src="{{item.thumbnailUrl}}" class="md-card-image">
-					       	</div>
+			            <div flex="25" class="timeline-folder-container" ng-repeat="item in suggestions | limitTo:8">
+				            <md-card>
+						       	
+						       	<div class="md-card-image-container">
+						        	<img ng-src="{{item.thumbnailUrl}}" class="md-card-image">
+						       	</div>
 
-					        <md-card-title>
-					          <md-card-title-text class="dashboard-recommended-title-container">
-					            	<span class="md-headline dashboard-recommended-title">{{item.name}}</span>
-					          </md-card-title-text>
-					        </md-card-title>
+						        <md-card-title>
+						          <md-card-title-text class="dashboard-recommended-title-container">
+						            	<span class="md-headline dashboard-recommended-title">{{item.name}}</span>
+						          </md-card-title-text>
+						        </md-card-title>
 
-					        <md-divider></md-divider>
+						        <md-divider></md-divider>
 
-					        <md-card-footer class="dashboard-recommended-footer" layout="row" layout-align="end center">
-								<md-icon flex class="recommended-icon">{{item.icon}}</md-icon>
-								<md-menu>
-						        <!-- 	<md-button class="dashboard-hierarchy-footer-button" ng-click="$mdOpenMenu($event)"> -->
-						        		<md-icon flex class="main-toolbar-icons dashboard-hierarchy-footer-icon" ng-click="$mdOpenMenu($event)">more_vert</md-icon>
-						        	<!-- </md-button> -->
+						        <md-card-footer class="dashboard-recommended-footer" layout="row" layout-align="end center">
+									<md-icon flex class="recommended-icon">{{item.icon}}</md-icon>
+									<md-menu>
+							        <!-- 	<md-button class="dashboard-hierarchy-footer-button" ng-click="$mdOpenMenu($event)"> -->
+							        		<md-icon flex class="main-toolbar-icons dashboard-hierarchy-footer-icon" ng-click="$mdOpenMenu($event)">more_vert</md-icon>
+							        	<!-- </md-button> -->
 
-						        		<!-- ITEM MENU -->
-						        		<md-menu-content width="2" ng-show="f.type !== 'folder'">
-							            	<md-menu-item>
-								              	<md-button ng-click="openCollectionModal(f, $event)">
-								                	<md-icon>add</md-icon>
-								                	Add
-								                </md-button>
-							                </md-menu-item>
-							            	<md-menu-item>
-								              	<md-button ng-click="openShareModal(f, $event)">
-								                	<md-icon>share</md-icon>
-								                	Share
-								                </md-button>
-							                </md-menu-item>
-							            	<md-menu-item>
-								              	<md-button ng-click="goToPath(f)">
-								                	<md-icon>open_in_new</md-icon>
-								                	Open
-								                </md-button>
-							                </md-menu-item>
-						          		</md-menu-content>
+							        		<!-- ITEM MENU -->
+							        		<md-menu-content width="2" ng-show="f.type !== 'folder'">
+								            	<md-menu-item>
+									              	<md-button ng-click="openCollectionModal(f, $event)">
+									                	<md-icon>add</md-icon>
+									                	Add
+									                </md-button>
+								                </md-menu-item>
+								            	<md-menu-item>
+									              	<md-button ng-click="openShareModal(f, $event)">
+									                	<md-icon>share</md-icon>
+									                	Share
+									                </md-button>
+								                </md-menu-item>
+								            	<md-menu-item>
+									              	<md-button ng-click="goToPath(f)">
+									                	<md-icon>open_in_new</md-icon>
+									                	Open
+									                </md-button>
+								                </md-menu-item>
+							          		</md-menu-content>
+							         </md-menu>
 
-					        </md-card-footer>
+						        </md-card-footer>
 
-					    </md-card>
+						    </md-card>
+					    </div>
 
 		          	</md-card-content>
 
 			    </md-card>
+			    </div>
 			</div>
+
 	</md-content>
 </section>

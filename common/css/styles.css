@@ -1101,6 +1101,10 @@ md-toolbar.main-toolbar {
 	text-transform: capitalize;
 }
 
+.dashboard-folder-container {
+	/*margin:0;*/
+}
+
 md-card-footer.dashboard-hierarchy-footer {
 	padding:0;
 }

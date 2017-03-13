@@ -234,6 +234,17 @@ angular.module('moonshotApp')
                 });
 
             return deferred.promise;
+        },
+
+        getNotificationStatus: function() {
+            var deferred = $q.defer();
+
+             mflyCommands.getNotificationStatus()
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
         }
 	}
 
