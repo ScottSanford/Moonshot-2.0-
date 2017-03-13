@@ -11,6 +11,7 @@ html, body {
     outline: none;
 }
 
+/*was on the index.html page container div*/
 .ui-view-container {
 	height:100%;
 }
@@ -1128,13 +1129,18 @@ md-card-footer.dashboard-hierarchy-footer {
 
 md-icon.hierarchy-icon {
 	padding-left:15px;
+	color:#9fbe3c;
 }
 
-md-card-title-text.dashboard-recommended-title-container {
+md-icon.recommended-icon {
+	color:#9fbe3c;
+}
+
+md-card-title-text.dashboard-recommended-title-container, md-card-title-text.dashboard-folder-title-container {
 	width:100%;
 }
 
-.dashboard-recommended-title {
+.dashboard-recommended-title, .dashboard-folder-title {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -1485,10 +1491,7 @@ input.input-share-link.form-control:focus {
 
 
 
-
-
-
-
+/*testing grid layout styles*/
 
 
 .dynamicTile .col-sm-2.col-xs-4 {

@@ -11,8 +11,8 @@ angular.module('moonshotApp')
     {name: 'Present', icon: 'star', state: 'cards'},
     {name: 'Hierarchy', icon: 'folder', state: 'hierarchy'},
     {name: 'Collections', icon: 'featured_play_list', state: 'collections'},
-    {name: 'Search', icon: 'search', state: 'search'},
-    {name: 'Upload', icon: 'cloud_upload', state: 'search'}
+    {name: 'Upload', icon: 'cloud_upload', state: 'search'},
+    {name: 'Settings', icon: 'settings', state: 'settings'}
   ];
 
   $scope.menu = leftMenu;

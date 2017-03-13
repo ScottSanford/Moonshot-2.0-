@@ -10,8 +10,12 @@
      	
      	<!-- TOOLBAR ICONS -->
      	<div>
+	       
+	        <md-button flex class="md-icon-button" aria-label="Search">
+	          <md-icon class="main-toolbar-icons">search</md-icon>
+	        </md-button>
 
-     		<md-menu md-offset="-150 0">
+     		<md-menu md-position-mode="target-right target">
 		       	<md-button flex class="md-icon-button" aria-label="Notification" ng-click="$mdOpenMenu($event)">
 		          <md-icon class="main-toolbar-icons">notifications</md-icon>
 		        </md-button>
@@ -24,11 +28,7 @@
 	          </md-menu-content>
 		    </md-menu>
 
-	        <md-button flex class="md-icon-button" aria-label="Settings">
-	          <md-icon class="main-toolbar-icons">settings</md-icon>
-	        </md-button>
-
-	        <md-menu md-offset="-150 0">
+	        <md-menu md-position-mode="target-right target">
 	            <md-button class="" aria-label="Settings" ng-click="$mdOpenMenu($event)">
 	          		{{userName}}
 	            </md-button>
@@ -65,7 +65,7 @@
     </div>
 </md-toolbar>
 
-<section layout="row" flex>
+<section layout="row" flex layout-fill>
 
 	<!-- START: LEFT NAVIGATION MENU -->
 	<md-sidenav md-component-id="left" 
@@ -150,8 +150,8 @@
 					       	</div>
 
 					        <md-card-title>
-					          <md-card-title-text class="timeline-folder-name-container">
-					            	<span class="md-headline timeline-folder-name">{{folder.name}}</span>
+					          <md-card-title-text class="dashboard-folder-title-container">
+					            	<span class="md-headline dashboard-folder-title">{{folder.name}}</span>
 					          </md-card-title-text>
 					        </md-card-title>
 
