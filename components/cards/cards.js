@@ -1,10 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('CardsCtrl', function($scope, $timeout, $location, Mfly, ItemIcons, MoonshotData, $localStorage, $mdSidenav, $sessionStorage){
-
-    $scope.openSort = function() {
-        $mdSidenav('left').toggle();
-    };  
+.controller('CardsCtrl', function($scope, $timeout, $location, Mfly, ItemIcons, MoonshotData, $localStorage, $mdSidenav, $sessionStorage, $state){
 
     // BEGIN: GET 6 MOONSHOT FOLDERS
     $scope.MoonshotData = MoonshotData;

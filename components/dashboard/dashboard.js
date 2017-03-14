@@ -3,35 +3,7 @@ angular.module('moonshotApp')
 .controller('DashboardCtrl', function($scope, $state, Mfly, ItemIcons, $mdMedia, $mdSidenav){
 
   mflyCommands.getNotificationStatus('__root__').done(function(data){
-    console.log(data);
-  });
-
-  var leftMenu = [
-    {name: 'Dashboard', icon: 'home', state: 'dashboard'},
-    {name: 'Present', icon: 'star', state: 'cards'},
-    {name: 'Hierarchy', icon: 'folder', state: 'hierarchy'},
-    {name: 'Collections', icon: 'featured_play_list', state: 'collections'},
-    {name: 'Upload', icon: 'cloud_upload', state: 'search'},
-    {name: 'Settings', icon: 'settings', state: 'settings'}
-  ];
-
-  $scope.menu = leftMenu;
-
-  $scope.isSideNavOpen = true;
-  $scope.openNavigationMenu = function() {
-    $scope.isSideNavOpen = !$scope.isSideNavOpen;
-  };
-
-
-  // RIGHT SIDE
-  var pageTitle = $state.current.name;
-  $scope.pageTitle = pageTitle;
-
-  // USER
-  Mfly.getInteractiveInfo().then(function(data){
-    var user      = data.displayName;
-    var firstName = user.substr(0,user.indexOf(' '));
-    $scope.userName = firstName;
+    // console.log(data);
   });
 
   // FOLDERS

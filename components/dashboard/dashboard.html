@@ -1,248 +1,36 @@
-<md-toolbar class="main-toolbar md-whiteframe-2dp">
-	<div class="md-toolbar-tools">
-
-  		<md-button class="md-icon-button" aria-label="Menu" ng-click="openNavigationMenu()">
-	        <md-icon class="main-toolbar-icons">menu</md-icon>
-	    </md-button>
-
-		<!-- PAGE TITLE -->
-	  	<h2 flex md-truncate class="main-toolbar-page-title">{{pageTitle}}</h2>
-     	
-     	<!-- TOOLBAR ICONS -->
-     	<div>
-	       
-	        <md-button flex class="md-icon-button" aria-label="Search">
-	          <md-icon class="main-toolbar-icons">search</md-icon>
-	        </md-button>
-
-     		<md-menu md-position-mode="target-right target">
-		       	<md-button flex class="md-icon-button" aria-label="Notification" ng-click="$mdOpenMenu($event)">
-		          <md-icon class="main-toolbar-icons">notifications</md-icon>
-		        </md-button>
-
-		        <!-- NOTIFICATIONS DROP DOWN -->
-		        <md-menu-content width="4">
-		        <md-menu-item>
-		          	<p>Notifications Go Here</p>
-		        </md-menu-item>
-	          </md-menu-content>
-		    </md-menu>
-
-	        <md-menu md-position-mode="target-right target">
-	            <md-button class="" aria-label="Settings" ng-click="$mdOpenMenu($event)">
-	          		{{userName}}
-	            </md-button>
-	          <md-menu-content width="4">
-		        <md-menu-item>
-		          	<md-button ng-click="goToSettings()">
-		              	<md-icon>person</md-icon>
-		                <p>Profile</p>
-		          	</md-button>
-		        </md-menu-item>
-		        <md-menu-item>
-		          	<md-button ng-click="goToSettings()">
-		              	<md-icon>settings</md-icon>
-		                <p>Settings</p>
-		          	</md-button>
-		        </md-menu-item>
-	            <md-menu-item>
-		          <md-button ng-click="openGifs()">
-		             <md-icon>gif</md-icon>
-		             <p>Motivation GIFs</p> 
-		          </md-button>
-		        </md-menu-item>
-		        <md-divider></md-divider>
-		        <md-menu-item>
-		          	<md-button ng-click="closeInteractive()">
-		              	<md-icon>exit_to_app</md-icon>
-		                <p>Close</p>
-		          	</md-button>
-		        </md-menu-item>
-	          </md-menu-content>
-	        </md-menu>
-	    </div>
-
-    </div>
-</md-toolbar>
+<top-toolbar></top-toolbar>
 
 <section layout="row" flex layout-fill>
 
-	<!-- START: LEFT NAVIGATION MENU -->
-	<md-sidenav md-component-id="left" 
-				md-is-locked-open="isSideNavOpen && $mdMedia('gt-md')" 
-				class="md-sidenav-left md-whiteframe-2dp left-nav-menu"
-				ng-class="{'left-nav-menu-collapsed': !isSideNavOpen}">
-	
-		<md-list>
-			<md-list-item ng-class="{ 'isNavMenuActive': item.state === pageTitle }" ng-repeat="item in menu" ui-sref="{{item.state}}">
-				<ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-    			<p>{{item.name}}</p>
-			</md-list-item>
-		</md-list>
-	</md-sidenav>
-	<!-- END: LEFT NAVIGATION MENU -->
+	<sidebar-menu></sidebar-menu>
 
-	<!-- START: RIGHT SIDE CONTENT -->
+	<!-- START: CONTENT -->
 	<md-content flex layout="column">
-			<!--START: PRESENT & COLLECTIONS -->
+			<!-- PRESENT & COLLECTIONS -->
 			<div layout="row">
 				<div flex="50">
-					<md-card class="timeline-cards-top-container md-whiteframe-2dp">
-				        <md-card-title>
-				          <md-card-title-text>
-				            <span class="md-headline">Present</span>
-				            <span class="md-subhead">Create and present a presentation.</span>
-				          </md-card-title-text>
-				          <md-card-title-media>
-				            <div class="md-media-sm card-media">
-				            	<md-icon class="timeline-card-icon">star</md-icon>
-				            </div>
-				          </md-card-title-media>
-				        </md-card-title>
-				        <md-card-actions layout="row">
-				          <md-button class="timeline-recommended-button" ng-click="goToCards()">Create a Presentation</md-button>
-				        </md-card-actions>
-				    </md-card>  
+					<dash-present></dash-present>  
 			    </div>
 
 				<div flex="50">
-		  		 	<md-card class="timeline-cards-top-container md-whiteframe-2dp">
-				        <md-card-title>
-				          <md-card-title-text>
-				            <span class="md-headline">Collections</span>
-				            <span class="md-subhead">View all your saved collections.</span>
-				          </md-card-title-text>
-				          <md-card-title-media>
-				            <div class="md-media-sm card-media">
-				            	<i flex class="fa fa-list timeline-card-icon"></i>
-				            	<!-- <ng-md-icon icon="view_list" size="80" style="fill: #9fbe3c"></ng-md-icon> -->
-				            </div>
-				          </md-card-title-media>
-				        </md-card-title>
-				        <md-card-actions layout="row">
-				          <md-button class="timeline-recommended-button" ui-sref="collections">View Collections</md-button>
-				        </md-card-actions>
-				    </md-card>
+		  		 	<dash-collections></dash-collections>
 			    </div>
 			</div>
 
-
-			<!-- START: HIERARCHY -->
+			<!-- HIERARCHY -->
 			<div layout="row">
 				<div flex>
-	       		<md-card>
-
-	        	<md-card-title>
-	          		<md-card-title-text>
-	            		<span class="md-headline">Hierarchy</span>
-	            		<span class="md-subhead">View Inside Mediafly's folder hierarchy.</span>
-	          		</md-card-title-text>
-	        	</md-card-title>
-
-	          	<md-card-content layout="row" layout-wrap>
-
-		            <!-- FOLDERS GO HERE -->
-		            <div flex="25" ng-repeat="folder in folders | limitTo:8">
-		            	<md-card>
-					       	
-					       	<div class="md-card-image-container">
-					        	<img ng-src="{{folder.thumbnailUrl}}" class="md-card-image">
-					       	</div>
-
-					        <md-card-title>
-					          <md-card-title-text class="dashboard-folder-title-container">
-					            	<span class="md-headline dashboard-folder-title">{{folder.name}}</span>
-					          </md-card-title-text>
-					        </md-card-title>
-
-					        <md-divider></md-divider>
-
-					        <md-card-footer class="dashboard-hierarchy-footer" layout="row" layout-align="end center">
-					        	<md-icon flex class="hierarchy-icon">folder</md-icon>
-					        	<md-button class="dashboard-hierarchy-footer-button" ui-sref="hierarchy-details({hid: folder.id})">
-					        		<md-icon class="main-toolbar-icons dashboard-hierarchy-footer-icon">keyboard_arrow_up</md-icon>
-					        		more
-					        	</md-button>
-					        </md-card-footer>
-
-					    </md-card>
-				    </div>
-
-	          	</md-card-content>
-	
-		    	</md-card>
+	       			<dash-folders></dash-folders>
 		    	</div>
 		    </div>
 
-			<!-- START: RECOMMENDED -->
+			<!-- RECOMMENDED -->
 			<div flex layout="row">
 				<div flex>
-				<md-card>
-			        <md-card-title>
-			          <md-card-title-text>
-			            <span class="md-headline">Recomended</span>
-			            <span class="md-subhead">Recently created content you uploaded.</span>
-			          </md-card-title-text>
-			        </md-card-title>
-
-					<md-card-content layout="row" layout-wrap>
-
-			            <!-- FOLDERS GO HERE -->
-			            <div flex="25" class="timeline-folder-container" ng-repeat="item in suggestions | limitTo:8">
-				            <md-card>
-						       	
-						       	<div class="md-card-image-container">
-						        	<img ng-src="{{item.thumbnailUrl}}" class="md-card-image">
-						       	</div>
-
-						        <md-card-title>
-						          <md-card-title-text class="dashboard-recommended-title-container">
-						            	<span class="md-headline dashboard-recommended-title">{{item.name}}</span>
-						          </md-card-title-text>
-						        </md-card-title>
-
-						        <md-divider></md-divider>
-
-						        <md-card-footer class="dashboard-recommended-footer" layout="row" layout-align="end center">
-									<md-icon flex class="recommended-icon">{{item.icon}}</md-icon>
-									<md-menu>
-							        <!-- 	<md-button class="dashboard-hierarchy-footer-button" ng-click="$mdOpenMenu($event)"> -->
-							        		<md-icon flex class="main-toolbar-icons dashboard-hierarchy-footer-icon" ng-click="$mdOpenMenu($event)">more_vert</md-icon>
-							        	<!-- </md-button> -->
-
-							        		<!-- ITEM MENU -->
-							        		<md-menu-content width="2" ng-show="f.type !== 'folder'">
-								            	<md-menu-item>
-									              	<md-button ng-click="openCollectionModal(f, $event)">
-									                	<md-icon>add</md-icon>
-									                	Add
-									                </md-button>
-								                </md-menu-item>
-								            	<md-menu-item>
-									              	<md-button ng-click="openShareModal(f, $event)">
-									                	<md-icon>share</md-icon>
-									                	Share
-									                </md-button>
-								                </md-menu-item>
-								            	<md-menu-item>
-									              	<md-button ng-click="goToPath(f)">
-									                	<md-icon>open_in_new</md-icon>
-									                	Open
-									                </md-button>
-								                </md-menu-item>
-							          		</md-menu-content>
-							         </md-menu>
-
-						        </md-card-footer>
-
-						    </md-card>
-					    </div>
-
-		          	</md-card-content>
-
-			    </md-card>
+					<dash-recommended></dash-recommended>
 			    </div>
 			</div>
 
 	</md-content>
+	
 </section>

@@ -1,61 +1,30 @@
 angular.module('myDirectives', [])
 
-.directive('leftMenuBar', function($location, $mdDialog){
+
+.directive('topToolbar', function($location, $state, $mdDialog, Mfly){
 	return {
 
 		restrict: 'E', 
 		replace: true, 
 		transclude: true,
-		templateUrl: 'common/tmpls/sidenavbar/sidenavbar.html', 
+		templateUrl: 'common/tmpls/toolbar/toolbar.html', 
 		link: function(scope, element, attrs) {
 
-			scope.shouldLockOpen = true;
+			scope.isSideNavOpen = true;
+		  	scope.openNavigationMenu = function() {
+		    	scope.isSideNavOpen = !scope.isSideNavOpen;
+		  	};
 
-			scope.goToDashboard = function() {
-				$location.url('/dashboard');
-			};
+			var pageTitle = $state.current.name;
 
-			scope.goToCards = function () {
-		        $location.url('/cards');
-		    };
+  			scope.pageTitle = pageTitle;
 
-			scope.goToCollections = function () {
-		        $location.url('/collections');
-		    };
-
-			scope.goToHierarchy = function() {
-				$location.url('/hierarchy');
-			};
-
-			scope.goToSearch = function() {
-				$location.url('/search');
-			};
-		    
-			scope.goToSettings = function() {
-				$location.url('/settings');
-			};
-
-		}
-
-	}
-})
-
-.directive('navBar', function($location, $mdDialog){
-	return {
-
-		restrict: 'E', 
-		replace: true, 
-		transclude: true,
-		templateUrl: 'common/tmpls/navbar/navbar.html', 
-		link: function(scope, element, attrs) {
-
-			scope.goToTimeline = function() {
-				$location.url('/timeline');
-			};
-
-			scope.goToSearch = function() {
-				$location.url('/search');
-			};
+  			// USER
+			Mfly.getInteractiveInfo().then(function(data){
+			    var user       = data.displayName;
+			    var firstName  = user.substr(0,user.indexOf(' '));
+			    scope.userName = firstName;
+			});
 			
 		    scope.openGifs = function(ev) {
 		        $mdDialog.show({
@@ -69,19 +38,103 @@ angular.module('myDirectives', [])
 		        });
 		    };
 
+		    var currentName   = $state.current.name;
+		    if (currentName == 'search') {
+		    	scope.showSearch = true;
+		    };
+		    // perform a search query
+		    scope.getSearch = function(term){
+		    	$location.url('search/' + term);
+		    };
+
+			scope.goToSettings = function() {
+				$location.url('/settings');
+			};
+			
 			scope.closeInteractive = function () {
 		        mflyCommands.close();
 		    };
 		    
-			scope.goToSettings = function() {
-				$location.url('/settings');
-			};
+		}
 
-			// scope.goToCollections = function () {
-		 //        $location.url('/collections');
-		 //    };
+	}
+})
 
+.directive('sidebarMenu', function($location, $mdDialog){
+	return {
 
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/sidebar-menu/sidebar-menu.html', 
+		link: function(scope, element, attrs) {
+
+			var leftMenu = [
+			    {name: 'Dashboard', icon: 'home', state: 'dashboard'},
+			    {name: 'Present', icon: 'star', state: 'present'},
+			    {name: 'Hierarchy', icon: 'folder', state: 'hierarchy'},
+			    {name: 'Collections', icon: 'featured_play_list', state: 'collections'},
+			    {name: 'Upload', icon: 'cloud_upload', state: 'upload'}
+			];
+
+			scope.menu = leftMenu;
+
+		}
+	}
+})
+
+// DASHBOARD
+
+.directive('dashPresent', function($location, $mdDialog){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/dashboard/present.html', 
+		link: function(scope, element, attrs) {
+
+		}
+
+	}
+})
+
+.directive('dashCollections', function($location, $mdDialog){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/dashboard/collections.html', 
+		link: function(scope, element, attrs) {
+
+		}
+
+	}
+})
+
+.directive('dashFolders', function($location, $mdDialog){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/dashboard/folders.html', 
+		link: function(scope, element, attrs) {
+
+		}
+
+	}
+})
+
+.directive('dashRecommended', function($location, $mdDialog){
+	return {
+
+		restrict: 'E', 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/dashboard/recommended.html', 
+		link: function(scope, element, attrs) {
 
 		}
 

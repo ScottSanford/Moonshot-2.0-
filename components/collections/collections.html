@@ -1,31 +1,40 @@
-<nav-bar></nav-bar>
+<top-toolbar></top-toolbar>
 
-<section layout="row" class="collections-top-container">
-	<div layout="row" flex="60" layout-align="start center" layout-padding>
-		<h3>My Collections</h3>
-	</div>
-	<div layout="row" flex="40" layout-align="end center" class="cards-button-container">
-		 <md-button class="md-raised new-collection" ng-click="createNewCollection($event)">New Collection</md-button>
-	</div>
+<section layout="row" flex layout-fill>
+	
+	<sidebar-menu></sidebar-menu>
+
+	<md-content flex layout="column">
+		<section layout="row" class="collections-top-container">
+			<div layout="row" flex="60" layout-align="start center" layout-padding>
+				<h3 class="collections-title">My Collections</h3>
+			</div>
+			<div layout="row" flex="40" layout-align="end center" class="cards-button-container">
+				 <md-button class="md-raised new-collection" ng-click="createNewCollection($event)">New Collection</md-button>
+			</div>
+		</section>
+
+		<section flex layout-margin>
+			<md-table-container  class="md-whiteframe-2dp">
+				<table md-table>
+				    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+				      <tr md-row>
+				        <th md-column><span>Collection</span></th>
+				        <th md-column md-numeric>Actions</th>
+				      </tr>
+				    </thead>
+				    <tbody md-body>
+				      <tr md-row md-auto-select ng-repeat="item in collections">
+				        <td md-cell class="table-collection-name" ui-sref="details({cid: item.id})">{{item.name}}</td>
+				        <td md-cell class="table-collection-action">
+				        	<ng-md-icon icon="delete" ng-click="deleteCollection($event, item.id)"></ng-md-icon>
+				        </td>
+				      </tr>
+				    </tbody>
+				</table>
+			</md-table-container>
+		</section>
+	</md-content>
+
 </section>
 
-<section layout-margin>
-	<md-table-container class="md-whiteframe-2dp">
-		<table md-table>
-		    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
-		      <tr md-row>
-		        <th md-column><span>Collection</span></th>
-		        <th md-column md-numeric>Actions</th>
-		      </tr>
-		    </thead>
-		    <tbody md-body>
-		      <tr md-row md-auto-select ng-repeat="item in collections">
-		        <td md-cell class="table-collection-name" ui-sref="details({cid: item.id})">{{item.name}}</td>
-		        <td md-cell class="table-collection-action">
-		        	<ng-md-icon icon="delete" ng-click="deleteCollection($event, item.id)"></ng-md-icon>
-		        </td>
-		      </tr>
-		    </tbody>
-		</table>
-	</md-table-container>
-</section>

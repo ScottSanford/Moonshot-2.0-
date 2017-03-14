@@ -44,7 +44,7 @@ angular.module("moonshotApp", [
                     templateUrl: 'components/dashboard/dashboard.html',                    
                     controller: 'DashboardCtrl'
                 })
-                .state('cards', {
+                .state('present', {
                     url: '/cards',
                     templateUrl: 'components/cards/cards.html', 
                     controller: 'CardsCtrl'
@@ -66,11 +66,11 @@ angular.module("moonshotApp", [
                 })
                 .state('hierarchy-details', {
                     url: '/hierarchy/:hid', 
-                    templateUrl: 'components/hierarchy-detials/hierarchy-details.html', 
+                    templateUrl: 'components/hierarchy-details/hierarchy-details.html', 
                     controller: 'HierachyDetailsCtrl'
                 })
                 .state('search', {
-                    url: '/search', 
+                    url: '/search/:term', 
                     templateUrl: 'components/search/search.html', 
                     controller: 'SearchCtrl'
                 })

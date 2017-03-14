@@ -1,0 +1,13 @@
+<md-sidenav md-component-id="left" 
+            md-is-locked-open="isSideNavOpen && $mdMedia('gt-sm')" 
+            class="md-sidenav-left md-whiteframe-2dp left-nav-menu"
+            ng-class="{'left-nav-menu-collapsed': !isSideNavOpen}">
+  <md-list>
+    <md-list-item ng-class="{ 'isNavMenuActive': item.state === pageTitle }" 
+                  ng-repeat="item in menu" 
+                  ui-sref="{{item.state}}">
+      <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+        <p>{{item.name}}</p>
+    </md-list-item>
+  </md-list>
+</md-sidenav>

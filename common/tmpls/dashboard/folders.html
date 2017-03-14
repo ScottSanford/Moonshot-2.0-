@@ -1,0 +1,41 @@
+<md-card>
+
+	<md-card-title>
+  		<md-card-title-text>
+    		<span class="md-headline">Hierarchy</span>
+    		<span class="md-subhead">View Inside Mediafly's folder hierarchy.</span>
+  		</md-card-title-text>
+	</md-card-title>
+
+  	<md-card-content layout="row" layout-wrap>
+
+        <!-- FOLDERS GO HERE -->
+        <div flex="25" ng-repeat="folder in folders | limitTo:8">
+        	<md-card>
+		       	
+		       	<div class="md-card-image-container">
+		        	<img ng-src="{{folder.thumbnailUrl}}" class="md-card-image">
+		       	</div>
+
+		        <md-card-title>
+		          <md-card-title-text class="dashboard-folder-title-container">
+		            	<span class="md-headline dashboard-folder-title">{{folder.name}}</span>
+		          </md-card-title-text>
+		        </md-card-title>
+
+		        <md-divider></md-divider>
+
+		        <md-card-footer class="dashboard-hierarchy-footer" layout="row" layout-align="end center">
+		        	<md-icon flex class="hierarchy-icon">folder</md-icon>
+		        	<md-button class="dashboard-hierarchy-footer-button" ui-sref="hierarchy-details({hid: folder.id})">
+		        		<md-icon class="main-toolbar-icons dashboard-hierarchy-footer-icon">keyboard_arrow_up</md-icon>
+		        		more
+		        	</md-button>
+		        </md-card-footer>
+
+		    </md-card>
+	    </div>
+
+  	</md-card-content>
+
+</md-card>

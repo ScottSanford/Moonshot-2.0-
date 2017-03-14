@@ -1,99 +1,81 @@
 angular.module('moonshotApp')
 
-.controller('SearchCtrl', function($scope, $timeout, $location, $uibModal, Mfly, ItemIcons, $mdDialog){
-
-    $scope.goToCards = function() {
-        $location.url('/cards');
-    };
-    
-    // SUGGESTED CONTENT
-    var mIcons = ItemIcons.material();
-    mflyCommands.getLastViewedContent()
-        .then(function(data){
-            data.forEach(function(_item){
-                mIcons.forEach(function(icon){
-                    if (_item.type == icon.type) {
-                        _item['icon'] = icon.icon;
-                    }
-                });
-            });
-            console.log('suggested', data);
-            $scope.suggestions = data;
-            $scope.$apply();
-        });
-
-    $scope.showSuggestedItems = true;
-
-    $scope.getSearch = function(_term) {
-        $scope.showSpinner        = true;
-        $scope.isSearchTrue       = false;
-        $scope.showSuggestedItems = false;
-        $scope.showItemResults    = false;
-        
-        $scope.showFolderIcon  = true;
-        $scope.noSearchResults = false;
-        $scope.searchTerm      = '';
-
-        Mfly.search(_term).then(function(results){
+.controller('SearchCtrl', function($scope, $timeout, $location, $uibModal, Mfly, ItemIcons, $mdDialog, $stateParams){
+    var qTerm = $stateParams.term;
+    console.log(qTerm);
+    // $scope.getSearch = function(qTerm) {
+        if (qTerm) {
+            $scope.showSpinner        = true;
+            $scope.isSearchTrue       = false;
+            $scope.showSuggestedItems = false;
+            $scope.showItemResults    = false;
             
-            if (results.length == 0) {
+            $scope.showFolderIcon  = true;
+            $scope.noSearchResults = false;
+            $scope.searchTerm      = '';
 
-                $timeout(function(){
-                    $scope.showSpinner        = false;
-                    $scope.showSuggestedItems = false;
-                    $scope.showItemResults    = false;
-                    $scope.noSearchResults    = true;
-                    $scope.term = _term;
-                }, getRandomLoadTime(500,2000));
+            Mfly.search(qTerm).then(function(results){
+                
+                if (results.length == 0) {
 
-            } else {
-                // highlight first item
-                var first = _.first(results);
-                $scope.selectedResult = first;
-         
-                results.forEach(function(item, index, array){
-                    
-                    // add folder count
-                    if (item.type == 'folder') {
-                        Mfly.getFolder(item.id).then(function(data){
-                            $scope.folderCount = data.length;
-                        });
-                    };
+                    $timeout(function(){
+                        $scope.showSpinner        = false;
+                        $scope.showSuggestedItems = false;
+                        $scope.showItemResults    = false;
+                        $scope.noSearchResults    = true;
+                        $scope.term = qTerm;
+                    }, getRandomLoadTime(500,2000));
 
-                    var mIcons = ItemIcons.material();
-
-                    mIcons.forEach(function(icon){
+                } else {
+                    // highlight first item
+                    var first = _.first(results);
+                    $scope.selectedResult = first;
+             
+                    results.forEach(function(item, index, array){
                         
-                        if (item.type == icon.type) {
-                            item['icon'] = icon.icon;
-                        }
+                        // add folder count
+                        if (item.type == 'folder') {
+                            Mfly.getFolder(item.id).then(function(data){
+                                $scope.folderCount = data.length;
+                            });
+                        };
+
+                        var mIcons = ItemIcons.material();
+
+                        mIcons.forEach(function(icon){
+                            
+                            if (item.type == icon.type) {
+                                item['icon'] = icon.icon;
+                            }
+
+                        });
+
 
                     });
+                    
+                    $timeout(function() {
 
+                        $scope.showSpinner        = false;
+                        $scope.term               = qTerm;
+                        $scope.isSearchTrue       = true;
+                        $scope.showSuggestedItems = false;
+                        $scope.noSearchResults    = false;
+                        $scope.showItemResults    = true;
+                        $scope.showFolderIcon     = true;
+                        $scope.results            = results;
 
-                });
-                
-                $timeout(function() {
+                    },getRandomLoadTime(500,2000));
 
-                    $scope.showSpinner        = false;
-                    $scope.term               = _term;
-                    $scope.isSearchTrue       = true;
-                    $scope.showSuggestedItems = false;
-                    $scope.noSearchResults    = false;
-                    $scope.showItemResults    = true;
-                    $scope.showFolderIcon     = true;
-                    $scope.results            = results;
+                } 
 
-                },getRandomLoadTime(500,2000));
+                function getRandomLoadTime(min, max) {
+                  return Math.random() * (max - min) + min;
+                }
 
-            } 
-
-            function getRandomLoadTime(min, max) {
-              return Math.random() * (max - min) + min;
-            }
-
-		});
-    };
+            });
+        }
+        
+    // };
 
     $scope.getItems = function() {
         $scope.showFolderResults = false;

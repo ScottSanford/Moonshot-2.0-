@@ -11,6 +11,10 @@ html, body {
     outline: none;
 }
 
+md-content {
+	/*background:#FFF;*/
+}
+
 /*was on the index.html page container div*/
 .ui-view-container {
 	height:100%;
@@ -522,22 +526,13 @@ table.md-table th.md-column.item-upload-table {
 				   Search Styles
 
 ====================================================*/
-.search-tab-background {
-	background-color:#f7f7f7;
+md-input-container.search-input-container {
+	margin-top:40px;
 }
 
 /****This is a global style****/
 md-tabs-canvas {
 	background: #FFF;
-}
-
-md-tabs.search-tabs > md-tabs-content-wrapper > md-tab-content {
-    transition: none;
-}
-
-/*****This is for the search tab to hard code labels to the left********/
-md-tabs.search-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper {
-	left:60px;
 }
 
 md-toolbar:not(.md-menu-toolbar) {
@@ -768,6 +763,10 @@ md-list-item .md-list-item-inner .md-avatar-icon {
 				Collection List Styles
 
 ====================================================*/
+.collections-title {
+	font-family: 'Proxy-Light';
+}
+
 .collections-top-container {
 	padding:0 10px 0 10px;
 }
@@ -869,6 +868,27 @@ table.md-table td.md-cell.table-collection-action {
 				Collection Detail Styles
 
 ====================================================*/
+.full-image-background {
+	background-size: cover;
+	background-position: center;
+}
+
+.mb-bg-01 {
+    background-image: url('../img/collections-details-01.jpg');
+}
+
+.padding-top-200 {
+	padding-top:150px;
+}
+
+.padding-20 {
+	padding:20px;
+}
+
+.collection-details-title {
+	color:#333;
+}
+
 md-tabs md-ink-bar {
 	background-color:#9dbc3b;
 }

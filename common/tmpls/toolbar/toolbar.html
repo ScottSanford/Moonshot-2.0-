@@ -1,0 +1,91 @@
+<div>
+
+<md-toolbar class="main-toolbar md-whiteframe-2dp" ng-show="!showSearch">
+  <div class="md-toolbar-tools">
+
+      <md-button class="md-icon-button" aria-label="Menu" ng-click="openNavigationMenu()">
+          <md-icon class="main-toolbar-icons">menu</md-icon>
+      </md-button>
+
+    <!-- PAGE TITLE -->
+      <h2 flex md-truncate class="main-toolbar-page-title">Moonshot</h2>
+      
+      <!-- TOOLBAR ICONS -->
+      <div>
+         
+          <md-button flex class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
+            <md-icon class="main-toolbar-icons">search</md-icon>
+          </md-button>
+
+        <md-menu md-position-mode="target-right target">
+            <md-button flex class="md-icon-button" aria-label="Notification" ng-click="$mdOpenMenu($event)">
+              <md-icon class="main-toolbar-icons">notifications</md-icon>
+            </md-button>
+
+            <!-- NOTIFICATIONS DROP DOWN -->
+            <md-menu-content width="4">
+            <md-menu-item>
+                <p>Notifications Go Here</p>
+            </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+          <md-menu md-position-mode="target-right target">
+              <md-button class="" aria-label="Settings" ng-click="$mdOpenMenu($event)">
+                {{userName}}
+              </md-button>
+            <md-menu-content width="4">
+            <md-menu-item>
+                <md-button ng-click="goToSettings()">
+                    <md-icon>person</md-icon>
+                    <p>Profile</p>
+                </md-button>
+            </md-menu-item>
+              <md-menu-item>
+              <md-button ng-click="openGifs()">
+                 <md-icon>gif</md-icon>
+                 <p>Motivation GIFs</p> 
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button ng-click="goToSettings()">
+                    <md-icon>settings</md-icon>
+                    <p>Settings</p>
+                </md-button>
+            </md-menu-item>
+            <md-divider></md-divider>
+            <md-menu-item>
+                <md-button ng-click="closeInteractive()">
+                    <md-icon>exit_to_app</md-icon>
+                    <p>Close</p>
+                </md-button>
+            </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+      </div>
+
+    </div>
+</md-toolbar>
+
+<md-toolbar class="main-toolbar md-whiteframe-z2" ng-show="showSearch">
+  <div class="md-toolbar-tools">
+
+    <md-button ng-click="showSearch = !showSearch" aria-label="Back" class="md-icon-button md-button md-ink-ripple">
+      <ng-md-icon icon="arrow_back"></ng-md-icon>
+    </md-button>
+
+    <md-input-container flex class="search-input-container">
+      <label>&nbsp;</label>
+      <input ng-model="searchTerm" placeholder="Search" my-enter="getSearch(searchTerm)">
+    </md-input-container>
+
+    <md-button aria-label="Search" ng-click="showSearch = !showSearch" class="md-icon-button md-button md-ink-ripple" ng-click="getSearch(searchTerm)">
+      <ng-md-icon icon="search"></md-icon>
+    </md-button>
+
+  </div>
+
+</md-toolbar>
+
+</div>
+

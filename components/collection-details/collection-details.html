@@ -1,98 +1,105 @@
-<nav-bar></nav-bar>
+<top-toolbar></top-toolbar>
 
-<section layout="row" layout-margin>
-	 <md-button class="md-raised" ng-click="goToCollectionList()">
-		My Collections
-	 </md-button>
-</section>
+<section layout="row" flex layout-fill>
 
-<section>
+	<sidebar-menu></sidebar-menu>
 
-	<div layout="row" layout-margin class="margin-top-25">
-		<div flex></div>
-		<div>
-			<span class="collection-name">{{ cName }}</span>
-		</div>
-		<div flex></div>
-	</div>
+	<md-content flex layout="column">
+		<section>
+			<div class="full-image-background mb-bg-01 padding-top-200" layout="row" layout-align="center start">
+				<div class="collection-details-title padding-20">
+			        <h3 class="md-card-title">{{ cName }}</h3>
+			    </div>
+			</div>
 
-    <md-tabs md-dynamic-height md-stretch-tabs="always" md-border-bottom class="md-whiteframe-2dp" layout-margin>
-      <md-tab label="Items ({{selectedCollection.length}})">
-        <md-content class="md-padding">
-        	<!-- ALERT: IF NO ITEMS IN COLLECTION -->
-          	<div class="alert alert-info alert-no-items md-whiteframe-2dp" role="alert" ng-if="selectedCollection.length == 0">Your collection is empty. While using the Search Tool, you can add items to your collection by clicking 'Add to Collection'.</div>
-
-          	<!-- SHOW COLLECTION ITEMS -->
-          	<md-table-container>
-				<table md-table ng-if="selectedCollection.length >= 1">
-				    <thead md-head md-on-reorder="getDesserts">
-				      <tr md-row>
-				        <th md-column><span>Title</span></th>
-				        <th md-column md-numeric>Actions</th>
-				      </tr>
-				    </thead>
-				    <tbody md-body ui-sortable="sortableOptions" ng-model="selectedCollection">
-				      <tr md-row md-auto-select ng-repeat="item in selectedCollection" class="collection-details-row">
-				        <td md-cell>
-				        	<div class="search-results-table-item-thumbnail">
-								<img ng-src="{{item.thumbnailUrl}}">
-									</div>
-
-										<span class="collection-details-item-name">{{item.name}}</span>
-										<div class="selected-collection-hierarchy">
-											<span class="" ng-repeat="i in item.hierarchy">
-												<a ng-click="goToPath(i)">{{ i.name }}</a> {{$last ? '' : ' / '}} 
-											</span>
-							</div>
-				        </td>
-				        <td md-cell class="table-collection-action">
-				        	<ng-md-icon icon="menu" ng-click="" class="arrows-v myHandle" ng-if="selectedCollection.length >= 2"></ng-md-icon>
-				        	<ng-md-icon icon="delete" ng-click="removeItemFromCollection(item.id)"></ng-md-icon>
-				        </td>
-				      </tr>
-				    </tbody>
-				</table>
-			</md-table-container>
-        </md-content>
-      </md-tab>
-      <md-tab label="Edit">
-        <md-content class="md-padding">
-          	<div layout="row" layout-padding>
-	      		<div class="md-whiteframe-2dp">	 
-			          <div class="collection-date">
-			          	<span>Created on: {{ cCreated | date: 'medium'}}</span>
-			          </div>
-			          <div class="collection-date">
-			          	<span>Last modified: {{ cModified | date: 'medium'}}</span>
-			          </div>
-	      		</div>
-
-	      	</div>
-	      	<div layout="row" class="collection-edit-actions">
-      			<div>
-      				<md-button class="md-raised collection-details-delete-button" ng-click="deleteClick($event)">
-						<ng-md-icon icon="delete"></ng-md-icon>
-						Delete Collection
-      				</md-button>
-      			</div>
-      		</div>
-        </md-content>
-      </md-tab>
-      <md-tab label="Play">
-        <md-content class="md-padding">
-			<div class="alert alert-info alert-no-items md-whiteframe-2dp" role="alert" ng-if="selectedCollection.length == 0">You cannot play your Collection. Please add items to the '{{ cName }}' Collection using the Search tool.</div>
-
-          	<div class="content-flat" ng-if="selectedCollection.length >= 1">
-	      		<div class="alert alert-info play-alert-info md-whiteframe-2dp">
-					View collection in 'presentation mode'. 
+	<!-- 		<div layout="row" layout-margin class="margin-top-25">
+				<div flex></div>
+				<div>
+					<span class="collection-name">{{ cName }}</span>
 				</div>
-          		<md-button class="md-raised collection-details-delete-button" ng-click="playCollection()">
-          			<ng-md-icon icon="play_arrow"></ng-md-icon>
-          			Play Collection
-          		</md-button>	
-	      	</div>
-        </md-content>
-      </md-tab>
-    </md-tabs>
+				<div flex></div>
+			</div> -->
+
+		    <md-tabs md-dynamic-height md-border-bottom>
+		      <md-tab label="Items ({{selectedCollection.length}})">
+		        <md-content class="md-padding">
+		        	<!-- ALERT: IF NO ITEMS IN COLLECTION -->
+		          	<div class="alert alert-info alert-no-items md-whiteframe-2dp" role="alert" ng-if="selectedCollection.length == 0">Your collection is empty. While using the Search Tool, you can add items to your collection by clicking 'Add to Collection'.</div>
+
+		          	<!-- SHOW COLLECTION ITEMS -->
+		          	<md-table-container>
+						<table md-table ng-if="selectedCollection.length >= 1">
+						    <thead md-head md-on-reorder="getDesserts">
+						      <tr md-row>
+						        <th md-column><span>Title</span></th>
+						        <th md-column md-numeric>Actions</th>
+						      </tr>
+						    </thead>
+						    <tbody md-body ui-sortable="sortableOptions" ng-model="selectedCollection">
+						      <tr md-row md-auto-select ng-repeat="item in selectedCollection" class="collection-details-row">
+						        <td md-cell>
+						        	<div class="search-results-table-item-thumbnail">
+										<img ng-src="{{item.thumbnailUrl}}">
+											</div>
+
+												<span class="collection-details-item-name">{{item.name}}</span>
+												<div class="selected-collection-hierarchy">
+													<span class="" ng-repeat="i in item.hierarchy">
+														<a ng-click="goToPath(i)">{{ i.name }}</a> {{$last ? '' : ' / '}} 
+													</span>
+									</div>
+						        </td>
+						        <td md-cell class="table-collection-action">
+						        	<ng-md-icon icon="menu" ng-click="" class="arrows-v myHandle" ng-if="selectedCollection.length >= 2"></ng-md-icon>
+						        	<ng-md-icon icon="delete" ng-click="removeItemFromCollection(item.id)"></ng-md-icon>
+						        </td>
+						      </tr>
+						    </tbody>
+						</table>
+					</md-table-container>
+		        </md-content>
+		      </md-tab>
+		      <md-tab label="Edit">
+		        <md-content class="md-padding">
+		          	<div layout="row" layout-padding>
+			      		<div class="md-whiteframe-2dp">	 
+					          <div class="collection-date">
+					          	<span>Created on: {{ cCreated | date: 'medium'}}</span>
+					          </div>
+					          <div class="collection-date">
+					          	<span>Last modified: {{ cModified | date: 'medium'}}</span>
+					          </div>
+			      		</div>
+
+			      	</div>
+			      	<div layout="row" class="collection-edit-actions">
+		      			<div>
+		      				<md-button class="md-raised collection-details-delete-button" ng-click="deleteClick($event)">
+								<ng-md-icon icon="delete"></ng-md-icon>
+								Delete Collection
+		      				</md-button>
+		      			</div>
+		      		</div>
+		        </md-content>
+		      </md-tab>
+		      <md-tab label="Play">
+		        <md-content class="md-padding">
+					<div class="alert alert-info alert-no-items md-whiteframe-2dp" role="alert" ng-if="selectedCollection.length == 0">You cannot play your Collection. Please add items to the '{{ cName }}' Collection using the Search tool.</div>
+
+		          	<div class="content-flat" ng-if="selectedCollection.length >= 1">
+			      		<div class="alert alert-info play-alert-info md-whiteframe-2dp">
+							View collection in 'presentation mode'. 
+						</div>
+		          		<md-button class="md-raised collection-details-delete-button" ng-click="playCollection()">
+		          			<ng-md-icon icon="play_arrow"></ng-md-icon>
+		          			Play Collection
+		          		</md-button>	
+			      	</div>
+		        </md-content>
+		      </md-tab>
+		    </md-tabs>
+
+		</section>
+	</md-content>
 
 </section>
