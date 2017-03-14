@@ -700,12 +700,12 @@ md-progress-circular path {
 }
 
 md-chips md-chip {
-	background-color: #9fbe3c;
+	background-color: #999;
 	color:#fff;
 }
 
 md-chips md-chip:hover, .selectedChip {
-	background-color: #475669;
+	background-color: #9fbe3c;
 }
 
 .search-suggested-subheader {
@@ -894,7 +894,7 @@ md-tabs md-ink-bar {
 }
 
 md-tabs .md-tab.md-active {
-	color:#475669;
+	color:#333;
 }
 
 .md-button.md-raised.collection-details-delete-button {

@@ -5,7 +5,8 @@
 	<sidebar-menu></sidebar-menu>
 
 	<!-- START: CONTENT -->
-	<md-content flex layout="column">
+	<div flex layout="column">
+	<md-content>
 			<!-- PRESENT & COLLECTIONS -->
 			<div layout="row">
 				<div flex="50">
@@ -18,19 +19,20 @@
 			</div>
 
 			<!-- HIERARCHY -->
-			<div layout="row">
+			<div layout="column">
 				<div flex>
 	       			<dash-folders></dash-folders>
 		    	</div>
 		    </div>
 
 			<!-- RECOMMENDED -->
-			<div flex layout="row">
+			<div flex layout="column">
 				<div flex>
 					<dash-recommended></dash-recommended>
 			    </div>
 			</div>
 
 	</md-content>
+	</div>
 	
 </section>
