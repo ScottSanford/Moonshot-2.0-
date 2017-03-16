@@ -7,6 +7,16 @@ html, body {
 	height:100%;
 }
 
+/* 
+  Allow angular.js to be loaded in body, hiding cloaked elements until 
+  templates compile.  The !important is important given that there may be 
+  other selectors that are more specific or come later and might alter display.  
+ */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+
 *:focus {
     outline: none;
 }
@@ -123,6 +133,10 @@ md-list-item.margin-5 {
   align-items: center;
 }
 
+.md-subheader .md-subheader-inner {
+	margin-bottom: 20px;
+}
+
 .md-subheader {
 	color:#9fbe3c;
 }
@@ -137,10 +151,6 @@ md-list-item.margin-5 {
 				Timeline Styles
 
 ====================================================*/
-md-card.timeline-cards-top-container md-card-title {
-	padding-top:15px;
-}
-
 md-card.timeline-cards-upload-myitems-container {
 	height:200px;
 }
@@ -175,10 +185,14 @@ md-card .drop-zone:hover {
 	border:2px dashed #FFF;
 }
 
+md-icon.drop-zone-icon {
+	color:#333;
+}
+
 .my-items-drop-zone-text {
-	font-size:30px;
-	font-style: italic;
 	font-family: 'Proxy-Regular';
+	font-size:24px;
+	color:#333;
 }
 
 md-list.timeline-folder-list {
@@ -351,27 +365,9 @@ table.md-table th.md-column.item-upload-table {
 				Cards Styles
 
 ====================================================*/
-/*Toolbar*/
-.background-moonshot {
-	background-color:#475669;
-}
-
-.toolbar-logo {
-	width:200px;
-}
-
-/*Side Nav*/
-.background-green {
-	background-color:#9dbc3b;
-}
-
-.cards-top-container {
-	margin-top:25px;
-	padding:0 10px 0 10px;
-}
-
-.cards-header-right span{
-	margin:15px 20px;
+md-toolbar.cards-top-container {
+	background-color:#9fbe3c;
+	color:#FFF;
 }
 
 .flyout-menu-container {
@@ -413,6 +409,13 @@ table.md-table th.md-column.item-upload-table {
 	margin-left:10px;
 }
 
+md-toolbar.background-gray {
+	background-color:#333;
+}
+
+md-toolbar.background-green {
+	background-color:#9fbe3c;
+}
 /*=============================
 
 		   Card Flip
@@ -423,9 +426,9 @@ table.md-table th.md-column.item-upload-table {
   -webkit-perspective: 800;
    height: 200px;
    position: relative;
-   margin: 40px auto;
-   padding:20px;
-   top:-20px;
+   margin: 50px auto;
+   padding:10px;
+   top:-30px;
 }
 .flip .card.flipped {
   -webkit-transform: rotatey(-180deg);
@@ -438,14 +441,14 @@ table.md-table th.md-column.item-upload-table {
 }
 .flip .card .face {
   width: 100%;
-  height: 250px;
+  height: 275px;
   position: absolute;
   /*border:2px solid #9dbc3b;*/
   -webkit-backface-visibility: hidden;
   z-index: 2;
   font-family: 'Proxy-Light';
   font-size: 20px;
-  color:#535353;
+  color:#333;
   text-align: center;
   background: #fff;
 }
@@ -459,21 +462,26 @@ table.md-table th.md-column.item-upload-table {
   cursor: pointer;
 }
 
-.card-title, .card-title-back {
-	margin:15px 0 0 0;
-	padding-bottom:15px;
+.card-title {
+	padding:10px 0;
 	border-bottom: 1px solid #e3e4e5;
-	font-size:20px;
+	font-size:18px;
+}
+
+.card-title-back {
+	padding:10px 0 5px 5px;
+	border-bottom: 1px solid #e3e4e5;
+	font-size:18px;
 }
 
 .card-img img {
 	height:150px;
-	margin-top:15px;
+	margin-top:35px;
 }
 
 .goto-front-arrow {
 	color:#475669;
-	margin-left:2px;
+	margin-left:5px;
 	font-size:23px;
 }
 
@@ -484,7 +492,7 @@ table.md-table th.md-column.item-upload-table {
 }
 
 .card-title-back-right {
-	padding-right:20px;
+	padding-right:20px;em
 	font-size:16px;
 	margin-top:2px;
 }
@@ -503,23 +511,34 @@ table.md-table th.md-column.item-upload-table {
 
 .folder-card-item {
 	border-bottom:1px solid #e3e4e5;
-	padding:15px 5px 15px 5px;
-	margin:10px 0;
+	padding:25px 5px 15px 5px;
 	color: #7c7c7c;
+}
+
+.isActive-card-item {
+	background-color:#9fbe3c;
+	color:#FFF;
+	padding:25px 5px 15px 5px;
+	border-bottom:1px solid #e3e4e5;
 }
 
 .card-item-name {
 	margin-top:2px;
 	font-family: 'Proxy-Regular';
 	font-size:16px;
-	text-decoration: underline;
 	white-space: nowrap;
   	overflow: hidden;
   	text-overflow: ellipsis;
+  	width:175px;
+  	padding:0 15px;
 }
 
 .check-circle {
 	color:#9dbc3a;
+}
+
+.card-item-icon {
+	margin-left: 5px
 }
 /*===================================================
 
@@ -1469,6 +1488,10 @@ input.input-share-link.form-control:focus {
 	md-sidenav {
 		max-width: 200px;
 	}
+
+	md-sidenav.sort-slides-list {
+		max-width: 400px;
+	}
 }
 
 @media(max-width:600px) {
@@ -1483,30 +1506,19 @@ input.input-share-link.form-control:focus {
 	}
 
 	.folder-card-item-container {
-		height:188px;
+		height:203px;
 		/*border:1px solid red;*/
 	}	
 }
 
 @media(min-width:992px){
 	.folder-card-item-container {
-		height:188px;
-	}
-
-	.card-item-name {
-		width:170px;
-	}
-
-	.card-title-back-center {
-		font-size:17px;
+		height:229px;
 	}
 }
 
 @media(min-width:1200px){
-	.card-item-name {
-		width:225px;
-		/*border:1px solid red;*/
-	}
+
 }
 
 

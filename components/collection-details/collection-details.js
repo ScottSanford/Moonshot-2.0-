@@ -15,21 +15,23 @@ angular.module('moonshotApp')
     var cid = $stateParams.cid;  
     // ITEMS TAB
 
-    Mfly.getCollections().then(function(collections){
-        
-        collections.forEach(function(collection){
-            if (collection.id === cid) {
-                
-                $scope.cName     = collection.name;
-                $scope.cCreated  = collection.created;
-                $scope.cModified = collection.modified;
-
-            }
-        });
-
-    });
 
     function showCollectionDetails(id) {
+        
+        Mfly.getCollections().then(function(collections){
+            
+            collections.forEach(function(collection){
+                if (collection.id === cid) {
+                    console.log(collection);
+                    $scope.cName     = collection.name;
+                    $scope.cCreated  = collection.created;
+                    $scope.cModified = collection.modified;
+
+                }
+            });
+
+        });
+
         Mfly.getCollection(id).then(function(items){
             
             $scope.selectedCollection = items;

@@ -1,0 +1,36 @@
+<top-toolbar></top-toolbar>
+
+<section layout="row" flex layout-fill>
+
+	<sidebar-menu></sidebar-menu>
+
+	<!-- START: CONTENT -->
+	<md-content flex layout="column">
+
+		<md-toolbar class="background-green">
+
+			<div flex layout="row" layout-align="start center" layout-padding>
+				<div class="message-count">Upload files to My Items</div>
+			</div>
+
+		</md-toolbar>
+
+		<div layout="row">
+			<md-card flex class="timeline-cards-upload-myitems-container">
+			    <md-card-content layout="row" 
+			        			 layout-align="center center"
+			        			 layout-margin  
+			        			 class="drop-zone" 
+			        			 ngf-drop="upload($file)" 
+			        			 ngf-select="upload($file)" 
+								 ngf-drag-over-class="'dragover'" 
+								 ngf-multiple="true" 
+								 ngf-allow-dir="true">
+			        <md-icon class="drop-zone-icon">file_upload</md-icon>
+			       	<span class="my-items-drop-zone-text">Drag files here to upload</span>
+			    </md-card-content>
+		    </md-card>
+	    </div>
+	</md-content>
+	
+</section>

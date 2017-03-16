@@ -69,11 +69,21 @@ angular.module('myDirectives', [])
 		templateUrl: 'common/tmpls/sidebar-menu/sidebar-menu.html', 
 		link: function(scope, element, attrs) {
 
+
+			scope.isDeviceMobile = function(item) {
+				var deviceType = mflyCommands.getDeviceType();
+				if (deviceType === 'mobile' && item.name === 'Upload') {
+					return true;
+				} else {
+					return false;
+				}
+			};
+
 			var leftMenu = [
 			    {name: 'Dashboard', icon: 'home', state: 'dashboard'},
-			    {name: 'Present', icon: 'star', state: 'present'},
-			    {name: 'Hierarchy', icon: 'folder', state: 'hierarchy'},
+			    {name: 'Inside Mediafly', icon: 'folder', state: 'hierarchy'},
 			    {name: 'Collections', icon: 'featured_play_list', state: 'collections'},
+			    {name: 'Present', icon: 'star', state: 'present'},
 			    {name: 'Upload', icon: 'cloud_upload', state: 'upload'}
 			];
 

@@ -50,7 +50,11 @@ angular.module('moonshotApp')
 
 
     // Sort
-    $scope.sortList = $localStorage.slides;;
+    $scope.openSort = function() {
+        $mdSidenav('right').toggle();
+    };
+
+    $scope.sortList = $localStorage.slides;
 
     $scope.connectLists = function() {
         $scope.$broadcast('updateSortList');

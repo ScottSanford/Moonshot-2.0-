@@ -6,10 +6,10 @@
 
 	<md-content flex layout="column">
 		<!-- SORT SELECTED SLIDES -->
-		<md-sidenav class="md-sidenav-left sort-slides-list" md-component-id="left" md-whiteframe="4">
+		<md-sidenav class="md-sidenav-right sort-slides-list" md-component-id="right" md-whiteframe="4">
 
-		  	<md-toolbar>
-		    	<h1 class="md-toolbar-tools background-green">Sort Slides</h1>
+		  	<md-toolbar class="background-gray">
+		    	<h1 class="md-toolbar-tools">Sort Slides</h1>
 		  	</md-toolbar>
 
 		    <md-content layout-margin>
@@ -28,43 +28,41 @@
 		</md-sidenav>
 
 		<!-- START: COUNT & BUTTONS -->
-		<div layout="row" class="cards-top-container">
+		<md-toolbar layout="row" class="cards-top-container" layout-align="end center">
 
-			<div layout="row" flex="60" layout-align="start center" layout-padding>
+			<div flex layout="row" layout-align="start center" layout-padding>
 				<div class="message-count" 
 					 ng-class="{'show-presentation': MoonshotData.presentation.length >= 1}">
 					 	{{ MoonshotData.presentation.length }} selected
 				</div>
 			</div>
 
-			<div layout="row" flex="40" layout-align="end center" class="cards-button-container">
-				<md-button class="md-raised" ng-click="resetCollection()">
-					<ng-md-icon icon="refresh"></ng-md-icon>
-					Reset
+			<div flex layout="row" layout-align="end center" class="cards-button-container">
+				<md-button class="md-icon-button" ng-click="resetCollection()">
+					<md-icon class="cards-icons">refresh</md-icon>
 				</md-button>
-				<md-button class="md-raised" ng-click="openSort()">
-					<ng-md-icon icon="menu"></ng-md-icon>
-					Sort
+				<md-button class="md-icon-button" ng-click="openSort()">
+					<md-icon class="cards-icons">menu</md-icon>
 				</md-button>
-		  		<md-button class="md-raised" ng-click="MoonshotData.playCollection()">
-		  			<ng-md-icon icon="play_arrow"></ng-md-icon>
-		  			Play
+		  		<md-button class="md-icon-button" ng-click="MoonshotData.playCollection()">
+		  			<md-icon class="cards-icons">play_arrow</md-icon>
 		  		</md-button>
 		  	</div>
 
-		</div>
+		</md-toolbar>
 
 		<!-- START: CARDS -->
 		<main>
 
-		    <div class="row">
+		    <div layout="row" layout-wrap>
 
-				<div class="col-sm-4 flip-card" ng-repeat="(key, c) in MoonshotData.cards track by key">
+				<div flex="33" class="flip-card" ng-repeat="(key, c) in MoonshotData.cards track by key">
 				    <div class="flip"> 
 				        <div class="card" ng-class="{'flipped':isFlipped}"> 
 				            
 				            <!-- BEGIN: FRONT CARD -->
-				            <div class="face front md-whiteframe-2dp" ng-click="isFlipped=!isFlipped; getFolderItems(c.id, c.name)"> 
+				            <div class="face front md-whiteframe-2dp" 
+				            	 ng-click="isFlipped=!isFlipped; getFolderItems(c.id, c.name)"> 
 				                <div class="card-title">{{ c.name }}</div>
 				                <div class="card-img">
 									<img ng-src="{{c.thumbnailUrl}}">
@@ -73,36 +71,32 @@
 
 							<!-- BEGIN: BACK CARD -->
 				            <div class="face back md-whiteframe-2dp"> 
-				                <div class="row card-title-back">
+				                <div layout="row" class="card-title-back">
 									
-									<div class="col-xs-2 card-title-back-left">
+									<div flex="10" class="card-title-back-left">
 										<i class="material-icons goto-front-arrow" ng-click="isFlipped=!isFlipped">arrow_back</i>
 									</div>
 									
-									<div class="col-xs-8 card-title-back-center">
+									<div flex="80" class="card-title-back-center">
 										{{ c.name }}
 									</div>
 
-									<div class="col-xs-2 card-title-back-right">
+									<div flex="10" class="card-title-back-right">
 										<span class="circle-counter">{{MoonshotData.cards[key].itemFolderCounter || 0}}</span>
 									</div>
 
 				                </div>
 
 				                <div class="folder-card-item-container">
-				                	<div class="row folder-card-item" 
-				                		 ng-repeat="(k, item) in MoonshotData.cards[key].itemsObj track by k" ng-click="item.isItemSelected = !item.isItemSelected; MoonshotData.updateCount(key, item); MoonshotData.pushToPresentation(item); connectLists()">
-				                		<div class="col-xs-2">
-				                			<i class="material-icons">{{ item.icon }}</i>
+				                	<div layout="row" class="folder-card-item" 
+				                		 ng-repeat="(k, item) in MoonshotData.cards[key].itemsObj track by k" ng-click="item.isItemSelected = !item.isItemSelected; MoonshotData.updateCount(key, item); MoonshotData.pushToPresentation(item); connectLists()"
+				                		 ng-class="item.isItemSelected ? 'isActive-card-item' : 'folder-card-item'">
+				                		<div flex="10">
+				                			<i class="material-icons card-item-icon">{{ item.icon }}</i>
 				                		</div>
-				                		<div class="col-xs-8">
-				                			<div class="card-item-name text-left">{{item.name}}</div>
-				                		</div>
+		
+				                		<div flex="80" class="card-item-name text-left">{{item.name}}</div>
 
-				                		<div class="col-xs-2">
-											<span class="fa fa-circle" 
-												  ng-class="item.isItemSelected ? 'fa fa-check-circle check-circle' : 'fa fa-circle'"></span>
-				                		</div>
 				                	</div>
 				                </div>
 				            </div> 

@@ -5,7 +5,8 @@
   <md-list>
     <md-list-item ng-class="{ 'isNavMenuActive': item.state === pageTitle }" 
                   ng-repeat="item in menu" 
-                  ui-sref="{{item.state}}">
+                  ui-sref="{{item.state}}"
+                  ng-hide="isDeviceMobile(item)">
       <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
         <p>{{item.name}}</p>
     </md-list-item>

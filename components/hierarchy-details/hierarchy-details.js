@@ -44,16 +44,6 @@ angular.module('moonshotApp')
       }
     };
 
-    $scope.goToPath = function(item) {
-
-        if (item.type == "folder") {
-            mflyCommands.openFolder(item.id);
-        } else {
-            mflyCommands.openItem(item.id);
-        }
-        
-    };
-
     $scope.openShareModal = function(selectedItem, ev) {
 
         $mdDialog.show({

@@ -34,20 +34,21 @@ angular.module("moonshotApp", [
           $urlRouterProvider.otherwise("/dashboard");
           
           $stateProvider
-                .state('timeline', {
-                    url: '/timeline', 
-                    templateUrl: 'components/timeline/timeline.html',                    
-                    controller: 'TimelineCtrl'
-                })
                 .state('dashboard', {
                     url: '/dashboard', 
                     templateUrl: 'components/dashboard/dashboard.html',                    
                     controller: 'DashboardCtrl'
                 })
-                .state('present', {
-                    url: '/cards',
-                    templateUrl: 'components/cards/cards.html', 
-                    controller: 'CardsCtrl'
+                
+                .state('hierarchy', {
+                    url: '/hierarchy', 
+                    templateUrl: 'components/hierarchy/hierarchy.html', 
+                    controller: 'HierachyCtrl'
+                })
+                .state('hierarchy-details', {
+                    url: '/hierarchy/:hid', 
+                    templateUrl: 'components/hierarchy-details/hierarchy-details.html', 
+                    controller: 'HierachyDetailsCtrl'
                 })
                 .state('collections', {
                     url: '/collections', 
@@ -59,30 +60,36 @@ angular.module("moonshotApp", [
                     templateUrl: 'components/collection-details/collection-details.html', 
                     controller: 'CollectionDetailCtrl'
                 })
-                .state('hierarchy', {
-                    url: '/hierarchy', 
-                    templateUrl: 'components/hierarchy/hierarchy.html', 
-                    controller: 'HierachyCtrl'
-                })
-                .state('hierarchy-details', {
-                    url: '/hierarchy/:hid', 
-                    templateUrl: 'components/hierarchy-details/hierarchy-details.html', 
-                    controller: 'HierachyDetailsCtrl'
-                })
-                .state('search', {
-                    url: '/search/:term', 
-                    templateUrl: 'components/search/search.html', 
-                    controller: 'SearchCtrl'
+                .state('present', {
+                    url: '/cards',
+                    templateUrl: 'components/cards/cards.html', 
+                    controller: 'CardsCtrl'
                 })
                 .state('presentation', {
                     url: '/presentation/{itemId}?collection&page&index', 
                     templateUrl: 'components/presentation/presentation.html',                    
                     controller: 'PresentationCtrl'
                 })
+                .state('search', {
+                    url: '/search/:term', 
+                    templateUrl: 'components/search/search.html', 
+                    controller: 'SearchCtrl'
+                })
                 .state('settings', {
                     url: '/settings', 
                     templateUrl: 'components/settings/settings.html',                    
                     controller: 'SettingsCtrl'
+                })
+                .state('upload', {
+                    url: '/upload', 
+                    templateUrl: 'components/upload/upload.html',                    
+                    controller: 'UploadCtrl'
+                })
+
+                .state('timeline', {
+                    url: '/timeline', 
+                    templateUrl: 'components/timeline/timeline.html',                    
+                    controller: 'TimelineCtrl'
                 })
 
     });

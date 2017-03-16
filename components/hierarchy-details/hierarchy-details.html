@@ -12,8 +12,8 @@
 				</md-subheader>
 		</section>
 
-		<section layout="row">
-			<md-grid-list flex-offset="5" flex="90" md-cols="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4" md-row-height="3:3" md-gutter="20px">
+		<section layout="row" layout-wrap layout-margin>
+			<md-grid-list flex-offset="5" flex="90" md-cols="1" md-cols-sm="3" md-cols-md="4" md-cols-gt-md="6" md-row-height="3:3" md-gutter="10px">
 
 				    <md-grid-tile ng-repeat="i in items" md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1" ng-click="goToItem(i)">
 						
@@ -28,19 +28,19 @@
 						        		<i class="material-icons" ng-click="$mdOpenMenu($event)">{{i.icon}}</i>
 								        <md-menu-content width="2" ng-show="i.type !== 'folder'">
 							            	<md-menu-item>
-								              	<md-button ng-click="openCollectionModal(f, $event)">
+								              	<md-button ng-click="openCollectionModal(i, $event)">
 								                	<ng-md-icon icon="view_list"></ng-md-icon>
 								                	Add
 								                </md-button>
 							                </md-menu-item>
 							            	<md-menu-item>
-								              	<md-button ng-click="openShareModal(f, $event)">
+								              	<md-button ng-click="openShareModal(i, $event)">
 								                	<ng-md-icon icon="share"></ng-md-icon>
 								                	Share
 								                </md-button>
 							                </md-menu-item>
 							            	<md-menu-item>
-								              	<md-button ng-click="goToPath(f)">
+								              	<md-button ng-click="goToItem(i)">
 								                	<ng-md-icon icon="open_in_new"></ng-md-icon>
 								                	Open
 								                </md-button>

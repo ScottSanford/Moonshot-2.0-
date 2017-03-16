@@ -23,9 +23,9 @@ angular.module('moonshotApp')
     $scope.goToPath = function(item) {
 
         if (item.type == "folder") {
-            mflyCommands.openFolder(item.id);
+          $location.url('hierarchy/' + item.id );
         } else {
-            mflyCommands.openItem(item.id);
+          mflyCommands.openItem(item.id);
         }
         
     };
