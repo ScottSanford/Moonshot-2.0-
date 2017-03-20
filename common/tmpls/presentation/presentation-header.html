@@ -1,29 +1,46 @@
-<md-toolbar class="md-whiteframe-5dp" style="position: fixed; top:0; left:0;">
-  <div class="md-toolbar-tools background-presentation-header" layout="row">
-  
-    <md-button class="md-raised view-presentation-btn" 
-               ng-click="">
-        <i class="fa fa-list-alt"></i>&nbsp;
-        <!-- <span ng-if="contentService.listOpen">Hide List</span> -->
-        <span ng-if="!contentService.listOpen">Show List</span>
-    </md-button>
+<div>
+  <md-toolbar class="md-whiteframe-5dp">
+    <div class="md-toolbar-tools">
+    
+      <md-button class="md-raised view-presentation-btn" 
+                 ng-click="openPresMenu()">
+          <ng-md-icon icon="featured_play_list"></ng-md-icon>
+          <span>&nbsp;Show List</span>
+      </md-button>
+
+      <div ng-repeat="s in slide">
+        <span ng-if="current === $index">{{ s.name }}</span>
+      </div>
+
+      <span flex></span>
+
+      <md-menu>
+        <md-icon flex class="main-toolbar-icons dashboard-hierarchy-footer-icon" ng-click="$mdOpenMenu($event)">more_vert</md-icon>
+
+                    <!-- ITEM MENU -->
+        <md-menu-content width="4">
+            <md-menu-item>
+                <md-button ng-click="createNewCollection()">
+                  <md-icon>featured_play_list</md-icon>
+                  Collections
+                </md-button>
+              </md-menu-item>
+            <md-menu-item>
+                <md-button ui-sref="present">
+                  <md-icon>star</md-icon>
+                  Present
+                </md-button>
+              </md-menu-item>
+            <md-menu-item>
+                <md-button ui-sref="dashboard">
+                  <md-icon>home</md-icon>
+                  Dashboard
+                </md-button>
+              </md-menu-item>
+          </md-menu-content>
+      </md-menu>
 
 
-    <div ng-repeat="s in slide">
-      <span ng-if="current === $index">{{ s.name }}</span>
     </div>
-
-    <span flex></span>
-
-    <md-button class="md-icon-button" aria-label="Collections List" ng-click="createNewCollection()">
-      <span class="fa fa-list"></span>
-    </md-button>
-    <md-button class="md-icon-button" aria-label="Cards" ng-click="goToCards()">
-      <span class="fa fa-list-alt"></span>
-    </md-button>
-    <md-button class="md-icon-button" aria-label="More Vertical" ng-click="goToTimeline()">
-        <img src="common/img/rocket.png" class="rocket-icon">
-    </md-button>
-
-  </div>
-</md-toolbar>
+  </md-toolbar>
+</div>

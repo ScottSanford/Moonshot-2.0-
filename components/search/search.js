@@ -2,7 +2,7 @@ angular.module('moonshotApp')
 
 .controller('SearchCtrl', function($scope, $timeout, $location, $uibModal, Mfly, ItemIcons, $mdDialog, $stateParams){
     var qTerm = $stateParams.term;
-    console.log(qTerm);
+
     // $scope.getSearch = function(qTerm) {
         if (qTerm) {
             $scope.showSpinner        = true;

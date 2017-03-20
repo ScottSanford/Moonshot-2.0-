@@ -17,7 +17,7 @@
               <md-icon class="main-toolbar-icons">search</md-icon>
             </md-button>
 
-          <md-menu md-position-mode="target-right target">
+          <md-menu md-position-mode="target-right target" ng-show="isDeviceMobile()">
               <md-button flex class="md-icon-button" aria-label="Notification" ng-click="$mdOpenMenu($event)">
                 <md-icon class="main-toolbar-icons">notifications</md-icon>
               </md-button>
@@ -25,8 +25,17 @@
               <!-- NOTIFICATIONS DROP DOWN -->
               <md-menu-content width="4">
               <md-menu-item>
-                  <p>Notifications Go Here</p>
+                  <p class="notifications-title">Notifications</p>
               </md-menu-item>
+              <!-- <md-menu-item> -->
+                  <div layout="row" layout-align="space-between center" layout-padding>
+                    <div flex>Sync Status</div>
+                    <div flex><b style="float:right;">{{percentageNum | number:0}}%</b></div>
+                  </div>
+                  <div layout="row" class="progress-sync-container">
+                    <md-progress-linear flex md-mode="determinate" value="{{percentageNum}}"></md-progress-linear>
+                  </div>
+              <!-- </md-menu-item> -->
               </md-menu-content>
           </md-menu>
 
@@ -36,7 +45,7 @@
                 </md-button>
               <md-menu-content width="4">
               <md-menu-item>
-                  <md-button ng-click="goToSettings()">
+                  <md-button ui-sref="profile">
                       <md-icon>person</md-icon>
                       <p>Profile</p>
                   </md-button>
@@ -48,7 +57,7 @@
                 </md-button>
               </md-menu-item>
               <md-menu-item>
-                  <md-button ng-click="goToSettings()">
+                  <md-button ui-sref="settings">
                       <md-icon>settings</md-icon>
                       <p>Settings</p>
                   </md-button>

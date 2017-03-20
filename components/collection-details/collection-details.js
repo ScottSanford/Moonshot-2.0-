@@ -1,50 +1,38 @@
 angular.module('moonshotApp')
 
 .controller('CollectionDetailCtrl', function(
-        $scope, $window, $location, $stateParams, Mfly, $uibModal, 
-        $localStorage, ItemIcons, $mdDialog){
-
-    $scope.goToCollectionList = function() {
-        $location.url('/collections');
-    };
-
-    $scope.toggle = function () {
-        $scope.openMenu = true;
-    };
+        $scope, $window, $location, $stateParams, 
+        Mfly, ItemIcons, $uibModal, 
+        $localStorage, $mdDialog){
 
     var cid = $stateParams.cid;  
-    // ITEMS TAB
 
-
-    function showCollectionDetails(id) {
         
-        Mfly.getCollections().then(function(collections){
-            
-            collections.forEach(function(collection){
-                if (collection.id === cid) {
-                    console.log(collection);
-                    $scope.cName     = collection.name;
-                    $scope.cCreated  = collection.created;
-                    $scope.cModified = collection.modified;
-
-                }
-            });
-
+    Mfly.getCollections().then(function(collections){
+        
+        collections.forEach(function(collection){
+            if (collection.id === cid) {
+                console.log(collection);
+                $scope.cName     = collection.name;
+                $scope.cCreated  = collection.created;
+                $scope.cModified = collection.modified;
+            }
         });
 
-        Mfly.getCollection(id).then(function(items){
-            
-            $scope.selectedCollection = items;
+    });
 
-        });
-    }
+    Mfly.getCollection(cid).then(function(items){
+        console.log(items);
+        $scope.selectedCollection = items;
 
-    showCollectionDetails(cid);
+    });
+
 
     $scope.goToPath = function(item) {
         mflyCommands.openFolder(item.id);
     };
 
+    // sort items in collection
     $scope.sortableOptions = {
         handle: '.myHandle',
         stop: function(event, ui) {

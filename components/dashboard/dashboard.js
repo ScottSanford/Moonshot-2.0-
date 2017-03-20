@@ -1,10 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('DashboardCtrl', function($scope, $state, Mfly, ItemIcons, $mdMedia, $mdSidenav){
-
-  mflyCommands.getNotificationStatus('__root__').done(function(data){
-    // console.log(data);
-  });
+.controller('DashboardCtrl', function($scope, $state, Mfly, ItemIcons, $mdMedia, $mdSidenav, Accounts){
 
   // FOLDERS
   Mfly.getFolder('__root__').then(function(hierarchy){

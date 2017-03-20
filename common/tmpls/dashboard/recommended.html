@@ -32,21 +32,21 @@
 			        	<!-- </md-button> -->
 
 			        		<!-- ITEM MENU -->
-			        		<md-menu-content width="2" ng-show="f.type !== 'folder'">
+			        		<md-menu-content width="2" ng-show="item.type !== 'folder'">
 				            	<md-menu-item>
-					              	<md-button ng-click="openCollectionModal(f, $event)">
+					              	<md-button ng-click="openCollectionModal(item, $event)">
 					                	<md-icon>add</md-icon>
 					                	Add
 					                </md-button>
 				                </md-menu-item>
 				            	<md-menu-item>
-					              	<md-button ng-click="openShareModal(f, $event)">
+					              	<md-button ng-click="openShareModal(item, $event)">
 					                	<md-icon>share</md-icon>
 					                	Share
 					                </md-button>
 				                </md-menu-item>
 				            	<md-menu-item>
-					              	<md-button ng-click="goToPath(f)">
+					              	<md-button ng-click="goToPath(item)">
 					                	<md-icon>open_in_new</md-icon>
 					                	Open
 					                </md-button>

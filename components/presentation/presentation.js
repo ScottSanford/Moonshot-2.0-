@@ -5,6 +5,17 @@ angular.module('moonshotApp')
   Mfly, ContentService, // factories
   $localStorage){ // 3rd party modules
 
+  var itemId = $stateParams.itemId;
+  $scope.itemId = itemId;
+  var slides = $localStorage.slides;
+
+  $scope.slides = slides;
+
+  $scope.isSideNavOpen = false;
+  $scope.openPresMenu = function() {
+      $scope.isSideNavOpen = !$scope.isSideNavOpen;
+    };
+
   // SHOW FIRST SLIDE
   initPresentation();
   function initPresentation() {

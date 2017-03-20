@@ -54,6 +54,37 @@ angular.module('myDirectives', [])
 			scope.closeInteractive = function () {
 		        mflyCommands.close();
 		    };
+
+		    // sync status notifications
+		    scope.isDeviceMobile = function(item) {
+				var deviceType = mflyCommands.getDeviceType();
+				// change to 'web' for development
+				// change to 'mobile' for production
+				if (deviceType === 'mobile') {
+					return true;
+				} else {
+					return false;
+				}
+			};
+
+			function getSyncStatus() {
+				var deviceType = mflyCommands.getDeviceType();
+				if (deviceType === 'mobile') {
+					mflyCommands.getSyncStatus().done(function(data){
+						var total = data.total;
+						var value = data.complete;
+						var percentage = (value * 100) / total;
+						scope.percentageNum = percentage;
+					});
+				} else {
+					return;
+				}
+			}
+
+			getSyncStatus();
+			
+
+
 		    
 		}
 
@@ -84,7 +115,7 @@ angular.module('myDirectives', [])
 			    {name: 'Inside Mediafly', icon: 'folder', state: 'hierarchy'},
 			    {name: 'Collections', icon: 'featured_play_list', state: 'collections'},
 			    {name: 'Present', icon: 'star', state: 'present'},
-			    {name: 'Upload', icon: 'cloud_upload', state: 'upload'}
+			    {name: 'Upload', icon: 'file_upload', state: 'upload'}
 			];
 
 			scope.menu = leftMenu;
@@ -145,7 +176,49 @@ angular.module('myDirectives', [])
 		transclude: true,
 		templateUrl: 'common/tmpls/dashboard/recommended.html', 
 		link: function(scope, element, attrs) {
+			scope.goToPath = function(item) {
 
+		        if (item.type == "folder") {
+		          $location.url('hierarchy/' + item.id );
+		        } else {
+		          mflyCommands.openItem(item.id);
+		        }
+		        
+		    };
+
+		    scope.openShareModal = function(selectedItem, ev) {
+
+		        $mdDialog.show({
+		          controller: 'ShareItemCtrl',
+		          templateUrl: 'common/tmpls/share-item/share-item-modal.html',
+		          parent: angular.element(document.body),
+		          targetEvent: ev,
+		          clickOutsideToClose:true, 
+		          locals: {
+		            item: selectedItem
+		          }
+		        }).then(function() {
+		            
+		        });
+
+		    };
+
+		    scope.openCollectionModal = function(selectedItem, ev) {
+		        
+		        $mdDialog.show({
+		          controller: 'AddToCollectionCtrl',
+		          templateUrl: 'common/tmpls/add-to-collection/add-to-collection-modal.html',
+		          parent: angular.element(document.body),
+		          targetEvent: ev,
+		          clickOutsideToClose:true, 
+		          locals: {
+		            item: selectedItem
+		          }
+		        }).then(function() {
+		            
+		        });
+		       
+		    };
 		}
 
 	}
@@ -197,9 +270,15 @@ angular.module('myDirectives', [])
 		templateUrl: 'common/tmpls/presentation/presentation-header.html', 
 		link: function(scope, element, attrs) {
 
+			scope.isSideNavOpen = true;
+			scope.openPresMenu = function() {
+				console.log(scope.isSideNavOpen);
+		    	scope.isSideNavOpen = !scope.isSideNavOpen;
+		  	};
+
 			// goes back home
 			scope.goToTimeline = function() {
-				$location.url('/timeline');
+				$location.url('/dashboard');
 			};	
 
 			// goes back to cards

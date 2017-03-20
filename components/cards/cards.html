@@ -4,8 +4,8 @@
 
 	<sidebar-menu></sidebar-menu>
 
-	<md-content flex layout="column">
-		<!-- SORT SELECTED SLIDES -->
+	<md-content flex layout="column" class="main-content-container">
+		<!-- START: SORT SELECTED SLIDES -->
 		<md-sidenav class="md-sidenav-right sort-slides-list" md-component-id="right" md-whiteframe="4">
 
 		  	<md-toolbar class="background-gray">
@@ -28,7 +28,7 @@
 		</md-sidenav>
 
 		<!-- START: COUNT & BUTTONS -->
-		<md-toolbar layout="row" class="cards-top-container" layout-align="end center">
+		<md-toolbar layout="row" class="cards-top-container" layout-align="end center" style="background-color:#9fbe3c">
 
 			<div flex layout="row" layout-align="start center" layout-padding>
 				<div class="message-count" 
@@ -89,8 +89,9 @@
 
 				                <div class="folder-card-item-container">
 				                	<div layout="row" class="folder-card-item" 
-				                		 ng-repeat="(k, item) in MoonshotData.cards[key].itemsObj track by k" ng-click="item.isItemSelected = !item.isItemSelected; MoonshotData.updateCount(key, item); MoonshotData.pushToPresentation(item); connectLists()"
-				                		 ng-class="item.isItemSelected ? 'isActive-card-item' : 'folder-card-item'">
+				                		              ng-repeat="(k, item) in MoonshotData.cards[key].itemsObj track by k"
+				                		              ng-class="item.isItemSelected ? 'isActive-card-item' : 'folder-card-item'" 
+				                		              ng-click="item.isItemSelected = !item.isItemSelected; MoonshotData.updateCount(key, item); MoonshotData.pushToPresentation(item); connectLists()">
 				                		<div flex="10">
 				                			<i class="material-icons card-item-icon">{{ item.icon }}</i>
 				                		</div>

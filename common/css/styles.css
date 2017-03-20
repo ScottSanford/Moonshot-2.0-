@@ -7,6 +7,11 @@ html, body {
 	height:100%;
 }
 
+.main-content-container {
+	-webkit-animation: fadeInUp .8s;
+    animation: fadeInUp .8s;
+}
+
 /* 
   Allow angular.js to be loaded in body, hiding cloaked elements until 
   templates compile.  The !important is important given that there may be 
@@ -554,10 +559,6 @@ md-tabs-canvas {
 	background: #FFF;
 }
 
-md-toolbar:not(.md-menu-toolbar) {
-	/*background-color: #FFF;*/
-}
-
 .padding-top-10 {
 	padding-top:10px;
 }
@@ -896,8 +897,12 @@ table.md-table td.md-cell.table-collection-action {
     background-image: url('../img/collections-details-01.jpg');
 }
 
+.mb-bg-02 {
+    background-image: url('../img/collections-details-01.jpg');
+}
+
 .padding-top-200 {
-	padding-top:150px;
+	padding-top:200px;
 }
 
 .padding-20 {
@@ -994,21 +999,54 @@ md-tabs .md-tab.md-active {
 
 ====================================================*/
 /*header*/
-.background-presentation-header {
+md-toolbar:not(.md-menu-toolbar) {
 	background-color:#494948;
 }
 
 .background-presentation-footer {
 	background-color:#353535;
-	position: fixed;
-	bottom:0;
 }
 
-.presentation-container {
-	height: 100vh;
+md-sidenav.presentation-items-sidenav {
+	background-color:#f6f6f6;
+}
+
+.presentation-items-title {
+	font-family: 'Proxy-Regular';
+	font-size:16px;
+}
+
+.isPresentationItemActive {
+	background-color: #BBB;
+}
+
+md-divider.items-divider {
+	margin-bottom:10px;
+}
+
+.presentation-item {
+	padding:10px 20px 5px;
+	margin:0 -10px 20px;
+	display: block;
+}
+
+.presentation-item img {
+	max-width:100%;
+	width:100%;
+	height:auto;
+	margin-bottom:5px;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.4);
+}
+
+.presentation-item-text {
+	padding:0 0 2px;
+	font-family: 'Proxy-Regular';
+	text-decoration: underline;
+	font-size:16px;
+}
+
+.presentation-area-content {
 	background-color:#535353;
-	box-sizing: border-box;
-	padding:64px 0;
 }
 
 .slide-menu-container {
@@ -1040,10 +1078,14 @@ md-tabs .md-tab.md-active {
     background-color:#475669;
 }
 
-.md-button.md-raised.view-presentation-btn {
+/*.md-button.md-raised.view-presentation-btn {
 	background-color:#7c7c7c;
 	border-color:#333;
 	color:#fff;
+}*/
+
+md-icon.presentation-sidenav-icon {
+	color:#FFF;
 }
 
 .navbar-text {
@@ -1336,12 +1378,48 @@ md-grid-tile.db-settings {
 	width:100%;
 }
 
-.weather-date {
-	color:#FFF;
-	font-size:20px;
-	font-family:'Proxy-Regular';
+.notifications-title {
+	color:#999;
+	font-family: 'Proxy-SemiBold';
+	font-size:14px;
 }
 
+.progress-sync-container {
+	padding-bottom: 10px;
+}
+
+/*===================================================
+
+				Profile Styles
+
+====================================================*/
+.full-image-background-text {
+	padding-bottom: 20px;
+}
+
+.profile-image {
+	background-color: #FFF;
+    padding: 7px;
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+}
+
+.profile-image img {
+	width:75px;
+	height:75px;
+	margin-top:5px;
+}
+
+.profile-user-info-label {
+	font-family: "Proxy-SemiBold";
+	text-transform: uppercase;
+	color:#999;
+}
+
+.profile-user-info {
+	font-family: 'Proxy-Regular';
+}
 
 /*===================================================
 

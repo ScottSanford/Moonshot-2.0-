@@ -32,15 +32,15 @@ angular.module('moonshotApp')
 
 	    };
 
-        Accounts.user = function(accessToken, userId) {
+        Accounts.user = function(accessToken, userName, envId) {
             var deferred = $q.defer();
 
             var userUrl = accountsUrl + 'users/get';
 
             var params = {
                 accessToken: accessToken,
-                productId: "f61ef3521a9b458eb757b619e2e4c39e",  
-                userId: userId
+                productId: envId,  
+                userName: userName
             };
 
             $http({

@@ -86,6 +86,12 @@ angular.module("moonshotApp", [
                     controller: 'UploadCtrl'
                 })
 
+                .state('profile', {
+                    url: '/profile', 
+                    templateUrl: 'components/profile/profile.html',                    
+                    controller: 'ProfileCtrl'
+                })
+
                 .state('timeline', {
                     url: '/timeline', 
                     templateUrl: 'components/timeline/timeline.html',                    

@@ -245,6 +245,17 @@ angular.module('moonshotApp')
                 });
 
             return deferred.promise;
+        },
+
+        getAccessToken: function() {
+            var deferred = $q.defer();
+
+             mflyCommands.getData('$accesstoken$')
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
         }
 	}
 

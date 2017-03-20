@@ -8,6 +8,7 @@ angular.module('moonshotApp')
     Moonshot.presentation = [];
 
     Moonshot.getFolders = function() {
+        // GETS AIRSHIP FOLDERS THAT HAVE KEYWORD '@Moonshot' ATTACHED TO IT.
         Mfly.search('@Moonshot').then(function(data){
 
             _.each(data, function(folder){
@@ -23,6 +24,7 @@ angular.module('moonshotApp')
         });
     };
 
+    // THIS IS FOR BACK OF CARD COUNTER
     Moonshot.updateCount = function(key, item){
         var count = 0;
 
@@ -35,14 +37,9 @@ angular.module('moonshotApp')
     };
 
     Moonshot.resetCollection = function() {
-        // _.forEach(Moonshot.cards, function(obj){
-        //     if (obj.itemsObj) {
-        //         console.log("itemsObj", obj.itemsObj);
-        //     }
-        // })
-        
-        // clear Local Storage
+        // clear Local Storage && Moonshot.presentation arrays
         $localStorage.slides = [];
+        Moonshot.presentation = [];
 
         // and Reload the page
         $window.location.reload();
@@ -50,11 +47,11 @@ angular.module('moonshotApp')
 
     Moonshot.pushToPresentation = function(item) {
         // add an item to a presentation
-        if (item.isItemSelected) {
+        if (item.hasOwnProperty('isItemSelected') && item.isItemSelected) {
             Moonshot.presentation.push(item);
             $localStorage.slides = Moonshot.presentation;
         } 
-        // remove an item from the presentation
+        // remove an item that was de-selected from the card list
         else {
 
             var newArr = _.filter(Moonshot.presentation, function(obj){
@@ -66,18 +63,14 @@ angular.module('moonshotApp')
 
         }; 
 
-        console.log($localStorage.slides);
-
     };
-
-
 
 
     Moonshot.playCollection = function() {
 
-        var first = _.head($localStorage.slides);
+        var firstSlide = _.head($localStorage.slides);
 
-        $location.url('/presentation/' + first.id + '?index=' + 0 + '&page=' + first.pages);
+        $location.url('/presentation/' + firstSlide.id + '?index=' + 0 + '&page=' + firstSlide.pages);
     };
 
 

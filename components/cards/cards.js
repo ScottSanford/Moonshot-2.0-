@@ -43,11 +43,7 @@ angular.module('moonshotApp')
 
     $scope.resetCollection = function() {
         MoonshotData.resetCollection();
-        MoonshotData.presentation.length = 0;
     };
-
-
-
 
     // Sort
     $scope.openSort = function() {
@@ -71,10 +67,9 @@ angular.module('moonshotApp')
             var item   = ui.item.scope().item;
             var newIndex = ui.item.sortable.dropindex;
 
+            MoonshotData.presentation = $scope.sortList;
             $localStorage.slides = $scope.sortList;
 
-            console.log('moonshot presentation array:: ', MoonshotData.presentation);
-            console.log("Local Storage Updated :: ", $localStorage.slides);
         }
     };
 

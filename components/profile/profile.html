@@ -1,0 +1,100 @@
+<top-toolbar></top-toolbar>
+
+<section layout="row" flex layout-fill>
+	
+	<sidebar-menu></sidebar-menu>
+
+	<md-content flex layout="column" class="main-content-container">
+		
+		<div class="full-image-background mb-bg-02 padding-top-200">
+			<div layout="row" layout-align="center start" class="full-image-background-text">
+				<div class="collection-details-title">
+			        <h3 class="md-card-title">{{ user.displayName }}</h3>
+			    </div>
+			</div>
+		</div>
+
+
+		<md-tabs md-dynamic-height md-border-bottom>
+		  <!-- START: ACCOUNT TAB -->
+		    <md-tab label="User Info">
+			  	<div layout="row">
+			  		<div flex="50">
+					    <md-card class="timeline-cards-top-container md-whiteframe-2dp">
+						    <md-card-title>
+						      <md-card-title-text>
+						        <span class="md-headline">Basic Info</span>
+						      </md-card-title-text>
+						    </md-card-title>
+						 
+						 	<md-card-content>
+						 		<div layout="row" layout-padding>
+						 			<div flex="25" class="profile-user-info-label">First Name</div>
+						 			<div flex class="profile-user-info">{{ user.product.metadata.firstName }}</div>
+						 		</div>
+						 		<div layout="row" layout-padding>
+						 			<div flex="25" class="profile-user-info-label">Last Name</div>
+						 			<div flex class="profile-user-info">{{ user.product.metadata.lastName }}</div>
+						 		</div>
+						 		<div layout="row" layout-padding>
+						 			<div flex="25" class="profile-user-info-label">Email</div>
+						 			<div flex class="profile-user-info">{{ user.emailAddress }}</div>
+						 		</div>
+						 	</md-card-content>
+						</md-card>
+					</div>
+				</div>
+				<div layout="row">
+					<div flex="50">
+						<md-card class="timeline-cards-top-container md-whiteframe-2dp">
+						    <md-card-title>
+						      <md-card-title-text>
+						        <span class="md-headline">Authentication Info</span>
+						      </md-card-title-text>
+						    </md-card-title>
+						 
+						 	<md-card-content>
+						 		<div layout="row" layout-padding>
+						 			<div flex="25" class="profile-user-info-label">Phone Number</div>
+						 			<div flex class="profile-user-info">{{ user.product.metadata.phoneNumberFormatted }}</div>
+						 		</div>
+						 	</md-card-content>
+						</md-card>
+					</div>
+				</div>
+			</md-tab>
+
+
+		  <!-- START: ABOUT TAB -->
+		<md-tab label="Groups">
+		    <div layout="row">
+					<div flex="50">
+						<md-card class="timeline-cards-top-container md-whiteframe-2dp">
+						    <md-card-title>
+						      <md-card-title-text>
+						        <span class="md-headline">Group Info</span>
+						      </md-card-title-text>
+						    </md-card-title>
+						 
+						 	<md-card-content>
+						 		<div layout="row" layout-padding>
+						 			<div flex="25" class="profile-user-info-label">Groups</div>
+						 			<div flex class="profile-user-info">
+						 				<div ng-repeat="group in groups">{{ group.name }}</div>
+						 			</div>
+						 		</div>
+						 	</md-card-content>
+						</md-card>
+					</div>
+				</div>
+		</md-tab>
+		  
+
+		</md-tabs>
+
+		<!-- END: ABOUT TAB -->
+	</md-content>
+
+</section>
+
+
