@@ -421,6 +421,10 @@ md-toolbar.background-gray {
 md-toolbar.background-green {
 	background-color:#9fbe3c;
 }
+
+md-toolbar:not(.md-menu-toolbar).background-green {
+	background-color:#9fbe3c;
+}
 /*=============================
 
 		   Card Flip
@@ -1016,18 +1020,23 @@ md-sidenav.presentation-items-sidenav {
 	font-size:16px;
 }
 
-.isPresentationItemActive {
-	background-color: #BBB;
-}
-
 md-divider.items-divider {
 	margin-bottom:10px;
+}
+
+.isPresentationItemActive {
+	background-color: #BBB;
 }
 
 .presentation-item {
 	padding:10px 20px 5px;
 	margin:0 -10px 20px;
 	display: block;
+}
+
+.presentation-item:hover {
+	background-color:#e0e2dd;
+	transition: all .5s;
 }
 
 .presentation-item img {
@@ -1049,9 +1058,8 @@ md-divider.items-divider {
 	background-color:#535353;
 }
 
-.slide-menu-container {
-	height:100%;
-	width:100%;
+.presentation-item-loading {
+
 }
 
 .slide-item {
@@ -1078,11 +1086,14 @@ md-divider.items-divider {
     background-color:#475669;
 }
 
-/*.md-button.md-raised.view-presentation-btn {
-	background-color:#7c7c7c;
-	border-color:#333;
-	color:#fff;
-}*/
+.md-button.md-raised.view-presentation-btn {
+	background-color:#999;
+	color:#FFF;
+}
+
+.md-button.md-raised.view-presentation-btn:hover {
+	background-color:#666666;
+}
 
 md-icon.presentation-sidenav-icon {
 	color:#FFF;

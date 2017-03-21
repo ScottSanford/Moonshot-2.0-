@@ -12,7 +12,7 @@ angular.module('moonshotApp')
         
         collections.forEach(function(collection){
             if (collection.id === cid) {
-                console.log(collection);
+                
                 $scope.cName     = collection.name;
                 $scope.cCreated  = collection.created;
                 $scope.cModified = collection.modified;
@@ -22,7 +22,7 @@ angular.module('moonshotApp')
     });
 
     Mfly.getCollection(cid).then(function(items){
-        console.log(items);
+
         $scope.selectedCollection = items;
 
     });

@@ -1,16 +1,15 @@
+<!-- START: HEADER -->
 <md-toolbar class="md-whiteframe-5dp">
     <div class="md-toolbar-tools background-presentation-header">
     
       <md-button class="md-raised view-presentation-btn" 
                  ng-click="openPresMenu()">
-          <ng-md-icon icon="featured_play_list"></ng-md-icon>
-          <span>&nbsp;Show List</span>
+          <ng-md-icon icon="view_list"></ng-md-icon>
+          <span ng-show="!isSideNavOpen">&nbsp;Show List</span>
+          <span ng-show="isSideNavOpen">&nbsp;Hide List</span>
       </md-button>
-
-  <!--     <div ng-repeat="s in slide">
-        <span ng-if="current === $index">{{ s.name }}</span>
-      </div>
- -->
+	  <h2 flex md-truncate>{{ slide.name }}</h2>
+		
       <span flex></span>
 
       <md-menu>
@@ -19,15 +18,15 @@
                     <!-- ITEM MENU -->
         <md-menu-content width="4">
             <md-menu-item>
-                <md-button ng-click="createNewCollection()">
+                <md-button ng-click="createNewCollection($stateParams.slug)">
                   <md-icon>playlist_add</md-icon>
-                  New Collection
+                  Add to collection
                 </md-button>
               </md-menu-item>
             <md-menu-item>
                 <md-button ui-sref="present">
                   <md-icon>exit_to_app</md-icon>
-                  Exit the Presentation
+                  Close
                 </md-button>
               </md-menu-item>
           </md-menu-content>
@@ -51,7 +50,7 @@
 	  			</div>
 	  		</div>
 	  		<md-divider class="items-divider"></md-divider>
-	  		<div ng-repeat="slide in slides" class="presentation-item" ng-class="{ 'isPresentationItemActive' : slide.id === itemId }">
+	  		<div ng-repeat="slide in slides" class="presentation-item" ng-class="{ 'isPresentationItemActive' : slide.id === $stateParams.slug }" ng-click="goToSelectedItem(slide.id)">
 	  			<img ng-src="{{slide.thumbnailUrl}}">
 	        	<p class="presentation-item-text">{{slide.name}}</p>
 	  		</div>
@@ -60,11 +59,16 @@
 	</md-sidenav>
 
 	<md-content class="presentation-area-content" flex layout="column" layout-align="center stretch">
-		<div flex>
-			<main id="slide-menu-container" style="background-image: url('{{ slide }}'); background-position: center; background-size:contain; background-repeat: no-repeat; height:100%;">
-
-		</main>
+		<!-- LOADING... -->
+		<div ng-show="!isItemAvailable" class="presentation-item-loading">
+			<md-progress-circular flex md-mode="indeterminate" style="margin:0 auto;"></md-progress-circular>
 		</div>
+
+		<!-- PRESENTATION ITEM -->
+		<div flex ng-show="isItemAvailable">
+			<div style="background-image: url('{{ slide.resourceUrl }}'); background-position: center; background-size:contain; background-repeat: no-repeat; height:100%;"></div>
+		</div>
+
 	</md-content>
 
 </section>
@@ -76,10 +80,16 @@
 	  <span flex="25"></span>
 	  <div flex="50" layout="row">
 	  	<span flex="30"></span>
+
+	  	<md-button flex="20" class="md-raised" ng-click="previousSlide()">
+	  		Previous
+	  	</md-button>
+	  	<md-button flex="20" class="md-raised" ng-click="nextSlide()">
+	  		Next
+	  	</md-button>
+	  	
 	  	<md-button flex="20" class="md-raised" ng-click="previousSlide()" ng-show="isItemMultiPage">Previous Page</md-button>
-	  	<md-button flex="20" class="md-raised" ng-click="previousSlide()">Previous</md-button>
 	  	<md-button flex="20" class="md-raised" ng-click="nextSlide()" ng-show="isItemMultiPage">Next Page</md-button>
-	  	<md-button flex="20" class="md-raised" ng-click="nextSlide()">Next</md-button>
 	  	<span flex="30"></span>
 	  </div>
 	  <span flex="25"></span>

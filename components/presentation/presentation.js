@@ -1,84 +1,54 @@
 angular.module('moonshotApp')
 
-.controller('PresentationCtrl', function(
-  $scope, $location, $stateParams, $state, // angular
-  Mfly, ContentService, // factories
-  $localStorage){ // 3rd party modules
+.controller('PresentationCtrl', function($scope, $location, $stateParams, $state, Mfly, Present, $localStorage, $mdDialog){ 
 
-  var itemId = $stateParams.itemId;
-  $scope.itemId = itemId;
-  var slides = $localStorage.slides;
+  // SHOW FIRST SLIDE
+  initCurrentItem();
+  function initCurrentItem() {
+    $scope.isItemAvailable = false;
+    Present.showCurrentItem().then(function(data){
+      $scope.isItemAvailable = true;
+      $scope.slide = data;
+      $scope.slides = Present.data;
+    });
+  }
 
-  $scope.slides = slides;
+  // PRESENTATION CONTROLS
+  $scope.goToSelectedItem = function(slugId) {
+    Present.getSelectedItem(slugId);
+  };
+
+  $scope.previousSlide = function() {
+ 
+  };
+
+  $scope.nextSlide = function() {
+    Present.goToNextSlide();
+  };
+
 
   $scope.isSideNavOpen = false;
   $scope.openPresMenu = function() {
       $scope.isSideNavOpen = !$scope.isSideNavOpen;
-    };
-
-  // SHOW FIRST SLIDE
-  initPresentation();
-  function initPresentation() {
-    ContentService.showItemSlide().then(function(data){
-      if (data.pages > 1) {
-        $scope.isItemMultiPage = true;
-      } else {
-        $scope.isItemMultiPage = false;
-      }
-      $scope.slide = data.resourceUrl;
-    })
-  }
-
-  // PRESENTATION CONTROLS
-  $scope.previousSlide = function() {
-    ContentService.goToPreviousSlide();
   };
 
-  $scope.nextSlide = function() {
-    ContentService.goToNextSlide().then(function(data){
-      $scope.slide = data.resourceUrl;
+
+  // creates a new collection from the presentation list 
+  $scope.createNewCollection = function(itemId , ev) {
+    $mdDialog.show({
+      controller: 'AddToCollectionCtrl',
+      templateUrl: 'common/tmpls/add-to-collection/add-to-collection-modal.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true, 
+      locals: {
+        item: itemId
+      }
+    }).then(function() {
+        
     });
   };
 
-  function multiPageNext(slide){
-    var pageNum = Number($stateParams.page);
-    if (pageNum === slide.pages) {
-      // GO TO NEXT SLIDE IN PRESENTATION
-      var sameId = _.findWhere($scope.slides, {id: itemId});
-      var idIndex = _.indexOf(sameId);
-      var nextIndex = idIndex + 1;
-
-      var nextItemId = $scope.slides[nextIndex].id;
-
-      $location.url('/presentation/' + nextItemId + '?collection=' + collection + '&index=' + nextIndex);
-    } else {
-      var pageNumber = pageNum + 1;
-      var sameId = _.findWhere($scope.slides, {id: itemId});
-      var idIndex = _.indexOf(sameId);
-
-      $location.url('/presentation/' + slide.id + '?collection=' + collection + '&page=' + pageNumber + '&index=' + idIndex);
-    }
-  };
-
-  function multiPagePrevious(slide) {
-    var pageNum = Number($stateParams.page);
-    if (pageNum === 1) {
-      // GO TO NEXT SLIDE IN PRESENTATION
-      var sameId = _.findWhere($scope.slides, {id: itemId});
-      var idIndex = _.indexOf(sameId);
-      var nextIndex = idIndex - 1;
-
-      var nextItemId = $scope.slides[nextIndex].id;
-
-      $location.url('/presentation/' + nextItemId + '?collection=' + collection + '&index=' + nextIndex);
-    } else {
-      var pageNumber = pageNum - 1;
-      var sameId = _.findWhere($scope.slides, {id: itemId});
-      var idIndex = _.indexOf(sameId);
-
-      $location.url('/presentation/' + slide.id + '?collection=' + collection + '&page=' + pageNumber + '&index=' + idIndex);
-    }
-  }
 
 
 
