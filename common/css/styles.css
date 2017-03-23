@@ -1055,7 +1055,7 @@ md-divider.items-divider {
 }
 
 .presentation-area-content {
-	background-color:#535353;
+	background-color:#000;
 }
 
 .presentation-item-loading {
@@ -1151,6 +1151,10 @@ md-icon.presentation-sidenav-icon {
 	color:#535353;
 	font-family: 'Proxy-Light';
 	margin-left:15px;
+}
+
+md-select.page-number-select:not([disabled]):focus .md-select-value {
+	color:#FFF;
 }
 
 
@@ -1595,7 +1599,7 @@ input.input-share-link.form-control:focus {
 	}
 
 	.folder-card-item-container {
-		height:203px;
+		height:228px;
 		/*border:1px solid red;*/
 	}	
 }

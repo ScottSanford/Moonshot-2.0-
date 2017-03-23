@@ -70,7 +70,16 @@ angular.module('moonshotApp')
 
         var firstSlide = _.head($localStorage.slides);
 
-        $location.url('/presentation/' + firstSlide.id + '?index=' + 0 + '&page=' + firstSlide.pages);
+        if (firstSlide.type === 'interactive') {
+            $location.url('presentation/' + firstSlide.id + '?type=interactive');
+        } 
+        else if (firstSlide.pages > 1) {
+            $location.url('presentation/' + firstSlide.id + '?page=0');
+        }
+        else {
+            $location.url('presentation/' + firstSlide.id);
+        }
+        
     };
 
 

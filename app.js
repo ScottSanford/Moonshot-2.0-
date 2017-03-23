@@ -66,7 +66,7 @@ angular.module("moonshotApp", [
                     controller: 'CardsCtrl'
                 })
                 .state('presentation', {
-                    url: '/presentation/{slug}?collection&page&index', 
+                    url: '/presentation/{slug}?collection&page&type', 
                     templateUrl: 'components/presentation/presentation.html',                    
                     controller: 'PresentationCtrl'
                 })

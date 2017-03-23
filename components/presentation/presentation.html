@@ -18,7 +18,7 @@
                     <!-- ITEM MENU -->
         <md-menu-content width="4">
             <md-menu-item>
-                <md-button ng-click="createNewCollection($stateParams.slug)">
+                <md-button ng-click="createNewCollection(slide)">
                   <md-icon>playlist_add</md-icon>
                   Add to collection
                 </md-button>
@@ -50,23 +50,32 @@
 	  			</div>
 	  		</div>
 	  		<md-divider class="items-divider"></md-divider>
-	  		<div ng-repeat="slide in slides" class="presentation-item" ng-class="{ 'isPresentationItemActive' : slide.id === $stateParams.slug }" ng-click="goToSelectedItem(slide.id)">
-	  			<img ng-src="{{slide.thumbnailUrl}}">
-	        	<p class="presentation-item-text">{{slide.name}}</p>
+	  		<div ng-repeat="item in slides" 
+	  			 class="presentation-item" 
+	  			 ng-class="{'isPresentationItemActive':item.id === currentSlug }" 
+	  			 ng-click="goToSelectedItem(item.id)">
+	  			<img ng-src="{{item.thumbnailUrl}}">
+	        	<p class="presentation-item-text">{{item.name}}</p>
 	  		</div>
 	  	</div>
 
 	</md-sidenav>
 
-	<md-content class="presentation-area-content" flex layout="column" layout-align="center stretch">
+	<md-content class="presentation-area-content" flex layout="row" layout-align="center {{verticalAlign}}">
 		<!-- LOADING... -->
 		<div ng-show="!isItemAvailable" class="presentation-item-loading">
 			<md-progress-circular flex md-mode="indeterminate" style="margin:0 auto;"></md-progress-circular>
 		</div>
 
 		<!-- PRESENTATION ITEM -->
-		<div flex ng-show="isItemAvailable">
-			<div style="background-image: url('{{ slide.resourceUrl }}'); background-position: center; background-size:contain; background-repeat: no-repeat; height:100%;"></div>
+
+		<div ng-show="isFirstPageAvailable">
+			<!-- FOR SINGLE & MULTI PAGE ITEMS -->
+			<img id="current-slide" ng-src="{{ slide.resourceUrl }}" flex style="display:block; height:100%; width:100%; object-fit: contain;">
+			<!-- FOR INTERACTIVES -->
+		</div>
+		<div ng-show="isItemInteractive" style="width:100%">
+			<iframe id="current-slide-interactive" ng-show="isItemInteractive" flex style="height:100%; width:100%;" height="100%" width="100%"></iframe>
 		</div>
 
 	</md-content>
@@ -77,21 +86,24 @@
 <!-- START: FOOTER -->
 <md-toolbar>
 	<div class="md-toolbar-tools background-presentation-footer">
-	  <span flex="25"></span>
-	  <div flex="50" layout="row">
-	  	<span flex="30"></span>
-
-	  	<md-button flex="20" class="md-raised" ng-click="previousSlide()">
+	  	<md-button class="md-raised" ng-click="previousSlide(slide)">
 	  		Previous
 	  	</md-button>
-	  	<md-button flex="20" class="md-raised" ng-click="nextSlide()">
+	  	<md-button class="md-raised" ng-click="nextSlide(slide)">
 	  		Next
 	  	</md-button>
-	  	
-	  	<md-button flex="20" class="md-raised" ng-click="previousSlide()" ng-show="isItemMultiPage">Previous Page</md-button>
-	  	<md-button flex="20" class="md-raised" ng-click="nextSlide()" ng-show="isItemMultiPage">Next Page</md-button>
-	  	<span flex="30"></span>
-	  </div>
-	  <span flex="25"></span>
+
+		<div layout="row" ng-show="isItemMultiPage">
+	      <md-input-container>
+	        <label></label>
+	        <md-select class="page-number-select" ng-model="selectedItem" ng-model-options="{trackBy: '$value.id'}" ng-change="getPageNumber(selectedItem)" aria-label="Multi Page Select">
+	          <md-optgroup label="Select page">
+	            <md-option ng-value="item" ng-repeat="item in itemPages">{{item.pageNum}}</md-option>
+	          </md-optgroup>
+	        </md-select>
+	      </md-input-container>
+	    </div>
+
+
 	</div>
 </md-toolbar>
