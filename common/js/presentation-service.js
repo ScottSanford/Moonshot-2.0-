@@ -5,39 +5,7 @@ angular.module('moonshotApp')
     		data: $localStorage.slides    	
     	};
 
-    	// master set ITEM Slide URL 
-    	self.setCurrentItem = function(slug) {
-    		// is item a single page document or image?
-    		if ($stateParams.page == undefined && $stateParams.type == undefined) {
-    			self.setSingleItemURL(slug);
-    		}
-    		// is item at least 2 pages (multi page document)
-    		else if ($stateParams.page) {
-    			// check if the current page in the multi page document is the last page
-    			Mfly.getItem(slug).then(function(data){
-    				// if is is the last
-    				if (data.pages === parseInt($stateParams.page)) {
-    					self.goToNextSlide();
-    				} 
-    				// if it's not the last page
-    				else {
-		    			var nextPage = $stateParams.page + 1;
-		    			self.setMultiPageItemURL(slug, nextPage);   					
-    				}
-    			});
-    		}
-    		// is the item an Interactive? 
-    		else if ($stateParams.type == 'interactive') {
-    			self.setInteractiveURL(slug);
-    		} 
-
-    	};
-
     	self.getCurrentItem = function(item) {
-
-    	};
-
-        self.showCurrentItem = function() {
         	var deferred = $q.defer();
         	var slug = $stateParams.slug;
         	Mfly.getItem(slug).then(function(data){
@@ -45,19 +13,7 @@ angular.module('moonshotApp')
         	});
 
         	return deferred.promise;
-        };
-
-        self.setSingleItemURL = function(slug) {
-        	$location.url('presentation/' + slug);
-        };
-
-        self.setMultiPageItemURL = function(slug, pageNumber) {
-        	$location.url('presentation/' + slug + '?page=' + pageNumber);
-        };
-
-        self.setInteractiveURL = function(slug) {
-        	$location.url('presentation/' + slug + '?type=interactive');
-        };
+    	};
 
         self.goToPreviousSlide = function() {
         	var currentItemIndex = _.findIndex(self.data, {
@@ -78,50 +34,89 @@ angular.module('moonshotApp')
         	}
         };
 
-        self.goToNextSlide = function() {
+        self.goToNextSlide = function(slide) {
+        	// get current ITEM
         	var currentItemIndex = _.findIndex(self.data, {
 		      id: $stateParams.slug
 		    });
+
 		    var lastItemIndex = self.data.length - 1;
+
+		    // is it the last item in the presentation? 
         	if (currentItemIndex !== lastItemIndex) {
 			    var nextItemIndex = currentItemIndex + 1;
-			    
-			    for (var i = 0; i < self.data.length; i++) {
-			      if (i == nextItemIndex) {
-			      	// where we need to identify what the next item 
-			      	// in the slideshow is...
+			    // first, is this a multi page item
+			    if ($stateParams.page && parseInt($stateParams.page) < slide.pages) {
+			    	var nextPage = parseInt($stateParams.page) + 1;
+				    self.setMultiPageItemURL($stateParams.slug, nextPage);
+			    } 
+			    // if it's not a multipage item
+			    else {
+				    for (var i = 0; i < self.data.length; i++) {
+				      if (i == nextItemIndex) {
+				      	// where we need to identify what the next item 
+				      	// in the slideshow is...
+				      	var itemType  = self.data[i].type;
+				      	var itemID    = self.data[i].id;
+				      	var itemPages = self.data[i].pages;
+				      	if (self.data[i].type == 'interactive') {
+				      		self.setInteractiveURL(itemID);
+				      	}
+				      	// multi page
+				      	else if (itemPages > 1) {
+				      		var nextPage = parseInt($stateParams.page) + 1;
+				      		$location.url('presentation/' + itemID + '?page=1');
+				      	} 
+				      	// single page 
+				      	else {
+				      		self.setSingleItemURL(itemID);
+				      	}
 
-			        var id = self.data[i].id;
-			        Mfly.getItem(id).then(function(data){
-			        	// is the next item a single page? 
-			        	if ($stateParams.page == undefined && data.pages <= 1) {
-			        		self.setSingleItemURL(data.id);
-			        	}
-			        	// is the next item a multi page document?
-			        	else if ($stateParams.page == undefined && data.pages > 1) {
-			        		$location.url('presentation/' + id + '?page=0');
-			        	} 
-			        	// is the current Item a multi page but not last page? 
-			        	else if ($stateParams.page) {
-			        		// check if the current page in the multi page document is the last page
-			    			Mfly.getItem($stateParams.slug).then(function(response){
-			    				// if is is the last
-			    				if (response.pages === parseInt($stateParams.page)) {
-			    					self.goToNextSlide();
-			    				} 
-			    				// if it's not the last page
-			    				else {
-					    			var nextPage = $stateParams.page + 1;
-					    			self.setMultiPageItemURL(slug, nextPage);   					
-			    				}
-			    			});
-			        	}
-			        });
-			      }
+				      	
+				      }
+				    }
 			    }
+			    
         	} else {
-        		self.showLastItemDialog();
+	        	if (parseInt($stateParams.page) < slide.pages) {
+        			
+        			for (var i = 0; i < self.data.length; i++) {
+        				var itemID = self.data[i].id;
+	        			var nextPage = parseInt($stateParams.page) + 1;
+
+				      	self.setMultiPageItemURL(itemID, nextPage);
+	        		} 
+
+        		} else {
+
+	        		self.showLastItemDialog();
+
+	        	}
         	}
+        };
+
+        self.setSingleItemURL = function(slug) {
+        	$location.url('presentation/' + slug);
+        };
+
+        self.setMultiPageItemURL = function(slug, pageNumber) {
+        	$location.url('presentation/' + slug + '?page=' + pageNumber);
+        };
+
+        self.setInteractiveURL = function(slug) {
+        	$location.url('presentation/' + slug + '?type=interactive');
+        };
+
+        self.setSelectedItem = function(item) {
+        	if (item.type === 'interactive') {
+            	self.setInteractiveURL(item.id);
+	        } 
+	        else if (item.pages > 1) {
+	            $location.url('presentation/' + item.id + '?page=1');
+	        }
+	        else {
+	            self.setSingleItemURL(item.id);
+	        }
         };
 
         self.getFirstItem = function() {
@@ -130,8 +125,15 @@ angular.module('moonshotApp')
 			      return obj;
 			    }
 			});
-
-			$location.url('presentation/' + firstItem.id);
+			if (firstItem.type === 'interactive') {
+            	self.setInteractiveURL(firstItem.id);
+	        } 
+	        else if (firstItem.pages > 1) {
+	            $location.url('presentation/' + firstItem.id + '?page=1');
+	        }
+	        else {
+	            self.setSingleItemURL(firstItem.id);
+	        }
         };
 
         self.showLastItemDialog = function() {

@@ -74,7 +74,7 @@ angular.module('moonshotApp')
             $location.url('presentation/' + firstSlide.id + '?type=interactive');
         } 
         else if (firstSlide.pages > 1) {
-            $location.url('presentation/' + firstSlide.id + '?page=0');
+            $location.url('presentation/' + firstSlide.id + '?page=1');
         }
         else {
             $location.url('presentation/' + firstSlide.id);
