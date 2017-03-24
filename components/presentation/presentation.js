@@ -5,10 +5,12 @@ angular.module('moonshotApp')
   // SHOW FIRST SLIDE
   initCurrentItem();
   function initCurrentItem() {
-    $scope.isItemAvailable = false; // container
-    $scope.isFirstPageAvailable = false; // single item
-    $scope.isItemInteractive = false; // interactive
-    $scope.verticalAlign = 'center';
+    $scope.isItemAvailable       = false; // container
+    $scope.isFirstPageAvailable  = false; // single item
+    $scope.isItemInteractive     = false; // interactive
+    $scope.showMultiPageSelector = false; // multipage dropdown
+    $scope.verticalAlign         = 'center';
+
     Present.getCurrentItem().then(function(data){
 
       // check which type of item is being rendered
@@ -19,8 +21,10 @@ angular.module('moonshotApp')
       } else if (data.pages > 1) {
         $scope.isFirstPageAvailable = true;
         $scope.itemPages       = Present.getPageRange(data.pages);
-        $scope.selectedItem    = {id: 0, pageNum: parseInt($stateParams.page)};
-        mflyCommands.embed($('img#current-slide'), data.id, $stateParams.page);
+        var selItemID = parseInt($stateParams.page) - 1;
+        $scope.selectedItem    = {id: selItemID, pageNum: parseInt($stateParams.page)};
+        $scope.showMultiPageSelector = true;
+        mflyCommands.embed($('img#current-slide'), data.id, parseInt($stateParams.page));
         $scope.verticalAlign = 'center';
         $scope.slide = data;
       } else {
@@ -51,7 +55,7 @@ angular.module('moonshotApp')
   };
 
   $scope.getPageNumber = function(number) {
-    console.log(number);
+    Present.setMultiPageItemURL($stateParams.slug, number.pageNum);
   };
 
 

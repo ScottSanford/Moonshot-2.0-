@@ -93,7 +93,7 @@
 	  		Next
 	  	</md-button>
 
-		<div layout="row" ng-show="isItemMultiPage">
+		<div layout="row" ng-show="showMultiPageSelector">
 	      <md-input-container>
 	        <label></label>
 	        <md-select class="page-number-select" ng-model="selectedItem" ng-model-options="{trackBy: '$value.id'}" ng-change="getPageNumber(selectedItem)" aria-label="Multi Page Select">
