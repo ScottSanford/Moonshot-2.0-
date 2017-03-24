@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.factory('MoonshotData', function($q, $location, $window, Mfly, ItemIcons, $localStorage){
+.factory('MoonshotData', function($q, $location, $window, Mfly, ItemIcons, $localStorage, Present){
 
     var Moonshot = {};
 
@@ -50,6 +50,7 @@ angular.module('moonshotApp')
         if (item.hasOwnProperty('isItemSelected') && item.isItemSelected) {
             Moonshot.presentation.push(item);
             $localStorage.slides = Moonshot.presentation;
+            console.log($localStorage.slides);
         } 
         // remove an item that was de-selected from the card list
         else {
@@ -71,13 +72,13 @@ angular.module('moonshotApp')
         var firstSlide = _.head($localStorage.slides);
 
         if (firstSlide.type === 'interactive') {
-            $location.url('presentation/' + firstSlide.id + '?type=interactive');
+            Present.setInteractiveURL(firstSlide.id);
         } 
         else if (firstSlide.pages > 1) {
-            $location.url('presentation/' + firstSlide.id + '?page=1');
+            Present.setFirstMultiPage(firstSlide.id);
         }
         else {
-            $location.url('presentation/' + firstSlide.id);
+            Present.setSingleItemURL(firstSlide.id);
         }
         
     };

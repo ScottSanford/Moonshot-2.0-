@@ -15,32 +15,101 @@ angular.module('moonshotApp')
         	return deferred.promise;
     	};
 
-        self.goToPreviousSlide = function() {
-        	var currentItemIndex = _.findIndex(self.data, {
+        self.goToPreviousSlide = function(slide) {
+        	// get current ITEM
+        	var currentItemIndex = _.findIndex($localStorage.slides, {
 		      id: $stateParams.slug
 		    });
+
 		    var firstItemIndex = 0;
+
+		    // is the item NOT the first item? 
         	if (currentItemIndex !== firstItemIndex) {
 			    var prevItemIndex = currentItemIndex - 1;
-			    
-			    for (var i = 0; i < self.data.length; i++) {
-			      if (i == prevItemIndex) {
-			        var id = self.data[i].id;
-			        $location.url('presentation/' + id);
-			      }
-			    }
-        	} else {
-        		return;
+			    // is the current Item a multi page && not on the first page
+			    if ($stateParams.page && parseInt($stateParams.page) !== 1) {
+        			var itemID   = $stateParams.slug;
+        			var prevPage = parseInt($stateParams.page) - 1;
+
+			      	self.setMultiPageItemURL(itemID, prevPage);
+        		}
+        		// is the current Mulit Page Item on the first page? 
+			    else if ($stateParams.page && parseInt($stateParams.page) == 1) {
+        			for (var i = 0; i < $localStorage.slides.length; i++) {
+        				if (i == prevItemIndex) {
+        					var itemType  = $localStorage.slides[i].type;
+				      		var itemID    = $localStorage.slides[i].id;
+				      		var itemPages = $localStorage.slides[i].pages;
+				      		// is previous new item an Interactive?
+        					if (itemType == 'interactive') {
+				      			self.setInteractiveURL(itemID);
+					      	}
+					      	// is previous new item a multi page?
+					      	else if (itemPages > 1) {
+					      		self.setMultiPageItemURL(itemID, itemPages);
+					      	} 
+					      	// single page 
+					      	else {
+					      		self.setSingleItemURL(itemID);
+					      	}
+
+        				}
+        			}
+        		} else {
+        			for (var i = 0; i < $localStorage.slides.length; i++) {
+        				if (i == prevItemIndex) {
+        					var itemType  = $localStorage.slides[i].type;
+				      		var itemID    = $localStorage.slides[i].id;
+				      		var itemPages = $localStorage.slides[i].pages;
+				      		// is previous new item an Interactive?
+        					if (itemType == 'interactive') {
+				      			self.setInteractiveURL(itemID);
+					      	}
+					      	// is previous new item a multi page?
+					      	else if (itemPages > 1) {
+					      		self.setMultiPageItemURL(itemID, itemPages);
+					      	} 
+					      	// single page 
+					      	else {
+					      		self.setSingleItemURL(itemID);
+					      	}
+
+        				}
+        			}
+        		}
+
+
+        	} 
+        	// then the item must be the very first item in the slideshow
+        	else {
+        		// if item is a multipage && on the first page
+        		if ($stateParams.page && parseInt($stateParams.page) == 1) {
+        			// do nothing
+        			return;
+        		}
+        		// if current very first Item is multi page but not last page
+        		else if ($stateParams.page && parseInt($stateParams.page) <= slide.pages) {
+        			
+    				var itemID   = $stateParams.slug;
+        			var prevPage = parseInt($stateParams.page) - 1;
+
+			      	self.setMultiPageItemURL(itemID, prevPage);
+        		
+
+        		} else {
+        			return;
+        		}
+
         	}
         };
 
         self.goToNextSlide = function(slide) {
         	// get current ITEM
-        	var currentItemIndex = _.findIndex(self.data, {
+        	var currentItemIndex = _.findIndex($localStorage.slides, {
 		      id: $stateParams.slug
 		    });
 
-		    var lastItemIndex = self.data.length - 1;
+		    var lastItemIndex = $localStorage.slides.length - 1;
 
 		    // is it the last item in the presentation? 
         	if (currentItemIndex !== lastItemIndex) {
@@ -52,14 +121,14 @@ angular.module('moonshotApp')
 			    } 
 			    // if it's not a multipage item
 			    else {
-				    for (var i = 0; i < self.data.length; i++) {
+				    for (var i = 0; i < $localStorage.slides.length; i++) {
 				      if (i == nextItemIndex) {
 				      	// where we need to identify what the next item 
 				      	// in the slideshow is...
-				      	var itemType  = self.data[i].type;
-				      	var itemID    = self.data[i].id;
-				      	var itemPages = self.data[i].pages;
-				      	if (self.data[i].type == 'interactive') {
+				      	var itemType  = $localStorage.slides[i].type;
+				      	var itemID    = $localStorage.slides[i].id;
+				      	var itemPages = $localStorage.slides[i].pages;
+				      	if ($localStorage.slides[i].type == 'interactive') {
 				      		self.setInteractiveURL(itemID);
 				      	}
 				      	// multi page
@@ -78,10 +147,10 @@ angular.module('moonshotApp')
 			    }
 			    
         	} else {
-	        	if (parseInt($stateParams.page) < slide.pages) {
+	        	if ($stateParams.page && parseInt($stateParams.page) < slide.pages) {
         			
-        			for (var i = 0; i < self.data.length; i++) {
-        				var itemID = self.data[i].id;
+        			for (var i = 0; i < $localStorage.slides.length; i++) {
+        				var itemID = $localStorage.slides[i].id;
 	        			var nextPage = parseInt($stateParams.page) + 1;
 
 				      	self.setMultiPageItemURL(itemID, nextPage);
@@ -99,6 +168,10 @@ angular.module('moonshotApp')
         	$location.url('presentation/' + slug);
         };
 
+        self.setFirstMultiPage = function(slug) {
+        	$location.url('presentation/' + slug + '?page=1');
+        } 
+
         self.setMultiPageItemURL = function(slug, pageNumber) {
         	$location.url('presentation/' + slug + '?page=' + pageNumber);
         };
@@ -112,7 +185,7 @@ angular.module('moonshotApp')
             	self.setInteractiveURL(item.id);
 	        } 
 	        else if (item.pages > 1) {
-	            $location.url('presentation/' + item.id + '?page=1');
+	            self.setFirstMultiPage(item.id);
 	        }
 	        else {
 	            self.setSingleItemURL(item.id);

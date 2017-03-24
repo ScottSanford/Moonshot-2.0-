@@ -8,7 +8,7 @@ angular.module('moonshotApp')
     $scope.isItemAvailable = false; // container
     $scope.isFirstPageAvailable = false; // single item
     $scope.isItemInteractive = false; // interactive
-
+    $scope.verticalAlign = 'center';
     Present.getCurrentItem().then(function(data){
 
       // check which type of item is being rendered
@@ -42,8 +42,8 @@ angular.module('moonshotApp')
     Present.setSelectedItem(item);
   };
 
-  $scope.previousSlide = function() {
-      Present.goToPreviousSlide();
+  $scope.previousSlide = function(slide) {
+      Present.goToPreviousSlide(slide);
   };
 
   $scope.nextSlide = function(slide) {
