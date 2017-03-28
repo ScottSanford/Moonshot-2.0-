@@ -1,7 +1,7 @@
 angular.module('myDirectives', [])
 
 
-.directive('topToolbar', function($location, $state, $mdDialog, Mfly){
+.directive('topToolbar', function($location, $state, $mdDialog, Mfly, $mdMedia, $mdSidenav){
 	return {
 
 		restrict: 'E', 
@@ -10,10 +10,13 @@ angular.module('myDirectives', [])
 		templateUrl: 'common/tmpls/toolbar/toolbar.html', 
 		link: function(scope, element, attrs) {
 
-			scope.isSideNavOpen = true;
+			scope.isSideNavOpen   = true;
+			scope.showSearch      = true;
+
 		  	scope.openNavigationMenu = function() {
-		    	scope.isSideNavOpen = !scope.isSideNavOpen;
+		    	$mdSidenav('left').toggle();
 		  	};
+			
 
 			var pageTitle = $state.current.name;
 
@@ -67,7 +70,7 @@ angular.module('myDirectives', [])
 				}
 			};
 
-			function getSyncStatus() {
+			function getDeviceOnlyInfo() {
 				var deviceType = mflyCommands.getDeviceType();
 				if (deviceType === 'mobile') {
 					mflyCommands.getSyncStatus().done(function(data){
@@ -76,12 +79,25 @@ angular.module('myDirectives', [])
 						var percentage = (value * 100) / total;
 						scope.percentageNum = percentage;
 					});
+
+					mflyCommands.getDownloadStatus().done(function(data){
+						var progress = data.progress * 100;
+						
+						scope.progressPercentage = progress;
+					});
+					scope.showWifi = false;
+					mflyCommands.getOnlineStatus().done(function(data){
+						var status = data.status;
+						if (status === 'offline') {
+							scope.showWifi = true;
+						}
+					})
 				} else {
 					return;
 				}
 			}
 
-			getSyncStatus();
+			getDeviceOnlyInfo();
 			
 
 
@@ -91,7 +107,7 @@ angular.module('myDirectives', [])
 	}
 })
 
-.directive('sidebarMenu', function($location, $mdDialog){
+.directive('sidebarMenu', function($location, $mdDialog, $mdSidenav){
 	return {
 
 		restrict: 'E', 
@@ -99,8 +115,7 @@ angular.module('myDirectives', [])
 		transclude: true,
 		templateUrl: 'common/tmpls/sidebar-menu/sidebar-menu.html', 
 		link: function(scope, element, attrs) {
-
-
+			
 			scope.isDeviceMobile = function(item) {
 				var deviceType = mflyCommands.getDeviceType();
 				if (deviceType === 'mobile' && item.name === 'Upload') {

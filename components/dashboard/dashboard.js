@@ -23,8 +23,7 @@ angular.module('moonshotApp')
   });
 
   // RECOMMENDED
-  mflyCommands.getLastViewedContent()
-    .then(function(data){
+  mflyCommands.getLastViewedContent().then(function(data){
       var mIcons = ItemIcons.material();
           
       data.forEach(function(_item){

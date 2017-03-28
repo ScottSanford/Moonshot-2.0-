@@ -8,7 +8,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
 	<title>Moonshot</title>
 
-	<link rel="stylesheet" href="common/libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="common/libs/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="common/libs/angular-material-icons/angular-material-icons.css">
 	<link rel="stylesheet" href="common/libs/weather-icons/css/weather-icons.css">
@@ -24,8 +23,7 @@
 	<div ui-view class="ui-view-container" layout="column"></div>
 
 	<!-- FRAMEWORK -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="common/libs/jquery/dist/jquery.min.js"></script>
 	<script src="common/libs/jquery-ui/jquery-ui.min.js"></script>
   	
   	<script src="common/libs/angular/angular.js"></script>
@@ -55,6 +53,9 @@
 	<script src="common/libs/ng-file-upload/ng-file-upload.js"></script>
 	<script src="common/libs/angular-file-upload/dist/angular-file-upload.js"></script>
 	<script src="common/libs/angular-cookies/angular-cookies.js"></script>
+
+	<!-- jQuery -->
+	<script src="common/libs/fastclick/lib/fastclick.js"></script>
 
   	
 	<!-- FACTORIES -->
@@ -100,7 +101,13 @@
 	<script src="common/tmpls/timeline/custom-filter-dialog.js"></script>
 	<script src="components/timeline/timeline.js"></script>
 
-	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZd6RFahu3IezPVdmtiCM9XPiNFgAai9Y"></script>  -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(function() {
+				FastClick.attach(document.body);
+			});
+		});
+	</script>
 
 </body>
 </html>

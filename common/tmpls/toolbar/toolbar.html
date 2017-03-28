@@ -1,9 +1,9 @@
 <div>
 
-  <md-toolbar class="main-toolbar md-whiteframe-2dp" ng-show="!showSearch">
+  <md-toolbar class="main-toolbar md-whiteframe-2dp" ng-class="{'show-search': !showSearch}">
     <div class="md-toolbar-tools">
 
-        <md-button class="md-icon-button" aria-label="Menu" ng-click="openNavigationMenu()">
+        <md-button class="md-icon-button" aria-label="Menu" ng-click="openNavigationMenu()" hide-gt-sm>
             <md-icon class="main-toolbar-icons">menu</md-icon>
         </md-button>
 
@@ -27,7 +27,7 @@
               <md-menu-item>
                   <p class="notifications-title">Notifications</p>
               </md-menu-item>
-              <!-- <md-menu-item> -->
+
                   <div layout="row" layout-align="space-between center" layout-padding>
                     <div flex>Sync Status</div>
                     <div flex><b style="float:right;">{{percentageNum | number:0}}%</b></div>
@@ -35,9 +35,21 @@
                   <div layout="row" class="progress-sync-container">
                     <md-progress-linear flex md-mode="determinate" value="{{percentageNum}}"></md-progress-linear>
                   </div>
-              <!-- </md-menu-item> -->
+
+                  <div layout="row" layout-align="space-between center" layout-padding>
+                    <div flex="75">Available for Offline</div>
+                    <div flex><b style="float:right;">{{progressPercentage | number:0}}%</b></div>
+                  </div>
+                  <div layout="row" class="progress-sync-container">
+                    <md-progress-linear flex md-mode="determinate" value="{{progressPercentage}}"></md-progress-linear>
+                  </div>
+                  
               </md-menu-content>
           </md-menu>
+
+            <md-button flex class="md-icon-button" aria-label="Offline Mode" ng-show="showWifi">
+              <md-icon class="main-toolbar-icons">signal_wifi_off</md-icon>
+            </md-button>
 
             <md-menu md-position-mode="target-right target">
                 <md-button class="" aria-label="Settings" ng-click="$mdOpenMenu($event)">
@@ -76,7 +88,7 @@
       </div>
   </md-toolbar>
 
-  <md-toolbar class="main-toolbar md-whiteframe-z2" ng-show="showSearch" ng-cloak>
+  <md-toolbar class="main-toolbar md-whiteframe-z2" ng-class="{'show-search': showSearch}" ng-cloak>
     <div class="md-toolbar-tools">
 
       <md-button ng-click="showSearch = !showSearch" aria-label="Back" class="md-icon-button md-button md-ink-ripple">
