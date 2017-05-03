@@ -776,7 +776,7 @@ md-card .selected-search-result {
 }
 
 md-card.selected-item-result {
-	height:450px;
+	height:100%;
 }
 
 .selected-item-image {
