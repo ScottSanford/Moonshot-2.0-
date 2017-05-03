@@ -1,7 +1,7 @@
 <div layout="row" class="search-tab-background" layout-padding>
-	<div flex="5"></div>
+	<div flex="5" ng-show="showFolderItemDescription"></div>
 <!-- START: FOLDER LIST VIEW -->
-	<div flex="50">
+	<div flex="50" ng-show="showFolderItemDescription">
 		<md-content>
 			<md-list-item class="md-2-line margin-5 md-whiteframe-1dp" 
 						  ng-repeat="item in results" 
@@ -16,7 +16,7 @@
 		</md-content>
 	</div>
 
-	<md-card flex="35" class="selected-item-result">
+	<md-card flex="35" class="selected-item-result" ng-show="showFolderItemDescription">
         
 
     <md-card-content layout="row" layout-align="space-between">
@@ -35,12 +35,6 @@
               <b>Pages:</b> {{ selectedResult.pages }}
             </p>
           <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-icon-button" ng-show="showFolderIcon" aria-label="Collections" ng-click="openCollectionModal(selectedResult, $event)"></>
-                <ng-md-icon icon="view_list"></ng-md-icon>
-            </md-button>
-            <md-button class="md-icon-button" ng-show="showFolderIcon" aria-label="Share" ng-click="openShareModal(selectedResult, $event)">
-                <ng-md-icon icon="share"></ng-md-icon>
-            </md-button>
             <md-button class="md-icon-button" aria-label="Open Item" ng-click="goToPath(selectedResult)">
                 <ng-md-icon icon="open_in_new"></ng-md-icon>
             </md-button>
@@ -48,4 +42,11 @@
           </md-card-title-text>
         </md-card-title>
     </md-card>
+
+
+    <div layout="row" ng-show="!showFolderItemDescription">
+        <div flex layout-padding class="alert-no-items md-whiteframe-2dp">
+          <div><b>There are no folders from the search result.</b></div> 
+        </div>
+    </div>
 </div>

@@ -56,7 +56,7 @@ angular.module("moonshotApp", [
                     controller: 'CollectionsCtrl'
                 })
                 .state('details', {
-                    url: '/collection-details/:cid', 
+                    url: '/collection-details/{collectionID}', 
                     templateUrl: 'components/collection-details/collection-details.html', 
                     controller: 'CollectionDetailCtrl'
                 })

@@ -14,20 +14,25 @@ angular.module('moonshotApp')
     Present.getCurrentItem().then(function(data){
 
       // check which type of item is being rendered
-      if ($stateParams.type === 'interactive') {
+      // is item an Interactive? 
+      if ($stateParams.type === 'interactive' || $stateParams.type === 'zip') {
         $scope.isItemInteractive = true;
         $scope.verticalAlign = 'stretch';
         mflyCommands.embed($('iFrame#current-slide-interactive'), data.id);
-      } else if (data.pages > 1) {
+      } 
+      // is item a multi-page document? 
+      else if (data.pages > 1) {
         $scope.isFirstPageAvailable = true;
         $scope.itemPages       = Present.getPageRange(data.pages);
         var selItemID = parseInt($stateParams.page) - 1;
         $scope.selectedItem    = {id: selItemID, pageNum: parseInt($stateParams.page)};
         $scope.showMultiPageSelector = true;
         mflyCommands.embed($('img#current-slide'), data.id, parseInt($stateParams.page));
-        $scope.verticalAlign = 'center';
+        $scope.verticalAlign = 'stretch';
         $scope.slide = data;
-      } else {
+      } 
+      // is item a single page document? 
+      else {
         $scope.isFirstPageAvailable = true;
         $scope.slide = data;
         $scope.verticalAlign = 'center';

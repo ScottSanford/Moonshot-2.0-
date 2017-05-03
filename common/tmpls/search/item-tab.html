@@ -13,7 +13,7 @@
 	      		   ng-if="chip.type !== 'folder'">{{chip.type}}</md-chip>
 	    </md-chips>	
 	
-		<md-content>
+		<md-content class="search-item-container" layout="column">
 			<md-list-item class="md-2-line margin-5 md-whiteframe-1dp" 
 						  ng-class="{selectedIndex: selectedIndex===$index}"
 						  ng-repeat="item in results | filter:searchType" 
@@ -24,7 +24,7 @@
 	            	<h3>{{ item.name }}</h3>
 	            	<h4><span class="selected-item-location-path" ng-repeat="item in item.hierarchy"><u ng-click="goToPath(item)">{{ item.name }}</u> {{$last ? '' : ' / '}} </span></h4>
 	            	<!-- <p>Created: {{item.created | date:'shortDate'}}</p> -->
-	          </div>
+	            </div>
 	        </md-list-item>
 		</md-content>
 	</div>

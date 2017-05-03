@@ -1,6 +1,6 @@
 angular.module('moonshotApp')
 
-.controller('AddToCollectionCtrl', function($scope, $uibModal, item, Mfly, $mdDialog){
+.controller('AddToCollectionCtrl', function($scope, $uibModal, item, Mfly, $mdDialog, $mdToast){
 
 	Mfly.getShare(item.id).then(function(data){
 		$scope.shareLink = data.url;
@@ -13,39 +13,40 @@ angular.module('moonshotApp')
 	$scope.selectedCollection = null;
 
 	$scope.createCollection = function(selectedCollection, newCollection) {
+		// add item to an existing collection
 		if (typeof selectedCollection === 'object' && selectedCollection) {
 			Mfly.addItemToCollection(selectedCollection.id, item.id).then(function(res){
 				// close Modal
 				$mdDialog.cancel();
 				// open Success Modal
-				$uibModal.open({
-		            templateUrl: 'common/tmpls/success-collection/success-collection-modal.html',
-		            controller: 'SuccessCollectionModalCtrl',
-		            backdrop: false,
-		            resolve: {
-		                collection: function() {
-		                    return selectedCollection;
-		                }
-		            }
-		        });
+				$mdToast.show({
+			    	templateUrl: 'common/tmpls/success-collection/success-collection-modal.html',
+			    	hideDelay: 3000,
+			    	position: 'top right', 
+			    	controller: 'SuccessCollectionModalCtrl',
+			    	locals: {
+			    		collectionName: selectedCollection.name
+			    	}
+			    });
 			});		
-		} else if (newCollection && typeof newCollection == "string") {
+		} 
+		// add item to a new collection
+		else if (newCollection && typeof newCollection == "string") {
 
 			Mfly.createCollection(newCollection).then(function(response){
 				Mfly.addItemToCollection(response.id, item.id).then(function(res){
 					// close Modal
 					$mdDialog.cancel();
 					// open Success Modal
-					$uibModal.open({
-			            templateUrl: 'common/tmpls/success-collection/success-collection-modal.html',
-			            controller: 'SuccessCollectionModalCtrl',
-			            backdrop: false,
-			            resolve: {
-			                collection: function() {
-			                    return response;
-			                }
-			            }
-			        });
+					$mdToast.show({
+			    	templateUrl: 'common/tmpls/success-collection/success-collection-modal.html',
+			    	hideDelay: 3000,
+			    	position: 'top right', 
+			    	controller: 'SuccessCollectionModalCtrl',
+			    	locals: {
+			    		collectionName: newCollection
+			    	}
+			    });
 				});		
 			});
 			

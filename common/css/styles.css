@@ -428,6 +428,7 @@ md-toolbar.background-green {
 md-toolbar:not(.md-menu-toolbar).background-green {
 	background-color:#9fbe3c;
 }
+
 /*=============================
 
 		   Card Flip
@@ -438,7 +439,7 @@ md-toolbar:not(.md-menu-toolbar).background-green {
   -webkit-perspective: 800;
    height: 200px;
    position: relative;
-   margin: 50px auto;
+   margin: 40px auto;
    padding:10px;
    top:-30px;
 }
@@ -504,7 +505,7 @@ md-toolbar:not(.md-menu-toolbar).background-green {
 }
 
 .card-title-back-right {
-	padding-right:20px;em
+	padding-right:20px;
 	font-size:16px;
 	margin-top:2px;
 }
@@ -543,6 +544,7 @@ md-toolbar:not(.md-menu-toolbar).background-green {
   	text-overflow: ellipsis;
   	width:175px;
   	padding:0 15px;
+  	text-align: left;
 }
 
 .check-circle {
@@ -619,9 +621,14 @@ ng-md-icon .suggested-icon {
 	color:red;
 }
 
+.hierarchy-details-title{
+	height:64px;
+	background-color:#9fbe3c;
+}
+
 .selected-item-location-path {
-	color:#8ba628;
-	font-size:12px;
+	font-family: "Proxy-Regular";
+	color:#000;
 }
 
 .form-control:focus {
@@ -644,6 +651,31 @@ ng-md-icon .suggested-icon {
 
 .loading-spinner {
 	margin-top:100px;
+}
+
+.search-tabs-wrapper {
+	height:100%;
+	position: absolute;
+	top:0px;
+	left:0;
+	right:0;
+	left:0;
+	overflow: hidden;
+	/*border:3px solid red;*/
+}
+
+.search-tabs {
+	
+}
+
+.search-tab-background {
+
+}
+
+.search-item-container {
+	-webkit-overflow-scrolling: touch;
+	overflow: scroll;
+/*	border:1px solid green;*/
 }
 
 md-progress-circular path {
@@ -792,6 +824,7 @@ md-list-item .md-list-item-inner .md-avatar-icon {
 ====================================================*/
 .collections-title {
 	font-family: 'Proxy-Light';
+	font-size:24px;
 }
 
 .collections-top-container {
@@ -803,6 +836,11 @@ md-list-item .md-list-item-inner .md-avatar-icon {
 	color:#FFF;
 }
 
+.collections-table-container {
+	background-color: #FFF;
+	margin-bottom: 25px; /*space on iOS at the bottom*/
+}
+ 
 table.md-table tbody.md-body > tr.md-row {
 	height:60px;
 }
@@ -817,7 +855,7 @@ table.md-table th.md-column {
 
 table.md-table td.md-cell.table-collection-name {
 	font-size:18px;
-	text-decoration: underline;
+	/*text-decoration: underline;*/
 	color:#7c7c7c;
 	cursor: pointer;
 }
@@ -931,6 +969,8 @@ md-tabs .md-tab.md-active {
 .md-button.md-raised.collection-details-delete-button {
 	background-color:#9dbc3b;
 	color:#FFF;
+	margin-top:25px;
+	margin-left:0;
 }
 
 .md-button.collection-details-delete-button.md-raised:not([disabled]):hover {
@@ -977,27 +1017,23 @@ md-tabs .md-tab.md-active {
     background-color: #ddd;
 }
 
-.collection-details-editing-container, .alert-no-items  {
-	margin-top:25px;
+.alert-no-items  {
+	border:2px solid #9fbe3c;
+	font-family: 'Proxy-Regular';
+	line-height: 1.5;
 }
 
 .collection-date {
 	font-style: italic;
 	color:#7c7c7c;
 	font-family: 'Proxy-Regular';
-}
-
-.content-flat {
-	margin-top: 20px;
-	padding: 10px;
-	background-color:#fff;
-	font-size:16px;
+	padding:8px;
 }
 
 .play-alert-info {
-	margin-top: 10px;
 	font-family: 'Proxy-Regular';
 	font-size: 16px;
+	border:2px solid #9fbe3c;
 }
 
 /*===================================================
@@ -1032,8 +1068,8 @@ md-divider.items-divider {
 }
 
 .presentation-item {
-	padding:10px 20px 5px;
-	margin:0 -10px 20px;
+	padding:15px 15px 5px;
+	margin:15px 0;
 	display: block;
 }
 
@@ -1067,6 +1103,14 @@ md-divider.items-divider {
 
 .slide-item {
 	max-height:100%;
+}
+
+/*image for single & multi page item*/
+#current-slide {
+	display:block; 
+	height:100%; 
+	width:100%; 
+	object-fit: contain;
 }
 
 .interactive-frame {
@@ -1199,6 +1243,10 @@ md-toolbar.main-toolbar {
 
 .main-toolbar-page-title {
 	text-transform: capitalize;
+}
+
+.flex-button-container {
+	display: flex;
 }
 
 .dashboard-folder-container {
@@ -1462,6 +1510,13 @@ md-grid-tile.db-settings {
 	font-size:18px;
 }
 
+.selected-item-location-path-hierarchy {
+	font-family: "Proxy-Regular";
+	color:#FFF;
+	padding:25px 0 0 15px;
+	display: inline-block;
+}
+
 md-grid-list md-grid-tile md-grid-tile-footer h3 {
 	font-family: 'Proxy-SemiBold';
 	/*margin-right:60px;*/
@@ -1492,9 +1547,14 @@ md-grid-list md-grid-tile md-grid-tile-footer h3 {
 	font-size:24px;
 }
 
-.md-button.md-raised.share-item {
-	background-color:#475669;
+.md-button.share-item {
+	background-color:#9fbe3c;
 	color:#FFF;
+}
+
+.copy-link-text {
+	font-family: 'Proxy-Regular';
+	margin-top:10px;
 }
 
 md-toast .md-toast-content {
@@ -1559,10 +1619,8 @@ input.input-share-link.form-control:focus {
 }
 
 .modal-delete-collection-message {
-	padding-top:10px;
-	font-family: 'Proxy-SemiBold';
-	font-size:14px;
-	font-weight: 700;
+	font-family: 'Proxy-Regular';
+	font-size:16px;
 }
 
 .collection-edit-actions {

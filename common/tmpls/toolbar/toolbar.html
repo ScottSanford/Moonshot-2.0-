@@ -13,12 +13,14 @@
         <!-- TOOLBAR ICONS -->
         <div>
            
-            <md-button flex class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
-              <md-icon class="main-toolbar-icons">search</md-icon>
+            <md-button class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
+              <span class="flex-button-container">
+                <md-icon class="main-toolbar-icons">search</md-icon>
+              </span>
             </md-button>
 
           <md-menu md-position-mode="target-right target" ng-show="isDeviceMobile()">
-              <md-button flex class="md-icon-button" aria-label="Notification" ng-click="$mdOpenMenu($event)">
+              <md-button class="md-icon-button" aria-label="Notification" ng-click="$mdOpenMenu($event)">
                 <md-icon class="main-toolbar-icons">notifications</md-icon>
               </md-button>
 
@@ -47,7 +49,7 @@
               </md-menu-content>
           </md-menu>
 
-            <md-button flex class="md-icon-button" aria-label="Offline Mode" ng-show="showWifi">
+            <md-button class="md-icon-button" aria-label="Offline Mode" ng-show="showWifi">
               <md-icon class="main-toolbar-icons">signal_wifi_off</md-icon>
             </md-button>
 
@@ -56,14 +58,14 @@
                   {{userName}}
                 </md-button>
               <md-menu-content width="4">
-              <md-menu-item>
+              <md-menu-item ng-show="hasAccountsAccess">
                   <md-button ui-sref="profile">
                       <md-icon>person</md-icon>
                       <p>Profile</p>
                   </md-button>
               </md-menu-item>
-                <md-menu-item>
-                <md-button ng-click="openGifs()">
+              <md-menu-item>
+                <md-button ng-click="openGifs()" >
                    <md-icon>gif</md-icon>
                    <p>Motivation GIFs</p> 
                 </md-button>

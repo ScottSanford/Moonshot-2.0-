@@ -14,9 +14,14 @@
 
 		    <md-tabs md-dynamic-height md-border-bottom>
 		      <md-tab label="Items ({{selectedCollection.length}})">
-		        <md-content class="md-padding">
+		        <md-content layout-padding>
 		        	<!-- ALERT: IF NO ITEMS IN COLLECTION -->
-		          	<div class="alert alert-info alert-no-items md-whiteframe-2dp" role="alert" ng-if="selectedCollection.length == 0">Your collection is empty. While using the Search Tool, you can add items to your collection by clicking 'Add to Collection'.</div>
+		        	<div layout="row">
+		          		<div flex="50" layout="column" layout-padding class="alert-no-items md-whiteframe-2dp" ng-if="selectedCollection.length == 0">
+		          			<div><b>Your collection is empty.</b></div> 
+		          			<div style="line-height: 1.5">While browsing the item grid, you can add items to your collection by clicking the item icon and selecting "Add".</div>
+		          		</div>
+		        	</div>
 
 		          	<!-- SHOW COLLECTION ITEMS -->
 		          	<md-table-container>
@@ -51,18 +56,36 @@
 					</md-table-container>
 		        </md-content>
 		      </md-tab>
-		      <md-tab label="Edit">
-		        <md-content class="md-padding">
-		          	<div layout="row" layout-padding>
-			      		<div class="md-whiteframe-2dp">	 
-					          <div class="collection-date">
-					          	<span>Created on: {{ cCreated | date: 'medium'}}</span>
-					          </div>
-					          <div class="collection-date">
-					          	<span>Last modified: {{ cModified | date: 'medium'}}</span>
-					          </div>
-			      		</div>
+		      <md-tab label="Play">
+		        <md-content layout-padding>
+					<div layout="row">
+						<div flex="50" class="alert-no-items md-whiteframe-2dp" layout-padding ng-if="selectedCollection.length == 0">
+							<div>You cannot play your Collection. Please add items to the '{{ cName }}' Collection using the Search tool.</div>
+						</div>
+					</div>
 
+					<div layout="row">
+			          	<div flex="50" ng-if="selectedCollection.length >= 1">
+				      		<div  class="alert-info play-alert-info md-whiteframe-2dp" layout-padding>
+								View collection in 'presentation mode'. 
+							</div>
+			          		<md-button class="md-raised collection-details-delete-button" ng-click="playCollection()">
+			          			<ng-md-icon icon="play_arrow"></ng-md-icon>
+			          		Play Collection
+			          		</md-button>	
+				      	</div>
+				    </div>
+		        </md-content>
+		      </md-tab>
+		      <md-tab label="Delete">
+		        <md-content class="md-padding">
+		          	<div layout="column">
+			          <div flex class="collection-date">
+			          	<span>Created on {{ cCreated | date: 'medium'}}</span>
+			          </div>
+			          <div flex class="collection-date">
+			          	<span>Modified on {{ cModified | date: 'medium'}}</span>
+			          </div>
 			      	</div>
 			      	<div layout="row" class="collection-edit-actions">
 		      			<div>
@@ -72,21 +95,6 @@
 		      				</md-button>
 		      			</div>
 		      		</div>
-		        </md-content>
-		      </md-tab>
-		      <md-tab label="Play">
-		        <md-content class="md-padding">
-					<div class="alert alert-info alert-no-items md-whiteframe-2dp" role="alert" ng-if="selectedCollection.length == 0">You cannot play your Collection. Please add items to the '{{ cName }}' Collection using the Search tool.</div>
-
-		          	<div class="content-flat" ng-if="selectedCollection.length >= 1">
-			      		<div class="alert alert-info play-alert-info md-whiteframe-2dp">
-							View collection in 'presentation mode'. 
-						</div>
-		          		<md-button class="md-raised collection-details-delete-button" ng-click="playCollection()">
-		          			<ng-md-icon icon="play_arrow"></ng-md-icon>
-		          			Play Collection
-		          		</md-button>	
-			      	</div>
 		        </md-content>
 		      </md-tab>
 		    </md-tabs>

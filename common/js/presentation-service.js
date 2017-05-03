@@ -41,7 +41,7 @@ angular.module('moonshotApp')
 				      		var itemID    = $localStorage.slides[i].id;
 				      		var itemPages = $localStorage.slides[i].pages;
 				      		// is previous new item an Interactive?
-        					if (itemType == 'interactive') {
+        					if (itemType == 'interactive' || itemType === 'zip') {
 				      			self.setInteractiveURL(itemID);
 					      	}
 					      	// is previous new item a multi page?
@@ -62,7 +62,7 @@ angular.module('moonshotApp')
 				      		var itemID    = $localStorage.slides[i].id;
 				      		var itemPages = $localStorage.slides[i].pages;
 				      		// is previous new item an Interactive?
-        					if (itemType == 'interactive') {
+        					if (itemType == 'interactive' || itemType === 'zip') {
 				      			self.setInteractiveURL(itemID);
 					      	}
 					      	// is previous new item a multi page?
@@ -128,7 +128,8 @@ angular.module('moonshotApp')
 				      	var itemType  = $localStorage.slides[i].type;
 				      	var itemID    = $localStorage.slides[i].id;
 				      	var itemPages = $localStorage.slides[i].pages;
-				      	if ($localStorage.slides[i].type == 'interactive') {
+				      	if ($localStorage.slides[i].type == 'interactive' || 
+				      		$localStorage.slides[i].type.type === 'zip') {
 				      		self.setInteractiveURL(itemID);
 				      	}
 				      	// multi page
@@ -168,7 +169,7 @@ angular.module('moonshotApp')
         	$location.url('presentation/' + slug);
         };
 
-        self.setFirstMultiPage = function(slug) {
+        self.setFirstMultiPageURL = function(slug) {
         	$location.url('presentation/' + slug + '?page=1');
         } 
 
@@ -181,11 +182,11 @@ angular.module('moonshotApp')
         };
 
         self.setSelectedItem = function(item) {
-        	if (item.type === 'interactive') {
+        	if (item.type === 'interactive' || item.type === 'zip') {
             	self.setInteractiveURL(item.id);
 	        } 
 	        else if (item.pages > 1) {
-	            self.setFirstMultiPage(item.id);
+	            self.setFirstMultiPageURL(item.id);
 	        }
 	        else {
 	            self.setSingleItemURL(item.id);
@@ -198,7 +199,7 @@ angular.module('moonshotApp')
 			      return obj;
 			    }
 			});
-			if (firstItem.type === 'interactive') {
+			if (firstItem.type === 'interactive' || item.type === 'zip') {
             	self.setInteractiveURL(firstItem.id);
 	        } 
 	        else if (firstItem.pages > 1) {

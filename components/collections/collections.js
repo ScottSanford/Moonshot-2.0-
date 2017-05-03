@@ -40,5 +40,17 @@ angular.module('moonshotApp')
         });
     };
 
+    $scope.getCollectionDetails = function(item) {
+      var deviceType = mflyCommands.getDeviceType(); 
+      console.log('collection', item);
+      if (deviceType == 'web' || deviceType == 'desktop') {
+        $location.url('collection-details/' + item.id);
+      } 
+
+      else if (deviceType === 'mobile') {
+        $location.url('collection-details/' + item.slug);
+      }
+    };
+
 
 });

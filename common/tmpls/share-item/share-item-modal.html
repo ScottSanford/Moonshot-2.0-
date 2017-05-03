@@ -3,36 +3,20 @@
 	
 		<md-toolbar class="background-green">
 	      <div class="md-toolbar-tools">
-	        <h2>Share Document</h2>
+	        <h2 ng-cloak>Share Link for '{{ shareLinkName }}'</h2>
 	        <span flex></span>
 	      </div>
 	    </md-toolbar>
 
 
-		<section layout="row">
-			<div flex="5"></div>
-		    <md-input-container layout="row" flex="95" md-no-float class="md-block">
-		      <md-button class="md-raised share-item" 
-		      			 ngclipboard 
-		      			 data-clipboard-target="#shareLinkText" 
-		      			 ng-click="showSimpleToast()">
-		      	<ng-md-icon icon="content_copy"></ng-md-icon>
-		      	Copy Link
-		      </md-button>
-		      <b id="shareLinkText" class="share-item-text"><i>{{ shareLink }}</i></b>
-		    </md-input-container>
+		<section layout="column" layout-align="center center" layout-padding>
+		    <div flex>
+				<md-button class="md-fab share-item" aria-label="Copy Share Link" ngclipboard data-clipboard-text="{{ shareLink }}" ng-click="showSimpleToast()">
+					<md-icon>link</md-icon>
+				</md-button>
+				<div class="copy-link-text">Copy Link</div>
+			</div>
 		    
-		</section>
-
-		<section layout="row" ng-if="deviceType == 'web'">
-			<div flex="5"></div>
-		    <md-input-container layout="row" flex="95" md-no-float class="md-block">
-		      <md-button class="md-raised share-item" ng-click="sendEmail()">
-		      	<ng-md-icon icon="email"></ng-md-icon>
-		      	Email Link
-		      </md-button>
-		      <b class="share-item-text">Begin a pre-populated email.</b>
-		    </md-input-container>
 		</section>
 
 		<md-divider></md-divider>

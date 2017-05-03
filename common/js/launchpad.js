@@ -3,7 +3,8 @@ angular.module('moonshotApp')
     
     	var Launchpad    = {};
     	var launchpadUrl = "https://launchpadapi.mediafly.com/2/items/";
-        var contentSourceId = "f61ef3521a9b458eb757b619e2e4c39e"; // Sanford Designs
+        // var contentSourceId = "f61ef3521a9b458eb757b619e2e4c39e"; // Sanford Designs
+        var contentSourceId = "f7e484d0e3ee4e87901ee34fe2fcbe1a"; // Inside Mediafly
 
         Launchpad.getPresignedUrl = function(token, file) {
             var deferred = $q.defer();

@@ -1,7 +1,7 @@
 angular.module('myDirectives', [])
 
 
-.directive('topToolbar', function($location, $state, $mdDialog, Mfly, $mdMedia, $mdSidenav){
+.directive('topToolbar', function($location, $state, $mdDialog, Mfly, $mdMedia, $mdSidenav, Accounts){
 	return {
 
 		restrict: 'E', 
@@ -9,9 +9,9 @@ angular.module('myDirectives', [])
 		transclude: true,
 		templateUrl: 'common/tmpls/toolbar/toolbar.html', 
 		link: function(scope, element, attrs) {
-
-			scope.isSideNavOpen   = true;
-			scope.showSearch      = true;
+			scope.isSideNavOpen     = true;
+			scope.showSearch        = true;
+			scope.hasAccountsAccess = false;
 
 		  	scope.openNavigationMenu = function() {
 		    	$mdSidenav('left').toggle();
@@ -27,6 +27,21 @@ angular.module('myDirectives', [])
 			    var user       = data.displayName;
 			    var firstName  = user.substr(0,user.indexOf(' '));
 			    scope.userName = firstName;
+
+			    // check user has access to Accounts Management 
+			    Mfly.getCredentials().then(function(creds){
+
+			    	var contentSourceId = "f7e484d0e3ee4e87901ee34fe2fcbe1a";
+
+				    Accounts.user(creds.accessToken, data.user, contentSourceId).then(function(response){
+			            if (response.success === false) {
+			            	scope.hasAccountsAccess = false;
+			            } else {
+			            	scope.hasAccountsAccess = true;
+			            }
+	          		});
+
+			    })
 			});
 			
 		    scope.openGifs = function(ev) {
@@ -63,7 +78,7 @@ angular.module('myDirectives', [])
 				var deviceType = mflyCommands.getDeviceType();
 				// change to 'web' for development
 				// change to 'mobile' for production
-				if (deviceType === 'mobile') {
+				if (deviceType === 'mobile' || deviceType == 'desktop') {
 					return true;
 				} else {
 					return false;
@@ -72,8 +87,9 @@ angular.module('myDirectives', [])
 
 			function getDeviceOnlyInfo() {
 				var deviceType = mflyCommands.getDeviceType();
-				if (deviceType === 'mobile') {
+				if (deviceType === 'mobile' || deviceType === 'desktop') {
 					mflyCommands.getSyncStatus().done(function(data){
+						console.log("getSyncStatus: ", data);
 						var total = data.total;
 						var value = data.complete;
 						var percentage = (value * 100) / total;
@@ -81,6 +97,7 @@ angular.module('myDirectives', [])
 					});
 
 					mflyCommands.getDownloadStatus().done(function(data){
+						console.log("getDownloadStatus: ", data);
 						var progress = data.progress * 100;
 						
 						scope.progressPercentage = progress;
@@ -116,14 +133,6 @@ angular.module('myDirectives', [])
 		templateUrl: 'common/tmpls/sidebar-menu/sidebar-menu.html', 
 		link: function(scope, element, attrs) {
 			
-			scope.isDeviceMobile = function(item) {
-				var deviceType = mflyCommands.getDeviceType();
-				if (deviceType === 'mobile' && item.name === 'Upload') {
-					return true;
-				} else {
-					return false;
-				}
-			};
 
 			var leftMenu = [
 			    {name: 'Dashboard', icon: 'home', state: 'dashboard'},
@@ -135,6 +144,21 @@ angular.module('myDirectives', [])
 
 			scope.menu = leftMenu;
 
+			// Hide the Upload Nav Item for Mobile Devices
+			var deviceType = mflyCommands.getDeviceType();
+			if (deviceType === 'mobile') {
+				
+				var mobileMenu = _.filter(leftMenu, function(obj){
+					if (obj.name !== 'Upload') {
+						return obj;
+					}
+				});
+
+				scope.menu = mobileMenu;
+			} else {
+				return;
+			}
+		
 		}
 	}
 })

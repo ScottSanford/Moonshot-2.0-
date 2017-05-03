@@ -67,15 +67,15 @@ angular.module('moonshotApp')
     };
 
 
-    Moonshot.playCollection = function() {
+    Moonshot.playCardList = function() {
 
         var firstSlide = _.head($localStorage.slides);
 
-        if (firstSlide.type === 'interactive') {
+        if (firstSlide.type === 'interactive' || firstSlide.type === 'zip') {
             Present.setInteractiveURL(firstSlide.id);
         } 
         else if (firstSlide.pages > 1) {
-            Present.setFirstMultiPage(firstSlide.id);
+            Present.setFirstMultiPageURL(firstSlide.id);
         }
         else {
             Present.setSingleItemURL(firstSlide.id);
@@ -83,6 +83,21 @@ angular.module('moonshotApp')
         
     };
 
+    Moonshot.playCollection = function(collection) {
+        $localStorage.slides = collection;
+
+        var firstSlide = _.head($localStorage.slides);
+
+        if (firstSlide.type === 'interactive' || firstSlide.type === 'zip') {
+            Present.setInteractiveURL(firstSlide.id);
+        } 
+        else if (firstSlide.pages > 1) {
+            Present.setFirstMultiPageURL(firstSlide.id);
+        }
+        else {
+            Present.setSingleItemURL(firstSlide.id);
+        }
+    };
 
 	return Moonshot;
 	

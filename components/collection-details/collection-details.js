@@ -3,30 +3,38 @@ angular.module('moonshotApp')
 .controller('CollectionDetailCtrl', function(
         $scope, $window, $location, $stateParams, 
         Mfly, ItemIcons, $uibModal, 
-        $localStorage, $mdDialog){
+        $localStorage, $mdDialog, MoonshotData, $state){
 
-    var cid = $stateParams.cid;  
+    var cid = $stateParams.collectionID;  
+    var deviceType = mflyCommands.getDeviceType();
 
-        
+    console.log($location.url());
+
+    // returns overview of collections
     Mfly.getCollections().then(function(collections){
-        
-        collections.forEach(function(collection){
-            if (collection.id === cid) {
-                
-                $scope.cName     = collection.name;
-                $scope.cCreated  = collection.created;
-                $scope.cModified = collection.modified;
+        for (var i = 0; i < collections.length; i++) {
+            // iOS returns slug 
+            // web returns id
+            if ((deviceType === 'web' || deviceType == 'desktop') && cid === collections[i].id) {
+                $scope.cName     = collections[i].name;
+                $scope.cCreated  = collections[i].created;
+                $scope.cModified = collections[i].modified;
+                Mfly.getCollection(cid).then(function(items){
+                    $scope.selectedCollection = items;
+                });
+            } else if (deviceType === 'mobile' &&  cid === collections[i].slug) {
+                $scope.cName     = collections[i].name;
+                $scope.cCreated  = collections[i].created;
+                $scope.cModified = collections[i].modified;
+                Mfly.getCollection(collections[i].id).then(function(items){
+                    $scope.selectedCollection = items;
+                });
             }
-        });
+
+            
+        }
 
     });
-
-    Mfly.getCollection(cid).then(function(items){
-
-        $scope.selectedCollection = items;
-
-    });
-
 
     $scope.goToPath = function(item) {
         mflyCommands.openFolder(item.id);
@@ -70,19 +78,11 @@ angular.module('moonshotApp')
         
         Mfly.getCollection(cid).then(function(collection){
             
-            var firstItem = _.head(collection);
-
-            Mfly.getItem(firstItem).then(function(item){
-                if (item.pages >= 1) {
-                    $location.url('/presentation/' + firstItem + '?collection=' + cid + '&page=' + 1 + '&index=' + 0);
-                }
-            });
-            
-            $localStorage.slides = collection;
+            var mIcons = ItemIcons.material();
 
             collection.forEach(function(item){
                 
-                ItemIcons.forEach(function(icon){     
+                mIcons.forEach(function(icon){     
                     if (item.type == icon.type) {
                         item['icon'] = icon.icon;
                     }
@@ -91,8 +91,7 @@ angular.module('moonshotApp')
 
             });
 
-                
-            $location.url('/presentation/' + firstItem.id + '?collection=' + cid + '&index=' + 0);
+            MoonshotData.playCollection(collection);
                 
         });
 

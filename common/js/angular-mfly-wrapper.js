@@ -256,6 +256,19 @@ angular.module('moonshotApp')
                 });
 
             return deferred.promise;
+        },
+
+        // 4/17/17 the response does not bring 'enviornmentId' only 'accessToken'
+        // still in production 
+        getCredentials: function() {
+            var deferred = $q.defer();
+
+             mflyCommands.getCredentials()
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;
         }
 	}
 

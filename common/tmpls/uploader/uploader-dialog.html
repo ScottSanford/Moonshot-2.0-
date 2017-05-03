@@ -16,7 +16,7 @@
 		</section>
 
 		<!-- PASSWORD INPUT -->
-	    <section layout="row" layout-padding ng-show="showPasswordInput">
+<!-- 	    <section layout="row" layout-padding ng-show="showPasswordInput">
 			<div flex="5"></div>
 			<div flex="95">
 				<label>Please enter your SalesKit password.</label>
@@ -25,14 +25,14 @@
 			      <input ng-model="accountPassword" type="password" placeholder="Enter password" my-enter="uploadItems(accountPassword)">
 			    </md-input-container>
 			</div>
-		</section>
+		</section> -->
 
 		<!-- ERROR MESSAGE -->
-		<section layout="row" layout-padding ng-show="isPasswordWrong">
+<!-- 		<section layout="row" layout-padding ng-show="isPasswordWrong">
 			<md-subheader flex-offset="10" flex="90" class="md-subheader error-message">
 				The password you provided is incorrect.
 			</md-subheader>
-		</section>
+		</section> -->
 	
 
 		<!-- UPLOAD ITEMS TABLE -->
@@ -58,11 +58,11 @@
 		</section>
 
 		<md-divider></md-divider>
-
+<!-- 
 		<md-dialog-actions layout="row">
-			<md-button ng-click="uploadItems(accountPassword)">Upload</md-button>
+			<md-button ng-click="uploadItems()">Upload</md-button>
 			<md-button ng-click="closeDialog()">Cancel</md-button>
-		</md-dialog-actions>
+		</md-dialog-actions> -->
 
 	</md-dialog-content>
 </md-dialog>

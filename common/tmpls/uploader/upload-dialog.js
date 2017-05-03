@@ -19,6 +19,7 @@ angular.module('moonshotApp')
         bytes[--i] = x & (255);
         x = x>>8;
         } while ( i )
+        console.log("bytes",bytes);
         return bytes;
     }
 
@@ -44,95 +45,43 @@ angular.module('moonshotApp')
         $scope.files = files;
     });
 
+    console.log('file', file);
+
     function getRandomLoadTime(min, max) {
       return Math.random() * (max - min) + min;
     }
 
     function initUploadToLaunchpad() {
-        var cookie = $cookies.get('accessToken');
-        if (cookie) {
-            console.log("COOKIE :: ", cookie);
-            $scope.showPasswordInput = false;
-            $scope.isUploadingItem   = true;
-             Launchpad.getPresignedUrl(cookie, file)
+        Mfly.getCredentials().then(function(creds){
+            
+            $scope.isUploadingItem = true;
+            
+            Launchpad.getPresignedUrl(creds.accessToken, file)
                 .then(function(s3){
 
-                    Launchpad.createItem(cookie, s3, file);
-                    // hide loading bar
-                    $timeout(function(){
-                        $scope.isUploadingItem = false;
+                    Launchpad.createItem(creds.accessToken, s3, file);
+                        // hide loading bar
+                        $timeout(function(){
+                            $scope.isUploadingItem = false;
 
-                        $mdDialog.cancel();
+                            $mdDialog.cancel();
 
-                        $mdToast.show(
-                          $mdToast.simple()
-                            .textContent(`${file.name} uploaded successfully!`)
-                            .position('top right')
-                            .hideDelay(5000)
-                            // .toastClass('upload-success-message')
-                        );
+                            $mdToast.show(
+                              $mdToast.simple()
+                                .textContent(`${file.name} uploaded successfully!`)
+                                .position('top right')
+                                .hideDelay(5000)
+                            );
 
-                    }, getRandomLoadTime(1500,3500));
+                        }, getRandomLoadTime(1500,3500));
 
-                });
-
-        } else {
-            $scope.showPasswordInput = true;
-            console.log('cookie does not exist or has expired!');
-        }
+                    });
+              
+        })
     }
 
     initUploadToLaunchpad();
     ////////////////////////////////////////////////
-
-    $scope.uploadItems = function(accountPass) {
-        $scope.accountPassword = '';
-        $scope.isPasswordWrong = false;
-
-        Accounts.getAccessToken(accountPass)
-            .then(function(token){
-                
-                if (token) {
-                    
-                    $cookies.put('accessToken', token.accessToken, {'expires': token.expires});
-                    
-                    var cookie = $cookies.get('accessToken');
-
-                    $scope.showPasswordInput = false;
-                    $scope.isUploadingItem = true;
-
-                    Launchpad.getPresignedUrl(cookie, file)
-                        .then(function(s3){
-                            console.log(s3);
-                            Launchpad.createItem(cookie, s3, file);
-                            // hide loading bar
-                            $timeout(function(){
-                                $scope.isUploadingItem = false;
-
-                                $mdDialog.cancel();
-
-                                $mdToast.show(
-                                  $mdToast.simple()
-                                    .textContent(`${file.name} uploaded successfully!`)
-                                    .position('top right')
-                                    .hideDelay(5000)
-                                );
-
-                            }, getRandomLoadTime(1500,3500));
-
-                        });
-
-                } else if (token.statusCode === 402) {
-                    
-                    $scope.isPasswordWrong = true;
-                    console.log('you did not provide the right password');
-
-                }
-
-        });
-
-
-    };
 
 	$scope.closeDialog = function() {
 		$mdDialog.cancel();

@@ -5,17 +5,17 @@ angular.module('moonshotApp')
 
     // $scope.getSearch = function(qTerm) {
         if (qTerm) {
-            $scope.showSpinner        = true;
-            $scope.isSearchTrue       = false;
-            $scope.showSuggestedItems = false;
-            $scope.showItemResults    = false;
+            $scope.showSpinner               = true;
+            $scope.isSearchTrue              = false;
+            $scope.showSuggestedItems        = false;
+            $scope.showItemResults           = false;
+            $scope.showFolderItemDescription = true;
             
             $scope.showFolderIcon  = true;
             $scope.noSearchResults = false;
             $scope.searchTerm      = '';
 
             Mfly.search(qTerm).then(function(results){
-                
                 if (results.length == 0) {
 
                     $timeout(function(){
@@ -31,14 +31,13 @@ angular.module('moonshotApp')
                     var first = _.first(results);
                     $scope.selectedResult = first;
              
+                    var folderCount = 0; 
                     results.forEach(function(item, index, array){
                         
-                        // add folder count
                         if (item.type == 'folder') {
-                            Mfly.getFolder(item.id).then(function(data){
-                                $scope.folderCount = data.length;
-                            });
-                        };
+                            folderCount++
+                        } 
+
 
                         var mIcons = ItemIcons.material();
 
@@ -52,6 +51,10 @@ angular.module('moonshotApp')
 
 
                     });
+                    
+                    if (folderCount == 0) {
+                        $scope.showFolderItemDescription = false;
+                    }
                     
                     $timeout(function() {
 
